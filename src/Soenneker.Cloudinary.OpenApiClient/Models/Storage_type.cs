@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>The storage type of the resource.</summary>
+    /// <summary>The storage type of the asset. Defaults to &apos;upload&apos;.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum Storage_type
     {
