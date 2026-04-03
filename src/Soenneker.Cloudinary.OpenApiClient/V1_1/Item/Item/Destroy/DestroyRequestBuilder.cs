@@ -45,11 +45,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyPostResponse?> PostAsDestroyPostResponseAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyRequestBuilder.DestroyRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyPostResponse?> PostAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyRequestBuilder.DestroyRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyPostResponse> PostAsDestroyPostResponseAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyRequestBuilder.DestroyRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyPostResponse> PostAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyRequestBuilder.DestroyRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
@@ -61,36 +61,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy
                 { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyPostResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Destroys an asset/resource
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
-        [Obsolete("This method is obsolete. Use PostAsDestroyPostResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyResponse?> PostAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyRequestBuilder.DestroyRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyResponse> PostAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyRequestBuilder.DestroyRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToPostRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Destroys an asset/resource
@@ -139,14 +109,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy
             [QueryParameter("public_id")]
             public string PublicId { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class DestroyRequestBuilderPostRequestConfiguration : RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyRequestBuilder.DestroyRequestBuilderPostQueryParameters>
-        {
         }
     }
 }

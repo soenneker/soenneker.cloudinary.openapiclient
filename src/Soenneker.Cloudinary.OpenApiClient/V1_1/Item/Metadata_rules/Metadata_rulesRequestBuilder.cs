@@ -56,11 +56,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesGetResponse?> GetAsMetadata_rulesGetResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesGetResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesGetResponse> GetAsMetadata_rulesGetResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesGetResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -70,32 +70,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules
                 { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesGetResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Retrieves a list of all metadata rules in the cloud.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsMetadata_rulesGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new metadata rule with the specified properties and configuration.
@@ -175,22 +149,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class Metadata_rulesRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class Metadata_rulesRequestBuilderPostRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

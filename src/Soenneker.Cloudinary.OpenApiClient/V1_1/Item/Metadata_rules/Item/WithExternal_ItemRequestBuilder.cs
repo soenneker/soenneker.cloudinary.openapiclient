@@ -45,11 +45,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_DeleteResponse?> DeleteAsWithExternal_DeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_DeleteResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_DeleteResponse> DeleteAsWithExternal_DeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_DeleteResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
@@ -61,36 +61,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item
                 { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_DeleteResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_DeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Permanently deletes a metadata rule.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_Response"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
-        [Obsolete("This method is obsolete. Use DeleteAsWithExternal_DeleteResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_Response?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_Response> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_Response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the properties and configuration of an existing metadata rule.
@@ -172,22 +142,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_ItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Item.WithExternal_ItemRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithExternal_ItemRequestBuilderDeleteRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithExternal_ItemRequestBuilderPutRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

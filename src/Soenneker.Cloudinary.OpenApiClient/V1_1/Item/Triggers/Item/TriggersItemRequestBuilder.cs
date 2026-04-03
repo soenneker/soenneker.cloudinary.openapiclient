@@ -50,11 +50,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersDeleteResponse?> DeleteAsTriggersDeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersDeleteResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersDeleteResponse> DeleteAsTriggersDeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersDeleteResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
@@ -65,34 +65,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item
                 { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersDeleteResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Deletes a trigger.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
-        [Obsolete("This method is obsolete. Use DeleteAsTriggersDeleteResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a notification URL for a trigger.
@@ -106,11 +78,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutResponse?> PutAsTriggersPutResponseAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutResponse?> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutResponse> PutAsTriggersPutResponseAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutResponse> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -122,36 +94,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item
                 { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Updates a notification URL for a trigger.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
-        [Obsolete("This method is obsolete. Use PutAsTriggersPutResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse?> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a trigger.
@@ -202,22 +144,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Triggers.Item.TriggersItemRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TriggersItemRequestBuilderDeleteRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TriggersItemRequestBuilderPutRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

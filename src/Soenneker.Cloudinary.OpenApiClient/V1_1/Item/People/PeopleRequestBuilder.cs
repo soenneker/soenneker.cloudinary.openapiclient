@@ -57,11 +57,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleGetResponse?> GetAsPeopleGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleGetResponse> GetAsPeopleGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -72,34 +72,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
                 { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleGetResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Returns a list of all recognized people in your product environment.People Search must be enabled for this product environment.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsPeopleGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a list of all recognized people in your product environment.People Search must be enabled for this product environment.
@@ -135,18 +107,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PeopleRequestBuilderGetQueryParameters 
         {
-            [Obsolete("This property is deprecated, use DirectionAsGetDirectionQueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("direction")]
-            public string? Direction { get; set; }
-#nullable restore
-#else
-            [QueryParameter("direction")]
-            public string Direction { get; set; }
-#endif
-            [QueryParameter("direction")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetDirectionQueryParameterType? DirectionAsGetDirectionQueryParameterType { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetDirectionQueryParameterType? Direction { get; set; }
             /// <summary>The maximum number of people to return. Default: 50.</summary>
             [QueryParameter("max_results")]
             public int? MaxResults { get; set; }
@@ -161,19 +123,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
             public string NamePrefix { get; set; }
 #endif
             /// <summary>Filter by whether the person has been named. Default: all.</summary>
-            [Obsolete("This property is deprecated, use NameStatusAsGetNameStatusQueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("name_status")]
-            public string? NameStatus { get; set; }
-#nullable restore
-#else
-            [QueryParameter("name_status")]
-            public string NameStatus { get; set; }
-#endif
-            /// <summary>Filter by whether the person has been named. Default: all.</summary>
-            [QueryParameter("name_status")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetName_statusQueryParameterType? NameStatusAsGetNameStatusQueryParameterType { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetName_statusQueryParameterType? NameStatus { get; set; }
             /// <summary>The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -185,41 +136,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
             public string NextCursor { get; set; }
 #endif
             /// <summary>The field to sort results by. Default: name (ascending).</summary>
-            [Obsolete("This property is deprecated, use SortByAsGetSortByQueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("sort_by")]
-            public string? SortBy { get; set; }
-#nullable restore
-#else
-            [QueryParameter("sort_by")]
-            public string SortBy { get; set; }
-#endif
-            /// <summary>The field to sort results by. Default: name (ascending).</summary>
-            [QueryParameter("sort_by")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetSort_byQueryParameterType? SortByAsGetSortByQueryParameterType { get; set; }
-            /// <summary>Filter by person status.</summary>
-            [Obsolete("This property is deprecated, use StatusAsPersonStatus instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("status")]
-            public string? Status { get; set; }
-#nullable restore
-#else
-            [QueryParameter("status")]
-            public string Status { get; set; }
-#endif
+            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetSort_byQueryParameterType? SortBy { get; set; }
             /// <summary>Filter by person status.</summary>
             [QueryParameter("status")]
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Person_status? StatusAsPersonStatus { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class PeopleRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>
-        {
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.Person_status? Status { get; set; }
         }
     }
 }

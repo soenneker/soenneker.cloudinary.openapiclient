@@ -81,11 +81,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 420 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutResponse?> PutAsDatasourcePutResponseAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutResponse?> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutResponse> PutAsDatasourcePutResponseAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutResponse> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -98,38 +98,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
                 { "420", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Updates the values in a metadata field&apos;s datasource, including adding, modifying, or changing the order of values.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourceResponse"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 420 status code</exception>
-        [Obsolete("This method is obsolete. Use PutAsDatasourcePutResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourceResponse?> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourceResponse> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourcePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "420", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourceResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourceResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes specific values from a metadata field&apos;s datasource by their external IDs.
@@ -183,22 +151,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourceRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.DatasourceRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class DatasourceRequestBuilderDeleteRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class DatasourceRequestBuilderPutRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

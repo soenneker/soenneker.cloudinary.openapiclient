@@ -43,11 +43,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsGetResponse?> GetAsViewsGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsRequestBuilder.ViewsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsRequestBuilder.ViewsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsGetResponse> GetAsViewsGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsRequestBuilder.ViewsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsRequestBuilder.ViewsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -57,32 +57,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsGetResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Retrieves analytics data for video views. Results can be filtered using expressions based on various criteriasuch as video public ID, view duration, viewer information, and more.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsViewsGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsRequestBuilder.ViewsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsRequestBuilder.ViewsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves analytics data for video views. Results can be filtered using expressions based on various criteriasuch as video public ID, view duration, viewer information, and more.
@@ -142,27 +116,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views
             public string NextCursor { get; set; }
 #endif
             /// <summary>Specifies the expression field by which to sort the results. Prepend values with a &apos;-&apos; to reverse the order.</summary>
-            [Obsolete("This property is deprecated, use SortByAsGetSortByQueryParameterType instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("sort_by")]
-            public string? SortBy { get; set; }
-#nullable restore
-#else
-            [QueryParameter("sort_by")]
-            public string SortBy { get; set; }
-#endif
-            /// <summary>Specifies the expression field by which to sort the results. Prepend values with a &apos;-&apos; to reverse the order.</summary>
-            [QueryParameter("sort_by")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.GetSort_byQueryParameterType? SortByAsGetSortByQueryParameterType { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ViewsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.ViewsRequestBuilder.ViewsRequestBuilderGetQueryParameters>
-        {
+            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.GetSort_byQueryParameterType? SortBy { get; set; }
         }
     }
 }

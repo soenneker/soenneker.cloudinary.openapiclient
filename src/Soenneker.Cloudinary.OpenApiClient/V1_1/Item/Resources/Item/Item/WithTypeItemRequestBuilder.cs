@@ -58,11 +58,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeDeleteResponse?> DeleteAsWithTypeDeleteResponseAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeDeleteResponse?> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeDeleteResponse> DeleteAsWithTypeDeleteResponseAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeDeleteResponse> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -74,36 +74,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item
                 { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeDeleteResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Deletes assets uploaded to your product environment, identified by their public IDs.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeResponse"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
-        [Obsolete("This method is obsolete. Use DeleteAsWithTypeDeleteResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeResponse?> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeResponse> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes assets uploaded to your product environment, identified by their public IDs.
@@ -135,14 +105,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeItemRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithTypeItemRequestBuilderDeleteRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

@@ -44,11 +44,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutResponse?> PutAsOrderPutResponseAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutResponse?> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutResponse> PutAsOrderPutResponseAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutResponse> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -59,34 +59,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Changes the display order of all metadata fields based on specified criteria.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderResponse"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        [Obsolete("This method is obsolete. Use PutAsOrderPutResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderResponse?> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderResponse> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Changes the display order of all metadata fields based on specified criteria.
@@ -118,14 +90,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class OrderRequestBuilderPutRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

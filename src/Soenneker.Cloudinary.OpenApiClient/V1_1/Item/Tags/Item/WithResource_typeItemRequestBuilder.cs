@@ -43,11 +43,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse?> GetAsWithResource_typeGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse> GetAsWithResource_typeGetResponseAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -57,32 +57,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Retrieves a comprehensive list of all tags that exist in your product environment for assets of the specified type.[Cloudinary Admin API documentation](https://cloudinary.com/documentation/admin_api)
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsWithResource_typeGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a comprehensive list of all tags that exist in your product environment for assets of the specified type.[Cloudinary Admin API documentation](https://cloudinary.com/documentation/admin_api)
@@ -141,14 +115,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item
             [QueryParameter("prefix")]
             public string Prefix { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithResource_typeItemRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>
-        {
         }
     }
 }
