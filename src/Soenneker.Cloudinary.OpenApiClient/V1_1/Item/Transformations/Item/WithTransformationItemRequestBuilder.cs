@@ -36,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
         /// <summary>
         /// Delete a named or unnamed transformation. Optionally invalidate derived resources generated using the named transformation.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationDeleteResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
@@ -45,11 +45,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationDeleteResponse?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationItemRequestBuilder.WithTransformationItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationItemRequestBuilder.WithTransformationItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationDeleteResponse> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationItemRequestBuilder.WithTransformationItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationItemRequestBuilder.WithTransformationItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
@@ -60,7 +60,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
                 { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationDeleteResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves details for a named or unnamed transformation.
@@ -94,7 +94,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
         /// <summary>
         /// Creates a new named transformation with the given name and transformation string.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPostResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,11 +104,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPostResponse?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Create_request body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Create_request body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPostResponse> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Create_request body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Create_request body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -120,12 +120,12 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
                 { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPostResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update an existing named or unnamed transformation.
+        /// Updates a named or unnamed transformation.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPutResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -134,11 +134,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPutResponse?> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Update_request body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response?> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Update_request body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPutResponse> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Update_request body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response> PutAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Update_request body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -149,7 +149,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPutResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Message_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete a named or unnamed transformation. Optionally invalidate derived resources generated using the named transformation.
@@ -212,7 +212,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update an existing named or unnamed transformation.
+        /// Updates a named or unnamed transformation.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

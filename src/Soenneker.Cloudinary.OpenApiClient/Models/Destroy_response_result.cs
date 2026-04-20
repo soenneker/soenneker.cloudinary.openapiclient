@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>The result of the deletion operation.</summary>
+    /// <summary>Result of the deletion operation.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum Destroy_response_result
     {

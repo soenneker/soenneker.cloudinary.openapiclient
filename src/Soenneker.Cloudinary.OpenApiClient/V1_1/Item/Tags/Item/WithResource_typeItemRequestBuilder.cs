@@ -36,18 +36,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item
         /// <summary>
         /// Retrieves a comprehensive list of all tags that exist in your product environment for assets of the specified type.[Cloudinary Admin API documentation](https://cloudinary.com/documentation/admin_api)
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_list_response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_list_response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_list_response> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder.WithResource_typeItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -56,7 +56,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item
                 { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_list_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_list_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a comprehensive list of all tags that exist in your product environment for assets of the specified type.[Cloudinary Admin API documentation](https://cloudinary.com/documentation/admin_api)
@@ -105,7 +105,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item
             [QueryParameter("next_cursor")]
             public string NextCursor { get; set; }
 #endif
-            /// <summary>The prefix to use if you want to limit the returned tags to those that start with the specified prefix.</summary>
+            /// <summary>Limit the returned tags to those that start with the specified prefix.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("prefix")]

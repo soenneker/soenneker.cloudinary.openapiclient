@@ -14,15 +14,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The asset folder path. Only included when folder decoupling is enabled.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AssetFolder { get; set; }
-#nullable restore
-#else
-        public string AssetFolder { get; set; }
-#endif
-        /// <summary>The result of the deletion operation.</summary>
+        /// <summary>Result of the deletion operation.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Destroy_response_result? Result { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Destroy_response"/> and sets the default values.
@@ -49,7 +41,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "asset_folder", n => { AssetFolder = n.GetStringValue(); } },
                 { "result", n => { Result = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Destroy_response_result>(); } },
             };
         }
@@ -60,7 +51,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("asset_folder", AssetFolder);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Destroy_response_result>("result", Result);
             writer.WriteAdditionalData(AdditionalData);
         }

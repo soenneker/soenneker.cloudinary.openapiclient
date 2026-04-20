@@ -124,7 +124,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.VideoRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The type of resource (image, video, raw, or auto).</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.WithResource_typeItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.WithResource_typeItemRequestBuilder this[string position]
         {

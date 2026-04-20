@@ -34,7 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw
         {
         }
         /// <summary>
-        /// Retrieves a list of raw assets. Results can be filtered by various criteria like tags, moderation status, prefix, or specific public IDs.
+        /// Retrieves a list of raw assets. Results can be filtered by various criteria like tags, prefix, or specific public IDs.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ComponentsList_response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.ComponentsList_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.ComponentsList_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves a list of raw assets. Results can be filtered by various criteria like tags, moderation status, prefix, or specific public IDs.
+        /// Retrieves a list of raw assets. Results can be filtered by various criteria like tags, prefix, or specific public IDs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -87,22 +87,23 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw.RawRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves a list of raw assets. Results can be filtered by various criteria like tags, moderation status, prefix, or specific public IDs.
+        /// Retrieves a list of raw assets. Results can be filtered by various criteria like tags, prefix, or specific public IDs.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RawRequestBuilderGetQueryParameters 
         {
-            /// <summary>Sort direction.</summary>
+            /// <summary>The sort direction for the results. Default is &quot;desc&quot;.</summary>
             [QueryParameter("direction")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw.GetDirectionQueryParameterType? Direction { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.Direction_enum? Direction { get; set; }
+            /// <summary>Additional fields to include in the response. The fields public_id and asset_id are always included.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw.GetFieldsQueryParameterType[]? Fields { get; set; }
+            public string? Fields { get; set; }
 #nullable restore
 #else
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw.GetFieldsQueryParameterType[] Fields { get; set; }
+            public string Fields { get; set; }
 #endif
             /// <summary>Maximum number of results to return (1-500).</summary>
             [QueryParameter("max_results")]
@@ -117,7 +118,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw
             [QueryParameter("next_cursor")]
             public string NextCursor { get; set; }
 #endif
-            /// <summary>A public_id prefix. When specified, all assets with that prefix are returned. When using this, the `type` parameter must also be specified.</summary>
+            /// <summary>A public_id prefix. When specified, all assets with that prefix are returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("prefix")]
@@ -137,15 +138,22 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw
             [QueryParameter("public_ids")]
             public string[] PublicIds { get; set; }
 #endif
-            /// <summary>An ISO-8601 formatted timestamp. When specified, assets created since that timestamp are returned.  Supported only if neither `prefix` nor `public_ids` were passed.</summary>
+            /// <summary>An ISO-8601 formatted timestamp. When specified, returns resources created since that timestamp. Supported only if neither `prefix` nor `public_ids` were passed.</summary>
             [QueryParameter("start_at")]
             public DateTimeOffset? StartAt { get; set; }
-            /// <summary>Whether to include the list of tag names assigned to each asset. Default: false</summary>
+            /// <summary>Whether to include the list of tag names assigned to each asset. Default is false.</summary>
             [QueryParameter("tags")]
             public bool? Tags { get; set; }
-            /// <summary>The delivery type. Necessary for prefix filtering.</summary>
+            /// <summary>The delivery type to filter by. When omitted, returns assets of all delivery types.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
             [QueryParameter("type")]
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.List_storage_type? Type { get; set; }
+            public string? Type { get; set; }
+#nullable restore
+#else
+            [QueryParameter("type")]
+            public string Type { get; set; }
+#endif
         }
     }
 }

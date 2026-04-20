@@ -16,9 +16,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets
         #pragma warning disable CS1591
         Id,
         #pragma warning restore CS1591
-        [EnumMember(Value = "updated_at")]
+        [EnumMember(Value = "created_at")]
         #pragma warning disable CS1591
-        Updated_at,
+        Created_at,
         #pragma warning restore CS1591
     }
 }

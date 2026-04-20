@@ -58,10 +58,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Custom context metadata associated with the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_context? Context { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Context_response? Context { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_context Context { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Context_response Context { get; set; }
 #endif
         /// <summary>The timestamp when the asset was created.</summary>
         public DateTimeOffset? CreatedAt { get; set; }
@@ -169,8 +169,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public List<string> Tags { get; set; }
 #endif
-        /// <summary>The delivery type of the asset.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_type? Type { get; set; }
+        /// <summary>All supported delivery types.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all? Type { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all Type { get; set; }
+#endif
         /// <summary>The timestamp when the asset was uploaded.</summary>
         public DateTimeOffset? UploadedAt { get; set; }
         /// <summary>Information about who uploaded the asset.</summary>
@@ -226,7 +232,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "asset_id", n => { AssetId = n.GetStringValue(); } },
                 { "backup_bytes", n => { BackupBytes = n.GetIntValue(); } },
                 { "bytes", n => { Bytes = n.GetIntValue(); } },
-                { "context", n => { Context = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_context>(global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_context.CreateFromDiscriminatorValue); } },
+                { "context", n => { Context = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Context_response>(global::Soenneker.Cloudinary.OpenApiClient.Models.Context_response.CreateFromDiscriminatorValue); } },
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "created_by", n => { CreatedBy = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_created_by>(global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_created_by.CreateFromDiscriminatorValue); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
@@ -244,7 +250,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "secure_url", n => { SecureUrl = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_status>(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_type>(); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all>(global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all.CreateFromDiscriminatorValue); } },
                 { "uploaded_at", n => { UploadedAt = n.GetDateTimeOffsetValue(); } },
                 { "uploaded_by", n => { UploadedBy = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_uploaded_by>(global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_uploaded_by.CreateFromDiscriminatorValue); } },
                 { "url", n => { Url = n.GetStringValue(); } },
@@ -267,7 +273,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("asset_id", AssetId);
             writer.WriteIntValue("backup_bytes", BackupBytes);
             writer.WriteIntValue("bytes", Bytes);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_context>("context", Context);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Context_response>("context", Context);
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_created_by>("created_by", CreatedBy);
             writer.WriteStringValue("display_name", DisplayName);
@@ -285,7 +291,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("secure_url", SecureUrl);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_status>("status", Status);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_type>("type", Type);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all>("type", Type);
             writer.WriteDateTimeOffsetValue("uploaded_at", UploadedAt);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response_resources_uploaded_by>("uploaded_by", UploadedBy);
             writer.WriteStringValue("url", Url);

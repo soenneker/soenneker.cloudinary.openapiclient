@@ -104,16 +104,17 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_ids
             [QueryParameter("asset_ids")]
             public string[] AssetIds { get; set; }
 #endif
+            /// <summary>Additional fields to include in the response. The fields public_id and asset_id are always included.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_ids.GetFieldsQueryParameterType[]? Fields { get; set; }
+            public string? Fields { get; set; }
 #nullable restore
 #else
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_ids.GetFieldsQueryParameterType[] Fields { get; set; }
+            public string Fields { get; set; }
 #endif
-            /// <summary>Resource type (optional, can sometimes disambiguate).</summary>
+            /// <summary>Resource type filter.</summary>
             [QueryParameter("resource_type")]
             public global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type? ResourceType { get; set; }
         }

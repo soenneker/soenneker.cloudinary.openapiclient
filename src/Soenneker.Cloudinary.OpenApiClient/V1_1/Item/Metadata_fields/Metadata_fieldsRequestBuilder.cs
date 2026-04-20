@@ -31,7 +31,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Order.OrderRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.metadata_fields.item collection</summary>
-        /// <param name="position">The external ID of the metadata field to retrieve.</param>
+        /// <param name="position">The external ID of the metadata field.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.WithExternal_ItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.WithExternal_ItemRequestBuilder this[string position]
         {
@@ -61,18 +61,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields
         /// <summary>
         /// Retrieves a list of all metadata fields in the product environment based on the provided filters.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_fields_list_response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsRequestBuilder.Metadata_fieldsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_fields_list_response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsRequestBuilder.Metadata_fieldsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsRequestBuilder.Metadata_fieldsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_fields_list_response> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsRequestBuilder.Metadata_fieldsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -81,7 +81,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsGetResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_fields_list_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_fields_list_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new metadata field with the specified properties and configuration.

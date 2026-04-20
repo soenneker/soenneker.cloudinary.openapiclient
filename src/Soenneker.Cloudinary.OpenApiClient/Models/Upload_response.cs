@@ -22,7 +22,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string ApiKey { get; set; }
 #endif
-        /// <summary>The asset ID of the uploaded file. This is the ID of the uploaded file in the Cloudinary database.</summary>
+        /// <summary>The asset folder where the file is stored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AssetFolder { get; set; }
+#nullable restore
+#else
+        public string AssetFolder { get; set; }
+#endif
+        /// <summary>A 32-character hexadecimal asset ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AssetId { get; set; }
@@ -32,13 +40,31 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>The size of the uploaded file in bytes.</summary>
         public int? Bytes { get; set; }
-        /// <summary>The date and time the file was uploaded.</summary>
+        /// <summary>Contextual metadata grouped by kind. Custom user context appears under the &apos;custom&apos; key. Other context kinds may also appear as additional keys.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CreatedAt { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response? Context { get; set; }
 #nullable restore
 #else
-        public string CreatedAt { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response Context { get; set; }
+#endif
+        /// <summary>Coordinate data for faces and custom regions.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response? Coordinates { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response Coordinates { get; set; }
+#endif
+        /// <summary>The date and time the file was uploaded.</summary>
+        public DateTimeOffset? CreatedAt { get; set; }
+        /// <summary>The display name of the uploaded file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DisplayName { get; set; }
+#nullable restore
+#else
+        public string DisplayName { get; set; }
 #endif
         /// <summary>The eager property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,6 +81,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #nullable restore
 #else
         public string Etag { get; set; }
+#endif
+        /// <summary>Detected face coordinate rectangles [x, y, width, height].</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public UntypedNode? Faces { get; set; }
+#nullable restore
+#else
+        public UntypedNode Faces { get; set; }
 #endif
         /// <summary>The format of the uploaded file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -77,6 +111,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_image_metadata ImageMetadata { get; set; }
+#endif
+        /// <summary>Structured metadata associated with the uploaded file.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_metadata? Metadata { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_metadata Metadata { get; set; }
 #endif
         /// <summary>The original filename of the uploaded file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -150,7 +192,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>The version of the uploaded file.</summary>
         public int? Version { get; set; }
-        /// <summary>The version ID of the uploaded file.</summary>
+        /// <summary>Hexadecimal version ID; length is a positive multiple of 32 (typically 32 or 64).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? VersionId { get; set; }
@@ -186,16 +228,22 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "api_key", n => { ApiKey = n.GetStringValue(); } },
+                { "asset_folder", n => { AssetFolder = n.GetStringValue(); } },
                 { "asset_id", n => { AssetId = n.GetStringValue(); } },
                 { "bytes", n => { Bytes = n.GetIntValue(); } },
-                { "created_at", n => { CreatedAt = n.GetStringValue(); } },
+                { "context", n => { Context = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response>(global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response.CreateFromDiscriminatorValue); } },
+                { "coordinates", n => { Coordinates = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response>(global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response.CreateFromDiscriminatorValue); } },
+                { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
+                { "display_name", n => { DisplayName = n.GetStringValue(); } },
                 { "eager", n => { Eager = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_eager>(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_eager.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "etag", n => { Etag = n.GetStringValue(); } },
+                { "faces", n => { Faces = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "format", n => { Format = n.GetStringValue(); } },
                 { "grayscale", n => { Grayscale = n.GetBoolValue(); } },
                 { "height", n => { Height = n.GetIntValue(); } },
                 { "illustration_score", n => { IllustrationScore = n.GetDoubleValue(); } },
                 { "image_metadata", n => { ImageMetadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_image_metadata>(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_image_metadata.CreateFromDiscriminatorValue); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_metadata>(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_metadata.CreateFromDiscriminatorValue); } },
                 { "original_filename", n => { OriginalFilename = n.GetStringValue(); } },
                 { "pages", n => { Pages = n.GetIntValue(); } },
                 { "placeholder", n => { Placeholder = n.GetBoolValue(); } },
@@ -220,16 +268,22 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("api_key", ApiKey);
+            writer.WriteStringValue("asset_folder", AssetFolder);
             writer.WriteStringValue("asset_id", AssetId);
             writer.WriteIntValue("bytes", Bytes);
-            writer.WriteStringValue("created_at", CreatedAt);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response>("context", Context);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response>("coordinates", Coordinates);
+            writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
+            writer.WriteStringValue("display_name", DisplayName);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_eager>("eager", Eager);
             writer.WriteStringValue("etag", Etag);
+            writer.WriteObjectValue<UntypedNode>("faces", Faces);
             writer.WriteStringValue("format", Format);
             writer.WriteBoolValue("grayscale", Grayscale);
             writer.WriteIntValue("height", Height);
             writer.WriteDoubleValue("illustration_score", IllustrationScore);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_image_metadata>("image_metadata", ImageMetadata);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response_metadata>("metadata", Metadata);
             writer.WriteStringValue("original_filename", OriginalFilename);
             writer.WriteIntValue("pages", Pages);
             writer.WriteBoolValue("placeholder", Placeholder);

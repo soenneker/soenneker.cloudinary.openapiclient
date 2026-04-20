@@ -25,7 +25,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Search.SearchRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.folders.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The full path of the folder, including any nested folders. Must not be empty, and must not contain double slashes or leading/trailing slashes.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Item.WithFolderItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Item.WithFolderItemRequestBuilder this[string position]
         {

@@ -16,7 +16,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags
     public partial class TagsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.tags.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The type of resource (image, video, or raw).</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Tags.Item.WithResource_typeItemRequestBuilder this[string position]
         {

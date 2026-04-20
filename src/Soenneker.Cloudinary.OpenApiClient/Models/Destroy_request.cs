@@ -12,31 +12,31 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     public partial class Destroy_request : global::Soenneker.Cloudinary.OpenApiClient.Models.Signature_parameters, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The ID of the asset to delete.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AssetId { get; set; }
-#nullable restore
-#else
-        public string AssetId { get; set; }
-#endif
-        /// <summary>URL for redirect after operation completion.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Callback { get; set; }
-#nullable restore
-#else
-        public string Callback { get; set; }
-#endif
-        /// <summary>Whether to invalidate CDN cache. Default is false.</summary>
+        /// <summary>Whether to invalidate CDN cached copies of the asset.</summary>
         public bool? Invalidate { get; set; }
-        /// <summary>URL to receive completion notification.</summary>
+        /// <summary>URL to receive a notification when the operation is complete.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NotificationUrl { get; set; }
 #nullable restore
 #else
         public string NotificationUrl { get; set; }
+#endif
+        /// <summary>The public ID of the asset to destroy.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PublicId { get; set; }
+#nullable restore
+#else
+        public string PublicId { get; set; }
+#endif
+        /// <summary>All supported delivery types.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all? Type { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all Type { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -56,10 +56,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "asset_id", n => { AssetId = n.GetStringValue(); } },
-                { "callback", n => { Callback = n.GetStringValue(); } },
                 { "invalidate", n => { Invalidate = n.GetBoolValue(); } },
                 { "notification_url", n => { NotificationUrl = n.GetStringValue(); } },
+                { "public_id", n => { PublicId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all>(global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -70,10 +70,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteStringValue("asset_id", AssetId);
-            writer.WriteStringValue("callback", Callback);
             writer.WriteBoolValue("invalidate", Invalidate);
             writer.WriteStringValue("notification_url", NotificationUrl);
+            writer.WriteStringValue("public_id", PublicId);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all>("type", Type);
         }
     }
 }

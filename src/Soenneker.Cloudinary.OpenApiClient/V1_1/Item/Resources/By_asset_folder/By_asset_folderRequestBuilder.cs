@@ -104,17 +104,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_folder
             [QueryParameter("asset_folder")]
             public string AssetFolder { get; set; }
 #endif
-            /// <summary>Sort direction.</summary>
+            /// <summary>The sort direction for the results. Default is &quot;desc&quot;.</summary>
             [QueryParameter("direction")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_folder.GetDirectionQueryParameterType? Direction { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.Direction_enum? Direction { get; set; }
+            /// <summary>Additional fields to include in the response. The fields public_id and asset_id are always included.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_folder.GetFieldsQueryParameterType[]? Fields { get; set; }
+            public string? Fields { get; set; }
 #nullable restore
 #else
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_folder.GetFieldsQueryParameterType[] Fields { get; set; }
+            public string Fields { get; set; }
 #endif
             /// <summary>Maximum number of results to return (1-500).</summary>
             [QueryParameter("max_results")]
@@ -129,7 +130,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_folder
             [QueryParameter("next_cursor")]
             public string NextCursor { get; set; }
 #endif
-            /// <summary>Filter by resource type within the folder.</summary>
+            /// <summary>Resource type filter.</summary>
             [QueryParameter("resource_type")]
             public global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type? ResourceType { get; set; }
         }

@@ -16,7 +16,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderation
     public partial class ModerationsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.resources.item.moderations.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The type of moderation to filter by.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderations.Item.WithModeration_kindItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderations.Item.WithModeration_kindItemRequestBuilder this[string position]
         {

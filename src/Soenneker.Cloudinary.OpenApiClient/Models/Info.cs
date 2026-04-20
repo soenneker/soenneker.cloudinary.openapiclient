@@ -34,7 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string AssetFolder { get; set; }
 #endif
-        /// <summary>The asset_id property</summary>
+        /// <summary>A 32-character hexadecimal asset ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AssetId { get; set; }
@@ -48,13 +48,29 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public int? BackupBytes { get; set; }
         /// <summary>The bytes property</summary>
         public int? Bytes { get; set; }
-        /// <summary>Included if &apos;context=true&apos; parameter is used. Can be object with custom properties or array of key-value pairs.</summary>
+        /// <summary>The colors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Info.Info_context? Context { get; set; }
+        public List<UntypedNode>? Colors { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Info.Info_context Context { get; set; }
+        public List<UntypedNode> Colors { get; set; }
+#endif
+        /// <summary>Included if &apos;context=true&apos; parameter is used.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response? Context { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response Context { get; set; }
+#endif
+        /// <summary>Face and custom coordinate data. Included if &apos;coordinates=true&apos; parameter is used.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response? Coordinates { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response Coordinates { get; set; }
 #endif
         /// <summary>The created_at property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
@@ -65,6 +81,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #nullable restore
 #else
         public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derivatives> Derivatives { get; set; }
+#endif
+        /// <summary>The derived property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derived>? Derived { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derived> Derived { get; set; }
 #endif
         /// <summary>The display_name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -83,6 +107,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #nullable restore
 #else
         public string Etag { get; set; }
+#endif
+        /// <summary>Detected face rectangles. Included if &apos;faces=true&apos; parameter is used.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public UntypedNode? Faces { get; set; }
+#nullable restore
+#else
+        public UntypedNode Faces { get; set; }
 #endif
         /// <summary>The filename property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -108,8 +140,28 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Format { get; set; }
 #endif
+        /// <summary>The grayscale property</summary>
+        public bool? Grayscale { get; set; }
         /// <summary>The height property</summary>
         public int? Height { get; set; }
+        /// <summary>The illustration_score property</summary>
+        public double? IllustrationScore { get; set; }
+        /// <summary>Additional asset information (visual search, recognized people, etc.)</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_info? InfoProp { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_info InfoProp { get; set; }
+#endif
+        /// <summary>The last_updated property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_last_updated? LastUpdated { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_last_updated LastUpdated { get; set; }
+#endif
         /// <summary>The metadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -142,8 +194,24 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string ModerationStatus { get; set; }
 #endif
+        /// <summary>Cursor for paginating derived assets.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NextCursor { get; set; }
+#nullable restore
+#else
+        public string NextCursor { get; set; }
+#endif
         /// <summary>The pixels property</summary>
         public int? Pixels { get; set; }
+        /// <summary>The predominant property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_predominant? Predominant { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_predominant Predominant { get; set; }
+#endif
         /// <summary>The public_id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -184,6 +252,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string SecureUrl { get; set; }
 #endif
+        /// <summary>The semi_transparent property</summary>
+        public bool? SemiTransparent { get; set; }
         /// <summary>The status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -208,13 +278,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public List<string> Tags { get; set; }
 #endif
-        /// <summary>The type property</summary>
+        /// <summary>All supported delivery types.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Type { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all? Type { get; set; }
 #nullable restore
 #else
-        public string Type { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all Type { get; set; }
 #endif
         /// <summary>The uploaded_at property</summary>
         public DateTimeOffset? UploadedAt { get; set; }
@@ -228,6 +298,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>The version property</summary>
         public int? Version { get; set; }
+        /// <summary>The versions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_versions>? Versions { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_versions> Versions { get; set; }
+#endif
         /// <summary>The width property</summary>
         public int? Width { get; set; }
         /// <summary>
@@ -263,33 +341,45 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "backup", n => { Backup = n.GetBoolValue(); } },
                 { "backup_bytes", n => { BackupBytes = n.GetIntValue(); } },
                 { "bytes", n => { Bytes = n.GetIntValue(); } },
-                { "context", n => { Context = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info.Info_context>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info.Info_context.CreateFromDiscriminatorValue); } },
+                { "colors", n => { Colors = n.GetCollectionOfPrimitiveValues<UntypedNode>()?.AsList(); } },
+                { "context", n => { Context = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response>(global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response.CreateFromDiscriminatorValue); } },
+                { "coordinates", n => { Coordinates = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response>(global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response.CreateFromDiscriminatorValue); } },
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "derivatives", n => { Derivatives = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derivatives>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derivatives.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "derived", n => { Derived = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derived>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derived.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
                 { "duration", n => { Duration = n.GetDoubleValue(); } },
                 { "etag", n => { Etag = n.GetStringValue(); } },
+                { "faces", n => { Faces = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "filename", n => { Filename = n.GetStringValue(); } },
                 { "folder", n => { Folder = n.GetStringValue(); } },
                 { "format", n => { Format = n.GetStringValue(); } },
+                { "grayscale", n => { Grayscale = n.GetBoolValue(); } },
                 { "height", n => { Height = n.GetIntValue(); } },
+                { "illustration_score", n => { IllustrationScore = n.GetDoubleValue(); } },
+                { "info", n => { InfoProp = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_info>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_info.CreateFromDiscriminatorValue); } },
+                { "last_updated", n => { LastUpdated = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_last_updated>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_last_updated.CreateFromDiscriminatorValue); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_metadata>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_metadata.CreateFromDiscriminatorValue); } },
                 { "moderation", n => { Moderation = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_moderation>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_moderation.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "moderation_kind", n => { ModerationKind = n.GetStringValue(); } },
                 { "moderation_status", n => { ModerationStatus = n.GetStringValue(); } },
+                { "next_cursor", n => { NextCursor = n.GetStringValue(); } },
                 { "pixels", n => { Pixels = n.GetIntValue(); } },
+                { "predominant", n => { Predominant = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_predominant>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_predominant.CreateFromDiscriminatorValue); } },
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "related_assets", n => { RelatedAssets = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_related_assets>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_related_assets.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "resource_subtype", n => { ResourceSubtype = n.GetStringValue(); } },
                 { "resource_type", n => { ResourceType = n.GetStringValue(); } },
                 { "secure_url", n => { SecureUrl = n.GetStringValue(); } },
+                { "semi_transparent", n => { SemiTransparent = n.GetBoolValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
                 { "substatus", n => { Substatus = n.GetStringValue(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all>(global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all.CreateFromDiscriminatorValue); } },
                 { "uploaded_at", n => { UploadedAt = n.GetDateTimeOffsetValue(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
+                { "versions", n => { Versions = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_versions>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_versions.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "width", n => { Width = n.GetIntValue(); } },
             };
         }
@@ -308,112 +398,47 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("backup", Backup);
             writer.WriteIntValue("backup_bytes", BackupBytes);
             writer.WriteIntValue("bytes", Bytes);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info.Info_context>("context", Context);
+            writer.WriteCollectionOfPrimitiveValues<UntypedNode>("colors", Colors);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Context_full_response>("context", Context);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Coordinates_response>("coordinates", Coordinates);
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derivatives>("derivatives", Derivatives);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_derived>("derived", Derived);
             writer.WriteStringValue("display_name", DisplayName);
             writer.WriteDoubleValue("duration", Duration);
             writer.WriteStringValue("etag", Etag);
+            writer.WriteObjectValue<UntypedNode>("faces", Faces);
             writer.WriteStringValue("filename", Filename);
             writer.WriteStringValue("folder", Folder);
             writer.WriteStringValue("format", Format);
+            writer.WriteBoolValue("grayscale", Grayscale);
             writer.WriteIntValue("height", Height);
+            writer.WriteDoubleValue("illustration_score", IllustrationScore);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_info>("info", InfoProp);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_last_updated>("last_updated", LastUpdated);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_metadata>("metadata", Metadata);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_moderation>("moderation", Moderation);
             writer.WriteStringValue("moderation_kind", ModerationKind);
             writer.WriteStringValue("moderation_status", ModerationStatus);
+            writer.WriteStringValue("next_cursor", NextCursor);
             writer.WriteIntValue("pixels", Pixels);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_predominant>("predominant", Predominant);
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_related_assets>("related_assets", RelatedAssets);
             writer.WriteStringValue("resource_subtype", ResourceSubtype);
             writer.WriteStringValue("resource_type", ResourceType);
             writer.WriteStringValue("secure_url", SecureUrl);
+            writer.WriteBoolValue("semi_transparent", SemiTransparent);
             writer.WriteStringValue("status", Status);
             writer.WriteStringValue("substatus", Substatus);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteStringValue("type", Type);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Delivery_type_all>("type", Type);
             writer.WriteDateTimeOffsetValue("uploaded_at", UploadedAt);
             writer.WriteStringValue("url", Url);
             writer.WriteIntValue("version", Version);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_versions>("versions", Versions);
             writer.WriteIntValue("width", Width);
             writer.WriteAdditionalData(AdditionalData);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember3"/>, List&lt;global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember2&gt;
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class Info_context : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember1? InfoContextMember1 { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember1 InfoContextMember1 { get; set; }
-#endif
-            /// <summary>Composed type representation for type List&lt;global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember2&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember2>? InfoContextMember2 { get; set; }
-#nullable restore
-#else
-            public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember2> InfoContextMember2 { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember3? InfoContextMember3 { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember3 InfoContextMember3 { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Info.Info_context"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Cloudinary.OpenApiClient.Models.Info.Info_context CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.Info.Info_context();
-                if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember2>(global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember2.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember2> infoContextMember2Value)
-                {
-                    result.InfoContextMember2 = infoContextMember2Value;
-                }
-                else {
-                    result.InfoContextMember1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember1();
-                    result.InfoContextMember3 = new global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember3();
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(InfoContextMember1 != null || InfoContextMember3 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(InfoContextMember1, InfoContextMember3);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(InfoContextMember2 != null)
-                {
-                    writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember2>(null, InfoContextMember2);
-                }
-                else {
-                    writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Info_contextMember1>(null, InfoContextMember1, InfoContextMember3);
-                }
-            }
         }
     }
 }

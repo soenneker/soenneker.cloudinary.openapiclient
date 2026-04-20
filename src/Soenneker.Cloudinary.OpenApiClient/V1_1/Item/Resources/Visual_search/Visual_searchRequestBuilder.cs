@@ -34,7 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Visual_search
         {
         }
         /// <summary>
-        /// Returns a list of resources that are visually similar to a specified image. You can provide the source image for comparison in one of three ways:- Provide a URL of an image- Specify the public ID or asset ID of an existing image- Provide a textual description
+        /// Returns a list of resources that are visually similar to a specified image. You can provide the source image for comparison in one of three ways:- Provide a URL of an image- Specify the asset ID of an existing image- Provide a textual description
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response"/></returns>
         /// <param name="body">Parameters for visual search operations</param>
@@ -61,7 +61,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Visual_search
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns a list of resources that are visually similar to a specified image. You can provide the source image for comparison in one of three ways:- Provide a URL of an image- Specify the public ID or asset ID of an existing image- Provide a textual description
+        /// Returns a list of resources that are visually similar to a specified image. You can provide the source image for comparison in one of three ways:- Provide a URL of an image- Specify the asset ID of an existing image- Provide a textual description
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Parameters for visual search operations</param>

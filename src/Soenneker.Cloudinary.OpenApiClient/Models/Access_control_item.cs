@@ -17,13 +17,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item_access_type? AccessType { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The end date and time when anonymous access expires (ISO 8601 format).</summary>
+        /// <summary>The end date and time when anonymous access expires. Accepts ISO 8601 string or Unix timestamp.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? End { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_end? End { get; set; }
 #nullable restore
 #else
-        public string End { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_end End { get; set; }
 #endif
         /// <summary>The authentication key identifier for token-based access. Default key is used if not specified or if set to &apos;default&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -33,13 +33,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Key { get; set; }
 #endif
-        /// <summary>The start date and time when anonymous access becomes available (ISO 8601 format).</summary>
+        /// <summary>The start date and time when anonymous access becomes available. Accepts ISO 8601 string or Unix timestamp.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Start { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_start? Start { get; set; }
 #nullable restore
 #else
-        public string Start { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_start Start { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item"/> and sets the default values.
@@ -67,9 +67,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "access_type", n => { AccessType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item_access_type>(); } },
-                { "end", n => { End = n.GetStringValue(); } },
+                { "end", n => { End = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_end>(global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_end.CreateFromDiscriminatorValue); } },
                 { "key", n => { Key = n.GetStringValue(); } },
-                { "start", n => { Start = n.GetStringValue(); } },
+                { "start", n => { Start = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_start>(global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_start.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -80,10 +80,132 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item_access_type>("access_type", AccessType);
-            writer.WriteStringValue("end", End);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_end>("end", End);
             writer.WriteStringValue("key", Key);
-            writer.WriteStringValue("start", Start);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_start>("start", Start);
             writer.WriteAdditionalData(AdditionalData);
+        }
+        /// <summary>
+        /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class Access_control_item_end : IComposedTypeWrapper, IParsable
+        {
+            /// <summary>Composed type representation for type <see cref="int"/></summary>
+            public int? Integer { get; set; }
+            /// <summary>Composed type representation for type <see cref="string"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? String { get; set; }
+#nullable restore
+#else
+            public string String { get; set; }
+#endif
+            /// <summary>
+            /// Creates a new instance of the appropriate class based on discriminator value
+            /// </summary>
+            /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_end"/></returns>
+            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+            public static global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_end CreateFromDiscriminatorValue(IParseNode parseNode)
+            {
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+                var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_end();
+                if(parseNode.GetIntValue() is int integerValue)
+                {
+                    result.Integer = integerValue;
+                }
+                else if(parseNode.GetStringValue() is string stringValue)
+                {
+                    result.String = stringValue;
+                }
+                return result;
+            }
+            /// <summary>
+            /// The deserialization information for the current model
+            /// </summary>
+            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+            {
+                return new Dictionary<string, Action<IParseNode>>();
+            }
+            /// <summary>
+            /// Serializes information the current object
+            /// </summary>
+            /// <param name="writer">Serialization writer to use to serialize this model</param>
+            public virtual void Serialize(ISerializationWriter writer)
+            {
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+                if(Integer != null)
+                {
+                    writer.WriteIntValue(null, Integer);
+                }
+                else if(String != null)
+                {
+                    writer.WriteStringValue(null, String);
+                }
+            }
+        }
+        /// <summary>
+        /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class Access_control_item_start : IComposedTypeWrapper, IParsable
+        {
+            /// <summary>Composed type representation for type <see cref="int"/></summary>
+            public int? Integer { get; set; }
+            /// <summary>Composed type representation for type <see cref="string"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? String { get; set; }
+#nullable restore
+#else
+            public string String { get; set; }
+#endif
+            /// <summary>
+            /// Creates a new instance of the appropriate class based on discriminator value
+            /// </summary>
+            /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_start"/></returns>
+            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
+            public static global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_start CreateFromDiscriminatorValue(IParseNode parseNode)
+            {
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+                var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.Access_control_item_start();
+                if(parseNode.GetIntValue() is int integerValue)
+                {
+                    result.Integer = integerValue;
+                }
+                else if(parseNode.GetStringValue() is string stringValue)
+                {
+                    result.String = stringValue;
+                }
+                return result;
+            }
+            /// <summary>
+            /// The deserialization information for the current model
+            /// </summary>
+            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+            {
+                return new Dictionary<string, Action<IParseNode>>();
+            }
+            /// <summary>
+            /// Serializes information the current object
+            /// </summary>
+            /// <param name="writer">Serialization writer to use to serialize this model</param>
+            public virtual void Serialize(ISerializationWriter writer)
+            {
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+                if(Integer != null)
+                {
+                    writer.WriteIntValue(null, Integer);
+                }
+                else if(String != null)
+                {
+                    writer.WriteStringValue(null, String);
+                }
+            }
         }
     }
 }

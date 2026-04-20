@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_external_ids
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public By_external_idsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources/by_external_ids?external_ids={external_ids}{&context*,fields*,metadata*,moderations*,resource_type*,tags*}", pathParameters)
+        public By_external_idsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources/by_external_ids?external_ids={external_ids}{&context*,fields,metadata*,moderations*,resource_type*,tags*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_external_ids
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public By_external_idsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources/by_external_ids?external_ids={external_ids}{&context*,fields*,metadata*,moderations*,resource_type*,tags*}", rawUrl)
+        public By_external_idsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources/by_external_ids?external_ids={external_ids}{&context*,fields,metadata*,moderations*,resource_type*,tags*}", rawUrl)
         {
         }
         /// <summary>
@@ -94,6 +94,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_external_ids
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class By_external_idsRequestBuilderGetQueryParameters 
         {
+            /// <summary>Whether to include key-value pairs of contextual metadata associated with each asset. Default is false.</summary>
             [QueryParameter("context")]
             public bool? Context { get; set; }
             /// <summary>List of external IDs for identifying the assets to retrieve. Either external_ids or asset_ids must be provided.</summary>
@@ -106,16 +107,26 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_external_ids
             [QueryParameter("external_ids")]
             public string[] ExternalIds { get; set; }
 #endif
-            /// <summary>A comma-separated list of fields to include in the response.Notes:This parameter takes precedence over other parameters requesting details in the response (e.g., tags or context), so include them in this list if you also want their details returned.The following fields are always included in the response: public_id, and asset_id.</summary>
+            /// <summary>Additional fields to include in the response. The fields public_id and asset_id are always included.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_external_ids.GetFieldsQueryParameterType? Fields { get; set; }
+            public string? Fields { get; set; }
+#nullable restore
+#else
+            [QueryParameter("fields")]
+            public string Fields { get; set; }
+#endif
+            /// <summary>Whether to include the structured metadata fields and values assigned to each asset. Default is false.</summary>
             [QueryParameter("metadata")]
             public bool? Metadata { get; set; }
+            /// <summary>Whether to include image moderation status of each asset. Default is false.</summary>
             [QueryParameter("moderations")]
             public bool? Moderations { get; set; }
-            /// <summary>Resource type (optional).</summary>
+            /// <summary>Resource type filter.</summary>
             [QueryParameter("resource_type")]
             public global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type? ResourceType { get; set; }
+            /// <summary>Whether to include the list of tag names assigned to each asset. Default is false.</summary>
             [QueryParameter("tags")]
             public bool? Tags { get; set; }
         }

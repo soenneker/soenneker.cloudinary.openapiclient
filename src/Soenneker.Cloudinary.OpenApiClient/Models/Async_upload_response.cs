@@ -43,15 +43,20 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type? ResourceType { get; set; }
         /// <summary>The status of the asynchronous upload. Will be &apos;pending&apos; for async uploads.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response_status? Status { get; set; }
-        /// <summary>The storage type of the asset. Defaults to &apos;upload&apos;.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Storage_type? Type { get; set; }
+        /// <summary>The delivery type of the asset. Defaults to &apos;upload&apos;.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type? Type { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type Type { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response"/> and sets the default values.
         /// </summary>
         public Async_upload_response()
         {
             AdditionalData = new Dictionary<string, object>();
-            Type = global::Soenneker.Cloudinary.OpenApiClient.Models.Storage_type.Upload;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -76,7 +81,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "requester_ip", n => { RequesterIp = n.GetStringValue(); } },
                 { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type>(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response_status>(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Storage_type>(); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type>(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -91,7 +96,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("requester_ip", RequesterIp);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type>("resource_type", ResourceType);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response_status>("status", Status);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Storage_type>("type", Type);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

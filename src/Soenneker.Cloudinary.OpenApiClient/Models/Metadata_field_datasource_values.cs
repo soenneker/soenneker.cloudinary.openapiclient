@@ -25,7 +25,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The position of the option.</summary>
         public int? Position { get; set; }
         /// <summary>The state of the option.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_state? State { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.State_enum? State { get; set; }
         /// <summary>The value of the option.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -61,7 +61,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "external_id", n => { ExternalId = n.GetStringValue(); } },
                 { "position", n => { Position = n.GetIntValue(); } },
-                { "state", n => { State = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_state>(); } },
+                { "state", n => { State = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.State_enum>(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
         }
@@ -74,7 +74,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("external_id", ExternalId);
             writer.WriteIntValue("position", Position);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_state>("state", State);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.State_enum>("state", State);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

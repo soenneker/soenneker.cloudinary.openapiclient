@@ -19,8 +19,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public int? Bytes { get; set; }
         /// <summary>Whether the upload is complete. Will be false for all but the last chunk.</summary>
         public bool? Done { get; set; }
-        /// <summary>The storage type of the asset. Defaults to &apos;upload&apos;.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Storage_type? Kind { get; set; }
+        /// <summary>The delivery type of the asset. Defaults to &apos;upload&apos;.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type? Kind { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type Kind { get; set; }
+#endif
         /// <summary>The public ID assigned to the upload. May be omitted in early chunks if it will be auto-generated upon completion.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,7 +70,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "bytes", n => { Bytes = n.GetIntValue(); } },
                 { "done", n => { Done = n.GetBoolValue(); } },
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Storage_type>(); } },
+                { "kind", n => { Kind = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type>(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type.CreateFromDiscriminatorValue); } },
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "resource_type", n => { ResourceType = n.GetStringValue(); } },
             };
@@ -78,7 +84,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("bytes", Bytes);
             writer.WriteBoolValue("done", Done);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Storage_type>("kind", Kind);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_delivery_type>("kind", Kind);
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteStringValue("resource_type", ResourceType);
             writer.WriteAdditionalData(AdditionalData);

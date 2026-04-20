@@ -92,17 +92,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Context
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ContextRequestBuilderGetQueryParameters 
         {
-            /// <summary>Sort direction.</summary>
+            /// <summary>The sort direction for the results. Default is &quot;desc&quot;.</summary>
             [QueryParameter("direction")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Context.GetDirectionQueryParameterType? Direction { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.Direction_enum? Direction { get; set; }
+            /// <summary>Additional fields to include in the response. The fields public_id and asset_id are always included.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Context.GetFieldsQueryParameterType[]? Fields { get; set; }
+            public string? Fields { get; set; }
 #nullable restore
 #else
             [QueryParameter("fields")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Context.GetFieldsQueryParameterType[] Fields { get; set; }
+            public string Fields { get; set; }
 #endif
             /// <summary>Context key to filter by.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

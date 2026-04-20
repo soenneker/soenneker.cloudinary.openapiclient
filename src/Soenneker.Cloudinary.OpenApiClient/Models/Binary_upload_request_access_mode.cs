@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>Allows the asset to behave as if it&apos;s of the authenticated &apos;type&apos; (see above) while still using the default &apos;upload&apos; type in delivery URLs. The asset can later be made public by changing its access_mode via the Admin API, without having to update any delivery URLs. Valid values: public, and authenticated.</summary>
+    /// <summary>Deprecated. Use access_control instead. Allows the asset to behave as if it&apos;s of the authenticated delivery type while still using the default &apos;upload&apos; type in delivery URLs. The asset can later be made public by changing its access_mode via the Admin API, without having to update any delivery URLs.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     [Obsolete("")]
     public enum Binary_upload_request_access_mode

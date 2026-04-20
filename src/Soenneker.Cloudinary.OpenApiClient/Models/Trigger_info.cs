@@ -16,14 +16,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The created_at property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
-        /// <summary>The event_type property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? EventType { get; set; }
-#nullable restore
-#else
-        public string EventType { get; set; }
-#endif
+        /// <summary>The type of notification event.</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.Event_type? EventType { get; set; }
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -78,7 +72,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
-                { "event_type", n => { EventType = n.GetStringValue(); } },
+                { "event_type", n => { EventType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Event_type>(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "product_environment_id", n => { ProductEnvironmentId = n.GetStringValue(); } },
                 { "updated_at", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
@@ -94,7 +88,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
-            writer.WriteStringValue("event_type", EventType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Event_type>("event_type", EventType);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("product_environment_id", ProductEnvironmentId);
             writer.WriteDateTimeOffsetValue("updated_at", UpdatedAt);

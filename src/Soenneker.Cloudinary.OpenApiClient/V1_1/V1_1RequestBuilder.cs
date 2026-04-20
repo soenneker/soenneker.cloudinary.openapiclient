@@ -16,7 +16,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1
     public partial class V1_1RequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The cloud name of your product environment.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.WithCloud_nameItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.WithCloud_nameItemRequestBuilder this[string position]
         {

@@ -165,9 +165,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
             [QueryParameter("transformation")]
             public string Transformation { get; set; }
 #endif
-            /// <summary>The storage type of the asset. Default is &quot;upload&quot;.</summary>
+            /// <summary>The delivery type of the asset. Default is &quot;upload&quot;.</summary>
             [QueryParameter("type")]
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Storage_type? Type { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.Managed_delivery_type? Type { get; set; }
         }
     }
 }

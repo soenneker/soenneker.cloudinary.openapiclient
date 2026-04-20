@@ -31,7 +31,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderations.ModerationsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.resources.item.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The delivery type of the asset.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeItemRequestBuilder this[string position]
         {
@@ -86,10 +86,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Info>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Info.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates one or more attributes of a specified resource (asset) by its asset ID. This enables you to update details of an asset by its unique and immutable identifier, regardless of public ID, display name, asset folder, resource type or deliver type. Note that you can also update many attributes of an existing asset using the explicit method, which is not rate-limited.
+        /// Updates one or more attributes of a specified resource (asset) by its asset ID. This enables you to update details of an asset by its unique and immutable identifier, regardless of public ID, display name, asset folder, resource type or delivery type. Note that you can also update attributes of an existing asset using the explicit API endpoint.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Info"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The resource properties to update.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
@@ -134,10 +134,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates one or more attributes of a specified resource (asset) by its asset ID. This enables you to update details of an asset by its unique and immutable identifier, regardless of public ID, display name, asset folder, resource type or deliver type. Note that you can also update many attributes of an existing asset using the explicit method, which is not rate-limited.
+        /// Updates one or more attributes of a specified resource (asset) by its asset ID. This enables you to update details of an asset by its unique and immutable identifier, regardless of public ID, display name, asset folder, resource type or delivery type. Note that you can also update attributes of an existing asset using the explicit API endpoint.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The resource properties to update.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

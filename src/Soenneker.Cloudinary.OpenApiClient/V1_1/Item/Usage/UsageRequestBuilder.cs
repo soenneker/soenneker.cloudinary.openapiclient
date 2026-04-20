@@ -92,6 +92,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Usage
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class UsageRequestBuilderGetQueryParameters 
         {
+            /// <summary>The date for which to retrieve usage details (YYYY-MM-DD). If not specified, returns the current usage.</summary>
             [QueryParameter("date")]
             public Date? Date { get; set; }
         }

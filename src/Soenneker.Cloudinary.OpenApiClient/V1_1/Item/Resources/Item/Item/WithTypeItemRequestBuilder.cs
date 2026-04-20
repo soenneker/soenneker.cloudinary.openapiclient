@@ -50,7 +50,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item
         /// Deletes assets uploaded to your product environment, identified by their public IDs.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.WithTypeDeleteResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The delete request specifying which resources to delete.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
@@ -79,7 +79,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item
         /// Deletes assets uploaded to your product environment, identified by their public IDs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">The delete request specifying which resources to delete.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

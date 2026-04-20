@@ -14,7 +14,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The unique identifier of the derived resource</summary>
+        /// <summary>The unique identifier of the derived resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The secure URL for accessing the derived resource</summary>
+        /// <summary>The secure URL for accessing the derived resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SecureUrl { get; set; }
@@ -30,7 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string SecureUrl { get; set; }
 #endif
-        /// <summary>The transformation string that was applied</summary>
+        /// <summary>The transformation string that was applied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Transformation { get; set; }
@@ -38,7 +38,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Transformation { get; set; }
 #endif
-        /// <summary>The unique signature of the transformation</summary>
+        /// <summary>The unique signature of the transformation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TransformationSignature { get; set; }

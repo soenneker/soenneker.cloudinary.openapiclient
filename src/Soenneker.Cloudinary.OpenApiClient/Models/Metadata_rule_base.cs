@@ -49,7 +49,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_base_result Result { get; set; }
 #endif
         /// <summary>The state of the rule.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_base_state? State { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.State_enum? State { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_base"/> and sets the default values.
         /// </summary>
@@ -80,7 +80,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "position", n => { Position = n.GetIntValue(); } },
                 { "result", n => { Result = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_base_result>(global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_base_result.CreateFromDiscriminatorValue); } },
-                { "state", n => { State = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_base_state>(); } },
+                { "state", n => { State = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.State_enum>(); } },
             };
         }
         /// <summary>
@@ -95,7 +95,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("position", Position);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_base_result>("result", Result);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_base_state>("state", State);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.State_enum>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

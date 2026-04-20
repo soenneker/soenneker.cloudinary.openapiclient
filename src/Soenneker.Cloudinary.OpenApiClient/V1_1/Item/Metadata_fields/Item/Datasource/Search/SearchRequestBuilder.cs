@@ -44,11 +44,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchPostRequestBody body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Datasource_search_in_field_request body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchPostRequestBody body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Datasource_search_in_field_request body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -68,11 +68,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchPostRequestBody body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Datasource_search_in_field_request body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchPostRequestBody body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Datasource_search_in_field_request body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
