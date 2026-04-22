@@ -38,7 +38,7 @@ jobs:
         run: dotnet build test/Soenneker.Cloudinary.OpenApiClient.Tests/Soenneker.Cloudinary.OpenApiClient.Tests.csproj --configuration Release --no-restore --verbosity minimal
 
       - name: Test
-        run: dotnet test test/Soenneker.Cloudinary.OpenApiClient.Tests/Soenneker.Cloudinary.OpenApiClient.Tests.csproj --configuration Release --no-build --no-restore --verbosity minimal
+        run: dotnet test --project test/Soenneker.Cloudinary.OpenApiClient.Tests/Soenneker.Cloudinary.OpenApiClient.Tests.csproj --configuration Release --no-build --no-restore --verbosity minimal
 
       - name: Pack
         run: dotnet pack src/Soenneker.Cloudinary.OpenApiClient/Soenneker.Cloudinary.OpenApiClient.csproj --configuration Release --no-build --no-restore --output . --verbosity minimal
