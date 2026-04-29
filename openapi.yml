@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Cloudinary API v1.1
-  version: 0.5.0
+  version: 0.5.1
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -4312,9 +4312,9 @@ paths:
       description: |
         Returns a list of resources matching the specified search criteria.
 
-        Uses Lucene-like query language to search by descriptive attributes (public_id, filename, folder, tags, context), file details (resource_type, format, bytes, width, height), embedded data (image_metadata), and analyzed data (face_count, colors, quality_score). Supports aggregate counts and complex Boolean expressions.
+        Uses a Lucene-like query language to filter assets by descriptive attributes (`public_id`, `asset_id`, `filename`, `display_name`, `folder` / `asset_folder`, `tags`, `context.<key>`), file details (`resource_type`, `type`, `format`, `bytes`, `width`, `height`, `duration`, `pages`, `aspect_ratio`, `transparent`, `grayscale`), lifecycle dates (`uploaded_at`, `created_at`, `taken_at`, `updated_at`, `last_updated.<kind>`), moderation and lifecycle state (`status`, `moderation_status`, `moderation_kind`), embedded data (`image_metadata.*`), structured metadata (`metadata.<external_id>`), and analysis fields (`face_count`, `colors`, `quality_score`, `illustration_score`, `accessibility_analysis.*`). Supports sorting, aggregate counts, and complex boolean expressions.
 
-        Examples: tags:shirt AND uploaded_at>1d, resource_type:image AND bytes>1mb, folder:products OR context.category:electronics
+        Examples: `tags:shirt AND uploaded_at>1d`, `resource_type:image AND bytes>1000000`, `folder:products OR context.category:electronics`. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and field reference.
       tags:
         - search
       x-speakeasy-mcp:
@@ -8759,21 +8759,30 @@ components:
       properties:
         expression:
           type: string
-          description: The search expression. Supports exact match, wildcard match, presence, greater/less than, and range. For details on building expressions, see the Search API documentation.
+          description: |
+            The Lucene-like search expression. Supports token match (`field:value`), exact match (`field=value`), trailing `*` for prefix match, ranges (`[a TO b]`, `{a TO b}`), and comparisons (`>`, `<`, `>=`, `<=`). Combine terms with uppercase `AND`, `OR`, `NOT`, or `+`/`-`, and group with parentheses. Wrap values containing reserved characters (spaces, colons, etc.) in double quotes. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and supported fields.
           example: resource_type:image AND tags:kitten
+          examples:
+            - tags:shirt AND uploaded_at>1d
+            - resource_type:image AND bytes>1000000 AND (format:png OR format:jpg)
+            - folder:products AND context.category:electronics
+            - tags:"service:mantels" AND -tags:discontinued
         sort_by:
           $ref: '#/components/schemas/search_sort_by'
         max_results:
           type: integer
-          minimum: 1
+          minimum: 0
           maximum: 500
-          description: The maximum number of results to return. Default - 50. Maximum - 500.
+          description: |
+            The maximum number of results to return. Default - 50. Maximum - 500.
+            Set to `0` to get only `total_count` and `aggregations` without any resources in the response — useful for counting or aggregation-only queries.
           example: 30
         next_cursor:
           type: string
           description: The cursor value to get the next page of results. Available when a previous search returned more results than max_results.
         aggregate:
-          description: Fields or ranges to aggregate search results by.
+          description: |
+            Fields or ranges to aggregate search results by. Requires a Tier 2 search plan; on Tier 1 the field is accepted but aggregations are omitted from the response.
           oneOf:
             - type: array
               items:
@@ -8799,15 +8808,26 @@ components:
                       - duration
                   ranges:
                     type: array
+                    description: |
+                      One or more ranges for the numeric field. Each range must include a `key` label and at least one of `from` / `to`.
                     items:
                       type: object
                       properties:
+                        key:
+                          type: string
+                          minLength: 1
+                          maxLength: 20
+                          pattern: ^[a-zA-Z0-9_-]+$
+                          description: A label for the bucket, returned in the aggregation response. 1–20 chars, alphanumeric plus `-` and `_`.
+                          example: small
                         from:
                           type: number
-                          description: Start of the range (inclusive)
+                          description: Start of the range (inclusive). At least one of `from` / `to` is required.
                         to:
                           type: number
-                          description: End of the range (exclusive)
+                          description: End of the range (exclusive). At least one of `from` / `to` is required.
+                      required:
+                        - key
                 required:
                   - type
                   - ranges
@@ -8815,9 +8835,11 @@ components:
               example:
                 - type: bytes
                   ranges:
-                    - from: 0
+                    - key: small
+                      from: 0
                       to: 10000
-                    - from: 10000
+                    - key: medium
+                      from: 10000
                       to: 100000
         with_field:
           type: array
@@ -8831,7 +8853,19 @@ components:
               - metadata
               - quality_analysis
               - accessibility_analysis
-          description: The additional fields to include in the response. Note that the fields parameter takes precedence over this parameter.
+            x-enum-descriptions:
+              - Includes the `context` key-value pairs attached to each asset.
+              - Includes the list of `tags` attached to each asset.
+              - Includes embedded metadata extracted from the asset file (EXIF, IPTC, XMP under `image_metadata`). Tier 2 feature.
+              - Includes analysis results such as `colors`, `face_count`, `illustration_score`, and `grayscale` under `image_analysis`. Tier 2 feature.
+              - Includes values of structured metadata fields under `metadata`. Tier 2 feature.
+              - Includes `quality_analysis.*` scores for assets analyzed at upload time.
+              - Includes `accessibility_analysis.*` scores for assets analyzed at upload time.
+          description: |
+            The additional asset attributes to include in each search result. The `fields` parameter takes precedence over this parameter. `image_metadata`, `image_analysis`, and `metadata` require a Tier 2 search plan.
+          example:
+            - tags
+            - context
         fields:
           type: string
           description: |

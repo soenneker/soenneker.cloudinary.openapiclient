@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Fields or ranges to aggregate search results by.</summary>
+        /// <summary>Fields or ranges to aggregate search results by. Requires a Tier 2 search plan; on Tier 1 the field is accepted but aggregations are omitted from the response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Search_parameters.Search_parameters_aggregate? Aggregate { get; set; }
@@ -23,7 +23,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Search_parameters.Search_parameters_aggregate Aggregate { get; set; }
 #endif
-        /// <summary>The search expression. Supports exact match, wildcard match, presence, greater/less than, and range. For details on building expressions, see the Search API documentation.</summary>
+        /// <summary>The Lucene-like search expression. Supports token match (`field:value`), exact match (`field=value`), trailing `*` for prefix match, ranges (`[a TO b]`, `{a TO b}`), and comparisons (`&gt;`, `&lt;`, `&gt;=`, `&lt;=`). Combine terms with uppercase `AND`, `OR`, `NOT`, or `+`/`-`, and group with parentheses. Wrap values containing reserved characters (spaces, colons, etc.) in double quotes. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and supported fields.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Expression { get; set; }
@@ -39,7 +39,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Fields { get; set; }
 #endif
-        /// <summary>The maximum number of results to return. Default - 50. Maximum - 500.</summary>
+        /// <summary>The maximum number of results to return. Default - 50. Maximum - 500.Set to `0` to get only `total_count` and `aggregations` without any resources in the response — useful for counting or aggregation-only queries.</summary>
         public int? MaxResults { get; set; }
         /// <summary>The cursor value to get the next page of results. Available when a previous search returned more results than max_results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,7 +57,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_sort_pair> SortBy { get; set; }
 #endif
-        /// <summary>The additional fields to include in the response. Note that the fields parameter takes precedence over this parameter.</summary>
+        /// <summary>The additional asset attributes to include in each search result. The `fields` parameter takes precedence over this parameter. `image_metadata`, `image_analysis`, and `metadata` require a Tier 2 search plan.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_parameters_with_field?>? WithField { get; set; }
