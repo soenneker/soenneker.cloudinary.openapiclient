@@ -36,27 +36,27 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw
         /// <summary>
         /// Retrieves a list of raw assets. Results can be filtered by various criteria like tags, prefix, or specific public IDs.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ComponentsList_response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ListResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ComponentsList_response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw.RawRequestBuilder.RawRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ListResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw.RawRequestBuilder.RawRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ComponentsList_response> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw.RawRequestBuilder.RawRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ListResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw.RawRequestBuilder.RawRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.ComponentsList_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.ComponentsList_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.ListResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.ListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of raw assets. Results can be filtered by various criteria like tags, prefix, or specific public IDs.
@@ -94,7 +94,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw
         {
             /// <summary>The sort direction for the results. Default is &quot;desc&quot;.</summary>
             [QueryParameter("direction")]
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Direction_enum? Direction { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.DirectionEnum? Direction { get; set; }
             /// <summary>Additional fields to include in the response. The fields public_id and asset_id are always included.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

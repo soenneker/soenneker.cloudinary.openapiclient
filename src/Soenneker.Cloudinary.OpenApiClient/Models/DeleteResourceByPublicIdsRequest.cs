@@ -17,9 +17,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Delete all assets (of the relevant resource_type and type), including derived assets (up to a maximum of 1000 original resources).</summary>
         public bool? All { get; set; }
-        /// <summary>Whether to also invalidate the copies of the resource on the CDN. It usually takes between a few seconds and a few minutes for the invalidation to fully propagate through the CDN. Default: false.</summary>
+        /// <summary>&quot;Whether to also invalidate the copies of the resource on the CDN. It usually takes between a few seconds and a few minutes for the invalidation to fully propagate through the CDN. Default: false.&quot;</summary>
         public bool? Invalidate { get; set; }
-        /// <summary>Whether to delete only the derived assets. Default: false.</summary>
+        /// <summary>&quot;Whether to delete only the derived assets. Default: false.&quot;</summary>
         public bool? KeepOriginal { get; set; }
         /// <summary>(Only when deleting by prefix or all) When a deletion request has more than 1000 resources to delete, the response includes the partial boolean parameter set to true, as well as a next_cursor value. You can then specify this returned next_cursor value as a parameter of the following deletion request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,8 +45,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public List<string> PublicIds { get; set; }
 #endif
-        /// <summary>The type of asset. Relevant as a parameter only when using the SDKs (the resource_type is included in the endpoint URL when using the REST API). Note: use video for all video and audio assets, such as .mp3. Default: image.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type? ResourceType { get; set; }
+        /// <summary>The type of resource.</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceType? ResourceType { get; set; }
         /// <summary>Only the derived assets matching this hash of transformation parameters will be deleted. You can include multiple transformations separated by a pipe character (|).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -54,6 +54,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #nullable restore
 #else
         public string Transformations { get; set; }
+#endif
+        /// <summary>Union discriminator</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
+        public string Type { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest"/> and sets the default values.
@@ -86,8 +94,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "next_cursor", n => { NextCursor = n.GetStringValue(); } },
                 { "prefix", n => { Prefix = n.GetStringValue(); } },
                 { "public_ids", n => { PublicIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type>(); } },
+                { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceType>(); } },
                 { "transformations", n => { Transformations = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -103,8 +112,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("next_cursor", NextCursor);
             writer.WriteStringValue("prefix", Prefix);
             writer.WriteCollectionOfPrimitiveValues<string>("public_ids", PublicIds);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Resource_type>("resource_type", ResourceType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceType>("resource_type", ResourceType);
             writer.WriteStringValue("transformations", Transformations);
+            writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

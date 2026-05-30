@@ -10,6 +10,7 @@ using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Operations;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Streaming_profiles;
@@ -67,6 +68,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesRequestBuilder Metadata_rules
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules.Metadata_rulesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The operations property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Operations.OperationsRequestBuilder Operations
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The people property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder People

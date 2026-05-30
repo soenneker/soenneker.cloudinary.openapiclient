@@ -49,56 +49,56 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets
         /// <summary>
         /// Lists all upload presets configured in the account
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_list_response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetListResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_list_response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets.Upload_presetsRequestBuilder.Upload_presetsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetListResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets.Upload_presetsRequestBuilder.Upload_presetsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_list_response> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets.Upload_presetsRequestBuilder.Upload_presetsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetListResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets.Upload_presetsRequestBuilder.Upload_presetsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_list_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_list_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetListResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new upload preset with specified configuration settings
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_create_response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetCreateResponse"/></returns>
         /// <param name="body">Upload preset configuration for create/update. Settings are sent as top-level string-encoded properties.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_create_response?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_input body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetCreateResponse?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInput body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_create_response> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_input body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetCreateResponse> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInput body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "409", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_create_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_create_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetCreateResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetCreateResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Lists all upload presets configured in the account
@@ -127,11 +127,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_input body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInput body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_preset_input body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInput body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -158,7 +158,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets
         {
             /// <summary>The sort direction for the results. Default is &quot;desc&quot;.</summary>
             [QueryParameter("direction")]
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Direction_enum? Direction { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.DirectionEnum? Direction { get; set; }
             /// <summary>The maximum number of results to return. Default is 10.</summary>
             [QueryParameter("max_results")]
             public int? MaxResults { get; set; }

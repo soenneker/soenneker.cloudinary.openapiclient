@@ -16,10 +16,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Restricts access to the asset by specifying one or more access types.The asset is restricted unless at least one listed access type is valid.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item>? AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? AccessControl { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item> AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> AccessControl { get; set; }
 #endif
         /// <summary>The folder where the asset should be placed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,7 +47,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Categorization { get; set; }
 #endif
-        /// <summary>Whether to clear invalid metadata fields. If false, invalid fields will be preserved. Default: false</summary>
+        /// <summary>&quot;Whether to clear invalid metadata fields. If false, invalid fields will be preserved. Default: false&quot;</summary>
         public bool? ClearInvalid { get; set; }
         /// <summary>A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., &quot;alt=My image|caption=Nice photo&quot;). The =, &quot;, and | characters can be escaped with a prepending backslash (\).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -92,10 +92,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>A pipe-separated list or a map of custom metadata fields (by external_id) and the values to assign to each of them. The = &quot; and | characters can be supported as values when escaped with a prepended backslash (\). For a multi-select field, you can set a maximum of 3000 different metadata values on an asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Structured_metadata_param? Metadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? Metadata { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Structured_metadata_param Metadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get; set; }
 #endif
         /// <summary>The moderation status of the resource.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest_moderation_status? ModerationStatus { get; set; }
@@ -134,14 +134,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>A comma-separated list of tag names, or an array of tag names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_param? Tags { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam? Tags { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_param Tags { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam Tags { get; set; }
 #endif
-        /// <summary>Whether to ensure the display name is unique across all resources. If false, the operation will fail if a resource with the same display name exists. Default: false</summary>
+        /// <summary>&quot;Whether to ensure the display name is unique across all resources. If false, the operation will fail if a resource with the same display name exists. Default: false&quot;</summary>
         public bool? UniqueDisplayName { get; set; }
-        /// <summary>Whether to index the resource with visual search. If true, the resource will be indexed for visual search capabilities. Default: false</summary>
+        /// <summary>&quot;Whether to index the resource with visual search. If true, the resource will be indexed for visual search capabilities. Default: false&quot;</summary>
         public bool? VisualSearch { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -161,7 +161,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item>(global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "asset_folder", n => { AssetFolder = n.GetStringValue(); } },
                 { "auto_tagging", n => { AutoTagging = n.GetDoubleValue(); } },
                 { "background_removal", n => { BackgroundRemoval = n.GetStringValue(); } },
@@ -172,13 +172,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "detection", n => { Detection = n.GetStringValue(); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
                 { "face_coordinates", n => { FaceCoordinates = n.GetStringValue(); } },
-                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Structured_metadata_param>(global::Soenneker.Cloudinary.OpenApiClient.Models.Structured_metadata_param.CreateFromDiscriminatorValue); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam>(global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam.CreateFromDiscriminatorValue); } },
                 { "moderation_status", n => { ModerationStatus = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest_moderation_status>(); } },
                 { "ocr", n => { Ocr = n.GetStringValue(); } },
                 { "quality_override", n => { QualityOverride = n.GetStringValue(); } },
                 { "raw_convert", n => { RawConvert = n.GetStringValue(); } },
                 { "regions", n => { Regions = n.GetStringValue(); } },
-                { "tags", n => { Tags = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_param>(global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_param.CreateFromDiscriminatorValue); } },
+                { "tags", n => { Tags = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam>(global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam.CreateFromDiscriminatorValue); } },
                 { "unique_display_name", n => { UniqueDisplayName = n.GetBoolValue(); } },
                 { "visual_search", n => { VisualSearch = n.GetBoolValue(); } },
             };
@@ -190,7 +190,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Access_control_item>("access_control", AccessControl);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>("access_control", AccessControl);
             writer.WriteStringValue("asset_folder", AssetFolder);
             writer.WriteDoubleValue("auto_tagging", AutoTagging);
             writer.WriteStringValue("background_removal", BackgroundRemoval);
@@ -201,13 +201,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("detection", Detection);
             writer.WriteStringValue("display_name", DisplayName);
             writer.WriteStringValue("face_coordinates", FaceCoordinates);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Structured_metadata_param>("metadata", Metadata);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam>("metadata", Metadata);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest_moderation_status>("moderation_status", ModerationStatus);
             writer.WriteStringValue("ocr", Ocr);
             writer.WriteStringValue("quality_override", QualityOverride);
             writer.WriteStringValue("raw_convert", RawConvert);
             writer.WriteStringValue("regions", Regions);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Tags_param>("tags", Tags);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam>("tags", Tags);
             writer.WriteBoolValue("unique_display_name", UniqueDisplayName);
             writer.WriteBoolValue("visual_search", VisualSearch);
         }

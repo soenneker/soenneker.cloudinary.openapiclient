@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Cloudinary API v1.1
-  version: 0.5.1
+  version: 0.5.5
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -65,6 +65,8 @@ tags:
     description: Enables you to manage the tags used in your product environment.
   - name: backups
     description: Enables you to manage backup versions.
+  - name: initial_backup
+    description: Enables you to initiate and track an initial backup of existing assets in your product environment.
   - name: folders
     description: Enables you to manage the asset folders in your product environment.
   - name: usage
@@ -209,6 +211,17 @@ paths:
         large files with the ability to resume interrupted uploads. Each request uploads one chunk of the file.
         It is required for any files that are larger than 100 MB. This is often relevant for video files, as they
         tend to have larger file sizes. Minimum chunk size is 5 MB.
+
+        The `file` field accepts either the chunk bytes (multipart) or an HTTP/HTTPS URL. When a URL is supplied,
+        Cloudinary downloads it and validates the response `Content-Length` against the chunk-size contract
+        (exact match in the uniform-size flow; within 5 MB floor and 5 GiB cap in explicit-order mode) before
+        storing any bytes. A mismatch aborts with 400 and persists no state. The remote server must return a
+        `Content-Length` header; chunked transfer-encoded responses are rejected.
+
+        **Explicit-order totals** (`X-Upload-Part-Number`): `X-Upload-Total-Parts` may be omitted on non-terminal
+        chunks until the session total *N* is established by any earlier chunk that sent the header. After *N* is
+        known, the chunk for part index *N* must include `X-Upload-Total-Parts: N`. Whenever the header appears,
+        its value must be the same integer *N* for that `X-Unique-Upload-Id` (no conflicting totals).
       tags:
         - upload
       x-speakeasy-mcp:
@@ -218,10 +231,16 @@ paths:
       parameters:
         - name: Content-Range
           in: header
-          required: true
+          required: false
           schema:
             type: string
-          description: The range of bytes being uploaded in the current chunk, in the format "bytes start-end/total". For example, "bytes 0-999999/3000000" indicates the first 1MB chunk of a 3MB file.
+          description: |
+            The range of bytes being uploaded in the current chunk, in the format "bytes start-end/total".
+            For example, "bytes 0-999999/3000000" indicates the first 1MB chunk of a 3MB file. Required for the
+            default uniform-size chunked upload flow. In explicit-order mode (`X-Upload-Part-Number`), this
+            header remains optional; clients do not have to send `Content-Range`, `X-Upload-Part-Number`, and
+            `X-Upload-Total-Parts` together on every request—`X-Upload-Total-Parts` may be omitted on some chunks
+            subject to the rules documented on that header.
           example: bytes 0-999999/3000000
         - name: X-Unique-Upload-Id
           in: header
@@ -230,6 +249,36 @@ paths:
             type: string
           description: A unique identifier for the upload. Must be the same for all chunks of the same file.
           example: 2fd4e1c67a2d28fce
+        - name: X-Upload-Part-Number
+          in: header
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10000
+          description: |
+            The 1-based part number for this chunk when uploading parts of uneven size with explicit
+            client-supplied order. Requires `X-Unique-Upload-Id`. When present, activates explicit-order mode
+            and `Content-Range` is optional. Parts must use contiguous indices `1`…`N`, where `N` is the session
+            total. If `X-Upload-Total-Parts` is omitted on a chunk, the server still enforces `X-Upload-Part-Number ≤ N`
+            once `N` has been learned from any prior chunk for the same upload that supplied `X-Upload-Total-Parts`.
+          example: 2
+        - name: X-Upload-Total-Parts
+          in: header
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10000
+          description: |
+            Declared session total `N` (optional on chunks where omission is allowed). When present on a chunk,
+            it must satisfy either `X-Upload-Part-Number < X-Upload-Total-Parts` (non-terminal) or
+            `X-Upload-Part-Number == X-Upload-Total-Parts` (terminal). The same integer `N` must appear whenever
+            this header is sent for a given `X-Unique-Upload-Id` (no conflicting declared totals). Chunks may omit
+            the header entirely until `N` is established; after `N` is known, non-terminal indices may still omit
+            it. Once `N` is known for the session, the request for part index `N` (the final part) must include
+            `X-Upload-Total-Parts: N`. The upload completes when all parts `1`…`N` have been received.
+          example: 3
       requestBody:
         $ref: '#/components/requestBodies/upload_request_body'
       responses:
@@ -249,7 +298,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/html_redirect'
         '400':
-          description: Bad request (e.g., invalid Content-Range format, or chunk size below minimum)
+          description: |
+            Bad request. Examples: invalid Content-Range format; chunk size below the 5 MB minimum
+            (non-final parts); part_number outside 1..total_parts; when `file` is a URL: Content-Length
+            missing, Content-Length does not match the declared chunk size, Content-Length exceeds the
+            5 GiB per-chunk cap, or the remote server returned a non-2xx status.
+
+            Explicit-order mode examples: `X-Upload-Total-Parts` disagrees with an earlier declared total for the
+            same upload; part index `N` reached without `X-Upload-Total-Parts` after `N` was already established;
+            `X-Upload-Part-Number` greater than `X-Upload-Total-Parts`; non-terminal chunk shape where
+            `X-Upload-Part-Number` equals `X-Upload-Total-Parts` but the part is not the terminal index (invalid
+            combination for the declared totals).
           content:
             application/json:
               schema:
@@ -744,14 +803,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/components-destroy_request'
+              $ref: '#/components/schemas/destroy_by_asset_id_request'
       responses:
         '200':
           description: Resource successfully deleted
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-destroy_response'
+                $ref: '#/components/schemas/destroy_by_asset_id_response'
         '400':
           description: Bad request
           content:
@@ -813,6 +872,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/video/concat:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+    post:
+      operationId: concat
+      summary: Concatenate ordered video segments into a single MP4 asset
+      description: |
+        Accepts an ordered list of remote HTTP(S) URLs pointing to video segments
+        and concatenates them, remuxing the result into a single MP4 asset that is
+        uploaded to your product environment using the supplied upload parameters.
+        Concatenation and the resulting upload happen asynchronously; supply a
+        `notification_url` to be notified when the upload completes.
+      tags:
+        - upload
+      x-speakeasy-mcp:
+        name: concat
+        scopes:
+          - librarian
+          - builder
+        title: Concatenate Video Segments
+      requestBody:
+        description: The concat request parameters.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/concat_request'
+      responses:
+        '200':
+          description: concat job accepted; the upload completes asynchronously.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/concat_response'
+        '400':
+          description: Bad request (e.g., missing urls, invalid upload parameters).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Authentication error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
   /v1_1/{cloud_name}/transformations:
     get:
       x-speakeasy-mcp:
@@ -844,7 +949,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/list_response'
+                $ref: '#/components/schemas/transformation_list_response'
         '400':
           description: Bad request
           content:
@@ -2602,7 +2707,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-list_response'
+                $ref: '#/components/schemas/list_response'
         '400':
           description: Bad request
           content:
@@ -2647,7 +2752,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-list_response'
+                $ref: '#/components/schemas/list_response'
         '400':
           description: Bad request
           content:
@@ -2692,7 +2797,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-list_response'
+                $ref: '#/components/schemas/list_response'
         '400':
           description: Bad request
           content:
@@ -2726,7 +2831,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-list_response'
+                $ref: '#/components/schemas/list_response'
         '400':
           description: Bad request
           content:
@@ -2763,7 +2868,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-list_response'
+                $ref: '#/components/schemas/list_response'
         '400':
           description: Bad request
           content:
@@ -2804,7 +2909,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-list_response'
+                $ref: '#/components/schemas/list_response'
         '400':
           description: Bad request
           content:
@@ -2840,7 +2945,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-list_response'
+                $ref: '#/components/schemas/list_response'
         '400':
           description: Bad request
           content:
@@ -2960,7 +3065,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/components-list_response'
+                $ref: '#/components/schemas/list_response'
               examples:
                 listResourcesExample:
                   $ref: '#/components/examples/ListResourcesResponseExample'
@@ -4396,6 +4501,160 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/operations/initial_backup:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+    post:
+      x-speakeasy-mcp:
+        name: create-initial-backup
+        scopes:
+          - librarian
+        title: Create Initial Backup
+      operationId: createInitialBackup
+      summary: Create initial backup
+      description: |
+        Initiates an initial backup of existing assets for the active product environment.
+        Backup for new uploads must be enabled on the product environment, and the requester must be permitted to
+        initiate a backup.
+      tags:
+        - initial_backup
+      requestBody:
+        description: The initial backup configuration.
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/initial_backup_create_request'
+      responses:
+        '200':
+          description: Initial backup queued successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/initial_backup_create_response'
+              example:
+                ok: true
+        '400':
+          description: Invalid request, backup not enabled, or self-service threshold exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Backup for new uploads isn't enabled. Turn it on before starting an initial backup of existing assets.
+        '401':
+          description: Authentication error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Invalid credentials
+        '403':
+          description: Not allowed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Not allowed
+    get:
+      x-speakeasy-mcp:
+        name: list-initial-backups
+        scopes:
+          - librarian
+        title: List Initial Backups
+        readOnlyHint: true
+        idempotentHint: true
+      operationId: listInitialBackups
+      summary: List initial backups
+      description: Lists initial backup operations for the active product environment, ordered from most recent to oldest.
+      tags:
+        - initial_backup
+      parameters:
+        - $ref: '#/components/parameters/max_results_query'
+        - $ref: '#/components/parameters/next_cursor_query'
+      responses:
+        '200':
+          description: Initial backup operations retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/initial_backup_list_response'
+              example:
+                initial_backups:
+                  - id: abc123def456
+                    status: completed
+                    created_at: '2024-05-07T10:00:00Z'
+                next_cursor: eyJpZCI6MTIzfQ==
+        '401':
+          description: Authentication error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Invalid credentials
+  /v1_1/{cloud_name}/operations/initial_backup/{id}:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+      - $ref: '#/components/parameters/initial_backup_id'
+    get:
+      x-speakeasy-mcp:
+        name: get-initial-backup
+        scopes:
+          - librarian
+        title: Get Initial Backup
+        readOnlyHint: true
+        idempotentHint: true
+      operationId: getInitialBackup
+      summary: Get initial backup
+      description: Retrieves the progress and status of a single initial backup operation by its ID.
+      tags:
+        - initial_backup
+      responses:
+        '200':
+          description: Initial backup retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/initial_backup_progress_response'
+              example:
+                status: completed
+                start_time: '2024-05-07T10:00:00Z'
+                completion_time: '2024-05-07T11:00:00Z'
+                processed_assets_count: 42
+        '401':
+          description: Authentication error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Invalid credentials
+        '403':
+          description: Not allowed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Not allowed
+        '404':
+          description: Initial backup operation not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Operation does not exist
   /v1_1/{cloud_name}/people:
     parameters:
       - $ref: '#/components/parameters/cloud_name'
@@ -5122,6 +5381,14 @@ components:
         Whether to include in the response the roles the authenticated user can assign on this folder, based on their permission level. Default: `false`.
       schema:
         type: boolean
+    initial_backup_id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique identifier of the initial backup operation.
+      example: abc123def456
   schemas:
     upload_resource_type:
       type: string
@@ -6358,7 +6625,7 @@ components:
           items:
             type: string
           description: The list of prefixes that were requested but returned no results.
-    components-destroy_request:
+    destroy_by_asset_id_request:
       type: object
       allOf:
         - $ref: '#/components/schemas/signature_parameters'
@@ -6379,7 +6646,7 @@ components:
               type: string
               format: uri
               description: URL for redirect after operation completion.
-    components-destroy_response:
+    destroy_by_asset_id_response:
       type: object
       properties:
         result:
@@ -6526,6 +6793,51 @@ components:
         info:
           type: object
           description: Additional information about the asset.
+    concat_request:
+      description: Parameters for concatenating remote video segments into a single MP4 asset.
+      allOf:
+        - $ref: '#/components/schemas/signature_parameters'
+        - $ref: '#/components/schemas/upload_common_parameters'
+        - type: object
+          required:
+            - urls
+          properties:
+            urls:
+              type: array
+              items:
+                type: string
+                format: uri
+              minItems: 1
+              maxItems: 256
+              description: Ordered list of HTTP(S) URLs of the video segments to concatenate.
+    concat_response:
+      type: object
+      description: Response returned when a concat job is accepted.
+      required:
+        - status
+        - unique_upload_id
+      properties:
+        status:
+          type: string
+          enum:
+            - processing
+          description: The status of the concat job. Always 'processing'.
+        unique_upload_id:
+          type: string
+          description: Identifier shared by all chunked-upload parts produced for this concat job (sent as the `X-Unique-Upload-Id` header on each `/video/upload_chunked` request).
+        public_id:
+          type: string
+          description: The public ID assigned to the concatenated asset, if one was supplied in the request.
+        resource_type:
+          type: string
+          enum:
+            - video
+          description: Always 'video' — concat produces an MP4.
+      example:
+        status: processing
+        unique_upload_id: 2fd4e1c67a2d28fce
+        public_id: my_combined_video
+        resource_type: video
     transformation_summary:
       type: object
       properties:
@@ -6541,7 +6853,7 @@ components:
         named:
           type: boolean
           example: true
-    list_response:
+    transformation_list_response:
       type: object
       properties:
         transformations:
@@ -6906,7 +7218,7 @@ components:
           type:
             - boolean
             - 'null'
-          description: Whether the default value is disabled.
+          description: Whether the field is disabled in the UI by default.
         validation:
           type:
             - object
@@ -6916,11 +7228,18 @@ components:
           type:
             - object
             - 'null'
-          description: The restrictions defined for the metadata field.
+          description: |
+            Controls UI visibility and editability of the field. All three keys are always returned; any omitted key on input defaults to false.
           properties:
             readonly_ui:
               type: boolean
-              description: Whether the metadata field is read-only in the UI. when true, the metadata field can only be updated via the API.
+              description: Whether the field is read-only in the UI. When true, the field can only be updated via the API.
+            hidden_ui:
+              type: boolean
+              description: Whether the field is hidden in the UI by default.
+            excluded_from_search:
+              type: boolean
+              description: Whether the field is excluded from UI search by default.
         datasource:
           type:
             - object
@@ -6949,6 +7268,10 @@ components:
             - boolean
             - 'null'
           description: Whether the metadata field allows adding new options to the datasource dynamically.
+        alphabetically_sorted:
+          type: boolean
+          description: Whether datasource values are maintained in case-insensitive alphabetical order. When true, values are automatically sorted on insert and update. Default false.
+          example: true
     metadata_fields_list_response:
       type: object
       properties:
@@ -7055,6 +7378,73 @@ components:
         payload:
           type: object
           description: Metadata payload for rule-based inference.
+    metadata_rule_apply_value:
+      type: object
+      description: Applies a specific value to the metadata field when the rule condition is met.
+      required:
+        - value
+      properties:
+        value:
+          type:
+            - string
+            - 'null'
+          description: The value to apply to the metadata field.
+          example: my value
+        mode:
+          type: string
+          enum:
+            - default
+            - override
+            - append
+          description: |
+            How to apply the value. `default` sets it only when no value is already inferred; `override` always replaces any inferred value; `append` adds to an existing array value.
+          example: default
+    metadata_rule_activate_values:
+      description: |
+        Restricts which datasource option ids are active. Either the string "all" (activate every option) or an object listing the external ids to activate.
+      oneOf:
+        - type: string
+          enum:
+            - all
+        - type: object
+          required:
+            - external_ids
+          properties:
+            external_ids:
+              type:
+                - array
+                - 'null'
+              items:
+                type: string
+              description: The datasource external ids to activate.
+            mode:
+              type: string
+              enum:
+                - override
+                - append
+              description: Whether to override the current active set or append to it. Defaults to append.
+    metadata_rule_result:
+      type: object
+      description: The result to apply when the rule's condition is met. At least one property must be set.
+      minProperties: 1
+      properties:
+        apply_value:
+          $ref: '#/components/schemas/metadata_rule_apply_value'
+        disable:
+          type: boolean
+          description: When true, disables the field in the UI (sets default_disabled). Preferred over the legacy enable action.
+        enable:
+          type: boolean
+          deprecated: true
+          description: When true, enables the field in the UI (clears default_disabled). Deprecated — prefer using disable with value false instead.
+        hide:
+          type: boolean
+          description: When true, hides the field in the UI (sets hidden_ui).
+        activate_values:
+          $ref: '#/components/schemas/metadata_rule_activate_values'
+        set_mandatory:
+          type: boolean
+          description: When true, makes the field mandatory; when false, makes it optional.
     metadata_rule_base:
       type: object
       properties:
@@ -7068,8 +7458,7 @@ components:
           type: object
           description: The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema.
         result:
-          type: object
-          description: The result to apply when the condition is met, should adhere to the metadata rule result schema.
+          $ref: '#/components/schemas/metadata_rule_result'
         state:
           $ref: '#/components/schemas/state_enum'
           description: The state of the rule.
@@ -7102,15 +7491,13 @@ components:
       example:
         external_id: '1234567890'
         metadata_field_id: smd-field-1
-        name: My Rule
+        name: Disable field when other field is populated
         condition:
           metadata_field_id: smd-field-2
           populated: true
         condition_signature: dGhlIGZveCBqdW1wZWQgb3ZlciB0aGUgbGF6eSBkb2c
         result:
-          apply_value:
-            value: my value
-            mode: default
+          disable: true
         state: active
         position: 1
     metadata_rules_list_response:
@@ -7130,14 +7517,12 @@ components:
         - result
       example:
         metadata_field_id: smd-field-1
-        name: My Rule
+        name: Disable field when other field is populated
         condition:
           metadata_field_id: smd-field-2
           populated: true
         result:
-          apply_value:
-            value: my value
-            mode: default
+          disable: true
         state: active
         position: 1
     metadata_rule_update:
@@ -7145,14 +7530,12 @@ components:
         - $ref: '#/components/schemas/metadata_rule_base'
       example:
         metadata_field_id: smd-field-1
-        name: My Rule
+        name: Disable field when other field is populated
         condition:
           metadata_field_id: smd-field-2
           populated: true
         result:
-          apply_value:
-            value: my value
-            mode: default
+          disable: true
         state: active
         position: 1
     success_response:
@@ -7687,7 +8070,7 @@ components:
                 format: uri
                 description: The secure URL for accessing the derived resource.
                 example: https://res.cloudinary.com/demo/image/upload/w_300,h_100/sample
-    components-list_response:
+    list_response:
       type: object
       properties:
         resources:
@@ -8460,20 +8843,14 @@ components:
         - from
         - to
     create_folder_response:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful.
-          example: true
-        path:
-          type: string
-          description: The path of the created folder.
-          example: samples/food
-        name:
-          type: string
-          description: The name of the created folder.
-          example: food
+      allOf:
+        - $ref: '#/components/schemas/folder'
+        - type: object
+          properties:
+            success:
+              type: boolean
+              description: Whether the operation was successful.
+              example: true
     delete_folder_response:
       type: object
       properties:
@@ -9146,6 +9523,96 @@ components:
               maximum: 1
               description: The minimum similarity score (between 0 and 1.0) that a resource must have to be included in the response
               example: 0.8
+    initial_backup_status_enum:
+      type: string
+      enum:
+        - pending
+        - active
+        - completed
+        - failed
+      description: The current status of the initial backup operation.
+    initial_backup_summary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the initial backup operation.
+          example: abc123def456
+        status:
+          $ref: '#/components/schemas/initial_backup_status_enum'
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time when the initial backup operation was created.
+          example: '2024-05-07T10:00:00Z'
+      required:
+        - id
+        - status
+        - created_at
+    initial_backup_list_response:
+      type: object
+      properties:
+        initial_backups:
+          type: array
+          items:
+            $ref: '#/components/schemas/initial_backup_summary'
+          description: The list of initial backup operations.
+        next_cursor:
+          type: string
+          description: Cursor for the next page of results. Present only when more results are available.
+      required:
+        - initial_backups
+    initial_backup_create_request:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: An optional email address to notify when the initial backup completes.
+          example: user@example.com
+    initial_backup_create_response:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          description: Indicates that the initial backup was queued successfully.
+          example: true
+      required:
+        - ok
+    initial_backup_progress_response:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/initial_backup_status_enum'
+        start_time:
+          type: string
+          format: date-time
+          description: The date and time when the initial backup operation started.
+          example: '2024-05-07T10:00:00Z'
+        completion_time:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: The date and time when the initial backup operation completed. Null while the operation is still running.
+          example: '2024-05-07T11:00:00Z'
+        processed_assets_count:
+          type:
+            - integer
+            - 'null'
+          description: The number of assets processed so far. Null when progress cannot be determined.
+          example: 42
+        reason:
+          type: string
+          enum:
+            - elasticsearch_not_enabled
+            - no_results_from_search
+            - no_assets_were_processed
+          description: A reason code explaining why progress is unavailable. Present only when processed_assets_count is null.
+          example: elasticsearch_not_enabled
+      required:
+        - status
+        - start_time
     person_status:
       type: string
       description: The status of a person.

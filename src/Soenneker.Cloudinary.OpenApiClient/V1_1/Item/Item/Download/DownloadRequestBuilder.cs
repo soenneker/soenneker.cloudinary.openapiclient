@@ -39,10 +39,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download.DownloadRequestBuilder.DownloadRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -55,10 +55,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -78,7 +78,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "image/*, video/*, application/octet-stream, application/json");
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -167,7 +167,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
 #endif
             /// <summary>The delivery type of the asset. Default is &quot;upload&quot;.</summary>
             [QueryParameter("type")]
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Managed_delivery_type? Type { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType? Type { get; set; }
         }
     }
 }

@@ -34,47 +34,47 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked
         {
         }
         /// <summary>
-        /// Uploads a single chunk of a large file as part of a chunked upload process. This enables efficient upload oflarge files with the ability to resume interrupted uploads. Each request uploads one chunk of the file.It is required for any files that are larger than 100 MB. This is often relevant for video files, as theytend to have larger file sizes. Minimum chunk size is 5 MB.
+        /// &quot;Uploads a single chunk of a large file as part of a chunked upload process. This enables efficient upload oflarge files with the ability to resume interrupted uploads. Each request uploads one chunk of the file.It is required for any files that are larger than 100 MB. This is often relevant for video files, as theytend to have larger file sizes. Minimum chunk size is 5 MB.The `file` field accepts either the chunk bytes (multipart) or an HTTP/HTTPS URL. When a URL is supplied,Cloudinary downloads it and validates the response `Content-Length` against the chunk-size contract(exact match in the uniform-size flow; within 5 MB floor and 5 GiB cap in explicit-order mode) beforestoring any bytes. A mismatch aborts with 400 and persists no state. The remote server must return a`Content-Length` header; chunked transfer-encoded responses are rejected.**Explicit-order totals** (`X-Upload-Part-Number`): `X-Upload-Total-Parts` may be omitted on non-terminalchunks until the session total *N* is established by any earlier chunk that sent the header. After *N* isknown, the chunk for part index *N* must include `X-Upload-Total-Parts: N`. Whenever the header appears,its value must be the same integer *N* for that `X-Unique-Upload-Id` (no conflicting totals).&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder.Upload_chunkedPostResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder.Upload_chunkedPostResponse?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Binary_upload_request body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.BinaryUploadRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder.Upload_chunkedPostResponse> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Binary_upload_request body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.BinaryUploadRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder.Upload_chunkedPostResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder.Upload_chunkedPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Uploads a single chunk of a large file as part of a chunked upload process. This enables efficient upload oflarge files with the ability to resume interrupted uploads. Each request uploads one chunk of the file.It is required for any files that are larger than 100 MB. This is often relevant for video files, as theytend to have larger file sizes. Minimum chunk size is 5 MB.
+        /// &quot;Uploads a single chunk of a large file as part of a chunked upload process. This enables efficient upload oflarge files with the ability to resume interrupted uploads. Each request uploads one chunk of the file.It is required for any files that are larger than 100 MB. This is often relevant for video files, as theytend to have larger file sizes. Minimum chunk size is 5 MB.The `file` field accepts either the chunk bytes (multipart) or an HTTP/HTTPS URL. When a URL is supplied,Cloudinary downloads it and validates the response `Content-Length` against the chunk-size contract(exact match in the uniform-size flow; within 5 MB floor and 5 GiB cap in explicit-order mode) beforestoring any bytes. A mismatch aborts with 400 and persists no state. The remote server must return a`Content-Length` header; chunked transfer-encoded responses are rejected.**Explicit-order totals** (`X-Upload-Part-Number`): `X-Upload-Total-Parts` may be omitted on non-terminalchunks until the session total *N* is established by any earlier chunk that sent the header. After *N* isknown, the chunk for part index *N* must include `X-Upload-Total-Parts: N`. Whenever the header appears,its value must be the same integer *N* for that `X-Unique-Upload-Id` (no conflicting totals).&quot;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Binary_upload_request body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.BinaryUploadRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Binary_upload_request body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.BinaryUploadRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -92,72 +92,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Non_final_chunk_upload_response"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class Upload_chunkedPostResponse : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response? AsyncUploadResponse { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response AsyncUploadResponse { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Non_final_chunk_upload_response"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Non_final_chunk_upload_response? NonFinalChunkUploadResponse { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Non_final_chunk_upload_response NonFinalChunkUploadResponse { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response? UploadResponse { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response UploadResponse { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder.Upload_chunkedPostResponse"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder.Upload_chunkedPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked.Upload_chunkedRequestBuilder.Upload_chunkedPostResponse();
-                result.AsyncUploadResponse = new global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response();
-                result.NonFinalChunkUploadResponse = new global::Soenneker.Cloudinary.OpenApiClient.Models.Non_final_chunk_upload_response();
-                result.UploadResponse = new global::Soenneker.Cloudinary.OpenApiClient.Models.Upload_response();
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(AsyncUploadResponse != null || NonFinalChunkUploadResponse != null || UploadResponse != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(AsyncUploadResponse, NonFinalChunkUploadResponse, UploadResponse);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Async_upload_response>(null, AsyncUploadResponse, NonFinalChunkUploadResponse, UploadResponse);
-            }
         }
     }
 }

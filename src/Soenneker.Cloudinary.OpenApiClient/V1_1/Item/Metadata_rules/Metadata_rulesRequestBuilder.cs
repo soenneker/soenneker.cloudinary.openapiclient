@@ -49,56 +49,56 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules
         /// <summary>
         /// Retrieves a list of all metadata rules in the cloud.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rules_list_response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRulesListResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rules_list_response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRulesListResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rules_list_response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRulesListResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rules_list_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rules_list_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRulesListResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRulesListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new metadata rule with the specified properties and configuration.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_response?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_create body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_response> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_create body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of all metadata rules in the cloud.
@@ -127,11 +127,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_create body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_rule_create body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

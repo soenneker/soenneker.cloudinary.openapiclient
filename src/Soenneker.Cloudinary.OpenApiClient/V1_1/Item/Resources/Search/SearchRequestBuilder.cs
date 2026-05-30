@@ -34,45 +34,45 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Search
         {
         }
         /// <summary>
-        /// Returns a list of resources matching the specified search criteria.Uses a Lucene-like query language to filter assets by descriptive attributes (`public_id`, `asset_id`, `filename`, `display_name`, `folder` / `asset_folder`, `tags`, `context.&lt;key&gt;`), file details (`resource_type`, `type`, `format`, `bytes`, `width`, `height`, `duration`, `pages`, `aspect_ratio`, `transparent`, `grayscale`), lifecycle dates (`uploaded_at`, `created_at`, `taken_at`, `updated_at`, `last_updated.&lt;kind&gt;`), moderation and lifecycle state (`status`, `moderation_status`, `moderation_kind`), embedded data (`image_metadata.*`), structured metadata (`metadata.&lt;external_id&gt;`), and analysis fields (`face_count`, `colors`, `quality_score`, `illustration_score`, `accessibility_analysis.*`). Supports sorting, aggregate counts, and complex boolean expressions.Examples: `tags:shirt AND uploaded_at&gt;1d`, `resource_type:image AND bytes&gt;1000000`, `folder:products OR context.category:electronics`. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and field reference.
+        /// &quot;Returns a list of resources matching the specified search criteria.Uses a Lucene-like query language to filter assets by descriptive attributes (`public_id`, `asset_id`, `filename`, `display_name`, `folder` / `asset_folder`, `tags`, `context.&lt;key&gt;`), file details (`resource_type`, `type`, `format`, `bytes`, `width`, `height`, `duration`, `pages`, `aspect_ratio`, `transparent`, `grayscale`), lifecycle dates (`uploaded_at`, `created_at`, `taken_at`, `updated_at`, `last_updated.&lt;kind&gt;`), moderation and lifecycle state (`status`, `moderation_status`, `moderation_kind`), embedded data (`image_metadata.*`), structured metadata (`metadata.&lt;external_id&gt;`), and analysis fields (`face_count`, `colors`, `quality_score`, `illustration_score`, `accessibility_analysis.*`). Supports sorting, aggregate counts, and complex boolean expressions.Examples: `tags:shirt AND uploaded_at&gt;1d`, `resource_type:image AND bytes&gt;1000000`, `folder:products OR context.category:electronics`. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and field reference.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse"/></returns>
         /// <param name="body">Common parameters for resource search operations.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Search_parameters body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Search_parameters body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Search_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns a list of resources matching the specified search criteria.Uses a Lucene-like query language to filter assets by descriptive attributes (`public_id`, `asset_id`, `filename`, `display_name`, `folder` / `asset_folder`, `tags`, `context.&lt;key&gt;`), file details (`resource_type`, `type`, `format`, `bytes`, `width`, `height`, `duration`, `pages`, `aspect_ratio`, `transparent`, `grayscale`), lifecycle dates (`uploaded_at`, `created_at`, `taken_at`, `updated_at`, `last_updated.&lt;kind&gt;`), moderation and lifecycle state (`status`, `moderation_status`, `moderation_kind`), embedded data (`image_metadata.*`), structured metadata (`metadata.&lt;external_id&gt;`), and analysis fields (`face_count`, `colors`, `quality_score`, `illustration_score`, `accessibility_analysis.*`). Supports sorting, aggregate counts, and complex boolean expressions.Examples: `tags:shirt AND uploaded_at&gt;1d`, `resource_type:image AND bytes&gt;1000000`, `folder:products OR context.category:electronics`. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and field reference.
+        /// &quot;Returns a list of resources matching the specified search criteria.Uses a Lucene-like query language to filter assets by descriptive attributes (`public_id`, `asset_id`, `filename`, `display_name`, `folder` / `asset_folder`, `tags`, `context.&lt;key&gt;`), file details (`resource_type`, `type`, `format`, `bytes`, `width`, `height`, `duration`, `pages`, `aspect_ratio`, `transparent`, `grayscale`), lifecycle dates (`uploaded_at`, `created_at`, `taken_at`, `updated_at`, `last_updated.&lt;kind&gt;`), moderation and lifecycle state (`status`, `moderation_status`, `moderation_kind`), embedded data (`image_metadata.*`), structured metadata (`metadata.&lt;external_id&gt;`), and analysis fields (`face_count`, `colors`, `quality_score`, `illustration_score`, `accessibility_analysis.*`). Supports sorting, aggregate counts, and complex boolean expressions.Examples: `tags:shirt AND uploaded_at&gt;1d`, `resource_type:image AND bytes&gt;1000000`, `folder:products OR context.category:electronics`. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and field reference.&quot;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Common parameters for resource search operations.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Search_parameters body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Search_parameters body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

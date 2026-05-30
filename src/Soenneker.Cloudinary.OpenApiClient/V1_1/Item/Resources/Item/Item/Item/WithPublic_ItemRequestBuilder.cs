@@ -39,9 +39,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.Item
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Info"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Info?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.Item.WithPublic_ItemRequestBuilder.WithPublic_ItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -54,9 +54,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.Item
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Info>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Info.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -67,9 +67,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.Item
         /// <param name="body">The resource properties to update.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Info?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -83,9 +83,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.Item
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Info>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Info.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -145,13 +145,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithPublic_ItemRequestBuilderGetQueryParameters 
         {
-            /// <summary>Whether to return accessibility analysis scores for the image. Default: false.</summary>
+            /// <summary>&quot;Whether to return accessibility analysis scores for the image. Default: false.&quot;</summary>
             [QueryParameter("accessibility_analysis")]
             public bool? AccessibilityAnalysis { get; set; }
-            /// <summary>Whether to include color information (predominant colors and histogram of 32 leading colors). Default: false.</summary>
+            /// <summary>&quot;Whether to include color information (predominant colors and histogram of 32 leading colors). Default: false.&quot;</summary>
             [QueryParameter("colors")]
             public bool? Colors { get; set; }
-            /// <summary>Whether to include previously specified custom cropping coordinates and faces coordinates. Default: false.</summary>
+            /// <summary>&quot;Whether to include previously specified custom cropping coordinates and faces coordinates. Default: false.&quot;</summary>
             [QueryParameter("coordinates")]
             public bool? Coordinates { get; set; }
             /// <summary>The cursor for the next page of derived assets when there are more derived images than max_results.</summary>
@@ -164,25 +164,25 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Item.Item
             [QueryParameter("derived_next_cursor")]
             public string DerivedNextCursor { get; set; }
 #endif
-            /// <summary>Whether to include a list of coordinates of detected faces. Default: false.</summary>
+            /// <summary>&quot;Whether to include a list of coordinates of detected faces. Default: false.&quot;</summary>
             [QueryParameter("faces")]
             public bool? Faces { get; set; }
-            /// <summary>Maximum number of derived assets to return. Default: 10.</summary>
+            /// <summary>&quot;Maximum number of derived assets to return. Default: 10.&quot;</summary>
             [QueryParameter("max_results")]
             public int? MaxResults { get; set; }
-            /// <summary>Whether to include IPTC, XMP, and detailed Exif metadata in the response. Default: false.</summary>
+            /// <summary>&quot;Whether to include IPTC, XMP, and detailed Exif metadata in the response. Default: false.&quot;</summary>
             [QueryParameter("media_metadata")]
             public bool? MediaMetadata { get; set; }
-            /// <summary>Whether to report the number of pages in multi-page documents (e.g., PDF). Default: false.</summary>
+            /// <summary>&quot;Whether to report the number of pages in multi-page documents (e.g., PDF). Default: false.&quot;</summary>
             [QueryParameter("pages")]
             public bool? Pages { get; set; }
-            /// <summary>Whether to include the perceptual hash (pHash) of the uploaded photo for image similarity detection. Default: false.</summary>
+            /// <summary>&quot;Whether to include the perceptual hash (pHash) of the uploaded photo for image similarity detection. Default: false.&quot;</summary>
             [QueryParameter("phash")]
             public bool? Phash { get; set; }
-            /// <summary>Whether to return quality analysis scores for the image. Default: false.</summary>
+            /// <summary>&quot;Whether to return quality analysis scores for the image. Default: false.&quot;</summary>
             [QueryParameter("quality_analysis")]
             public bool? QualityAnalysis { get; set; }
-            /// <summary>Whether to include details of all the backed up versions of the asset. Default: false.</summary>
+            /// <summary>&quot;Whether to include details of all the backed up versions of the asset. Default: false.&quot;</summary>
             [QueryParameter("versions")]
             public bool? Versions { get; set; }
         }

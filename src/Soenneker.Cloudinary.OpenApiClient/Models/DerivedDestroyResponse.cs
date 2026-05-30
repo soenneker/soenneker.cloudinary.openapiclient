@@ -26,10 +26,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The invalidation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_invalidation? Invalidation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation? Invalidation { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_invalidation Invalidation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation Invalidation { get; set; }
 #endif
         /// <summary>Array of derived resource IDs that were not authorized to be deleted</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,7 +65,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "deleted", n => { Deleted = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_deleted>(global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_deleted.CreateFromDiscriminatorValue); } },
-                { "invalidation", n => { Invalidation = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_invalidation>(global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_invalidation.CreateFromDiscriminatorValue); } },
+                { "invalidation", n => { Invalidation = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation>(global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation.CreateFromDiscriminatorValue); } },
                 { "unauthorized", n => { Unauthorized = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -77,7 +77,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_deleted>("deleted", Deleted);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_invalidation>("invalidation", Invalidation);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation>("invalidation", Invalidation);
             writer.WriteCollectionOfPrimitiveValues<string>("unauthorized", Unauthorized);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -36,29 +36,29 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
         /// <summary>
         /// Performs a search within a specific metadata field&apos;s datasource to find matching values, with support for exact or partial matches.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesArray"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Datasource_search_in_field_request body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesArray?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.Datasource_search_in_field_request body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesArray> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.Metadata_field_datasource_values_array.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesArray>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesArray.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Performs a search within a specific metadata field&apos;s datasource to find matching values, with support for exact or partial matches.
@@ -68,11 +68,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Datasource_search_in_field_request body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.Datasource_search_in_field_request body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder.SearchRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

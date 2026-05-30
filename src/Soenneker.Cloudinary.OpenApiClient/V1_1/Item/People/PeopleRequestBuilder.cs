@@ -49,29 +49,29 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
         /// <summary>
         /// Returns a list of all recognized people in your product environment.People Search must be enabled for this product environment.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.People_list_response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleListResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.People_list_response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleListResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.People_list_response> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleListResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.Api_error.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.People_list_response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.People_list_response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleListResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleListResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a list of all recognized people in your product environment.People Search must be enabled for this product environment.
@@ -109,8 +109,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
         {
             /// <summary>The sort direction for the results. Default is &quot;desc&quot;.</summary>
             [QueryParameter("direction")]
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Direction_enum? Direction { get; set; }
-            /// <summary>The maximum number of people to return. Default: 50.</summary>
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.DirectionEnum? Direction { get; set; }
+            /// <summary>&quot;The maximum number of people to return. Default: 50.&quot;</summary>
             [QueryParameter("max_results")]
             public int? MaxResults { get; set; }
             /// <summary>Filter people whose names start with the given prefix (case insensitive).</summary>
@@ -123,7 +123,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
             [QueryParameter("name_prefix")]
             public string NamePrefix { get; set; }
 #endif
-            /// <summary>Filter by whether the person has been named. Default: all.</summary>
+            /// <summary>&quot;Filter by whether the person has been named. Default: all.&quot;</summary>
             [QueryParameter("name_status")]
             public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetName_statusQueryParameterType? NameStatus { get; set; }
             /// <summary>The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.</summary>
@@ -136,12 +136,12 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
             [QueryParameter("next_cursor")]
             public string NextCursor { get; set; }
 #endif
-            /// <summary>The field to sort results by. Default: name (ascending).</summary>
+            /// <summary>&quot;The field to sort results by. Default: name (ascending).&quot;</summary>
             [QueryParameter("sort_by")]
             public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetSort_byQueryParameterType? SortBy { get; set; }
             /// <summary>Filter by person status.</summary>
             [QueryParameter("status")]
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.Person_status? Status { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.PersonStatus? Status { get; set; }
         }
     }
 }

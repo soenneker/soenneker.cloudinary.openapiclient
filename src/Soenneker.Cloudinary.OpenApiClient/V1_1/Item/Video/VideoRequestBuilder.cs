@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Concat;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.AnalyticsRequestBuilder Analytics
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.AnalyticsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The concat property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Concat.ConcatRequestBuilder Concat
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Concat.ConcatRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.VideoRequestBuilder"/> and sets the default values.
