@@ -17,7 +17,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "twitter_name")]
         #pragma warning disable CS1591
-        Twitter_name,
+        TwitterName,
         #pragma warning restore CS1591
         [EnumMember(Value = "instagram")]
         #pragma warning disable CS1591
@@ -25,7 +25,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "instagram_name")]
         #pragma warning disable CS1591
-        Instagram_name,
+        InstagramName,
         #pragma warning restore CS1591
         [EnumMember(Value = "gravatar")]
         #pragma warning disable CS1591

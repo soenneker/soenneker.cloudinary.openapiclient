@@ -10,7 +10,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\folder_operations
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\folder_operations
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Folder_operationsRequestBuilder : BaseRequestBuilder
@@ -25,7 +25,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Folder_operationsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/folder_operations", pathParameters)
+        public Folder_operationsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/folder_operations", pathParameters)
         {
         }
         /// <summary>
@@ -33,7 +33,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Folder_operationsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/folder_operations", rawUrl)
+        public Folder_operationsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/folder_operations", rawUrl)
         {
         }
     }

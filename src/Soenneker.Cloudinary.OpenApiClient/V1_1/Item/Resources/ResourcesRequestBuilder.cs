@@ -24,7 +24,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\resources
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ResourcesRequestBuilder : BaseRequestBuilder
@@ -85,15 +85,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Visual_search.Visual_searchRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.resources.item collection</summary>
-        /// <param name="position">The asset ID of the resource. Must be a 32-character hexadecimal string.</param>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Asset_ItemRequestBuilder"/></returns>
-        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Asset_ItemRequestBuilder this[string position]
+        /// <param name="position">Unique identifier of the item</param>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder"/></returns>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("asset_%2Did", position);
-                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Asset_ItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("asset%2Did", position);
+                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -101,7 +101,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ResourcesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources", pathParameters)
+        public ResourcesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources", pathParameters)
         {
         }
         /// <summary>
@@ -109,7 +109,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ResourcesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources", rawUrl)
+        public ResourcesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources", rawUrl)
         {
         }
         /// <summary>
@@ -118,7 +118,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ListResourceTypes401">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ListResourceTypes401Response">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -131,7 +131,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ListResourceTypes401.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ListResourceTypes401Response.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

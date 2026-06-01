@@ -42,7 +42,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The type of resource.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceType? ResourceType { get; set; }
         /// <summary>The status of the asynchronous upload. Will be &apos;pending&apos; for async uploads.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AsyncUploadResponse_status? Status { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AsyncUploadResponseStatus? Status { get; set; }
         /// <summary>Delivery types accepted by upload and rename operations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -80,7 +80,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "requester_ip", n => { RequesterIp = n.GetStringValue(); } },
                 { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceType>(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AsyncUploadResponse_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AsyncUploadResponseStatus>(); } },
                 { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType.CreateFromDiscriminatorValue); } },
             };
         }
@@ -95,7 +95,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteStringValue("requester_ip", RequesterIp);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceType>("resource_type", ResourceType);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AsyncUploadResponse_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AsyncUploadResponseStatus>("status", Status);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

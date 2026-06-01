@@ -13,7 +13,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "url2png")]
         #pragma warning disable CS1591
-        Url2png,
+        Url2Png,
         #pragma warning restore CS1591
     }
 }

@@ -63,14 +63,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions Restrictions { get; set; }
 #endif
         /// <summary>The type of the metadata field.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_type? Type { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldType? Type { get; set; }
         /// <summary>The validation defined for the metadata field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_validation? Validation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldValidationProperty? Validation { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_validation Validation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldValidationProperty Validation { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField"/> and sets the default values.
@@ -106,8 +106,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "mandatory", n => { Mandatory = n.GetBoolValue(); } },
                 { "restrictions", n => { Restrictions = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_type>(); } },
-                { "validation", n => { Validation = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_validation>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_validation.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldType>(); } },
+                { "validation", n => { Validation = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldValidationProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldValidationProperty.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -126,8 +126,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("label", Label);
             writer.WriteBoolValue("mandatory", Mandatory);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions>("restrictions", Restrictions);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_type>("type", Type);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_validation>("validation", Validation);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldType>("type", Type);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldValidationProperty>("validation", Validation);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

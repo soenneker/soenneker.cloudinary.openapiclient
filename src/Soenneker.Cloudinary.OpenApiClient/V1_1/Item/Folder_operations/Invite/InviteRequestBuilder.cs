@@ -10,21 +10,21 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\folder_operations\invite
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\folder_operations\invite
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class InviteRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.folder_operations.invite.item collection</summary>
-        /// <param name="position">The immutable identifier of the folder, returned by the Get root folders and Get subfolders endpoints.</param>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolder_ItemRequestBuilder"/></returns>
-        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolder_ItemRequestBuilder this[string position]
+        /// <param name="position">Unique identifier of the item</param>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolderItemRequestBuilder"/></returns>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolderItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("folder_id", position);
-                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolder_ItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("folderId", position);
+                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolderItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -32,7 +32,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public InviteRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/folder_operations/invite", pathParameters)
+        public InviteRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/folder_operations/invite", pathParameters)
         {
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public InviteRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/folder_operations/invite", rawUrl)
+        public InviteRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/folder_operations/invite", rawUrl)
         {
         }
     }

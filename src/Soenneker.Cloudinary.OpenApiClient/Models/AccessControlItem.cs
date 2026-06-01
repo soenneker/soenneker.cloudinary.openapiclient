@@ -14,16 +14,16 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     public partial class AccessControlItem : IAdditionalDataHolder, IParsable
     {
         /// <summary>The type of access control to apply to the asset.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem_access_type? AccessType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemAccessType? AccessType { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The end date and time when anonymous access expires. Accepts ISO 8601 string or Unix timestamp.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch? End { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemEnd? End { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch End { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemEnd End { get; set; }
 #endif
         /// <summary>The authentication key identifier for token-based access. Default key is used if not specified or if set to &apos;default&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -36,10 +36,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The start date and time when anonymous access becomes available. Accepts ISO 8601 string or Unix timestamp.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch? Start { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemStart? Start { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch Start { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemStart Start { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem"/> and sets the default values.
@@ -66,10 +66,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "access_type", n => { AccessType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem_access_type>(); } },
-                { "end", n => { End = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>(global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
+                { "access_type", n => { AccessType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemAccessType>(); } },
+                { "end", n => { End = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemEnd>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemEnd.CreateFromDiscriminatorValue); } },
                 { "key", n => { Key = n.GetStringValue(); } },
-                { "start", n => { Start = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>(global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
+                { "start", n => { Start = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemStart>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemStart.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -79,10 +79,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem_access_type>("access_type", AccessType);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>("end", End);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemAccessType>("access_type", AccessType);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemEnd>("end", End);
             writer.WriteStringValue("key", Key);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>("start", Start);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItemStart>("start", Start);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -41,9 +41,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Font size in points.</summary>
         public int? FontSize { get; set; }
         /// <summary>Whether to use a normal or italic font.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_font_style? FontStyle { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontStyle? FontStyle { get; set; }
         /// <summary>Whether to use a normal or bold font.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_font_weight? FontWeight { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontWeight? FontWeight { get; set; }
         /// <summary>The spacing between lines of text in pixels.</summary>
         public int? LineSpacing { get; set; }
         /// <summary>Text opacity value between 0 (invisible) and 100.</summary>
@@ -65,9 +65,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string Text { get; set; }
 #endif
         /// <summary>Text alignment.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_text_align? TextAlign { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestTextAlign? TextAlign { get; set; }
         /// <summary>Text decoration style.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_text_decoration? TextDecoration { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestTextDecoration? TextDecoration { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest"/> and sets the default values.
         /// </summary>
@@ -76,9 +76,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             AdditionalData = new Dictionary<string, object>();
             Background = "transparent";
             FontColor = "black";
-            FontStyle = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_font_style.Normal;
-            FontWeight = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_font_weight.Normal;
-            TextDecoration = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_text_decoration.None;
+            FontStyle = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontStyle.Normal;
+            FontWeight = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontWeight.Normal;
+            TextDecoration = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestTextDecoration.None;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -102,14 +102,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "font_color", n => { FontColor = n.GetStringValue(); } },
                 { "font_family", n => { FontFamily = n.GetStringValue(); } },
                 { "font_size", n => { FontSize = n.GetIntValue(); } },
-                { "font_style", n => { FontStyle = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_font_style>(); } },
-                { "font_weight", n => { FontWeight = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_font_weight>(); } },
+                { "font_style", n => { FontStyle = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontStyle>(); } },
+                { "font_weight", n => { FontWeight = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontWeight>(); } },
                 { "line_spacing", n => { LineSpacing = n.GetIntValue(); } },
                 { "opacity", n => { Opacity = n.GetIntValue(); } },
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
-                { "text_align", n => { TextAlign = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_text_align>(); } },
-                { "text_decoration", n => { TextDecoration = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_text_decoration>(); } },
+                { "text_align", n => { TextAlign = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestTextAlign>(); } },
+                { "text_decoration", n => { TextDecoration = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestTextDecoration>(); } },
             };
         }
         /// <summary>
@@ -123,14 +123,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("font_color", FontColor);
             writer.WriteStringValue("font_family", FontFamily);
             writer.WriteIntValue("font_size", FontSize);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_font_style>("font_style", FontStyle);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_font_weight>("font_weight", FontWeight);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontStyle>("font_style", FontStyle);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontWeight>("font_weight", FontWeight);
             writer.WriteIntValue("line_spacing", LineSpacing);
             writer.WriteIntValue("opacity", Opacity);
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteStringValue("text", Text);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_text_align>("text_align", TextAlign);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequest_text_decoration>("text_decoration", TextDecoration);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestTextAlign>("text_align", TextAlign);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestTextDecoration>("text_decoration", TextDecoration);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

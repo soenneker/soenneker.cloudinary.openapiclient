@@ -35,10 +35,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>&quot;An array of single-key objects mapping a field to a sort direction. Each object must contain exactly one field name mapped to &apos;asc&apos; or &apos;desc&apos;.Default: [{\&quot;created_at\&quot;: \&quot;desc\&quot;}].&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequest_sort_by>? SortBy { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequestSortByItem>? SortBy { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequest_sort_by> SortBy { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequestSortByItem> SortBy { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequest"/> and sets the default values.
@@ -68,7 +68,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "expression", n => { Expression = n.GetStringValue(); } },
                 { "max_results", n => { MaxResults = n.GetIntValue(); } },
                 { "next_cursor", n => { NextCursor = n.GetStringValue(); } },
-                { "sort_by", n => { SortBy = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequest_sort_by>(global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequest_sort_by.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "sort_by", n => { SortBy = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequestSortByItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequestSortByItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -81,7 +81,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("expression", Expression);
             writer.WriteIntValue("max_results", MaxResults);
             writer.WriteStringValue("next_cursor", NextCursor);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequest_sort_by>("sort_by", SortBy);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderSearchRequestSortByItem>("sort_by", SortBy);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

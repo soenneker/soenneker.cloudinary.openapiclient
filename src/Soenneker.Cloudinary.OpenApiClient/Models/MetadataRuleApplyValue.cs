@@ -16,7 +16,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>How to apply the value. `default` sets it only when no value is already inferred; `override` always replaces any inferred value; `append` adds to an existing array value.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue_mode? Mode { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValueMode? Mode { get; set; }
         /// <summary>The value to apply to the metadata field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,7 +50,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue_mode>(); } },
+                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValueMode>(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
         }
@@ -61,7 +61,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue_mode>("mode", Mode);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValueMode>("mode", Mode);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -8,42 +8,42 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryType_Wrapper_3"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryType_Wrapper_2"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType_Wrapper_3"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryType_Wrapper_2"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryTypeWrapper3"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryTypeWrapper2"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper3"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryTypeWrapper2"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ExplicitDeliveryType : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryType_Wrapper_3"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryTypeWrapper3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryType_Wrapper_3? AssetDeliveryTypeWrapper3 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryTypeWrapper3? AssetDeliveryTypeWrapper3 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryType_Wrapper_3 AssetDeliveryTypeWrapper3 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryTypeWrapper3 AssetDeliveryTypeWrapper3 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryType_Wrapper_2"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryTypeWrapper2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryType_Wrapper_2? FetchDeliveryTypeWrapper2 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryTypeWrapper2? FetchDeliveryTypeWrapper2 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryType_Wrapper_2 FetchDeliveryTypeWrapper2 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryTypeWrapper2 FetchDeliveryTypeWrapper2 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType_Wrapper_3"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType_Wrapper_3? ManagedDeliveryTypeWrapper3 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper3? ManagedDeliveryTypeWrapper3 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType_Wrapper_3 ManagedDeliveryTypeWrapper3 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper3 ManagedDeliveryTypeWrapper3 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryType_Wrapper_2"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryTypeWrapper2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryType_Wrapper_2? SocialDeliveryTypeWrapper2 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryTypeWrapper2? SocialDeliveryTypeWrapper2 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryType_Wrapper_2 SocialDeliveryTypeWrapper2 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryTypeWrapper2 SocialDeliveryTypeWrapper2 { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -54,10 +54,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitDeliveryType();
-            result.AssetDeliveryTypeWrapper3 = new global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryType_Wrapper_3();
-            result.FetchDeliveryTypeWrapper2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryType_Wrapper_2();
-            result.ManagedDeliveryTypeWrapper3 = new global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType_Wrapper_3();
-            result.SocialDeliveryTypeWrapper2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryType_Wrapper_2();
+            result.AssetDeliveryTypeWrapper3 = new global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryTypeWrapper3();
+            result.FetchDeliveryTypeWrapper2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.FetchDeliveryTypeWrapper2();
+            result.ManagedDeliveryTypeWrapper3 = new global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper3();
+            result.SocialDeliveryTypeWrapper2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.SocialDeliveryTypeWrapper2();
             return result;
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryType_Wrapper_3>(null, AssetDeliveryTypeWrapper3, FetchDeliveryTypeWrapper2, ManagedDeliveryTypeWrapper3, SocialDeliveryTypeWrapper2);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetDeliveryTypeWrapper3>(null, AssetDeliveryTypeWrapper3, FetchDeliveryTypeWrapper2, ManagedDeliveryTypeWrapper3, SocialDeliveryTypeWrapper2);
         }
     }
 }

@@ -13,7 +13,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Streaming_profiles
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\streaming_profiles
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\streaming_profiles
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Streaming_profilesRequestBuilder : BaseRequestBuilder
@@ -35,7 +35,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Streaming_profiles
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Streaming_profilesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/streaming_profiles", pathParameters)
+        public Streaming_profilesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/streaming_profiles", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Streaming_profiles
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Streaming_profilesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/streaming_profiles", rawUrl)
+        public Streaming_profilesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/streaming_profiles", rawUrl)
         {
         }
         /// <summary>

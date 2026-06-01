@@ -24,9 +24,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string PublicId { get; set; }
 #endif
         /// <summary>Always &apos;video&apos; — concat produces an MP4.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponse_resource_type? ResourceType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponseResourceType? ResourceType { get; set; }
         /// <summary>The status of the concat job. Always &apos;processing&apos;.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponse_status? Status { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponseStatus? Status { get; set; }
         /// <summary>Identifier shared by all chunked-upload parts produced for this concat job (sent as the `X-Unique-Upload-Id` header on each `/video/upload_chunked` request).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -61,8 +61,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
-                { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponse_resource_type>(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponse_status>(); } },
+                { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponseResourceType>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponseStatus>(); } },
                 { "unique_upload_id", n => { UniqueUploadId = n.GetStringValue(); } },
             };
         }
@@ -74,8 +74,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("public_id", PublicId);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponse_resource_type>("resource_type", ResourceType);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponse_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponseResourceType>("resource_type", ResourceType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ConcatResponseStatus>("status", Status);
             writer.WriteStringValue("unique_upload_id", UniqueUploadId);
             writer.WriteAdditionalData(AdditionalData);
         }

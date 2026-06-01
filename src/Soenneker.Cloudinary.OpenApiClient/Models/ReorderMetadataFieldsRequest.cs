@@ -17,7 +17,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Sort direction.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DirectionEnum? Direction { get; set; }
         /// <summary>The field to order by.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ReorderMetadataFieldsRequest_order_by? OrderBy { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ReorderMetadataFieldsRequestOrderBy? OrderBy { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ReorderMetadataFieldsRequest"/> and sets the default values.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DirectionEnum>(); } },
-                { "order_by", n => { OrderBy = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ReorderMetadataFieldsRequest_order_by>(); } },
+                { "order_by", n => { OrderBy = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ReorderMetadataFieldsRequestOrderBy>(); } },
             };
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DirectionEnum>("direction", Direction);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ReorderMetadataFieldsRequest_order_by>("order_by", OrderBy);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ReorderMetadataFieldsRequestOrderBy>("order_by", OrderBy);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

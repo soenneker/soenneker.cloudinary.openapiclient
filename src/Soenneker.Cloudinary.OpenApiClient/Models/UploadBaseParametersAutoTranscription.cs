@@ -8,26 +8,26 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionMember1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription_Branch1"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UploadBaseParametersAutoTranscription : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription_Branch1"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription_Branch1? UploadBaseParametersAutoTranscriptionBranch1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1? UploadBaseParametersAutoTranscriptionBranch1 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription_Branch1 UploadBaseParametersAutoTranscriptionBranch1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1 UploadBaseParametersAutoTranscriptionBranch1 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionMember1"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionMember1? UploadBaseParametersAutoTranscriptionMember1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2? UploadBaseParametersAutoTranscriptionOneOf2 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionMember1 UploadBaseParametersAutoTranscriptionMember1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2 UploadBaseParametersAutoTranscriptionOneOf2 { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -41,11 +41,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription();
             if("UploadBaseParametersAutoTranscription_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.UploadBaseParametersAutoTranscriptionBranch1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription_Branch1();
+                result.UploadBaseParametersAutoTranscriptionBranch1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1();
             }
-            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("UploadBaseParametersAutoTranscriptionOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.UploadBaseParametersAutoTranscriptionMember1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionMember1();
+                result.UploadBaseParametersAutoTranscriptionOneOf2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2();
             }
             return result;
         }
@@ -59,9 +59,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 return UploadBaseParametersAutoTranscriptionBranch1.GetFieldDeserializers();
             }
-            else if(UploadBaseParametersAutoTranscriptionMember1 != null)
+            else if(UploadBaseParametersAutoTranscriptionOneOf2 != null)
             {
-                return UploadBaseParametersAutoTranscriptionMember1.GetFieldDeserializers();
+                return UploadBaseParametersAutoTranscriptionOneOf2.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -74,11 +74,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(UploadBaseParametersAutoTranscriptionBranch1 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription_Branch1>(null, UploadBaseParametersAutoTranscriptionBranch1);
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1>(null, UploadBaseParametersAutoTranscriptionBranch1);
             }
-            else if(UploadBaseParametersAutoTranscriptionMember1 != null)
+            else if(UploadBaseParametersAutoTranscriptionOneOf2 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionMember1>(null, UploadBaseParametersAutoTranscriptionMember1);
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2>(null, UploadBaseParametersAutoTranscriptionOneOf2);
             }
         }
     }

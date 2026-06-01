@@ -13,7 +13,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\metadata_fields\{external_id}\datasource
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\metadata_fields\{externalId}\datasource
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DatasourceRequestBuilder : BaseRequestBuilder
@@ -28,7 +28,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DatasourceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/metadata_fields/{external_id}/datasource", pathParameters)
+        public DatasourceRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/metadata_fields/{externalId}/datasource", pathParameters)
         {
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DatasourceRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/metadata_fields/{external_id}/datasource", rawUrl)
+        public DatasourceRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/metadata_fields/{externalId}/datasource", rawUrl)
         {
         }
         /// <summary>

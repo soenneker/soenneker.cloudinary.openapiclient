@@ -8,26 +8,26 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesMember1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues_Wrapper"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MetadataRuleActivateValues : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesMember1"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesMember1? MetadataRuleActivateValuesMember1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2? MetadataRuleActivateValuesOneOf2 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesMember1 MetadataRuleActivateValuesMember1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2 MetadataRuleActivateValuesOneOf2 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues_Wrapper"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues_Wrapper? MetadataRuleActivateValuesWrapper { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper? MetadataRuleActivateValuesWrapper { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues_Wrapper MetadataRuleActivateValuesWrapper { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper MetadataRuleActivateValuesWrapper { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,13 +39,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues();
-            if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("MetadataRuleActivateValuesOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.MetadataRuleActivateValuesMember1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesMember1();
+                result.MetadataRuleActivateValuesOneOf2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2();
             }
-            else if("MetadataRuleActivateValues_Wrapper".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.MetadataRuleActivateValuesWrapper = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues_Wrapper();
+                result.MetadataRuleActivateValuesWrapper = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper();
             }
             return result;
         }
@@ -55,9 +55,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(MetadataRuleActivateValuesMember1 != null)
+            if(MetadataRuleActivateValuesOneOf2 != null)
             {
-                return MetadataRuleActivateValuesMember1.GetFieldDeserializers();
+                return MetadataRuleActivateValuesOneOf2.GetFieldDeserializers();
             }
             else if(MetadataRuleActivateValuesWrapper != null)
             {
@@ -72,13 +72,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(MetadataRuleActivateValuesMember1 != null)
+            if(MetadataRuleActivateValuesOneOf2 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesMember1>(null, MetadataRuleActivateValuesMember1);
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2>(null, MetadataRuleActivateValuesOneOf2);
             }
             else if(MetadataRuleActivateValuesWrapper != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues_Wrapper>(null, MetadataRuleActivateValuesWrapper);
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper>(null, MetadataRuleActivateValuesWrapper);
             }
         }
     }

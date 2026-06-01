@@ -19,18 +19,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The derived property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_derived>? Derived { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoDerivedItem>? Derived { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_derived> Derived { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoDerivedItem> Derived { get; set; }
 #endif
         /// <summary>API transformation parameters</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_info>? Info { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem>? Info { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_info> Info { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem> Info { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -78,8 +78,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "allowed_for_strict", n => { AllowedForStrict = n.GetBoolValue(); } },
-                { "derived", n => { Derived = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_derived>(global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_derived.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "info", n => { Info = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_info>(global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_info.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "derived", n => { Derived = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoDerivedItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoDerivedItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "info", n => { Info = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "named", n => { Named = n.GetBoolValue(); } },
                 { "next_cursor", n => { NextCursor = n.GetStringValue(); } },
@@ -94,8 +94,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allowed_for_strict", AllowedForStrict);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_derived>("derived", Derived);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfo_info>("info", Info);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoDerivedItem>("derived", Derived);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem>("info", Info);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("named", Named);
             writer.WriteStringValue("next_cursor", NextCursor);

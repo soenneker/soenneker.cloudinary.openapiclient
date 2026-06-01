@@ -13,21 +13,21 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\people
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\people
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PeopleRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.people.item collection</summary>
         /// <param name="position">The unique identifier of the person.</param>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Item.WithPerson_ItemRequestBuilder"/></returns>
-        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Item.WithPerson_ItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Item.WithPersonItemRequestBuilder"/></returns>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Item.WithPersonItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("person_id", position);
-                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Item.WithPerson_ItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("personId", position);
+                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Item.WithPersonItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -35,7 +35,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PeopleRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/people{?direction*,max_results*,name_prefix*,name_status*,next_cursor*,sort_by*,status*}", pathParameters)
+        public PeopleRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/people{?direction*,max_results*,name_prefix*,name_status*,next_cursor*,sort_by*,status*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PeopleRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/people{?direction*,max_results*,name_prefix*,name_status*,next_cursor*,sort_by*,status*}", rawUrl)
+        public PeopleRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/people{?direction*,max_results*,name_prefix*,name_status*,next_cursor*,sort_by*,status*}", rawUrl)
         {
         }
         /// <summary>
@@ -125,7 +125,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
 #endif
             /// <summary>&quot;Filter by whether the person has been named. Default: all.&quot;</summary>
             [QueryParameter("name_status")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetName_statusQueryParameterType? NameStatus { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.ListPeopleNameStatusParameter? NameStatus { get; set; }
             /// <summary>The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -138,7 +138,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
 #endif
             /// <summary>&quot;The field to sort results by. Default: name (ascending).&quot;</summary>
             [QueryParameter("sort_by")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.GetSort_byQueryParameterType? SortBy { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.ListPeopleSortByParameter? SortBy { get; set; }
             /// <summary>Filter by person status.</summary>
             [QueryParameter("status")]
             public global::Soenneker.Cloudinary.OpenApiClient.Models.PersonStatus? Status { get; set; }

@@ -17,10 +17,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Metadata payload for rule-based inference.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest_payload? Payload { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequestPayloadProperty? Payload { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest_payload Payload { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequestPayloadProperty Payload { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "payload", n => { Payload = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest_payload>(global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest_payload.CreateFromDiscriminatorValue); } },
+                { "payload", n => { Payload = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequestPayloadProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequestPayloadProperty.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequest_payload>("payload", Payload);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceSearchInFieldRequestPayloadProperty>("payload", Payload);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

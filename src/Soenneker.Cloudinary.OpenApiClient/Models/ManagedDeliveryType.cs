@@ -13,7 +13,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "private")]
         #pragma warning disable CS1591
-        Private,
+        PrivateValue,
         #pragma warning restore CS1591
         [EnumMember(Value = "authenticated")]
         #pragma warning disable CS1591

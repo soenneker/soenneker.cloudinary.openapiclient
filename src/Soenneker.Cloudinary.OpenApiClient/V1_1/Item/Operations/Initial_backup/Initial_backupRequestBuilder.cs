@@ -13,7 +13,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Operations.Initial_backup
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\operations\initial_backup
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\operations\initial_backup
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Initial_backupRequestBuilder : BaseRequestBuilder
@@ -35,7 +35,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Operations.Initial_backup
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Initial_backupRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/operations/initial_backup{?max_results*,next_cursor*}", pathParameters)
+        public Initial_backupRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/operations/initial_backup{?max_results*,next_cursor*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Operations.Initial_backup
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Initial_backupRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/operations/initial_backup{?max_results*,next_cursor*}", rawUrl)
+        public Initial_backupRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/operations/initial_backup{?max_results*,next_cursor*}", rawUrl)
         {
         }
         /// <summary>

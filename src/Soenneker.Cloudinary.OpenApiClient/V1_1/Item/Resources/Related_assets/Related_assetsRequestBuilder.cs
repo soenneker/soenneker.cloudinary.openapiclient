@@ -10,21 +10,21 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\resources\related_assets
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\related_assets
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Related_assetsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.resources.related_assets.item collection</summary>
-        /// <param name="position">The asset ID of the resource. Must be a 32-character hexadecimal string.</param>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.Asset_ItemRequestBuilder"/></returns>
-        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.Asset_ItemRequestBuilder this[string position]
+        /// <param name="position">Unique identifier of the item</param>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.AssetItemRequestBuilder"/></returns>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.AssetItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("asset_%2Did", position);
-                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.Asset_ItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("asset%2Did", position);
+                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.AssetItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -32,7 +32,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Related_assetsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources/related_assets", pathParameters)
+        public Related_assetsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets", pathParameters)
         {
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Related_assetsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources/related_assets", rawUrl)
+        public Related_assetsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets", rawUrl)
         {
         }
     }

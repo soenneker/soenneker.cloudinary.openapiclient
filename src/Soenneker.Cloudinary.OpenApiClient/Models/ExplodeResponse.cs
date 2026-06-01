@@ -23,7 +23,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string BatchId { get; set; }
 #endif
         /// <summary>The status of the explode operation.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplodeResponse_status? Status { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplodeResponseStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ExplodeResponse"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "batch_id", n => { BatchId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplodeResponse_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplodeResponseStatus>(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("batch_id", BatchId);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplodeResponse_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplodeResponseStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

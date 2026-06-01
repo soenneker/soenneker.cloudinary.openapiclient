@@ -63,18 +63,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Additional information about the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_info? Info { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseInfoProperty? Info { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_info Info { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseInfoProperty Info { get; set; }
 #endif
         /// <summary>Moderation information for the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_moderation? Moderation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseModerationProperty? Moderation { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_moderation Moderation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseModerationProperty Moderation { get; set; }
 #endif
         /// <summary>Number of pages in the asset.</summary>
         public int? Pages { get; set; }
@@ -91,10 +91,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Region information for the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_regions>? Regions { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseRegionsItemProperty>? Regions { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_regions> Regions { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseRegionsItemProperty> Regions { get; set; }
 #endif
         /// <summary>The type of resource (image).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -189,12 +189,12 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "etag", n => { Etag = n.GetStringValue(); } },
                 { "format", n => { Format = n.GetStringValue(); } },
                 { "height", n => { Height = n.GetIntValue(); } },
-                { "info", n => { Info = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_info>(global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_info.CreateFromDiscriminatorValue); } },
-                { "moderation", n => { Moderation = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_moderation>(global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_moderation.CreateFromDiscriminatorValue); } },
+                { "info", n => { Info = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseInfoProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseInfoProperty.CreateFromDiscriminatorValue); } },
+                { "moderation", n => { Moderation = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseModerationProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseModerationProperty.CreateFromDiscriminatorValue); } },
                 { "pages", n => { Pages = n.GetIntValue(); } },
                 { "placeholder", n => { Placeholder = n.GetBoolValue(); } },
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
-                { "regions", n => { Regions = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_regions>(global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_regions.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "regions", n => { Regions = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseRegionsItemProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseRegionsItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "resource_type", n => { ResourceType = n.GetStringValue(); } },
                 { "secure_url", n => { SecureUrl = n.GetStringValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
@@ -221,12 +221,12 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("etag", Etag);
             writer.WriteStringValue("format", Format);
             writer.WriteIntValue("height", Height);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_info>("info", Info);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_moderation>("moderation", Moderation);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseInfoProperty>("info", Info);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseModerationProperty>("moderation", Moderation);
             writer.WriteIntValue("pages", Pages);
             writer.WriteBoolValue("placeholder", Placeholder);
             writer.WriteStringValue("public_id", PublicId);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponse_regions>("regions", Regions);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TextResponseRegionsItemProperty>("regions", Regions);
             writer.WriteStringValue("resource_type", ResourceType);
             writer.WriteStringValue("secure_url", SecureUrl);
             writer.WriteStringValue("signature", Signature);

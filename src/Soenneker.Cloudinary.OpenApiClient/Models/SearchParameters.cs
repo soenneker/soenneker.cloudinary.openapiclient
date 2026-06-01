@@ -18,10 +18,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Fields or ranges to aggregate search results by. Requires a Tier 2 search plan; on Tier 1 the field is accepted but aggregations are omitted from the response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch? Aggregate { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregate? Aggregate { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch Aggregate { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregate Aggregate { get; set; }
 #endif
         /// <summary>The Lucene-like search expression. Supports token match (`field:value`), exact match (`field=value`), trailing `*` for prefix match, ranges (`[a TO b]`, `{a TO b}`), and comparisons (`&gt;`, `&lt;`, `&gt;=`, `&lt;=`). Combine terms with uppercase `AND`, `OR`, `NOT`, or `+`/`-`, and group with parentheses. Wrap values containing reserved characters (spaces, colons, etc.) in double quotes. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and supported fields.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -52,18 +52,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>&quot;An array of single-key objects mapping a field to a sort direction. Each object must contain exactly one field name mapped to &apos;asc&apos; or &apos;desc&apos;.Default: [{\&quot;created_at\&quot;: \&quot;desc\&quot;}].&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_sort_by>? SortBy { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersSortByItem>? SortBy { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_sort_by> SortBy { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersSortByItem> SortBy { get; set; }
 #endif
         /// <summary>The additional asset attributes to include in each search result. The `fields` parameter takes precedence over this parameter. `image_metadata`, `image_analysis`, and `metadata` require a Tier 2 search plan.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_with_field?>? WithField { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersWithFieldItem?>? WithField { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_with_field?> WithField { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersWithFieldItem?> WithField { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters"/> and sets the default values.
@@ -90,13 +90,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "aggregate", n => { Aggregate = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>(global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
+                { "aggregate", n => { Aggregate = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregate>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregate.CreateFromDiscriminatorValue); } },
                 { "expression", n => { Expression = n.GetStringValue(); } },
                 { "fields", n => { Fields = n.GetStringValue(); } },
                 { "max_results", n => { MaxResults = n.GetIntValue(); } },
                 { "next_cursor", n => { NextCursor = n.GetStringValue(); } },
-                { "sort_by", n => { SortBy = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_sort_by>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_sort_by.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "with_field", n => { WithField = n.GetCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_with_field>()?.AsList(); } },
+                { "sort_by", n => { SortBy = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersSortByItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersSortByItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "with_field", n => { WithField = n.GetCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersWithFieldItem>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -106,13 +106,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>("aggregate", Aggregate);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregate>("aggregate", Aggregate);
             writer.WriteStringValue("expression", Expression);
             writer.WriteStringValue("fields", Fields);
             writer.WriteIntValue("max_results", MaxResults);
             writer.WriteStringValue("next_cursor", NextCursor);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_sort_by>("sort_by", SortBy);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParameters_with_field>("with_field", WithField);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersSortByItem>("sort_by", SortBy);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersWithFieldItem>("with_field", WithField);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

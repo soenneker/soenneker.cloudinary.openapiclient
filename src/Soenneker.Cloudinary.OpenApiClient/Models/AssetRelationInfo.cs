@@ -23,7 +23,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string Asset { get; set; }
 #endif
         /// <summary>The code indicating the result of the operation.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetRelationInfo_code? Code { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetRelationInfoCode? Code { get; set; }
         /// <summary>The message indicating the result of the operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -60,7 +60,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "asset", n => { Asset = n.GetStringValue(); } },
-                { "code", n => { Code = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetRelationInfo_code>(); } },
+                { "code", n => { Code = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetRelationInfoCode>(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetIntValue(); } },
             };
@@ -73,7 +73,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("asset", Asset);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetRelationInfo_code>("code", Code);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetRelationInfoCode>("code", Code);
             writer.WriteStringValue("message", Message);
             writer.WriteIntValue("status", Status);
             writer.WriteAdditionalData(AdditionalData);

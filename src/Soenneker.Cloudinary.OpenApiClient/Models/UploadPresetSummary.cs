@@ -34,10 +34,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Preset configuration settings. Most values are strings (e.g., tags are comma-separated, context is pipe-separated key=value pairs), but some boolean fields may be returned as native booleans.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummary_settings? Settings { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummarySettingsProperty? Settings { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummary_settings Settings { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummarySettingsProperty Settings { get; set; }
 #endif
         /// <summary>Whether the upload preset allows unsigned uploads.</summary>
         public bool? Unsigned { get; set; }
@@ -68,7 +68,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "external_id", n => { ExternalId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummary_settings>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummary_settings.CreateFromDiscriminatorValue); } },
+                { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummarySettingsProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummarySettingsProperty.CreateFromDiscriminatorValue); } },
                 { "unsigned", n => { Unsigned = n.GetBoolValue(); } },
             };
         }
@@ -81,7 +81,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("external_id", ExternalId);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummary_settings>("settings", Settings);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetSummarySettingsProperty>("settings", Settings);
             writer.WriteBoolValue("unsigned", Unsigned);
             writer.WriteAdditionalData(AdditionalData);
         }

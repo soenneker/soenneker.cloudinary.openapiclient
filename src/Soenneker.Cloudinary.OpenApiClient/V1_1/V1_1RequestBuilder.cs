@@ -16,15 +16,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1
     public partial class V1_1RequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item collection</summary>
-        /// <param name="position">The cloud name of your product environment.</param>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.WithCloud_nameItemRequestBuilder"/></returns>
-        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.WithCloud_nameItemRequestBuilder this[string position]
+        /// <param name="position">Unique identifier of the item</param>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.WithCloudNameItemRequestBuilder"/></returns>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.WithCloudNameItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("cloud_name", position);
-                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.WithCloud_nameItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("cloudName", position);
+                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.WithCloudNameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

@@ -18,10 +18,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The values property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource_values>? Values { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesItem>? Values { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource_values> Values { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesItem> Values { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "values", n => { Values = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource_values>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource_values.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "values", n => { Values = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource_values>("values", Values);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasourceValuesItem>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

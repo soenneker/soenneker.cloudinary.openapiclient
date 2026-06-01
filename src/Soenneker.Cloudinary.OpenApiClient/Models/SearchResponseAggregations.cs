@@ -18,18 +18,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Array of range-based aggregation results when using range aggregation (e.g., bytes, width, height, etc.)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_ranges>? Ranges { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem>? Ranges { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_ranges> Ranges { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem> Ranges { get; set; }
 #endif
         /// <summary>Array of aggregation values when using simple aggregation (e.g., by format, resource_type, etc.)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_values>? Values { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem>? Values { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_values> Values { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem> Values { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations"/> and sets the default values.
@@ -56,8 +56,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "ranges", n => { Ranges = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_ranges>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_ranges.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "values", n => { Values = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_values>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_values.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "ranges", n => { Ranges = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "values", n => { Values = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -67,8 +67,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_ranges>("ranges", Ranges);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations_values>("values", Values);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem>("ranges", Ranges);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

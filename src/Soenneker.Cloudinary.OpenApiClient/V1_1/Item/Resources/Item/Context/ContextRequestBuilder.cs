@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Context
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\resources\{asset_-id}\context
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\{asset-id}\context
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ContextRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Context
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ContextRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources/{asset_%2Did}/context?key={key}{&direction*,fields,max_results*,next_cursor*,value*}", pathParameters)
+        public ContextRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}/context?key={key}{&direction*,fields,max_results*,next_cursor*,value*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Context
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ContextRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/resources/{asset_%2Did}/context?key={key}{&direction*,fields,max_results*,next_cursor*,value*}", rawUrl)
+        public ContextRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}/context?key={key}{&direction*,fields,max_results*,next_cursor*,value*}", rawUrl)
         {
         }
         /// <summary>

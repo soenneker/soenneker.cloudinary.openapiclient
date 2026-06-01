@@ -34,10 +34,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The list of resources matching the search criteria. Can be empty if no results found.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse_resources>? Resources { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItem>? Resources { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse_resources> Resources { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItem> Resources { get; set; }
 #endif
         /// <summary>The time taken to execute the search query in milliseconds.</summary>
         public int? Time { get; set; }
@@ -70,7 +70,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "aggregations", n => { Aggregations = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations.CreateFromDiscriminatorValue); } },
                 { "next_cursor", n => { NextCursor = n.GetStringValue(); } },
-                { "resources", n => { Resources = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse_resources>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse_resources.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "resources", n => { Resources = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "time", n => { Time = n.GetIntValue(); } },
                 { "total_count", n => { TotalCount = n.GetIntValue(); } },
             };
@@ -84,7 +84,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations>("aggregations", Aggregations);
             writer.WriteStringValue("next_cursor", NextCursor);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponse_resources>("resources", Resources);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItem>("resources", Resources);
             writer.WriteIntValue("time", Time);
             writer.WriteIntValue("total_count", TotalCount);
             writer.WriteAdditionalData(AdditionalData);

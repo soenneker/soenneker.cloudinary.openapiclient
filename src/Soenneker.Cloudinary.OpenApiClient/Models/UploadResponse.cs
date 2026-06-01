@@ -69,10 +69,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The eager property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_eager>? Eager { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseEagerItem>? Eager { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_eager> Eager { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseEagerItem> Eager { get; set; }
 #endif
         /// <summary>The ETag of the uploaded file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -107,18 +107,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The image metadata of the uploaded file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_image_metadata? ImageMetadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseImageMetadataProperty? ImageMetadata { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_image_metadata ImageMetadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseImageMetadataProperty ImageMetadata { get; set; }
 #endif
         /// <summary>Structured metadata associated with the uploaded file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_metadata? Metadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseMetadataProperty? Metadata { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_metadata Metadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseMetadataProperty Metadata { get; set; }
 #endif
         /// <summary>The original filename of the uploaded file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,15 +235,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "coordinates", n => { Coordinates = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.CoordinatesResponse>(global::Soenneker.Cloudinary.OpenApiClient.Models.CoordinatesResponse.CreateFromDiscriminatorValue); } },
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
-                { "eager", n => { Eager = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_eager>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_eager.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "eager", n => { Eager = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseEagerItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseEagerItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "etag", n => { Etag = n.GetStringValue(); } },
                 { "faces", n => { Faces = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "format", n => { Format = n.GetStringValue(); } },
                 { "grayscale", n => { Grayscale = n.GetBoolValue(); } },
                 { "height", n => { Height = n.GetIntValue(); } },
                 { "illustration_score", n => { IllustrationScore = n.GetDoubleValue(); } },
-                { "image_metadata", n => { ImageMetadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_image_metadata>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_image_metadata.CreateFromDiscriminatorValue); } },
-                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_metadata>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_metadata.CreateFromDiscriminatorValue); } },
+                { "image_metadata", n => { ImageMetadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseImageMetadataProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseImageMetadataProperty.CreateFromDiscriminatorValue); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseMetadataProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseMetadataProperty.CreateFromDiscriminatorValue); } },
                 { "original_filename", n => { OriginalFilename = n.GetStringValue(); } },
                 { "pages", n => { Pages = n.GetIntValue(); } },
                 { "placeholder", n => { Placeholder = n.GetBoolValue(); } },
@@ -275,15 +275,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.CoordinatesResponse>("coordinates", Coordinates);
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
             writer.WriteStringValue("display_name", DisplayName);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_eager>("eager", Eager);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseEagerItem>("eager", Eager);
             writer.WriteStringValue("etag", Etag);
             writer.WriteObjectValue<UntypedNode>("faces", Faces);
             writer.WriteStringValue("format", Format);
             writer.WriteBoolValue("grayscale", Grayscale);
             writer.WriteIntValue("height", Height);
             writer.WriteDoubleValue("illustration_score", IllustrationScore);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_image_metadata>("image_metadata", ImageMetadata);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse_metadata>("metadata", Metadata);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseImageMetadataProperty>("image_metadata", ImageMetadata);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponseMetadataProperty>("metadata", Metadata);
             writer.WriteStringValue("original_filename", OriginalFilename);
             writer.WriteIntValue("pages", Pages);
             writer.WriteBoolValue("placeholder", Placeholder);

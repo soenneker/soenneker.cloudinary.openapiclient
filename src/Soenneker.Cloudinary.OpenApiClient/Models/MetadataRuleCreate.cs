@@ -17,10 +17,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate_condition? Condition { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreateCondition? Condition { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate_condition Condition { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreateCondition Condition { get; set; }
 #endif
         /// <summary>The ID of the metadata field this rule applies to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,7 +75,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "condition", n => { Condition = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate_condition>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate_condition.CreateFromDiscriminatorValue); } },
+                { "condition", n => { Condition = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreateCondition>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreateCondition.CreateFromDiscriminatorValue); } },
                 { "metadata_field_id", n => { MetadataFieldId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "position", n => { Position = n.GetIntValue(); } },
@@ -90,7 +90,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreate_condition>("condition", Condition);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleCreateCondition>("condition", Condition);
             writer.WriteStringValue("metadata_field_id", MetadataFieldId);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("position", Position);

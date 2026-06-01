@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The operation to perform on the principal’s role assignments. `add` grants the specified roles; `remove` revokes them.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequest_operation? Operation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequestOperation? Operation { get; set; }
         /// <summary>The user, group, or API key whose role assignments are being modified.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,7 +57,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "operation", n => { Operation = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequest_operation>(); } },
+                { "operation", n => { Operation = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequestOperation>(); } },
                 { "principal", n => { Principal = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequestPrincipal>(global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequestPrincipal.CreateFromDiscriminatorValue); } },
                 { "roles", n => { Roles = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -69,7 +69,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequest_operation>("operation", Operation);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequestOperation>("operation", Operation);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssignFolderRolesRequestPrincipal>("principal", Principal);
             writer.WriteCollectionOfPrimitiveValues<string>("roles", Roles);
             writer.WriteAdditionalData(AdditionalData);

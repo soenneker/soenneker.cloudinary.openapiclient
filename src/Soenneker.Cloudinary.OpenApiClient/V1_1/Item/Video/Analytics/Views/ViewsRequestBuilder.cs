@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\video\analytics\views
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\video\analytics\views
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ViewsRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ViewsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/video/analytics/views{?expression*,max_results*,next_cursor*,sort_by*}", pathParameters)
+        public ViewsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/video/analytics/views{?expression*,max_results*,next_cursor*,sort_by*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ViewsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/video/analytics/views{?expression*,max_results*,next_cursor*,sort_by*}", rawUrl)
+        public ViewsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/video/analytics/views{?expression*,max_results*,next_cursor*,sort_by*}", rawUrl)
         {
         }
         /// <summary>
@@ -117,7 +117,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views
 #endif
             /// <summary>Specifies the expression field by which to sort the results. Prepend values with a &apos;-&apos; to reverse the order.</summary>
             [QueryParameter("sort_by")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views.GetSort_byQueryParameterType? SortBy { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.GetVideoViewsSortByParameter? SortBy { get; set; }
         }
     }
 }

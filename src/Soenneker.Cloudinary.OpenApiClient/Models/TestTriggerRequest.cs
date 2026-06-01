@@ -17,10 +17,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Sample notification data to evaluate the filter against.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequest_sample_data? SampleData { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty? SampleData { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequest_sample_data SampleData { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty SampleData { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequest"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "sample_data", n => { SampleData = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequest_sample_data>(global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequest_sample_data.CreateFromDiscriminatorValue); } },
+                { "sample_data", n => { SampleData = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequest_sample_data>("sample_data", SampleData);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty>("sample_data", SampleData);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

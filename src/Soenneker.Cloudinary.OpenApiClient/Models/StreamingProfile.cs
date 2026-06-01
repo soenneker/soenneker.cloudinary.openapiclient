@@ -43,10 +43,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The list of representations in the streaming profile</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfile_representations>? Representations { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItem>? Representations { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfile_representations> Representations { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItem> Representations { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfile"/> and sets the default values.
@@ -77,7 +77,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "external_id", n => { ExternalId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "predefined", n => { Predefined = n.GetBoolValue(); } },
-                { "representations", n => { Representations = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfile_representations>(global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfile_representations.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "representations", n => { Representations = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("external_id", ExternalId);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("predefined", Predefined);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfile_representations>("representations", Representations);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItem>("representations", Representations);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

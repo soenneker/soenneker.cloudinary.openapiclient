@@ -28,10 +28,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>A list of asset folder paths to include in the archive, or a single folder path string. Only available when asset folders are enabled for your account.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch? AssetFolders { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestAllOf2AssetFolders? AssetFolders { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch AssetFolders { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestAllOf2AssetFolders AssetFolders { get; set; }
 #endif
         /// <summary>(&quot;create&quot; mode only), specifies whether to generate the archive asynchronously.</summary>
         public bool? Async { get; set; }
@@ -52,7 +52,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Whether to keep the derived assets used for generating the archive.</summary>
         public bool? KeepDerived { get; set; }
         /// <summary>The method for generating and delivering the archive. Options:download - Generates and delivers the archive file without storing itcreate - Creates and stores the archive as a raw asset, returning URLs in the responsecreate_and_download - Creates, stores, and delivers the archive file</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequest_mode? Mode { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestMode? Mode { get; set; }
         /// <summary>(&quot;create&quot; mode only), specifies the URL to notify when the archive generation is complete.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -120,7 +120,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string TargetFilename { get; set; }
 #endif
         /// <summary>The format of the generated archive.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequest_target_format? TargetFormat { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestTargetFormat? TargetFormat { get; set; }
         /// <summary>The public ID to assign to the generated archive, or the filename of the downloaded archive file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -163,8 +163,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public GenerateArchiveRequest()
         {
             AdditionalData = new Dictionary<string, object>();
-            Mode = global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequest_mode.Create;
-            TargetFormat = global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequest_target_format.Zip;
+            Mode = global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestMode.Create;
+            TargetFormat = global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestTargetFormat.Zip;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -186,14 +186,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "allow_missing", n => { AllowMissing = n.GetBoolValue(); } },
                 { "api_key", n => { ApiKey = n.GetStringValue(); } },
-                { "asset_folders", n => { AssetFolders = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>(global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
+                { "asset_folders", n => { AssetFolders = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestAllOf2AssetFolders>(global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestAllOf2AssetFolders.CreateFromDiscriminatorValue); } },
                 { "async", n => { Async = n.GetBoolValue(); } },
                 { "expires_at", n => { ExpiresAt = n.GetLongValue(); } },
                 { "flatten_folders", n => { FlattenFolders = n.GetBoolValue(); } },
                 { "flatten_transformations", n => { FlattenTransformations = n.GetBoolValue(); } },
                 { "fully_qualified_public_ids", n => { FullyQualifiedPublicIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "keep_derived", n => { KeepDerived = n.GetBoolValue(); } },
-                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequest_mode>(); } },
+                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestMode>(); } },
                 { "notification_url", n => { NotificationUrl = n.GetStringValue(); } },
                 { "prefixes", n => { Prefixes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "public_ids", n => { PublicIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -203,7 +203,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "target_asset_folder", n => { TargetAssetFolder = n.GetStringValue(); } },
                 { "target_filename", n => { TargetFilename = n.GetStringValue(); } },
-                { "target_format", n => { TargetFormat = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequest_target_format>(); } },
+                { "target_format", n => { TargetFormat = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestTargetFormat>(); } },
                 { "target_public_id", n => { TargetPublicId = n.GetStringValue(); } },
                 { "target_tags", n => { TargetTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "timestamp", n => { Timestamp = n.GetLongValue(); } },
@@ -221,14 +221,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allow_missing", AllowMissing);
             writer.WriteStringValue("api_key", ApiKey);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>("asset_folders", AssetFolders);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestAllOf2AssetFolders>("asset_folders", AssetFolders);
             writer.WriteBoolValue("async", Async);
             writer.WriteLongValue("expires_at", ExpiresAt);
             writer.WriteBoolValue("flatten_folders", FlattenFolders);
             writer.WriteBoolValue("flatten_transformations", FlattenTransformations);
             writer.WriteCollectionOfPrimitiveValues<string>("fully_qualified_public_ids", FullyQualifiedPublicIds);
             writer.WriteBoolValue("keep_derived", KeepDerived);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequest_mode>("mode", Mode);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestMode>("mode", Mode);
             writer.WriteStringValue("notification_url", NotificationUrl);
             writer.WriteCollectionOfPrimitiveValues<string>("prefixes", Prefixes);
             writer.WriteCollectionOfPrimitiveValues<string>("public_ids", PublicIds);
@@ -238,7 +238,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
             writer.WriteStringValue("target_asset_folder", TargetAssetFolder);
             writer.WriteStringValue("target_filename", TargetFilename);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequest_target_format>("target_format", TargetFormat);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestTargetFormat>("target_format", TargetFormat);
             writer.WriteStringValue("target_public_id", TargetPublicId);
             writer.WriteCollectionOfPrimitiveValues<string>("target_tags", TargetTags);
             writer.WriteLongValue("timestamp", Timestamp);

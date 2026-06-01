@@ -17,10 +17,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse_condition? Condition { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponseCondition? Condition { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse_condition Condition { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponseCondition Condition { get; set; }
 #endif
         /// <summary>A signature representing the condition structure.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -91,7 +91,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "condition", n => { Condition = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse_condition>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse_condition.CreateFromDiscriminatorValue); } },
+                { "condition", n => { Condition = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponseCondition>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponseCondition.CreateFromDiscriminatorValue); } },
                 { "condition_signature", n => { ConditionSignature = n.GetStringValue(); } },
                 { "external_id", n => { ExternalId = n.GetStringValue(); } },
                 { "metadata_field_id", n => { MetadataFieldId = n.GetStringValue(); } },
@@ -108,7 +108,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse_condition>("condition", Condition);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponseCondition>("condition", Condition);
             writer.WriteStringValue("condition_signature", ConditionSignature);
             writer.WriteStringValue("external_id", ExternalId);
             writer.WriteStringValue("metadata_field_id", MetadataFieldId);

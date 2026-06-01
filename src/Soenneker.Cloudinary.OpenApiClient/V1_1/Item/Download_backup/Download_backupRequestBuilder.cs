@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Download_backup
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\download_backup
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\download_backup
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Download_backupRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Download_backup
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Download_backupRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/download_backup?asset_id={asset_id}&version_id={version_id}{&api_key*,signature*,timestamp*}", pathParameters)
+        public Download_backupRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/download_backup?asset_id={asset_id}&version_id={version_id}{&api_key*,signature*,timestamp*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Download_backup
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Download_backupRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/download_backup?asset_id={asset_id}&version_id={version_id}{&api_key*,signature*,timestamp*}", rawUrl)
+        public Download_backupRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/download_backup?asset_id={asset_id}&version_id={version_id}{&api_key*,signature*,timestamp*}", rawUrl)
         {
         }
         /// <summary>

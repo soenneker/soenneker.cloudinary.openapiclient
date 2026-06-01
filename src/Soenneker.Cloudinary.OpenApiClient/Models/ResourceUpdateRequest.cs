@@ -98,7 +98,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get; set; }
 #endif
         /// <summary>The moderation status of the resource.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest_moderation_status? ModerationStatus { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequestModerationStatus? ModerationStatus { get; set; }
         /// <summary>The type of OCR to perform on the resource. Set to adv_ocr, optionally with options (e.g., adv_ocr:document).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -173,7 +173,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
                 { "face_coordinates", n => { FaceCoordinates = n.GetStringValue(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam>(global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam.CreateFromDiscriminatorValue); } },
-                { "moderation_status", n => { ModerationStatus = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest_moderation_status>(); } },
+                { "moderation_status", n => { ModerationStatus = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequestModerationStatus>(); } },
                 { "ocr", n => { Ocr = n.GetStringValue(); } },
                 { "quality_override", n => { QualityOverride = n.GetStringValue(); } },
                 { "raw_convert", n => { RawConvert = n.GetStringValue(); } },
@@ -202,7 +202,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("display_name", DisplayName);
             writer.WriteStringValue("face_coordinates", FaceCoordinates);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam>("metadata", Metadata);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest_moderation_status>("moderation_status", ModerationStatus);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequestModerationStatus>("moderation_status", ModerationStatus);
             writer.WriteStringValue("ocr", Ocr);
             writer.WriteStringValue("quality_override", QualityOverride);
             writer.WriteStringValue("raw_convert", RawConvert);

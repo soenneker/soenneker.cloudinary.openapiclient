@@ -24,7 +24,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public bool? AccessibilityAnalysis { get; set; }
         /// <summary>Deprecated. Use access_control instead. Allows the asset to behave as if it&apos;s of the authenticated delivery type while still using the default &apos;upload&apos; type in delivery URLs. The asset can later be made public by changing its access_mode via the Admin API, without having to update any delivery URLs.</summary>
         [Obsolete("")]
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest_access_mode? AccessMode { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAccessMode? AccessMode { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>&quot;A comma-separated list of file formats that are allowed for uploading. Files of other types will be rejected. The formats can be any combination of image types, video formats or raw file extensions.Note: You can also add the `format` parameter to convert other file types instead of rejecting them. In this case, only files that would normally be rejected are converted, any file format allowed for upload won&apos;t be converted.&quot;</summary>
@@ -278,10 +278,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Override the quality setting for this asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch? QualityOverride { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf4QualityOverride? QualityOverride { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch QualityOverride { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf4QualityOverride QualityOverride { get; set; }
 #endif
         /// <summary>&quot;Generates a related file based on the uploaded file.- Set to aspose to automatically create a PDF or other image format from a raw Office document using the Aspose Document Conversion add-on. (Asynchronous)- Set to google_speech to instruct the Google AI Video Transcription add-on to generate an automatic transcript raw file from an uploaded video. (Asynchronous)- Set to extract_text to extract all the text from a PDF file and store it in a raw JSON file with a public ID in the format: [pdf_public_id].extract_text.json. The full URL of the generated JSON file is included in the API response. Unlike the above raw_convert options, this option doesn&apos;t require registering for an add-on.(Synchronous)- Set to azure_video_indexer to generate AI-powered video insights from Microsoft Azure. (Asynchronous)&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -294,18 +294,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Named region coordinate groups for cropping with region gravity.Can be a JSON-encoded string or an object. Each region name may containonly letters, numbers, or hyphens, and must have at least two coordinate pairs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest_regions? Regions { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions? Regions { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest_regions Regions { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions Regions { get; set; }
 #endif
         /// <summary>Settings to automatically generate breakpoints for responsive images.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest.ExplicitRequest_responsive_breakpoints? ResponsiveBreakpoints { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints? ResponsiveBreakpoints { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest.ExplicitRequest_responsive_breakpoints ResponsiveBreakpoints { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints ResponsiveBreakpoints { get; set; }
 #endif
         /// <summary>Whether to return a deletion token in the upload response. The token can be used to delete the uploaded asset within approximately 10 minutes using an unauthenticated API call.</summary>
         public bool? ReturnDeleteToken { get; set; }
@@ -389,7 +389,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "access_mode", n => { AccessMode = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest_access_mode>(); } },
+                { "access_mode", n => { AccessMode = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAccessMode>(); } },
                 { "accessibility_analysis", n => { AccessibilityAnalysis = n.GetBoolValue(); } },
                 { "allowed_formats", n => { AllowedFormats = n.GetStringValue(); } },
                 { "api_key", n => { ApiKey = n.GetStringValue(); } },
@@ -433,10 +433,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "public_id_prefix", n => { PublicIdPrefix = n.GetStringValue(); } },
                 { "quality_analysis", n => { QualityAnalysis = n.GetBoolValue(); } },
-                { "quality_override", n => { QualityOverride = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>(global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch.CreateFromDiscriminatorValue); } },
+                { "quality_override", n => { QualityOverride = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf4QualityOverride>(global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf4QualityOverride.CreateFromDiscriminatorValue); } },
                 { "raw_convert", n => { RawConvert = n.GetStringValue(); } },
-                { "regions", n => { Regions = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest_regions>(global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest_regions.CreateFromDiscriminatorValue); } },
-                { "responsive_breakpoints", n => { ResponsiveBreakpoints = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest.ExplicitRequest_responsive_breakpoints>(global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest.ExplicitRequest_responsive_breakpoints.CreateFromDiscriminatorValue); } },
+                { "regions", n => { Regions = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions.CreateFromDiscriminatorValue); } },
+                { "responsive_breakpoints", n => { ResponsiveBreakpoints = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints.CreateFromDiscriminatorValue); } },
                 { "return_delete_token", n => { ReturnDeleteToken = n.GetBoolValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
                 { "tags", n => { Tags = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam>(global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam.CreateFromDiscriminatorValue); } },
@@ -461,7 +461,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>("access_control", AccessControl);
             writer.WriteBoolValue("accessibility_analysis", AccessibilityAnalysis);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest_access_mode>("access_mode", AccessMode);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAccessMode>("access_mode", AccessMode);
             writer.WriteStringValue("allowed_formats", AllowedFormats);
             writer.WriteStringValue("api_key", ApiKey);
             writer.WriteStringValue("asset_folder", AssetFolder);
@@ -504,10 +504,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteStringValue("public_id_prefix", PublicIdPrefix);
             writer.WriteBoolValue("quality_analysis", QualityAnalysis);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch>("quality_override", QualityOverride);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf4QualityOverride>("quality_override", QualityOverride);
             writer.WriteStringValue("raw_convert", RawConvert);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest_regions>("regions", Regions);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest.ExplicitRequest_responsive_breakpoints>("responsive_breakpoints", ResponsiveBreakpoints);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions>("regions", Regions);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints>("responsive_breakpoints", ResponsiveBreakpoints);
             writer.WriteBoolValue("return_delete_token", ReturnDeleteToken);
             writer.WriteStringValue("signature", Signature);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam>("tags", Tags);
@@ -522,63 +522,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("use_filename_as_display_name", UseFilenameAsDisplayName);
             writer.WriteBoolValue("visual_search", VisualSearch);
             writer.WriteAdditionalData(AdditionalData);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class ExplicitRequest_responsive_breakpoints : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint? ResponsiveBreakpoint { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint ResponsiveBreakpoint { get; set; }
-#endif
-            /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch? UnionBranch { get; set; }
-#nullable restore
-#else
-            public global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch UnionBranch { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest.ExplicitRequest_responsive_breakpoints"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest.ExplicitRequest_responsive_breakpoints CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequest.ExplicitRequest_responsive_breakpoints();
-                result.ResponsiveBreakpoint = new global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint();
-                result.UnionBranch = new global::Soenneker.Cloudinary.OpenApiClient.Models.UnionBranch();
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(ResponsiveBreakpoint != null || UnionBranch != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ResponsiveBreakpoint, UnionBranch);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint>(null, ResponsiveBreakpoint, UnionBranch);
-            }
         }
     }
 }

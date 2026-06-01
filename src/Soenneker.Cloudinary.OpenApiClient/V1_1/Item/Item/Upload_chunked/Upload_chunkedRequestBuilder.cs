@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\{resource_type}\upload_chunked
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\{resourceType}\upload_chunked
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Upload_chunkedRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Upload_chunkedRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/{resource_type}/upload_chunked", pathParameters)
+        public Upload_chunkedRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/{resourceType}/upload_chunked", pathParameters)
         {
         }
         /// <summary>
@@ -30,13 +30,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Upload_chunkedRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/{resource_type}/upload_chunked", rawUrl)
+        public Upload_chunkedRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/{resourceType}/upload_chunked", rawUrl)
         {
         }
         /// <summary>
         /// &quot;Uploads a single chunk of a large file as part of a chunked upload process. This enables efficient upload oflarge files with the ability to resume interrupted uploads. Each request uploads one chunk of the file.It is required for any files that are larger than 100 MB. This is often relevant for video files, as theytend to have larger file sizes. Minimum chunk size is 5 MB.The `file` field accepts either the chunk bytes (multipart) or an HTTP/HTTPS URL. When a URL is supplied,Cloudinary downloads it and validates the response `Content-Length` against the chunk-size contract(exact match in the uniform-size flow; within 5 MB floor and 5 GiB cap in explicit-order mode) beforestoring any bytes. A mismatch aborts with 400 and persists no state. The remote server must return a`Content-Length` header; chunked transfer-encoded responses are rejected.**Explicit-order totals** (`X-Upload-Part-Number`): `X-Upload-Total-Parts` may be omitted on non-terminalchunks until the session total *N* is established by any earlier chunk that sent the header. After *N* isknown, the chunk for part index *N* must include `X-Upload-Total-Parts: N`. Whenever the header appears,its value must be the same integer *N* for that `X-Unique-Upload-Id` (no conflicting totals).&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -45,11 +45,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.BinaryUploadRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200Response?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.BinaryUploadRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.BinaryUploadRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200Response> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.BinaryUploadRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -60,7 +60,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200Response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.UploadChunk200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Uploads a single chunk of a large file as part of a chunked upload process. This enables efficient upload oflarge files with the ability to resume interrupted uploads. Each request uploads one chunk of the file.It is required for any files that are larger than 100 MB. This is often relevant for video files, as theytend to have larger file sizes. Minimum chunk size is 5 MB.The `file` field accepts either the chunk bytes (multipart) or an HTTP/HTTPS URL. When a URL is supplied,Cloudinary downloads it and validates the response `Content-Length` against the chunk-size contract(exact match in the uniform-size flow; within 5 MB floor and 5 GiB cap in explicit-order mode) beforestoring any bytes. A mismatch aborts with 400 and persists no state. The remote server must return a`Content-Length` header; chunked transfer-encoded responses are rejected.**Explicit-order totals** (`X-Upload-Part-Number`): `X-Upload-Total-Parts` may be omitted on non-terminalchunks until the session total *N* is established by any earlier chunk that sent the header. After *N* isknown, the chunk for part index *N* must include `X-Upload-Total-Parts: N`. Whenever the header appears,its value must be the same integer *N* for that `X-Unique-Upload-Id` (no conflicting totals).&quot;

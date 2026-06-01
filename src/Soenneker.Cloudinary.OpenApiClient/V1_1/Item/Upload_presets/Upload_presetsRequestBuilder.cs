@@ -13,7 +13,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\upload_presets
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\upload_presets
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Upload_presetsRequestBuilder : BaseRequestBuilder
@@ -35,7 +35,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Upload_presetsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/upload_presets{?direction*,max_results*,next_cursor*,order_by*}", pathParameters)
+        public Upload_presetsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/upload_presets{?direction*,max_results*,next_cursor*,order_by*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Upload_presetsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/upload_presets{?direction*,max_results*,next_cursor*,order_by*}", rawUrl)
+        public Upload_presetsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/upload_presets{?direction*,max_results*,next_cursor*,order_by*}", rawUrl)
         {
         }
         /// <summary>
@@ -174,7 +174,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets
 #endif
             /// <summary>The field to sort presets by.</summary>
             [QueryParameter("order_by")]
-            public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_presets.GetOrder_byQueryParameterType? OrderBy { get; set; }
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadPresetsOrderByParameter? OrderBy { get; set; }
         }
     }
 }

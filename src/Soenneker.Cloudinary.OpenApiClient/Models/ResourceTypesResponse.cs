@@ -17,10 +17,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The list of available resource types.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse_resource_types?>? ResourceTypes { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?>? ResourceTypes { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse_resource_types?> ResourceTypes { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?> ResourceTypes { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "resource_types", n => { ResourceTypes = n.GetCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse_resource_types>()?.AsList(); } },
+                { "resource_types", n => { ResourceTypes = n.GetCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse_resource_types>("resource_types", ResourceTypes);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem>("resource_types", ResourceTypes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

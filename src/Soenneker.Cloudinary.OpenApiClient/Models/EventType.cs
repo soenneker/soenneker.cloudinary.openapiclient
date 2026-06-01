@@ -13,15 +13,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "access_control_changed")]
         #pragma warning disable CS1591
-        Access_control_changed,
+        AccessControlChanged,
         #pragma warning restore CS1591
         [EnumMember(Value = "bulk_refresh_auto_fetch")]
         #pragma warning disable CS1591
-        Bulk_refresh_auto_fetch,
+        BulkRefreshAutoFetch,
         #pragma warning restore CS1591
         [EnumMember(Value = "create_folder")]
         #pragma warning disable CS1591
-        Create_folder,
+        CreateFolder,
         #pragma warning restore CS1591
         [EnumMember(Value = "delete")]
         #pragma warning disable CS1591
@@ -29,11 +29,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "delete_by_token")]
         #pragma warning disable CS1591
-        Delete_by_token,
+        DeleteByToken,
         #pragma warning restore CS1591
         [EnumMember(Value = "delete_folder")]
         #pragma warning disable CS1591
-        Delete_folder,
+        DeleteFolder,
         #pragma warning restore CS1591
         [EnumMember(Value = "eager")]
         #pragma warning disable CS1591
@@ -49,7 +49,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "generate_archive")]
         #pragma warning disable CS1591
-        Generate_archive,
+        GenerateArchive,
         #pragma warning restore CS1591
         [EnumMember(Value = "info")]
         #pragma warning disable CS1591
@@ -57,7 +57,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "invalidate_custom_cdn")]
         #pragma warning disable CS1591
-        Invalidate_custom_cdn,
+        InvalidateCustomCdn,
         #pragma warning restore CS1591
         [EnumMember(Value = "moderation")]
         #pragma warning disable CS1591
@@ -65,7 +65,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "moderation_summary")]
         #pragma warning disable CS1591
-        Moderation_summary,
+        ModerationSummary,
         #pragma warning restore CS1591
         [EnumMember(Value = "move")]
         #pragma warning disable CS1591
@@ -73,7 +73,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "move_or_rename_asset_folder")]
         #pragma warning disable CS1591
-        Move_or_rename_asset_folder,
+        MoveOrRenameAssetFolder,
         #pragma warning restore CS1591
         [EnumMember(Value = "multi")]
         #pragma warning disable CS1591
@@ -93,23 +93,23 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning restore CS1591
         [EnumMember(Value = "resource_context_changed")]
         #pragma warning disable CS1591
-        Resource_context_changed,
+        ResourceContextChanged,
         #pragma warning restore CS1591
         [EnumMember(Value = "resource_display_name_changed")]
         #pragma warning disable CS1591
-        Resource_display_name_changed,
+        ResourceDisplayNameChanged,
         #pragma warning restore CS1591
         [EnumMember(Value = "resource_metadata_changed")]
         #pragma warning disable CS1591
-        Resource_metadata_changed,
+        ResourceMetadataChanged,
         #pragma warning restore CS1591
         [EnumMember(Value = "resource_tags_changed")]
         #pragma warning disable CS1591
-        Resource_tags_changed,
+        ResourceTagsChanged,
         #pragma warning restore CS1591
         [EnumMember(Value = "restore_asset_version")]
         #pragma warning disable CS1591
-        Restore_asset_version,
+        RestoreAssetVersion,
         #pragma warning restore CS1591
         [EnumMember(Value = "sprite")]
         #pragma warning disable CS1591

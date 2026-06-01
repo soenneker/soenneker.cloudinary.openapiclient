@@ -13,7 +13,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\transformations
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\transformations
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TransformationsRequestBuilder : BaseRequestBuilder
@@ -35,7 +35,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TransformationsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/transformations{?max_results*,named*,next_cursor*}", pathParameters)
+        public TransformationsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/transformations{?max_results*,named*,next_cursor*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TransformationsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/transformations{?max_results*,named*,next_cursor*}", rawUrl)
+        public TransformationsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/transformations{?max_results*,named*,next_cursor*}", rawUrl)
         {
         }
         /// <summary>

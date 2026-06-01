@@ -8,34 +8,34 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember2"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember3"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf2"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf3"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class VisualSearchParameters : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember1"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember1? VisualSearchParametersMember1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf1? VisualSearchParametersOneOf1 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember1 VisualSearchParametersMember1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf1 VisualSearchParametersOneOf1 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember2"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember2? VisualSearchParametersMember2 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf2? VisualSearchParametersOneOf2 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember2 VisualSearchParametersMember2 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf2 VisualSearchParametersOneOf2 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember3"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember3? VisualSearchParametersMember3 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf3? VisualSearchParametersOneOf3 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember3 VisualSearchParametersMember3 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf3 VisualSearchParametersOneOf3 { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -47,17 +47,17 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParameters();
-            if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("VisualSearchParametersOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.VisualSearchParametersMember1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember1();
+                result.VisualSearchParametersOneOf1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf1();
             }
-            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("VisualSearchParametersOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.VisualSearchParametersMember2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember2();
+                result.VisualSearchParametersOneOf2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf2();
             }
-            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("VisualSearchParametersOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.VisualSearchParametersMember3 = new global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember3();
+                result.VisualSearchParametersOneOf3 = new global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf3();
             }
             return result;
         }
@@ -67,17 +67,17 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(VisualSearchParametersMember1 != null)
+            if(VisualSearchParametersOneOf1 != null)
             {
-                return VisualSearchParametersMember1.GetFieldDeserializers();
+                return VisualSearchParametersOneOf1.GetFieldDeserializers();
             }
-            else if(VisualSearchParametersMember2 != null)
+            else if(VisualSearchParametersOneOf2 != null)
             {
-                return VisualSearchParametersMember2.GetFieldDeserializers();
+                return VisualSearchParametersOneOf2.GetFieldDeserializers();
             }
-            else if(VisualSearchParametersMember3 != null)
+            else if(VisualSearchParametersOneOf3 != null)
             {
-                return VisualSearchParametersMember3.GetFieldDeserializers();
+                return VisualSearchParametersOneOf3.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -88,17 +88,17 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(VisualSearchParametersMember1 != null)
+            if(VisualSearchParametersOneOf1 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember1>(null, VisualSearchParametersMember1);
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf1>(null, VisualSearchParametersOneOf1);
             }
-            else if(VisualSearchParametersMember2 != null)
+            else if(VisualSearchParametersOneOf2 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember2>(null, VisualSearchParametersMember2);
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf2>(null, VisualSearchParametersOneOf2);
             }
-            else if(VisualSearchParametersMember3 != null)
+            else if(VisualSearchParametersOneOf3 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersMember3>(null, VisualSearchParametersMember3);
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.VisualSearchParametersOneOf3>(null, VisualSearchParametersOneOf3);
             }
         }
     }

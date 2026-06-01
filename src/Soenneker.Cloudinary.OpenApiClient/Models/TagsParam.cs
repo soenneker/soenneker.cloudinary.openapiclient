@@ -8,26 +8,26 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch2"/>
+    /// Composed type wrapper for classes <see cref="string"/>, List&lt;string&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TagsParam : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch1"/></summary>
+        /// <summary>Composed type representation for type List&lt;string&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch1? TagsParamBranch1 { get; set; }
+        public List<string>? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch1 TagsParamBranch1 { get; set; }
+        public List<string> String { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch2"/></summary>
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch2? TagsParamBranch2 { get; set; }
+        public string? TagsParamString { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch2 TagsParamBranch2 { get; set; }
+        public string TagsParamString { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,8 +38,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam();
-            result.TagsParamBranch1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch1();
-            result.TagsParamBranch2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch2();
+            if(parseNode.GetStringValue() is string tagsParamStringValue)
+            {
+                result.TagsParamString = tagsParamStringValue;
+            }
+            else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
+            {
+                result.String = stringValue;
+            }
             return result;
         }
         /// <summary>
@@ -48,10 +54,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(TagsParamBranch1 != null || TagsParamBranch2 != null)
-            {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(TagsParamBranch1, TagsParamBranch2);
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -61,7 +63,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam_Branch1>(null, TagsParamBranch1, TagsParamBranch2);
+            if(TagsParamString != null)
+            {
+                writer.WriteStringValue(null, TagsParamString);
+            }
+            else if(String != null)
+            {
+                writer.WriteCollectionOfPrimitiveValues<string>(null, String);
+            }
         }
     }
 }

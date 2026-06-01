@@ -13,7 +13,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\upload_mappings
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\upload_mappings
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Upload_mappingsRequestBuilder : BaseRequestBuilder
@@ -28,7 +28,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Upload_mappingsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/upload_mappings{?folder*,max_results*,next_cursor*}", pathParameters)
+        public Upload_mappingsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/upload_mappings{?folder*,max_results*,next_cursor*}", pathParameters)
         {
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Upload_mappingsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/upload_mappings{?folder*,max_results*,next_cursor*}", rawUrl)
+        public Upload_mappingsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/upload_mappings{?folder*,max_results*,next_cursor*}", rawUrl)
         {
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         /// <summary>
         /// Returns a list of all upload mappings defined for your account.Upload mappings allow you to map an upload preset to a specific folder and URL template.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 400 status code</exception>
@@ -75,11 +75,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings.Upload_mappingsRequestBuilder.Upload_mappingsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings.Upload_mappingsRequestBuilder.Upload_mappingsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings.Upload_mappingsRequestBuilder.Upload_mappingsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings.Upload_mappingsRequestBuilder.Upload_mappingsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -89,7 +89,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200Response>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.ListUploadMappings200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new upload mapping for the specified folder
@@ -163,7 +163,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings.Upload_mappingsRequestBuilder.Upload_mappingsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/v1_1/{cloud_name}/upload_mappings?folder={folder}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/v1_1/{cloudName}/upload_mappings?folder={folder}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -203,7 +203,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/v1_1/{cloud_name}/upload_mappings", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/v1_1/{cloudName}/upload_mappings", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -225,7 +225,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/v1_1/{cloud_name}/upload_mappings", PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/v1_1/{cloudName}/upload_mappings", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

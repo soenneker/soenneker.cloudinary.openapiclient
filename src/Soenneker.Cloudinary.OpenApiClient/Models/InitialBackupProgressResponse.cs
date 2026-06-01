@@ -19,7 +19,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The number of assets processed so far. Null when progress cannot be determined.</summary>
         public int? ProcessedAssetsCount { get; set; }
         /// <summary>A reason code explaining why progress is unavailable. Present only when processed_assets_count is null.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponse_reason? Reason { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponseReason? Reason { get; set; }
         /// <summary>The date and time when the initial backup operation started.</summary>
         public DateTimeOffset? StartTime { get; set; }
         /// <summary>The current status of the initial backup operation.</summary>
@@ -51,7 +51,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "completion_time", n => { CompletionTime = n.GetDateTimeOffsetValue(); } },
                 { "processed_assets_count", n => { ProcessedAssetsCount = n.GetIntValue(); } },
-                { "reason", n => { Reason = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponse_reason>(); } },
+                { "reason", n => { Reason = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponseReason>(); } },
                 { "start_time", n => { StartTime = n.GetDateTimeOffsetValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupStatusEnum>(); } },
             };
@@ -65,7 +65,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("completion_time", CompletionTime);
             writer.WriteIntValue("processed_assets_count", ProcessedAssetsCount);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponse_reason>("reason", Reason);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponseReason>("reason", Reason);
             writer.WriteDateTimeOffsetValue("start_time", StartTime);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupStatusEnum>("status", Status);
             writer.WriteAdditionalData(AdditionalData);

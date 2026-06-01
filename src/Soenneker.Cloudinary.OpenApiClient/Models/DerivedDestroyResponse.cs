@@ -18,10 +18,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Map of derived resource IDs to deletion status</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_deleted? Deleted { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty? Deleted { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_deleted Deleted { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty Deleted { get; set; }
 #endif
         /// <summary>The invalidation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,7 +64,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "deleted", n => { Deleted = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_deleted>(global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_deleted.CreateFromDiscriminatorValue); } },
+                { "deleted", n => { Deleted = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty.CreateFromDiscriminatorValue); } },
                 { "invalidation", n => { Invalidation = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation>(global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation.CreateFromDiscriminatorValue); } },
                 { "unauthorized", n => { Unauthorized = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -76,7 +76,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponse_deleted>("deleted", Deleted);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty>("deleted", Deleted);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation>("invalidation", Invalidation);
             writer.WriteCollectionOfPrimitiveValues<string>("unauthorized", Unauthorized);
             writer.WriteAdditionalData(AdditionalData);

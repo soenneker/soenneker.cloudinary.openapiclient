@@ -68,18 +68,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The target delivery type for the renamed asset. If omitted, the delivery type remains unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_to_type? ToType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2ToType? ToType { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_to_type ToType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2ToType ToType { get; set; }
 #endif
         /// <summary>The current delivery type of the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_type? Type { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2Type? Type { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_type Type { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2Type Type { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest"/> and sets the default values.
@@ -116,8 +116,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "signature", n => { Signature = n.GetStringValue(); } },
                 { "timestamp", n => { Timestamp = n.GetLongValue(); } },
                 { "to_public_id", n => { ToPublicId = n.GetStringValue(); } },
-                { "to_type", n => { ToType = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_to_type>(global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_to_type.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_type>(global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_type.CreateFromDiscriminatorValue); } },
+                { "to_type", n => { ToType = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2ToType>(global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2ToType.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2Type>(global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2Type.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -137,8 +137,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("signature", Signature);
             writer.WriteLongValue("timestamp", Timestamp);
             writer.WriteStringValue("to_public_id", ToPublicId);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_to_type>("to_type", ToType);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequest_type>("type", Type);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2ToType>("to_type", ToType);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.RenameRequestAllOf2Type>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

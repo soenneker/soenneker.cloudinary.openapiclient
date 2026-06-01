@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloud_name}\{resource_type}\download
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\{resourceType}\download
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DownloadRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DownloadRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/{resource_type}/download?public_id={public_id}{&api_key*,attachment*,expires_at*,format*,signature*,target_filename*,timestamp*,transformation*,type*}", pathParameters)
+        public DownloadRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/{resourceType}/download?public_id={public_id}{&api_key*,attachment*,expires_at*,format*,signature*,target_filename*,timestamp*,transformation*,type*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DownloadRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloud_name}/{resource_type}/download?public_id={public_id}{&api_key*,attachment*,expires_at*,format*,signature*,target_filename*,timestamp*,transformation*,type*}", rawUrl)
+        public DownloadRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/{resourceType}/download?public_id={public_id}{&api_key*,attachment*,expires_at*,format*,signature*,target_filename*,timestamp*,transformation*,type*}", rawUrl)
         {
         }
         /// <summary>

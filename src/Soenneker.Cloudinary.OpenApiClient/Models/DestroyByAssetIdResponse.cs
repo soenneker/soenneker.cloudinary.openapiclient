@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The result of the deletion operation.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DestroyByAssetIdResponse_result? Result { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DestroyByAssetIdResponseResult? Result { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DestroyByAssetIdResponse"/> and sets the default values.
         /// </summary>
@@ -41,7 +41,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "result", n => { Result = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DestroyByAssetIdResponse_result>(); } },
+                { "result", n => { Result = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DestroyByAssetIdResponseResult>(); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DestroyByAssetIdResponse_result>("result", Result);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DestroyByAssetIdResponseResult>("result", Result);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
