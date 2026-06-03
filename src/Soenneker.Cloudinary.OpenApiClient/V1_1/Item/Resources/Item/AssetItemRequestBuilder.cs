@@ -47,7 +47,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AssetItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}{?accessibility_analysis*,colors*,coordinates*,derived_next_cursor*,faces*,max_results*,media_metadata*,pages*,phash*,quality_analysis*,versions*}", pathParameters)
+        public AssetItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "", pathParameters)
         {
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AssetItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}{?accessibility_analysis*,colors*,coordinates*,derived_next_cursor*,faces*,max_results*,media_metadata*,pages*,phash*,quality_analysis*,versions*}", rawUrl)
+        public AssetItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "", rawUrl)
         {
         }
         /// <summary>

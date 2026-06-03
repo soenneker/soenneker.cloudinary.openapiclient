@@ -369,6 +369,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public ExplicitRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            ClearInvalid = false;
+            Colors = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

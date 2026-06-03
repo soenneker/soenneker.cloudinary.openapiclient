@@ -163,8 +163,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public GenerateArchiveRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            AllowMissing = false;
+            Async = false;
+            FlattenFolders = false;
+            FlattenTransformations = false;
+            KeepDerived = false;
             Mode = global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestMode.Create;
+            SkipTransformationName = false;
             TargetFormat = global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestTargetFormat.Zip;
+            UseOriginalFilename = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

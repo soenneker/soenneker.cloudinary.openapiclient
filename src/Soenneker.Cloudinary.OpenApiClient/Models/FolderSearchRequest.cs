@@ -46,6 +46,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public FolderSearchRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            MaxResults = 50;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

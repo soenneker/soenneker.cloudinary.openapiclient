@@ -43,10 +43,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 result.MetadataRuleActivateValuesOneOf2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2();
             }
-            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.MetadataRuleActivateValuesWrapper = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper();
-            }
             return result;
         }
         /// <summary>

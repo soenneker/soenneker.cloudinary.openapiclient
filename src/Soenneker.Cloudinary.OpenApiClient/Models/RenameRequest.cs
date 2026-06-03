@@ -87,6 +87,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public RenameRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            Context = false;
+            Invalidate = false;
+            Metadata = false;
+            Overwrite = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

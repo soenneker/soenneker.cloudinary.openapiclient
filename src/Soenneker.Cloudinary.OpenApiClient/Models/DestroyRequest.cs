@@ -64,6 +64,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public DestroyRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            Invalidate = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

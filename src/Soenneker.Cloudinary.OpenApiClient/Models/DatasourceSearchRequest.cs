@@ -30,6 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public DatasourceSearchRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            MaxResults = 100;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

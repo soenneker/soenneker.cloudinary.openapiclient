@@ -28,7 +28,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Upload_mappingsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/upload_mappings{?folder*,max_results*,next_cursor*}", pathParameters)
+        public Upload_mappingsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/upload_mappings", pathParameters)
         {
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public Upload_mappingsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/upload_mappings{?folder*,max_results*,next_cursor*}", rawUrl)
+        public Upload_mappingsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/upload_mappings", rawUrl)
         {
         }
         /// <summary>
@@ -182,7 +182,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings.Upload_mappingsRequestBuilder.Upload_mappingsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/v1_1/{cloudName}/upload_mappings{?folder*,max_results*,next_cursor*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -203,7 +203,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/v1_1/{cloudName}/upload_mappings", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -225,7 +225,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Upload_mappings
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/v1_1/{cloudName}/upload_mappings", PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

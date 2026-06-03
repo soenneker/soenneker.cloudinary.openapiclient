@@ -76,8 +76,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             AdditionalData = new Dictionary<string, object>();
             Background = "transparent";
             FontColor = "black";
+            FontSize = 12;
             FontStyle = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontStyle.Normal;
             FontWeight = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestFontWeight.Normal;
+            Opacity = 100;
             TextDecoration = global::Soenneker.Cloudinary.OpenApiClient.Models.TextRequestTextDecoration.None;
         }
         /// <summary>

@@ -144,6 +144,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>&quot;Whether to index the resource with visual search. If true, the resource will be indexed for visual search capabilities. Default: false&quot;</summary>
         public bool? VisualSearch { get; set; }
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest"/> and sets the default values.
+        /// </summary>
+        public ResourceUpdateRequest()
+        {
+            ClearInvalid = false;
+            UniqueDisplayName = false;
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest"/></returns>
