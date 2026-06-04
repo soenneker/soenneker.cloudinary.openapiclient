@@ -128,7 +128,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder.AssetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}{?accessibility_analysis*,colors*,coordinates*,derived_next_cursor*,faces*,max_results*,media_metadata*,pages*,phash*,quality_analysis*,versions*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -149,7 +149,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

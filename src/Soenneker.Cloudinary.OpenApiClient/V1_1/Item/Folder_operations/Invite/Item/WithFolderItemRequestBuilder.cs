@@ -107,7 +107,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/v1_1/{cloudName}/folder_operations/invite/{folderId}{?permitted_roles*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -128,7 +128,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/v1_1/{cloudName}/folder_operations/invite/{folderId}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

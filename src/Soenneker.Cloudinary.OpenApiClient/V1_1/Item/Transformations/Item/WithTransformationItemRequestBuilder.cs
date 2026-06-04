@@ -165,7 +165,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Transformations.Item.WithTransformationItemRequestBuilder.WithTransformationItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/v1_1/{cloudName}/transformations/{transformation}{?invalidate*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

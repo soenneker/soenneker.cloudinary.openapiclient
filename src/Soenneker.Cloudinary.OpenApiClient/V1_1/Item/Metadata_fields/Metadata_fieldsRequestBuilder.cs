@@ -126,7 +126,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsRequestBuilder.Metadata_fieldsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/v1_1/{cloudName}/metadata_fields{?external_ids*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -147,7 +147,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/v1_1/{cloudName}/metadata_fields", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
