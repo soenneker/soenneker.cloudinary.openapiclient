@@ -7101,7 +7101,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "The type of resource to upload:\n- \u0022image\u0022 for uploading strictly images\n- \u0022video\u0022 for uploading strictly videos\n- \u0022raw\u0022 for uploading non-media files\n- \u0022auto\u0022 for allowing Cloudinary to automatically detect the type of the uploaded file\n",
-        "default": "auto",
         "x-ms-enum": {
           "name": "UploadResourceType",
           "modelAsString": false,
@@ -15022,11 +15021,6 @@
           "value"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "type": "object"
-          }
-        ],
         "properties": {
           "value": {
             "$ref": "#/components/schemas/ResourceType"
@@ -16200,16 +16194,11 @@
         "format": "binary"
       },
       "CreateMetadataFieldRequest": {
-        "type": "object",
-        "allOf": [
-          {
-            "required": [
-              "type",
-              "label"
-            ],
-            "type": "object"
-          }
+        "required": [
+          "type",
+          "label"
         ],
+        "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/MetadataFieldType"
@@ -16293,19 +16282,14 @@
           "error"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "type": "object",
-            "example": {
-              "error": {
-                "message": "Invalid credentials"
-              }
-            }
-          }
-        ],
         "properties": {
           "error": {
             "$ref": "#/components/schemas/ApiErrorError"
+          }
+        },
+        "example": {
+          "error": {
+            "message": "Invalid credentials"
           }
         }
       },
@@ -16901,7 +16885,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "The method for generating and delivering the archive. Options:\ndownload - Generates and delivers the archive file without storing it\ncreate - Creates and stores the archive as a raw asset, returning URLs in the response\ncreate_and_download - Creates, stores, and delivers the archive file\n",
-        "default": "create",
         "x-ms-enum": {
           "name": "GenerateArchiveRequestMode",
           "modelAsString": false,
@@ -16929,7 +16912,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "The format of the generated archive.",
-        "default": "zip",
         "x-ms-enum": {
           "name": "GenerateArchiveRequestTargetFormat",
           "modelAsString": false,
@@ -17009,7 +16991,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "Whether to use a normal or bold font.",
-        "default": "normal",
         "x-ms-enum": {
           "name": "TextRequestFontWeight",
           "modelAsString": false,
@@ -17033,7 +17014,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "Whether to use a normal or italic font.",
-        "default": "normal",
         "x-ms-enum": {
           "name": "TextRequestFontStyle",
           "modelAsString": false,
@@ -17057,7 +17037,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "Text decoration style.",
-        "default": "none",
         "x-ms-enum": {
           "name": "TextRequestTextDecoration",
           "modelAsString": false,
@@ -17785,7 +17764,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "Managed delivery types for assets uploaded and stored by Cloudinary.",
-        "default": "upload",
         "x-ms-enum": {
           "name": "DeliveryType",
           "modelAsString": false,
@@ -17877,7 +17855,6 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "default": "-view_ended_at",
         "x-ms-enum": {
           "name": "GetVideoViewsSortByParameter",
           "modelAsString": false,
@@ -17917,7 +17894,6 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "default": "all",
         "x-ms-enum": {
           "name": "ListPeopleNameStatusParameter",
           "modelAsString": false,
@@ -17945,7 +17921,6 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "default": "name",
         "x-ms-enum": {
           "name": "ListPeopleSortByParameter",
           "modelAsString": false,

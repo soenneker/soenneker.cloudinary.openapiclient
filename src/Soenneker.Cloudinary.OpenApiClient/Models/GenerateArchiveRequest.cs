@@ -168,9 +168,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             FlattenFolders = false;
             FlattenTransformations = false;
             KeepDerived = false;
-            Mode = global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestMode.Create;
             SkipTransformationName = false;
-            TargetFormat = global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestTargetFormat.Zip;
             UseOriginalFilename = false;
         }
         /// <summary>
