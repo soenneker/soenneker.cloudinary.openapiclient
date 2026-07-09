@@ -2,7 +2,7 @@
   "descriptionHash": "97526C715A811CAC5BCCAB8A3EBF8C286F1E7A9139E39DB6F28021CED6A51BA4809AE1A4406D26A6697126A6CA4810ED10140E4D089D8BA3C2E3E943BD681B5B",
   "descriptionLocation": "../../fixed.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.33.0",
+  "kiotaVersion": "1.34.0",
   "clientClassName": "CloudinaryOpenApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "Soenneker.Cloudinary.OpenApiClient",
