@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.Models;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Order;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Data
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DatasourceRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The order property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Order.OrderRequestBuilder Order
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Order.OrderRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The search property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Item.Datasource.Search.SearchRequestBuilder Search
         {

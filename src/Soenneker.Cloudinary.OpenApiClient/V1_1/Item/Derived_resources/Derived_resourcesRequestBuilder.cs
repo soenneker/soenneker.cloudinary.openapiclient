@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.Models;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Derived_resources.Invalidate_by_urls;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Derived_resources
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Derived_resourcesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The invalidate_by_urls property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Derived_resources.Invalidate_by_urls.Invalidate_by_urlsRequestBuilder Invalidate_by_urls
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Derived_resources.Invalidate_by_urls.Invalidate_by_urlsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Derived_resources.Derived_resourcesRequestBuilder"/> and sets the default values.
         /// </summary>

@@ -12,7 +12,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.5.5"
+    "version": "0.7.4"
   },
   "servers": [
     {
@@ -1080,6 +1080,142 @@
           }
         }
       }
+    },
+    "/v1_1/{cloudName}/asset/download": {
+      "get": {
+        "tags": [
+          "assets"
+        ],
+        "summary": "Download an asset by asset ID",
+        "description": "Generates a download link for a specific asset identified by its immutable asset ID,\ninstead of the resource type, delivery type and public ID.\n",
+        "operationId": "DownloadAssetByAssetId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/asset_id_query"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The format to convert the asset to before downloading.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transformation",
+            "in": "query",
+            "description": "A transformation to apply to the asset before downloading.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attachment",
+            "in": "query",
+            "description": "Whether to force download as an attachment.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "target_filename",
+            "in": "query",
+            "description": "The desired filename for the downloaded file.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "streaming_attachment",
+            "in": "query",
+            "description": "Whether to stream a video asset as an attachment.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "expires_at",
+            "in": "query",
+            "description": "Unix timestamp indicating when the download URL should expire.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/api_key_query"
+          },
+          {
+            "$ref": "#/components/parameters/signature_query"
+          },
+          {
+            "$ref": "#/components/parameters/timestamp_query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Asset downloaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DownloadAssetByAssetId200ResponseResponseJson"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/DownloadAssetByAssetId200ResponseResponseOctetStream2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (e.g., missing or invalid asset_id)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden (e.g., insufficient permissions for private assets)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Asset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/cloud_name"
+        }
+      ]
     },
     "/v1_1/{cloudName}/{resourceType}/text": {
       "post": {
@@ -2604,6 +2740,142 @@
           "name": "externalId",
           "in": "path",
           "description": "The external ID of the metadata field to search the datasource for.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/v1_1/{cloudName}/metadata_fields/{externalId}/datasource/order": {
+      "post": {
+        "tags": [
+          "metadata_fields"
+        ],
+        "summary": "Order the datasource values of a metadata field",
+        "description": "Reorders the allowed values (the datasource) of a metadata field according to the given field and direction. This is the backward-compatible variant of the order endpoint.",
+        "operationId": "OrderMetadataFieldDatasourcePost",
+        "requestBody": {
+          "description": "The ordering criteria for the datasource values.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DatasourceOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "datasource reordered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetadataFieldDatasourceValuesArray"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "metadata field not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "metadata_fields"
+        ],
+        "summary": "Order the datasource values of a metadata field",
+        "description": "Reorders the allowed values (the datasource) of a metadata field according to the given field and direction.",
+        "operationId": "OrderMetadataFieldDatasource",
+        "requestBody": {
+          "description": "The ordering criteria for the datasource values.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DatasourceOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "datasource reordered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetadataFieldDatasourceValuesArray"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "metadata field not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/cloud_name"
+        },
+        {
+          "name": "externalId",
+          "in": "path",
+          "description": "The external ID of the metadata field whose datasource is reordered.",
           "required": true,
           "schema": {
             "type": "string"
@@ -6351,6 +6623,274 @@
         }
       ]
     },
+    "/v1_1/{cloudName}/folder_operations/rename": {
+      "put": {
+        "tags": [
+          "folders"
+        ],
+        "summary": "Rename or move a folder",
+        "description": "Renames or moves the folder at the specified path, along with all the assets it contains, to a new path.",
+        "operationId": "RenameFolderOperation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The source and destination folder paths.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FolderRenameRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The folder was successfully renamed or moved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderRenameResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Folder not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1_1/{cloudName}/folders/by_id": {
+      "put": {
+        "tags": [
+          "folders"
+        ],
+        "summary": "Get a folder by its identifier",
+        "description": "Returns the details of the folder with the specified identifier, including its ancestors.",
+        "operationId": "GetFolderById",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The identifier of the folder to retrieve.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FolderByIdRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The folder was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderDetailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Folder not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1_1/{cloudName}/folders/by_path": {
+      "put": {
+        "tags": [
+          "folders"
+        ],
+        "summary": "Get a folder by its path",
+        "description": "Returns the details of the folder at the specified path, including its ancestors.",
+        "operationId": "GetFolderByPath",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The path of the folder to retrieve.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FolderByPathRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The folder was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderDetailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Folder not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1_1/{cloudName}/folders/descendants": {
+      "put": {
+        "tags": [
+          "folders"
+        ],
+        "summary": "Get the descendants of a folder",
+        "description": "Returns the descendant folders of the folder with the specified identifier, optionally filtered to a set of folder identifiers.",
+        "operationId": "GetFolderDescendants",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The parent folder identifier and optional filter.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FolderDescendantsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The descendant folders were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderDescendantsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Folder not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1_1/{cloudName}/derived_resources": {
       "delete": {
         "tags": [
@@ -6397,6 +6937,343 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1_1/{cloudName}/derived_resources/invalidate_by_urls": {
+      "delete": {
+        "tags": [
+          "assets"
+        ],
+        "summary": "Invalidate derived assets by delivery URLs",
+        "description": "Deletes and invalidates the cached derived assets that back the specified delivery URLs.",
+        "operationId": "InvalidateDerivedByUrls",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The delivery URLs whose derived assets should be invalidated.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvalidateByUrlsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The derived assets were successfully invalidated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidateByUrlsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1_1/{cloudName}/resources/get_resource": {
+      "post": {
+        "tags": [
+          "assets"
+        ],
+        "summary": "Get the details of a single asset by body parameters",
+        "description": "Returns the details of a single asset identified by its public ID, delivery type, and resource type passed in the request body.",
+        "operationId": "GetResourceByBody",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The identifying attributes of the asset to retrieve.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceGetByBodyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The asset details were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceInternalResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Asset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1_1/{cloudName}/resources/update": {
+      "post": {
+        "tags": [
+          "assets"
+        ],
+        "summary": "Update the details of a single asset by body parameters",
+        "description": "Updates the details of an existing asset (such as tags, contextual metadata, structured metadata, and moderation status) identified by its public ID, delivery type, and resource type passed in the request body.",
+        "operationId": "UpdateResourceByBody",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The asset identifiers plus the attributes to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceUpdateByBodyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The asset was successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceInternalResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Asset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1_1/{cloudName}/resources/by_container_id/{containerId}": {
+      "get": {
+        "tags": [
+          "assets"
+        ],
+        "summary": "List the assets in a folder by container ID",
+        "description": "Returns the assets contained in the folder identified by the given container ID.",
+        "operationId": "ListResourcesByContainerId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          },
+          {
+            "name": "containerId",
+            "in": "path",
+            "description": "The immutable identifier of the folder container whose assets are listed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "cd7e9d690a014c68ae8b58f08e090cb03a"
+          },
+          {
+            "$ref": "#/components/parameters/max_results_query"
+          },
+          {
+            "$ref": "#/components/parameters/next_cursor_query"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "The field by which the assets are sorted. Default is \u0022uploaded_at\u0022.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "A comma-separated list of asset fields to include in each returned asset.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The assets in the folder were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourcesByContainerIdResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Folder decoupling is not enabled for the product environment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1_1/{cloudName}/eval": {
+      "post": {
+        "tags": [
+          "upload"
+        ],
+        "summary": "Evaluate a dynamic upload-parameter expression",
+        "description": "Evaluates a dynamic eval expression against the supplied upload parameters and returns the resulting upload parameters.",
+        "operationId": "EvalUploadParams",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The eval expression and the upload parameters to evaluate it against.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The evaluated upload parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvalUploadParams200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (e.g. an invalid eval expression).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error.",
             "content": {
               "application/json": {
                 "schema": {
@@ -7087,6 +7964,269 @@
           "example": "f10f893da5a1586dca6764b22514aa0d25e6b867baffc4fb43a2318a25d8e5b2"
         }
       ]
+    },
+    "/v1_1/{cloudName}/people/inspect": {
+      "post": {
+        "tags": [
+          "people"
+        ],
+        "summary": "Inspect the caller\u0027s permitted actions on people",
+        "description": "Returns, for each requested person and action, whether the authenticated caller is permitted to perform that action.",
+        "operationId": "InspectPeoplePermissions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cloud_name"
+          }
+        ],
+        "requestBody": {
+          "description": "The people and actions to inspect.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PeopleInspectRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The permission inspection results were successfully computed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeopleInspectResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/generate/{cloudName}/text_to_image": {
+      "post": {
+        "tags": [
+          "Generation"
+        ],
+        "summary": "Generate an image",
+        "description": "Generate an image from a text prompt using AI models.\n\nThe model is selected via the optional \u0060model\u0060 object:\n1. If \u0060model.id\u0060 is provided, use that exact model.\n2. Else if \u0060model.family\u0060 (\u002B optional \u0060model.tier\u0060) is provided, resolve via the model registry; a missing tier defaults to \u0060standard\u0060.\n3. If \u0060model\u0060 is omitted, use the global default (nano-banana / premium, i.e. \u0060nano-banana-2\u0060).\n",
+        "operationId": "GenerateImage",
+        "requestBody": {
+          "description": "A JSON object containing the generation request parameters.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequest"
+              },
+              "examples": {
+                "BasicExample": {
+                  "$ref": "#/components/examples/GenerateImageBasicExample"
+                },
+                "DeclarativeSizeExample": {
+                  "$ref": "#/components/examples/GenerateImageDeclarativeSizeExample"
+                },
+                "DimensionsSizeExample": {
+                  "$ref": "#/components/examples/GenerateImageDimensionsSizeExample"
+                },
+                "AsyncExample": {
+                  "$ref": "#/components/examples/GenerateImageAsyncExample"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Image generated successfully (synchronous).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageResult"
+                },
+                "examples": {
+                  "Success": {
+                    "$ref": "#/components/examples/GenerateImageSuccessExample"
+                  },
+                  "SuccessManagedAsset": {
+                    "$ref": "#/components/examples/GenerateImageManagedAssetSuccessExample"
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "$ref": "#/components/responses/GenerationAcceptedResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntityResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitedResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErrorResponse"
+          },
+          "502": {
+            "$ref": "#/components/responses/ModelUnavailableResponse"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/cloudName"
+        }
+      ]
+    },
+    "/v2/generate/{cloudName}/image_to_image": {
+      "post": {
+        "tags": [
+          "Generation"
+        ],
+        "summary": "Generate an image from reference images",
+        "description": "Generate an image guided by one or more **reference images** \u2014 restyle,\non-brand variants, character consistency, virtual try-on, edit/extend \u2014\nsteered by \u0060prompt\u0060.\n\nOnly edit-capable models are selectable here. The model is selected via\nthe optional \u0060model\u0060 object, exactly like \u0060text_to_image\u0060, but IDs are\nrestricted to edit models:\n1. If \u0060model.id\u0060 is provided, use that exact edit model.\n2. Else if \u0060model.family\u0060 (\u002B optional \u0060model.tier\u0060) is provided, resolve\n   to that family\u0027s edit model (e.g. \u0060nano-banana\u0060 / \u0060premium\u0060 \u2192\n   \u0060nano-banana-2-edit\u0060).\n3. If \u0060model\u0060 is omitted, use the default edit model (\u0060nano-banana-2-edit\u0060).\n\nEach reference image is either a stored managed asset (by \u0060asset_id\u0060,\nread-permission checked) or an external HTTPS \u0060url\u0060.\n",
+        "operationId": "GenerateImageFromImages",
+        "requestBody": {
+          "description": "A JSON object containing the image-to-image generation request parameters.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageToImageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Image generated successfully (synchronous).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageResult"
+                }
+              }
+            }
+          },
+          "202": {
+            "$ref": "#/components/responses/GenerationAcceptedResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ForbiddenResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntityResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitedResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErrorResponse"
+          },
+          "502": {
+            "$ref": "#/components/responses/ModelUnavailableResponse"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/cloudName"
+        }
+      ]
+    },
+    "/v2/generate/{cloudName}/tasks/{taskId}": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get a generation task",
+        "description": "Get the status of a generation task.",
+        "operationId": "GetGenerationTaskStatus",
+        "responses": {
+          "200": {
+            "description": "Generation task status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                },
+                "examples": {
+                  "Completed": {
+                    "$ref": "#/components/examples/GenerateTaskCompletedExample"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitedResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErrorResponse"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/cloudName"
+        },
+        {
+          "name": "taskId",
+          "in": "path",
+          "description": "The ID of the generation task.",
+          "required": true,
+          "schema": {
+            "pattern": "^[a-f0-9]{1,256}$",
+            "type": "string"
+          },
+          "examples": {
+            "default": {
+              "value": "053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb"
+            }
+          }
+        }
+      ]
     }
   },
   "components": {
@@ -7562,49 +8702,14 @@
         "description": "A comma-separated list of tag names, or an array of tag names.",
         "example": "animal,dog"
       },
-      "UploadBaseParametersRegions": {
-        "required": [
-          "type"
-        ],
+      "UploadTypeParameterType": {
         "type": "object",
-        "anyOf": [
+        "allOf": [
           {
-            "$ref": "#/components/schemas/UploadBaseParametersRegionsBranch1"
-          },
-          {
-            "type": "object",
-            "additionalProperties": {
-              "minItems": 2,
-              "type": "array",
-              "items": {
-                "maxItems": 2,
-                "minItems": 2,
-                "type": "array",
-                "items": {
-                  "type": "integer"
-                },
-                "description": "A single [x, y] coordinate pair."
-              },
-              "description": "Coordinate pairs defining the region boundary."
-            },
-            "description": "A map of named region coordinate groups for cropping with region gravity.\nEach key is a region name (letters, numbers, or hyphens only).\nEach value is an array of at least two [x, y] integer coordinate pairs\ndefining the region boundary.\n"
+            "$ref": "#/components/schemas/UploadDeliveryType"
           }
         ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Union discriminator"
-          }
-        },
-        "description": "Named region coordinate groups for cropping with region gravity.\nCan be a JSON-encoded string or an object. Each region name may contain\nonly letters, numbers, or hyphens, and must have at least two coordinate pairs.\n",
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "UploadBaseParametersRegions_1": "#/components/schemas/UploadBaseParametersRegionsBranch1",
-            "RegionMapping": "#/components/schemas/RegionMapping"
-          }
-        },
-        "example": "{\u0022face\u0022: [[100, 200], [300, 400]], \u0022body\u0022: [[50, 60], [70, 80], [90, 100]]}"
+        "description": "The delivery type that defines if and how the uploaded asset is available for public delivery. By default, all uploaded assets are public (upload)."
       },
       "UploadSerializableInput": {
         "type": "object",
@@ -8803,17 +9908,17 @@
           }
         }
       },
-      "UploadBaseParametersAutoTranscription": {
+      "UploadBaseParametersResponsiveBreakpoints": {
         "required": [
           "type"
         ],
         "type": "object",
-        "oneOf": [
+        "anyOf": [
           {
-            "$ref": "#/components/schemas/UploadBaseParametersAutoTranscriptionBranch1"
+            "$ref": "#/components/schemas/UploadBaseParametersResponsiveBreakpointsBranch1"
           },
           {
-            "$ref": "#/components/schemas/UploadBaseParametersAutoTranscriptionOneOf2"
+            "$ref": "#/components/schemas/ResponsiveBreakpoint"
           }
         ],
         "properties": {
@@ -8822,30 +9927,58 @@
             "description": "Union discriminator"
           }
         },
+        "description": "Settings to automatically generate breakpoints for responsive images.",
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "UploadBaseParametersAutoTranscription_1": "#/components/schemas/UploadBaseParametersAutoTranscriptionBranch1",
-            "UploadBaseParametersAutoTranscriptionOneOf2": "#/components/schemas/UploadBaseParametersAutoTranscriptionOneOf2"
+            "UploadBaseParametersResponsiveBreakpoints_1": "#/components/schemas/UploadBaseParametersResponsiveBreakpointsBranch1",
+            "ResponsiveBreakpoint": "#/components/schemas/ResponsiveBreakpoint"
           }
         }
       },
-      "StructuredMetadataValueAdditionalProperties": {
+      "UploadBaseParametersRegions": {
+        "required": [
+          "type"
+        ],
         "type": "object",
-        "oneOf": [
+        "anyOf": [
           {
-            "type": "string"
+            "$ref": "#/components/schemas/UploadBaseParametersRegionsBranch1"
           },
           {
-            "type": "integer"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "type": "object",
+            "additionalProperties": {
+              "minItems": 2,
+              "type": "array",
+              "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "description": "A single [x, y] coordinate pair."
+              },
+              "description": "Coordinate pairs defining the region boundary."
+            },
+            "description": "A map of named region coordinate groups for cropping with region gravity.\nEach key is a region name (letters, numbers, or hyphens only).\nEach value is an array of at least two [x, y] integer coordinate pairs\ndefining the region boundary.\n"
           }
-        ]
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "description": "Named region coordinate groups for cropping with region gravity.\nCan be a JSON-encoded string or an object. Each region name may contain\nonly letters, numbers, or hyphens, and must have at least two coordinate pairs.\n",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "UploadBaseParametersRegions_1": "#/components/schemas/UploadBaseParametersRegionsBranch1",
+            "RegionMapping": "#/components/schemas/RegionMapping"
+          }
+        },
+        "example": "{\u0022face\u0022: [[100, 200], [300, 400]], \u0022body\u0022: [[50, 60], [70, 80], [90, 100]]}"
       },
       "TagsResponse": {
         "type": "array",
@@ -9156,18 +10289,32 @@
           "batch_id": "9c2f5a46b3a6c4d9e8f7g0h1i2j3k4l5"
         }
       },
-      "AccessControlItemEnd": {
+      "UploadBaseParametersAutoTranscription": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "oneOf": [
           {
-            "type": "string"
+            "$ref": "#/components/schemas/UploadBaseParametersAutoTranscriptionBranch1"
           },
           {
-            "type": "integer"
+            "$ref": "#/components/schemas/UploadBaseParametersAutoTranscriptionOneOf2"
           }
         ],
-        "description": "The end date and time when anonymous access expires. Accepts ISO 8601 string or Unix timestamp.",
-        "example": "2024-06-30T23:59:59Z"
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "UploadBaseParametersAutoTranscription_1": "#/components/schemas/UploadBaseParametersAutoTranscriptionBranch1",
+            "UploadBaseParametersAutoTranscriptionOneOf2": "#/components/schemas/UploadBaseParametersAutoTranscriptionOneOf2"
+          }
+        }
       },
       "ApiError": {
         "required": [
@@ -10726,7 +11873,7 @@
           }
         }
       },
-      "AccessControlItemStart": {
+      "StructuredMetadataValueAdditionalProperties": {
         "type": "object",
         "oneOf": [
           {
@@ -10734,10 +11881,14 @@
           },
           {
             "type": "integer"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
-        ],
-        "description": "The start date and time when anonymous access becomes available. Accepts ISO 8601 string or Unix timestamp.",
-        "example": "2024-03-15T09:00:00Z"
+        ]
       },
       "UpdateRequest": {
         "type": "object",
@@ -11601,6 +12752,11 @@
           "restrictions": {
             "$ref": "#/components/schemas/MetadataFieldRestrictions"
           },
+          "group": {
+            "type": "string",
+            "description": "The group used to organize this metadata field into a collapsible section in the UI. Defaults to \u0022default\u0022. Purely presentational \u2014 it does not affect rules, search, or value validation.\n",
+            "example": "address"
+          },
           "datasource": {
             "$ref": "#/components/schemas/MetadataFieldDatasource"
           },
@@ -11760,6 +12916,23 @@
             "$ref": "#/components/schemas/DatasourceSearchInFieldRequestPayloadProperty"
           }
         }
+      },
+      "DatasourceOrderRequest": {
+        "required": [
+          "order_by"
+        ],
+        "type": "object",
+        "properties": {
+          "order_by": {
+            "type": "string",
+            "description": "The datasource value attribute to sort by (for example, \u0022value\u0022 or \u0022external_id\u0022).",
+            "example": "value"
+          },
+          "direction": {
+            "$ref": "#/components/schemas/DatasourceOrderRequestDirection"
+          }
+        },
+        "description": "The ordering criteria for a metadata field\u0027s datasource values."
       },
       "MetadataRuleApplyValue": {
         "required": [
@@ -14019,6 +15192,183 @@
           ]
         }
       },
+      "FolderRenameRequest": {
+        "required": [
+          "path",
+          "to_path"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "The full path of the folder to rename or move.",
+            "example": "product/test"
+          },
+          "to_path": {
+            "type": "string",
+            "description": "The new full path for the folder.",
+            "example": "product/test_renamed"
+          },
+          "resources_limit": {
+            "type": "integer",
+            "description": "The maximum number of assets that may be moved by the rename. Assets beyond this limit cause the rename to be rejected.",
+            "example": 100000
+          },
+          "resources_size_limit": {
+            "type": "integer",
+            "description": "The maximum total size, in bytes, of the assets that may be moved by the rename.",
+            "example": 1099511627776
+          },
+          "max_derived": {
+            "type": "integer",
+            "description": "The maximum number of derived assets that may be moved by the rename.",
+            "example": 1000000
+          }
+        },
+        "description": "The source and destination folder paths."
+      },
+      "FolderRenameResponse": {
+        "type": "object",
+        "properties": {
+          "folder_deleted": {
+            "type": "boolean",
+            "description": "Whether the source folder was deleted after the move."
+          },
+          "moved": {
+            "type": "integer",
+            "description": "The number of assets successfully moved."
+          },
+          "rejected": {
+            "type": "integer",
+            "description": "The number of assets rejected during the move."
+          },
+          "failed": {
+            "type": "integer",
+            "description": "The number of assets that failed to move."
+          }
+        },
+        "description": "The result of renaming or moving a folder."
+      },
+      "FolderByIdRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The immutable identifier of the folder to retrieve.",
+            "example": "cd7e9d690a014c68ae8b58f08e090cb03a"
+          }
+        },
+        "description": "The identifier of the folder to retrieve."
+      },
+      "FolderDetailResponse": {
+        "required": [
+          "name",
+          "path",
+          "external_id"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the folder."
+          },
+          "path": {
+            "type": "string",
+            "description": "The full path of the folder."
+          },
+          "external_id": {
+            "type": "string",
+            "description": "The unique identifier for the folder."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The timestamp when the folder was created.",
+            "format": "date-time"
+          },
+          "resource_count": {
+            "type": "integer",
+            "description": "The number of assets directly within the folder."
+          },
+          "total_bytes": {
+            "type": "number",
+            "description": "The total size, in bytes, of the assets within the folder."
+          },
+          "last_uploaded_at": {
+            "type": "integer",
+            "description": "The Unix timestamp of the most recent upload into the folder."
+          },
+          "ancestors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Folder"
+            },
+            "description": "The ancestor folders of this folder, ordered from root to parent."
+          }
+        },
+        "description": "The details of a folder. Returns the standard folder fields plus aggregation and ancestor\nfields when available.\n"
+      },
+      "FolderByPathRequest": {
+        "required": [
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "The full path of the folder to retrieve. Use an empty string for the root folder.",
+            "example": "product/test"
+          },
+          "case_sensitive": {
+            "type": "boolean",
+            "description": "Whether to match the folder path case-sensitively. If false, the path is matched case-insensitively."
+          }
+        },
+        "description": "The path of the folder to retrieve."
+      },
+      "FolderDescendantsRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The immutable identifier of the parent folder whose descendants are returned.",
+            "example": "cd7e9d690a014c68ae8b58f08e090cb03a"
+          },
+          "filter_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of folder identifiers to restrict the returned descendants to."
+          },
+          "inclusive": {
+            "type": "boolean",
+            "description": "Whether to include the parent folder itself in the results. If false, only descendants are returned."
+          }
+        },
+        "description": "The parent folder identifier and optional descendant filter."
+      },
+      "FolderDescendantsResponse": {
+        "required": [
+          "folders"
+        ],
+        "type": "object",
+        "properties": {
+          "folders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FolderDetailResponse"
+            },
+            "description": "The descendant folders."
+          }
+        },
+        "description": "The descendant folders of a folder."
+      },
       "DerivedDestroyRequest": {
         "required": [
           "derived_resource_ids"
@@ -14058,6 +15408,425 @@
           }
         },
         "description": "Response for derived resource deletion"
+      },
+      "InvalidateByUrlsRequest": {
+        "required": [
+          "urls"
+        ],
+        "type": "object",
+        "properties": {
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The delivery URLs whose cached derived assets should be invalidated."
+          },
+          "skip_reporting": {
+            "type": "boolean",
+            "description": "Whether to skip recording this invalidation against the product environment usage. If false, the invalidation is counted towards usage. Default is false."
+          }
+        },
+        "description": "The set of delivery URLs whose derived assets should be invalidated."
+      },
+      "InvalidateByUrlsResponse": {
+        "type": "object",
+        "properties": {
+          "cdn_invalidated": {
+            "type": "boolean",
+            "description": "Whether the assets were invalidated directly on the CDN."
+          },
+          "took": {
+            "type": "number",
+            "description": "The time the invalidation took, in seconds."
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The delivery URLs that were invalidated."
+          },
+          "unauthorized_urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The delivery URLs that were skipped because the caller lacked update permission."
+          }
+        },
+        "description": "The result of invalidating derived assets by delivery URLs."
+      },
+      "ResourceGetByBodyRequest": {
+        "required": [
+          "public_id",
+          "resource_type",
+          "kind"
+        ],
+        "type": "object",
+        "properties": {
+          "public_id": {
+            "type": "string",
+            "description": "The public ID of the asset to retrieve.",
+            "example": "sample"
+          },
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceGetByBodyRequestResourceType"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ResourceGetByBodyRequestKind"
+          },
+          "with_elastic": {
+            "type": "boolean",
+            "description": "Whether to source the asset details from the search index. If false, the details are read directly from the canonical store. Default is true."
+          },
+          "derived": {
+            "type": "boolean",
+            "description": "Whether to include the derived assets of this asset in the response. Default is true."
+          },
+          "versions": {
+            "type": "boolean",
+            "description": "Whether to include the backup versions of this asset in the response. Default is false."
+          }
+        },
+        "description": "The identifying attributes of the asset to retrieve."
+      },
+      "ResourceInternalResponse": {
+        "type": "object",
+        "properties": {
+          "asset_id": {
+            "pattern": "^[0-9a-f]{32}$",
+            "type": "string",
+            "description": "A 32-character hexadecimal asset ID."
+          },
+          "public_id": {
+            "type": "string"
+          },
+          "asset_folder": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "folder": {
+            "type": "string",
+            "x-speakeasy-deprecation-message": "Use asset_folder instead with folder decoupling."
+          },
+          "filename": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "resource_type": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/DeliveryTypeAll"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "uploaded_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bytes": {
+            "type": "integer"
+          },
+          "backup_bytes": {
+            "type": "integer"
+          },
+          "width": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          },
+          "aspect_ratio": {
+            "type": "number"
+          },
+          "pixels": {
+            "type": "integer"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tag names assigned to the asset."
+          },
+          "context": {
+            "$ref": "#/components/schemas/InfoContext"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ResourceInternalResponseMetadata"
+          },
+          "moderation_kind": {
+            "type": "string",
+            "description": "The type of moderation applied to the asset.",
+            "example": "manual"
+          },
+          "moderation_status": {
+            "type": "string",
+            "description": "The current status of the moderation process for the asset.",
+            "example": "pending"
+          },
+          "moderation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InfoModerationItem"
+            },
+            "description": "Included if \u0027moderations=true\u0027 parameter is used."
+          },
+          "backup": {
+            "type": "boolean"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "secure_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "status": {
+            "type": "string"
+          },
+          "access_control": {
+            "$ref": "#/components/schemas/InfoAccessControl"
+          },
+          "etag": {
+            "type": "string"
+          },
+          "animated": {
+            "type": "boolean",
+            "description": "Whether the asset is animated (e.g., GIF, animated WebP). Null for non-animated assets."
+          },
+          "duration": {
+            "type": "number",
+            "description": "Duration in seconds for video/audio assets. Null for images."
+          },
+          "resource_subtype": {
+            "type": "string",
+            "description": "The subtype of the resource (e.g., for video). Null when not applicable."
+          },
+          "substatus": {
+            "type": "string",
+            "description": "The substatus of the resource. Null when not set."
+          },
+          "related_assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InfoRelatedAssetsItemProperty"
+            },
+            "description": "Related assets linked to this resource. Null when none linked."
+          },
+          "last_updated": {
+            "$ref": "#/components/schemas/InfoLastUpdated"
+          },
+          "next_cursor": {
+            "type": "string",
+            "description": "Cursor for paginating derived assets."
+          },
+          "derived": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InfoDerivedItem"
+            }
+          },
+          "faces": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Detected face coordinate rectangles [x, y, width, height]."
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/InfoCoordinates"
+          },
+          "illustration_score": {
+            "type": "number"
+          },
+          "semi_transparent": {
+            "type": "boolean"
+          },
+          "grayscale": {
+            "type": "boolean"
+          },
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "description": "Fallback array item schema"
+              }
+            }
+          },
+          "predominant": {
+            "$ref": "#/components/schemas/ResourceInternalResponsePredominant"
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InfoVersionsItem"
+            }
+          },
+          "info": {
+            "$ref": "#/components/schemas/ResourceInternalResponseInfo"
+          },
+          "derivatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InfoDerivativesItem"
+            },
+            "description": "Included if \u0027derived=true\u0027 parameter is used. Null when no derivatives exist."
+          }
+        },
+        "description": "The details of a single asset. Returns the standard asset fields, plus additional\ninternal fields when accessed over the internal transport.\n"
+      },
+      "AdminContextOperation": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The context key to operate on."
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The value(s) to apply for the context key."
+          },
+          "type": {
+            "type": "string",
+            "description": "The value type of the context entry."
+          },
+          "op": {
+            "type": "string",
+            "description": "The operation to apply to the context key (for example, \u0022\u002B\u0022 to add or \u0022-\u0022 to remove)."
+          }
+        },
+        "description": "A single internal contextual-metadata operation."
+      },
+      "ResourceUpdateByBodyRequest": {
+        "required": [
+          "public_id",
+          "resource_type",
+          "kind"
+        ],
+        "type": "object",
+        "properties": {
+          "public_id": {
+            "type": "string",
+            "description": "The public ID of the asset to update.",
+            "example": "sample"
+          },
+          "resource_type": {
+            "$ref": "#/components/schemas/ResourceUpdateByBodyRequestResourceType"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ResourceUpdateByBodyRequestKind"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The list of tags to assign to the asset, replacing any existing tags."
+          },
+          "context": {
+            "$ref": "#/components/schemas/ResourceUpdateByBodyRequestContextProperty"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ResourceUpdateByBodyRequestMetadataProperty"
+          },
+          "asset_folder": {
+            "type": "string",
+            "description": "The asset folder to move the asset into."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name to assign to the asset."
+          },
+          "moderation_status": {
+            "$ref": "#/components/schemas/ResourceUpdateByBodyRequestModerationStatus"
+          },
+          "admin_context": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdminContextOperation"
+            },
+            "description": "Internal-only contextual metadata operations applied with add/remove semantics. Each\nentry names a context key, the value(s) to apply, the value type, and the operation.\n"
+          },
+          "response_type": {
+            "type": "string",
+            "description": "The shape of the asset representation to return (for example, \u0022public\u0022)."
+          },
+          "skip_permission_check": {
+            "type": "boolean",
+            "description": "Whether to skip permission enforcement for the update. Internal use only. Default is false."
+          }
+        },
+        "description": "The asset identifiers plus the attributes to update. The identifying fields (public_id,\nresource_type, kind) are required; the remaining update fields are optional. Additional\nfields accepted by the asset update API are permitted.\n"
+      },
+      "ResourcesByContainerIdResponse": {
+        "required": [
+          "resources"
+        ],
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceInternalResponse"
+            },
+            "description": "The assets contained in the folder."
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "The total number of assets in the folder."
+          },
+          "next_cursor": {
+            "type": "string",
+            "description": "A cursor for retrieving the next page of results, when more results are available."
+          }
+        },
+        "description": "A page of assets contained in a folder, with pagination metadata."
+      },
+      "EvalRequest": {
+        "required": [
+          "eval"
+        ],
+        "type": "object",
+        "properties": {
+          "eval": {
+            "type": "string",
+            "description": "The dynamic eval expression to evaluate against the upload parameters.",
+            "example": "upload_options.quality_analysis = resource_info.quality_score * 100"
+          },
+          "public_id": {
+            "type": "string",
+            "description": "The public ID of the asset the eval expression applies to."
+          }
+        },
+        "description": "The eval expression and the upload parameters to evaluate it against. The \u0060eval\u0060 field holds\nthe dynamic expression; any other upload parameters may be supplied alongside it.\n"
+      },
+      "EvalResponse": {
+        "type": "object",
+        "description": "The upload parameters resulting from evaluating the eval expression."
       },
       "SearchParameters": {
         "type": "object",
@@ -14462,17 +16231,307 @@
           }
         }
       },
-      "UploadBaseParametersResponsiveBreakpoints": {
+      "PeopleInspectionGroup": {
+        "required": [
+          "items",
+          "actions"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "$ref": "#/components/schemas/PeopleInspectionGroupItemsProperty"
+          },
+          "actions": {
+            "$ref": "#/components/schemas/PeopleInspectionGroupActionsProperty"
+          }
+        },
+        "description": "The items to inspect for a type and the actions to check against them."
+      },
+      "PeopleInspectionTargets": {
+        "type": "object",
+        "properties": {
+          "Person": {
+            "$ref": "#/components/schemas/PeopleInspectionGroup"
+          }
+        },
+        "description": "A map of inspectable types to the items and actions to inspect."
+      },
+      "PeopleInspectRequest": {
+        "required": [
+          "inspections"
+        ],
+        "type": "object",
+        "properties": {
+          "inspections": {
+            "$ref": "#/components/schemas/PeopleInspectionTargets"
+          }
+        },
+        "description": "The people and actions to inspect."
+      },
+      "PeopleInspectResponse": {
+        "required": [
+          "inspections"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A status message for the inspection request.",
+            "example": "ok"
+          },
+          "inspections": {
+            "$ref": "#/components/schemas/PeopleInspectResponseInspectionsProperty"
+          }
+        },
+        "description": "The permission inspection results."
+      },
+      "GenerateImageRequest": {
+        "required": [
+          "prompt"
+        ],
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string",
+            "description": "The text description of the image to generate."
+          },
+          "model": {
+            "$ref": "#/components/schemas/ModelSelection"
+          },
+          "image_size": {
+            "$ref": "#/components/schemas/ImageSize"
+          },
+          "format": {
+            "$ref": "#/components/schemas/ImageFormat"
+          },
+          "target": {
+            "$ref": "#/components/schemas/Target"
+          },
+          "seed": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Seed for reproducible generation. Supported by most models. Silently\nignored by models that don\u0027t support it.\n"
+          },
+          "async": {
+            "type": "boolean",
+            "description": "Whether to perform the generation asynchronously. When true, the API\nreturns immediately with a 202 and completes in the background. Once\ncomplete, a webhook notification is sent to the specified URL and/or to\nthe URLs defined in the product environment\u0027s settings.\n"
+          },
+          "notification_url": {
+            "type": "string",
+            "description": "The webhook URL to notify when the generation is complete. Only relevant when \u0060async\u0060 is set to true.",
+            "format": "uri"
+          }
+        },
+        "description": "Parameters for an image-generation request. Only \u0060prompt\u0060 is required;\nall other fields fall back to documented defaults.\n"
+      },
+      "ImageFormat": {
+        "enum": [
+          "jpeg",
+          "png",
+          "webp"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Desired output image format. Optional; defaults to \u0060png\u0060 when omitted.\nMapped to the closest format the chosen model supports \u2014 \u0060webp\u0060 falls\nback to \u0060png\u0060 on models that don\u0027t support it (e.g. FLUX.2 Pro), and the\nrequest is ignored entirely by models that don\u0027t expose a format option\n(e.g. Recraft).\n",
+        "x-ms-enum": {
+          "name": "ImageFormat",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "jpeg",
+              "name": "Jpeg"
+            },
+            {
+              "value": "png",
+              "name": "Png"
+            },
+            {
+              "value": "webp",
+              "name": "Webp"
+            }
+          ]
+        }
+      },
+      "AccessControlItemEnd": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "description": "The end date and time when anonymous access expires. Accepts ISO 8601 string or Unix timestamp.",
+        "example": "2024-06-30T23:59:59Z"
+      },
+      "AccessControlItemStart": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "description": "The start date and time when anonymous access becomes available. Accepts ISO 8601 string or Unix timestamp.",
+        "example": "2024-03-15T09:00:00Z"
+      },
+      "RateLimitedResponseResponse": {
+        "title": "RateLimitedResponse",
+        "required": [
+          "error",
+          "request_id"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/Error"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/Limits"
+          },
+          "request_id": {
+            "type": "string",
+            "description": "Unique identifier for this request, for correlation and support."
+          }
+        }
+      },
+      "ImageToImageRequest": {
+        "required": [
+          "prompt",
+          "reference_images"
+        ],
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "maxLength": 4000,
+            "minLength": 1,
+            "type": "string",
+            "description": "The text instruction describing the desired edit / output."
+          },
+          "reference_images": {
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReferenceImage"
+            },
+            "description": "Reference images that steer the generation, in order (1-indexed; the\nprompt may address them positionally as \u0060[1]\u0060, \u0060[2]\u0060, \u2026). Each entry\nis either a managed asset (by \u0060asset_id\u0060) or an external \u0060url\u0060. The\nplatform accepts up to 4; a specific model may accept fewer (e.g.\nRecraft accepts 1) \u2014 exceeding the selected model\u0027s capacity returns\n400.\n"
+          },
+          "model": {
+            "$ref": "#/components/schemas/ModelSelection"
+          },
+          "image_size": {
+            "$ref": "#/components/schemas/ImageSize"
+          },
+          "format": {
+            "$ref": "#/components/schemas/ImageFormat"
+          },
+          "target": {
+            "$ref": "#/components/schemas/Target"
+          },
+          "seed": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Seed for reproducible generation. Supported by most models. Silently\nignored by models that don\u0027t support it.\n"
+          },
+          "async": {
+            "type": "boolean",
+            "description": "Whether to perform the generation asynchronously. When true, the API\nreturns immediately with a 202 and completes in the background. Once\ncomplete, a webhook notification is sent to the specified URL and/or to\nthe URLs defined in the product environment\u0027s settings.\n"
+          },
+          "notification_url": {
+            "type": "string",
+            "description": "The webhook URL to notify when the generation is complete. Only relevant when \u0060async\u0060 is set to true.",
+            "format": "uri"
+          }
+        },
+        "description": "Parameters for an image-to-image (reference-guided) request. Both\n\u0060prompt\u0060 (the edit instruction) and \u0060reference_images\u0060 are required; all\nother fields fall back to the same defaults as \u0060text_to_image\u0060.\n"
+      },
+      "ReferenceImage": {
+        "required": [
+          "source_type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ManagedAssetReference"
+          },
+          {
+            "$ref": "#/components/schemas/UrlReference"
+          }
+        ],
+        "properties": {
+          "source_type": {
+            "title": "source_type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "description": "\u0022A single reference image, in **one** of two mutually exclusive forms\ndetermined by \u0060source_type\u0060:\n  * \u0060ManagedAssetReference\u0060: a managed asset in the caller\u0027s product\n    environment, by \u0060asset_id\u0060 (read permission is checked).\n  * \u0060UrlReference\u0060: an external image by HTTPS \u0060url\u0060.\n\u0022",
+        "discriminator": {
+          "propertyName": "source_type",
+          "mapping": {
+            "managed_asset": "#/components/schemas/ManagedAssetReference",
+            "url": "#/components/schemas/UrlReference",
+            "ManagedAssetReference": "#/components/schemas/ManagedAssetReference",
+            "UrlReference": "#/components/schemas/UrlReference"
+          }
+        }
+      },
+      "ManagedAssetReference": {
+        "title": "ManagedAssetReference",
+        "required": [
+          "source_type",
+          "asset_id"
+        ],
+        "type": "object",
+        "properties": {
+          "source_type": {
+            "$ref": "#/components/schemas/ManagedAssetReferenceSourceType"
+          },
+          "asset_id": {
+            "type": "string",
+            "description": "Cloudinary asset ID of the reference image. READ permission is enforced."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A reference to a managed asset in the caller\u0027s product environment, by\nasset ID.\n"
+      },
+      "UrlReference": {
+        "title": "UrlReference",
+        "required": [
+          "source_type",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "source_type": {
+            "$ref": "#/components/schemas/UrlReferenceSourceType"
+          },
+          "url": {
+            "type": "string",
+            "description": "HTTPS URL of the reference image.",
+            "format": "uri"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A reference to an external image by HTTPS URL."
+      },
+      "ModelSelection": {
         "required": [
           "type"
         ],
         "type": "object",
-        "anyOf": [
+        "oneOf": [
           {
-            "$ref": "#/components/schemas/UploadBaseParametersResponsiveBreakpointsBranch1"
+            "$ref": "#/components/schemas/ModelByFamily"
           },
           {
-            "$ref": "#/components/schemas/ResponsiveBreakpoint"
+            "$ref": "#/components/schemas/ModelById"
           }
         ],
         "properties": {
@@ -14481,23 +16540,576 @@
             "description": "Union discriminator"
           }
         },
-        "description": "Settings to automatically generate breakpoints for responsive images.",
+        "description": "\u0022Selects the model, in one of two mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n\u0022",
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "UploadBaseParametersResponsiveBreakpoints_1": "#/components/schemas/UploadBaseParametersResponsiveBreakpointsBranch1",
-            "ResponsiveBreakpoint": "#/components/schemas/ResponsiveBreakpoint"
+            "ModelByFamily": "#/components/schemas/ModelByFamily",
+            "ModelById": "#/components/schemas/ModelById"
           }
         }
       },
-      "UploadTypeParameterType": {
+      "ModelByFamily": {
+        "title": "ModelByFamily",
+        "required": [
+          "family"
+        ],
         "type": "object",
-        "allOf": [
+        "properties": {
+          "family": {
+            "$ref": "#/components/schemas/ModelByFamilyFamily"
+          },
+          "tier": {
+            "$ref": "#/components/schemas/ModelByFamilyTier"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Select a model by family and quality tier; a missing \u0060tier\u0060 defaults to\n\u0060standard\u0060.\n"
+      },
+      "ModelById": {
+        "title": "ModelById",
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ModelByIdId"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Pin an exact model by ID, bypassing family/tier."
+      },
+      "ImageSize": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
           {
-            "$ref": "#/components/schemas/UploadDeliveryType"
+            "$ref": "#/components/schemas/DimensionsImageSize"
+          },
+          {
+            "$ref": "#/components/schemas/DeclarativeImageSize"
           }
         ],
-        "description": "The delivery type that defines if and how the uploaded asset is available for public delivery. By default, all uploaded assets are public (upload)."
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "description": "\u0022Desired output size, given in **one** of two mutually exclusive forms:\n\n  * \u0060DimensionsImageSize\u0060: \u0060width\u0060 and \u0060height\u0060 in pixels, for precise\n    control.\n  * \u0060DeclarativeImageSize\u0060: \u0060aspect_ratio\u0060 (and an optional \u0060resolution\u0060\n    tier), resolved server-side to the closest size the chosen model\n    supports. This is the portable form: most providers natively accept\n    an aspect ratio plus a resolution tier rather than raw pixels.\n\nOmit \u0060image_size\u0060 entirely to use the model\u0027s default size.\n\u0022",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "DimensionsImageSize": "#/components/schemas/DimensionsImageSize",
+            "DeclarativeImageSize": "#/components/schemas/DeclarativeImageSize"
+          }
+        }
+      },
+      "DimensionsImageSize": {
+        "title": "DimensionsImageSize",
+        "required": [
+          "width",
+          "height"
+        ],
+        "type": "object",
+        "properties": {
+          "width": {
+            "maximum": 4096,
+            "minimum": 64,
+            "type": "integer",
+            "description": "Output width in pixels."
+          },
+          "height": {
+            "maximum": 4096,
+            "minimum": 64,
+            "type": "integer",
+            "description": "Output height in pixels."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Exact output dimensions in pixels. Both \u0060width\u0060 and \u0060height\u0060 are required together."
+      },
+      "DeclarativeImageSize": {
+        "title": "DeclarativeImageSize",
+        "required": [
+          "aspect_ratio"
+        ],
+        "type": "object",
+        "properties": {
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/DeclarativeImageSizeAspectRatio"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/DeclarativeImageSizeResolution"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Declarative output size \u2014 an aspect ratio plus an optional resolution\ntier, resolved server-side to the nearest size the model supports.\n"
+      },
+      "Target": {
+        "required": [
+          "target_type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ManagedAssetTarget"
+          },
+          {
+            "$ref": "#/components/schemas/TemporaryTarget"
+          }
+        ],
+        "properties": {
+          "target_type": {
+            "title": "target_type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "description": "Where to store the generated output, determined by \u0060target_type\u0060.\nOptional; defaults to a \u0060managed_asset\u0060 target when omitted.\n",
+        "discriminator": {
+          "propertyName": "target_type",
+          "mapping": {
+            "managed_asset": "#/components/schemas/ManagedAssetTarget",
+            "temporary": "#/components/schemas/TemporaryTarget",
+            "ManagedAssetTarget": "#/components/schemas/ManagedAssetTarget",
+            "TemporaryTarget": "#/components/schemas/TemporaryTarget"
+          }
+        }
+      },
+      "ManagedAssetTarget": {
+        "required": [
+          "target_type"
+        ],
+        "type": "object",
+        "properties": {
+          "target_type": {
+            "$ref": "#/components/schemas/ManagedAssetTargetTargetType"
+          },
+          "public_id": {
+            "type": "string",
+            "description": "Public ID to store the asset under. Auto-assigned when omitted."
+          },
+          "upload_preset": {
+            "type": "string",
+            "description": "Upload preset to apply. Uses the product environment\u0027s default when omitted."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Store the output as a permanent managed asset in your Cloudinary product environment (the default)."
+      },
+      "TemporaryTarget": {
+        "required": [
+          "target_type"
+        ],
+        "type": "object",
+        "properties": {
+          "target_type": {
+            "$ref": "#/components/schemas/TemporaryTargetTargetType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Store the output as a short-lived asset on the upload service."
+      },
+      "Storage": {
+        "required": [
+          "storage_type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ManagedAssetStorage"
+          },
+          {
+            "$ref": "#/components/schemas/TemporaryStorage"
+          }
+        ],
+        "properties": {
+          "storage_type": {
+            "title": "storage_type",
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "description": "Where a generated asset is stored \u2014 mirrors the request \u0060target\u0060,\ndetermined by \u0060storage_type\u0060. \u0060secure_url\u0060 is always present.\n",
+        "discriminator": {
+          "propertyName": "storage_type",
+          "mapping": {
+            "managed_asset": "#/components/schemas/ManagedAssetStorage",
+            "temporary": "#/components/schemas/TemporaryStorage",
+            "ManagedAssetStorage": "#/components/schemas/ManagedAssetStorage",
+            "TemporaryStorage": "#/components/schemas/TemporaryStorage"
+          }
+        }
+      },
+      "ManagedAssetStorage": {
+        "required": [
+          "storage_type",
+          "secure_url",
+          "public_id",
+          "resource_type",
+          "type",
+          "version"
+        ],
+        "type": "object",
+        "properties": {
+          "storage_type": {
+            "$ref": "#/components/schemas/ManagedAssetStorageStorageType"
+          },
+          "secure_url": {
+            "type": "string",
+            "description": "The URL to fetch the generated asset.",
+            "format": "uri"
+          },
+          "asset_id": {
+            "type": "string",
+            "description": "Cloudinary asset ID \u2014 a stable, globally-unique reference to the asset."
+          },
+          "public_id": {
+            "type": "string",
+            "description": "Public ID of the stored asset."
+          },
+          "resource_type": {
+            "$ref": "#/components/schemas/ManagedAssetStorageResourceType"
+          },
+          "type": {
+            "type": "string",
+            "description": "Cloudinary delivery type of the stored asset (e.g. \u0060upload\u0060, \u0060private\u0060, \u0060authenticated\u0060)."
+          },
+          "version": {
+            "type": "integer",
+            "description": "Version of the stored asset.",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A generated asset stored as a permanent managed asset. Reference it in\nother Cloudinary APIs by \u0060asset_id\u0060, or by the\n\u0060resource_type\u0060 / \u0060type\u0060 / \u0060public_id\u0060 triple.\n"
+      },
+      "TemporaryStorage": {
+        "required": [
+          "storage_type",
+          "secure_url",
+          "expires_at"
+        ],
+        "type": "object",
+        "properties": {
+          "storage_type": {
+            "$ref": "#/components/schemas/TemporaryStorageStorageType"
+          },
+          "secure_url": {
+            "type": "string",
+            "description": "The URL to fetch the generated asset.",
+            "format": "uri"
+          },
+          "expires_at": {
+            "type": "string",
+            "description": "Time in UTC when secure_url stops being valid.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A generated asset stored as a short-lived asset on the upload service."
+      },
+      "GenerateImageResult": {
+        "required": [
+          "request_id"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/GeneratedAssets"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/Limits"
+          },
+          "request_id": {
+            "type": "string",
+            "description": "Unique identifier for this request, for correlation and support."
+          }
+        },
+        "description": "Successful synchronous image-generation response."
+      },
+      "GeneratedAssets": {
+        "required": [
+          "assets"
+        ],
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedAsset"
+            },
+            "description": "The generated assets. Currently a single asset is returned."
+          }
+        },
+        "description": "Wrapper holding the array of generated assets."
+      },
+      "GeneratedAsset": {
+        "required": [
+          "storage"
+        ],
+        "type": "object",
+        "properties": {
+          "storage": {
+            "$ref": "#/components/schemas/Storage"
+          },
+          "format": {
+            "$ref": "#/components/schemas/GeneratedAssetFormat"
+          },
+          "width": {
+            "type": "integer",
+            "description": "The width of the generated image in pixels; zero if the model doesn\u0027t provide dimensions."
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height of the generated image in pixels; zero if the model doesn\u0027t provide dimensions."
+          },
+          "bytes": {
+            "type": "integer",
+            "description": "The size of the generated image in bytes.",
+            "format": "int64"
+          },
+          "model": {
+            "$ref": "#/components/schemas/ModelValue"
+          },
+          "seed": {
+            "type": "integer",
+            "description": "The seed used for generation. Echoes input or returns the model-generated seed.\nNull when the model doesn\u0027t support seeds.\n"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The timestamp when the image was generated.",
+            "format": "date-time"
+          }
+        },
+        "description": "\u0022A generated asset: where it is stored (\u0060storage\u0060) plus its media\nmetadata. The media fields are populated once the task completes; an\nin-progress asset carries only \u0060storage\u0060.\n\u0022"
+      },
+      "ModelValue": {
+        "required": [
+          "family",
+          "tier",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "string",
+            "description": "The model family used."
+          },
+          "tier": {
+            "type": "string",
+            "description": "The quality tier used."
+          },
+          "id": {
+            "type": "string",
+            "description": "The exact model identifier used for generation."
+          }
+        },
+        "description": "Identifies the model that produced a generation result."
+      },
+      "TaskStatus": {
+        "enum": [
+          "pending",
+          "processing",
+          "completed",
+          "failed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022The status of an async generation task.\n* \u0060pending\u0060: accepted and queued, not yet started.\n* \u0060processing\u0060: generation is in progress.\n* \u0060completed\u0060: generation finished; \u0060result\u0060 is populated.\n* \u0060failed\u0060: generation did not complete successfully.\n\u0022",
+        "x-ms-enum": {
+          "name": "TaskStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "pending",
+              "name": "Pending"
+            },
+            {
+              "value": "processing",
+              "name": "Processing"
+            },
+            {
+              "value": "completed",
+              "name": "Completed"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
+      "Task": {
+        "required": [
+          "task_id",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Identifier for the async generation task. Use it to poll \u0060GET /generate/{cloud_name}/tasks/{task_id}\u0060."
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "result": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/Limits"
+          }
+        },
+        "description": "An async generation task. Returned when a generation is accepted (202)\nand from GET /tasks/{task_id} as it progresses. The \u0060result\u0060 is filled\nin once \u0060status\u0060 is \u0060completed\u0060.\n"
+      },
+      "TaskResponse": {
+        "required": [
+          "request_id"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Task"
+          },
+          "request_id": {
+            "type": "string",
+            "description": "Unique identifier for this request, for correlation and support."
+          }
+        },
+        "description": "Envelope for an async generation task \u2014 returned by the accepted (202)\nresponse and by GET /tasks/{task_id}.\n"
+      },
+      "ErrorResponse": {
+        "required": [
+          "error",
+          "request_id"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/Error"
+          },
+          "request_id": {
+            "type": "string",
+            "description": "Unique identifier for this request, for correlation and support."
+          }
+        },
+        "description": "Wrapper for error responses; includes the error object and a request_id for correlation."
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "$ref": "#/components/schemas/ErrorCategory"
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable, machine-readable error code for programmatic handling."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable description of what went wrong."
+          },
+          "details": {
+            "$ref": "#/components/schemas/ErrorDetailsProperty"
+          }
+        },
+        "description": "Details of an error, including a coarse category for retry logic, a stable error code, and a human-readable message."
+      },
+      "ErrorCategory": {
+        "enum": [
+          "user_error",
+          "auth_error",
+          "server_error",
+          "rate_limit_error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022Coarse classification of an error, primarily used by clients to decide whether to retry.\n* \u0060user_error\u0060: the request was invalid; do not retry without changes.\n* \u0060auth_error\u0060: authentication or authorization failed.\n* \u0060server_error\u0060: an unexpected server-side error; retrying may succeed.\n* \u0060rate_limit_error\u0060: quota or rate limit exceeded; retry later.\n\u0022",
+        "x-ms-enum": {
+          "name": "ErrorCategory",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user_error",
+              "name": "UserError"
+            },
+            {
+              "value": "auth_error",
+              "name": "AuthError"
+            },
+            {
+              "value": "server_error",
+              "name": "ServerError"
+            },
+            {
+              "value": "rate_limit_error",
+              "name": "RateLimitError"
+            }
+          ]
+        }
+      },
+      "Limits": {
+        "type": "object",
+        "properties": {
+          "addons_quota": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddonQuota"
+            },
+            "description": "Per-add-on quota usage for this account."
+          }
+        },
+        "description": "Rate limit information for the account\u0027s add-on quotas."
+      },
+      "AddonQuota": {
+        "required": [
+          "type",
+          "used_by_request",
+          "remaining",
+          "limit"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/Feature"
+          },
+          "used_by_request": {
+            "type": "integer",
+            "description": "Number of generations consumed by this request."
+          },
+          "remaining": {
+            "type": "integer",
+            "description": "Generations remaining in the current period."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum generations allowed per period."
+          }
+        },
+        "description": "Quota usage for a single add-on."
+      },
+      "Feature": {
+        "enum": [
+          "image_generation"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The add-on a quota applies to.",
+        "x-ms-enum": {
+          "name": "Feature",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "image_generation",
+              "name": "ImageGeneration"
+            }
+          ]
+        }
       },
       "BinaryUploadRequestAllOf4": {
         "type": "object",
@@ -14845,6 +17457,12 @@
           },
           {
             "type": "boolean"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         ]
       },
@@ -14892,6 +17510,19 @@
           "alt": "My image",
           "caption": "Nice photo"
         }
+      },
+      "DatasourceOrderRequestDirection": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/DirectionEnum"
+          }
+        },
+        "description": "The sort direction for the datasource values. Default is \u0022asc\u0022.",
+        "example": "asc"
       },
       "MetadataRuleActivateValuesOneOf2": {
         "required": [
@@ -15038,6 +17669,82 @@
           }
         }
       },
+      "FolderDetailResponseAllOf2": {
+        "type": "object",
+        "properties": {
+          "resource_count": {
+            "type": "integer",
+            "description": "The number of assets directly within the folder."
+          },
+          "total_bytes": {
+            "type": "number",
+            "description": "The total size, in bytes, of the assets within the folder."
+          },
+          "last_uploaded_at": {
+            "type": "integer",
+            "description": "The Unix timestamp of the most recent upload into the folder."
+          },
+          "ancestors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Folder"
+            },
+            "description": "The ancestor folders of this folder, ordered from root to parent."
+          }
+        }
+      },
+      "ResourceGetByBodyRequestResourceType": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ResourceType"
+          }
+        },
+        "description": "The type of the asset (image, video, or raw).",
+        "example": "image"
+      },
+      "ResourceGetByBodyRequestKind": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ManagedDeliveryType"
+          }
+        },
+        "description": "The delivery type of the asset.",
+        "example": "upload"
+      },
+      "ResourceUpdateByBodyRequestResourceType": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ResourceType"
+          }
+        },
+        "description": "The type of the asset (image, video, or raw).",
+        "example": "image"
+      },
+      "ResourceUpdateByBodyRequestKind": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ManagedDeliveryType"
+          }
+        },
+        "description": "The delivery type of the asset.",
+        "example": "upload"
+      },
       "SearchParametersAggregate": {
         "type": "object",
         "oneOf": [
@@ -15159,6 +17866,22 @@
           }
         },
         "additionalProperties": false
+      },
+      "TaskResult": {
+        "required": [
+          "assets"
+        ],
+        "type": "object",
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedAsset"
+            },
+            "description": "The generated assets. Currently a single asset is returned."
+          }
+        },
+        "description": "The generated assets. Populated once \u0060status\u0060 is \u0060completed\u0060.\n"
       },
       "UploadBaseParametersAutoTranscriptionOneOf2": {
         "type": "object",
@@ -15754,6 +18477,14 @@
           }
         }
       },
+      "ResourceUpdateByBodyRequestContext": {
+        "type": "object",
+        "description": "The key-value pairs of contextual metadata to assign to the asset."
+      },
+      "ResourceUpdateByBodyRequestMetadata": {
+        "type": "object",
+        "description": "The structured metadata field values to assign to the asset."
+      },
       "SearchResponseResourcesItem": {
         "type": "object",
         "properties": {
@@ -15784,7 +18515,7 @@
           },
           "format": {
             "type": "string",
-            "description": "The format of the asset.",
+            "description": "The format of the asset. Null for raw assets, which have no format.",
             "example": "jpg"
           },
           "version": {
@@ -15822,23 +18553,23 @@
           },
           "width": {
             "type": "integer",
-            "description": "The width of the asset in pixels.",
+            "description": "The width of the asset in pixels. Null for non-visual assets (e.g. raw, audio).",
             "example": 4800
           },
           "height": {
             "type": "integer",
-            "description": "The height of the asset in pixels.",
+            "description": "The height of the asset in pixels. Null for non-visual assets (e.g. raw, audio).",
             "example": 6400
           },
           "aspect_ratio": {
             "type": "number",
-            "description": "The aspect ratio of the asset (width/height).",
+            "description": "The aspect ratio of the asset (width/height). Null for non-visual assets (e.g. raw, audio).",
             "format": "float",
             "example": 0.75
           },
           "pixels": {
             "type": "integer",
-            "description": "The total number of pixels in the asset.",
+            "description": "The total number of pixels in the asset. Null for non-visual assets (e.g. raw, audio).",
             "example": 307200
           },
           "url": {
@@ -15920,6 +18651,22 @@
           }
         },
         "description": "Aggregation results when the aggregate parameter is used in the request. Only included when aggregations are requested."
+      },
+      "PeopleInspectionGroupItems": {
+        "type": "object",
+        "description": "A map of caller-supplied cache keys to the person identifier to inspect."
+      },
+      "PeopleInspectionGroupActions": {
+        "type": "object",
+        "description": "A map of action names to optional action context to inspect."
+      },
+      "PeopleInspectResponseInspections": {
+        "type": "object",
+        "description": "A map of inspected type to per-item, per-action permission results (true if permitted)."
+      },
+      "ErrorDetails": {
+        "type": "object",
+        "description": "Additional structured context about the error, when available."
       },
       "SearchParametersAggregateOneOf2Item": {
         "required": [
@@ -16193,6 +18940,18 @@
         "type": "string",
         "format": "binary"
       },
+      "DownloadAssetByAssetId200Response": {
+        "type": "string",
+        "format": "binary"
+      },
+      "DownloadAssetByAssetId200ResponseResponseMedia": {
+        "type": "string",
+        "format": "binary"
+      },
+      "DownloadAssetByAssetId200ResponseResponseOctetStream": {
+        "type": "string",
+        "format": "binary"
+      },
       "CreateMetadataFieldRequest": {
         "required": [
           "type",
@@ -16229,6 +18988,11 @@
           },
           "restrictions": {
             "$ref": "#/components/schemas/MetadataFieldRestrictions"
+          },
+          "group": {
+            "type": "string",
+            "description": "The group used to organize this metadata field into a collapsible section in the UI. Defaults to \u0022default\u0022. Purely presentational \u2014 it does not affect rules, search, or value validation.\n",
+            "example": "address"
           },
           "datasource": {
             "$ref": "#/components/schemas/MetadataFieldDatasource"
@@ -16442,6 +19206,17 @@
           }
         }
       },
+      "DirectionEnumWrapper": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/DirectionEnum"
+          }
+        }
+      },
       "ResourceTypeWrapper": {
         "required": [
           "value"
@@ -16450,6 +19225,50 @@
         "properties": {
           "value": {
             "$ref": "#/components/schemas/ResourceType"
+          }
+        }
+      },
+      "ResourceTypeWrapper2": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ResourceType"
+          }
+        }
+      },
+      "ManagedDeliveryTypeWrapper4": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ManagedDeliveryType"
+          }
+        }
+      },
+      "ResourceTypeWrapper3": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ResourceType"
+          }
+        }
+      },
+      "ManagedDeliveryTypeWrapper5": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/ManagedDeliveryType"
           }
         }
       },
@@ -16477,6 +19296,20 @@
           }
         }
       },
+      "UploadBaseParametersResponsiveBreakpointsBranch1": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResponsiveBreakpoint"
+            }
+          }
+        }
+      },
       "UploadBaseParametersRegionsBranch1": {
         "required": [
           "value"
@@ -16498,20 +19331,6 @@
             "type": "boolean",
             "description": "Whether to trigger automatic generation of video transcription. Transcription will be generated and saved as a .vtt file with -transcription appended to the public ID of the video. Relevant for videos only.",
             "example": true
-          }
-        }
-      },
-      "UploadBaseParametersResponsiveBreakpointsBranch1": {
-        "required": [
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResponsiveBreakpoint"
-            }
           }
         }
       },
@@ -16584,6 +19403,14 @@
         "type": "string",
         "format": "binary"
       },
+      "DownloadAssetByAssetId200ResponseResponseJson": {
+        "type": "string",
+        "format": "binary"
+      },
+      "DownloadAssetByAssetId200ResponseResponseOctetStream2": {
+        "type": "string",
+        "format": "binary"
+      },
       "SearchMetadataFieldDatasource200ResponseResponseJson": {
         "type": "array",
         "items": {
@@ -16598,6 +19425,10 @@
       },
       "DeleteResourcesByPublicId200ResponseResponseJson": {
         "type": "object"
+      },
+      "EvalUploadParams200Response": {
+        "type": "object",
+        "description": "The upload parameters resulting from evaluating the eval expression."
       },
       "ContextFullResponseAdditionalPropertiesProperty": {
         "type": "object",
@@ -16727,12 +19558,56 @@
         },
         "description": "Map of derived resource IDs to deletion status"
       },
+      "ResourceInternalResponseMetadata": {
+        "type": "object"
+      },
+      "ResourceInternalResponsePredominant": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "Fallback array item schema"
+            }
+          }
+        }
+      },
+      "ResourceInternalResponseInfo": {
+        "type": "object",
+        "description": "Additional asset information (visual search, recognized people, etc.)"
+      },
+      "ResourceUpdateByBodyRequestContextProperty": {
+        "type": "object",
+        "description": "The key-value pairs of contextual metadata to assign to the asset."
+      },
+      "ResourceUpdateByBodyRequestMetadataProperty": {
+        "type": "object",
+        "description": "The structured metadata field values to assign to the asset."
+      },
       "SearchParametersSortByItem": {
         "type": "object",
         "additionalProperties": {
           "$ref": "#/components/schemas/DirectionEnum"
         },
         "description": "A single field-to-direction mapping. The object must contain exactly one key with value \u0027asc\u0027 or \u0027desc\u0027."
+      },
+      "PeopleInspectionGroupItemsProperty": {
+        "type": "object",
+        "description": "A map of caller-supplied cache keys to the person identifier to inspect."
+      },
+      "PeopleInspectionGroupActionsProperty": {
+        "type": "object",
+        "description": "A map of action names to optional action context to inspect."
+      },
+      "PeopleInspectResponseInspectionsProperty": {
+        "type": "object",
+        "description": "A map of inspected type to per-item, per-action permission results (true if permitted)."
+      },
+      "ErrorDetailsProperty": {
+        "type": "object",
+        "description": "Additional structured context about the error, when available."
       },
       "InfoContextCustom": {
         "type": "object",
@@ -17316,6 +20191,34 @@
           ]
         }
       },
+      "ResourceUpdateByBodyRequestModerationStatus": {
+        "enum": [
+          "pending",
+          "approved",
+          "rejected"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The moderation status to set on the asset.",
+        "x-ms-enum": {
+          "name": "ResourceUpdateByBodyRequestModerationStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "pending",
+              "name": "Pending"
+            },
+            {
+              "value": "approved",
+              "name": "Approved"
+            },
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            }
+          ]
+        }
+      },
       "SearchParametersWithFieldItem": {
         "enum": [
           "context",
@@ -17397,6 +20300,400 @@
             {
               "value": "no_assets_were_processed",
               "name": "NoAssetsWereProcessed"
+            }
+          ]
+        }
+      },
+      "ManagedAssetReferenceSourceType": {
+        "enum": [
+          "managed_asset"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Discriminator identifying this as a managed-asset reference.",
+        "x-ms-enum": {
+          "name": "ManagedAssetReferenceSourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "managed_asset",
+              "name": "ManagedAsset"
+            }
+          ]
+        }
+      },
+      "UrlReferenceSourceType": {
+        "enum": [
+          "url"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Discriminator identifying this as an external-URL reference.",
+        "x-ms-enum": {
+          "name": "UrlReferenceSourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "url",
+              "name": "Url"
+            }
+          ]
+        }
+      },
+      "ModelByFamilyFamily": {
+        "enum": [
+          "flux",
+          "recraft",
+          "gpt-image",
+          "nano-banana",
+          "ideogram"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022Model family:\n* \u0060flux\u0060: Photorealistic images (FLUX.2 Klein 9B / FLUX.2 Pro).\n* \u0060recraft\u0060: Vector and illustration (Recraft V3 / Recraft V4).\n* \u0060gpt-image\u0060: Campaign and marketing images (GPT Image 1 Mini / GPT Image 2).\n* \u0060nano-banana\u0060: General purpose generation (Nano Banana 1 / Nano Banana 2).\n* \u0060ideogram\u0060: Realism, text rendering, and artistic generation (Ideogram V4).\n\u0022",
+        "x-ms-enum": {
+          "name": "ModelByFamilyFamily",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "flux",
+              "name": "Flux"
+            },
+            {
+              "value": "recraft",
+              "name": "Recraft"
+            },
+            {
+              "value": "gpt-image",
+              "name": "GptImage"
+            },
+            {
+              "value": "nano-banana",
+              "name": "NanoBanana"
+            },
+            {
+              "value": "ideogram",
+              "name": "Ideogram"
+            }
+          ]
+        }
+      },
+      "ModelByFamilyTier": {
+        "enum": [
+          "standard",
+          "premium"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Quality tier within the family. Defaults to \u0060standard\u0060 when omitted.",
+        "x-ms-enum": {
+          "name": "ModelByFamilyTier",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "standard",
+              "name": "Standard"
+            },
+            {
+              "value": "premium",
+              "name": "Premium"
+            }
+          ]
+        }
+      },
+      "ModelByIdId": {
+        "enum": [
+          "nano-banana-1",
+          "nano-banana-2",
+          "flux-2-klein-9b",
+          "flux-2-pro",
+          "recraft-v3",
+          "recraft-v4",
+          "gpt-image-1-mini",
+          "gpt-image-2",
+          "ideogram-v4-base",
+          "ideogram-v4-turbo",
+          "nano-banana-1-edit",
+          "nano-banana-2-edit",
+          "flux-2-klein-9b-edit",
+          "flux-2-pro-edit",
+          "recraft-v3-edit",
+          "gpt-image-1-mini-edit",
+          "gpt-image-2-edit"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Exact model identifier; overrides family/tier when provided. The\n\u0060-edit\u0060 models accept reference images and are selectable only on\n\u0060image_to_image\u0060; the others only on \u0060text_to_image\u0060.\n",
+        "x-ms-enum": {
+          "name": "ModelByIdId",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "nano-banana-1",
+              "name": "NanoBanana1"
+            },
+            {
+              "value": "nano-banana-2",
+              "name": "NanoBanana2"
+            },
+            {
+              "value": "flux-2-klein-9b",
+              "name": "Flux2Klein9B"
+            },
+            {
+              "value": "flux-2-pro",
+              "name": "Flux2Pro"
+            },
+            {
+              "value": "recraft-v3",
+              "name": "RecraftV3"
+            },
+            {
+              "value": "recraft-v4",
+              "name": "RecraftV4"
+            },
+            {
+              "value": "gpt-image-1-mini",
+              "name": "GptImage1Mini"
+            },
+            {
+              "value": "gpt-image-2",
+              "name": "GptImage2"
+            },
+            {
+              "value": "ideogram-v4-base",
+              "name": "IdeogramV4Base"
+            },
+            {
+              "value": "ideogram-v4-turbo",
+              "name": "IdeogramV4Turbo"
+            },
+            {
+              "value": "nano-banana-1-edit",
+              "name": "NanoBanana1Edit"
+            },
+            {
+              "value": "nano-banana-2-edit",
+              "name": "NanoBanana2Edit"
+            },
+            {
+              "value": "flux-2-klein-9b-edit",
+              "name": "Flux2Klein9BEdit"
+            },
+            {
+              "value": "flux-2-pro-edit",
+              "name": "Flux2ProEdit"
+            },
+            {
+              "value": "recraft-v3-edit",
+              "name": "RecraftV3Edit"
+            },
+            {
+              "value": "gpt-image-1-mini-edit",
+              "name": "GptImage1MiniEdit"
+            },
+            {
+              "value": "gpt-image-2-edit",
+              "name": "GptImage2Edit"
+            }
+          ]
+        }
+      },
+      "DeclarativeImageSizeAspectRatio": {
+        "enum": [
+          "1:1",
+          "16:9",
+          "9:16",
+          "4:3",
+          "3:4"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Output aspect ratio, width-to-height. Limited to the core ratios\nevery model supports natively.\n",
+        "x-ms-enum": {
+          "name": "DeclarativeImageSizeAspectRatio",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "1:1",
+              "name": "Value1Colon1"
+            },
+            {
+              "value": "16:9",
+              "name": "Value16Colon9"
+            },
+            {
+              "value": "9:16",
+              "name": "Value9Colon16"
+            },
+            {
+              "value": "4:3",
+              "name": "Value4Colon3"
+            },
+            {
+              "value": "3:4",
+              "name": "Value3Colon4"
+            }
+          ]
+        }
+      },
+      "DeclarativeImageSizeResolution": {
+        "enum": [
+          "0.5K",
+          "1K",
+          "2K",
+          "4K"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022Output resolution tier, measured on the longest edge. Defaults to\n\u00601K\u0060 when omitted.\n* \u00600.5K\u0060: ~512 px\n* \u00601K\u0060: ~1024 px\n* \u00602K\u0060: ~2048 px\n* \u00604K\u0060: ~4096 px\n\u0022",
+        "x-ms-enum": {
+          "name": "DeclarativeImageSizeResolution",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "0.5K",
+              "name": "Value05K"
+            },
+            {
+              "value": "1K",
+              "name": "Value1K"
+            },
+            {
+              "value": "2K",
+              "name": "Value2K"
+            },
+            {
+              "value": "4K",
+              "name": "Value4K"
+            }
+          ]
+        }
+      },
+      "ManagedAssetTargetTargetType": {
+        "enum": [
+          "managed_asset"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Discriminator identifying this as a managed-asset target.",
+        "x-ms-enum": {
+          "name": "ManagedAssetTargetTargetType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "managed_asset",
+              "name": "ManagedAsset"
+            }
+          ]
+        }
+      },
+      "TemporaryTargetTargetType": {
+        "enum": [
+          "temporary"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Discriminator identifying this as a temporary target.",
+        "x-ms-enum": {
+          "name": "TemporaryTargetTargetType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "temporary",
+              "name": "Temporary"
+            }
+          ]
+        }
+      },
+      "ManagedAssetStorageStorageType": {
+        "enum": [
+          "managed_asset"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Discriminator identifying this as managed-asset storage.",
+        "x-ms-enum": {
+          "name": "ManagedAssetStorageStorageType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "managed_asset",
+              "name": "ManagedAsset"
+            }
+          ]
+        }
+      },
+      "ManagedAssetStorageResourceType": {
+        "enum": [
+          "image",
+          "video",
+          "raw"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Cloudinary resource type of the stored asset.",
+        "x-ms-enum": {
+          "name": "ManagedAssetStorageResourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "image",
+              "name": "Image"
+            },
+            {
+              "value": "video",
+              "name": "Video"
+            },
+            {
+              "value": "raw",
+              "name": "Raw"
+            }
+          ]
+        }
+      },
+      "TemporaryStorageStorageType": {
+        "enum": [
+          "temporary"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Discriminator identifying this as temporary storage.",
+        "x-ms-enum": {
+          "name": "TemporaryStorageStorageType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "temporary",
+              "name": "Temporary"
+            }
+          ]
+        }
+      },
+      "GeneratedAssetFormat": {
+        "enum": [
+          "png",
+          "jpeg",
+          "webp"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The image format of the stored asset.",
+        "x-ms-enum": {
+          "name": "GeneratedAssetFormat",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "png",
+              "name": "Png"
+            },
+            {
+              "value": "jpeg",
+              "name": "Jpeg"
+            },
+            {
+              "value": "webp",
+              "name": "Webp"
             }
           ]
         }
@@ -17571,7 +20868,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "The access mode of the asset.",
+        "description": "The access mode of the asset. Null when not explicitly set.",
         "example": "public",
         "x-ms-enum": {
           "name": "SearchResponseResourcesItemAccessMode",
@@ -17938,6 +21235,103 @@
               "name": "UpdatedAt"
             }
           ]
+        }
+      }
+    },
+    "responses": {
+      "GenerationAcceptedResponse": {
+        "description": "Generation accepted.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TaskResponse"
+            }
+          }
+        }
+      },
+      "BadRequestResponse": {
+        "description": "Bad request.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "UnauthorizedResponse": {
+        "description": "Unauthorized.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "NotFoundResponse": {
+        "description": "Not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "RateLimitedResponse": {
+        "description": "Rate limited.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RateLimitedResponseResponse"
+            },
+            "examples": {
+              "RateLimited": {
+                "$ref": "#/components/examples/RateLimitedExample"
+              }
+            }
+          }
+        }
+      },
+      "InternalServerErrorResponse": {
+        "description": "Internal server error.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "ModelUnavailableResponse": {
+        "description": "Model unavailable.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "ForbiddenResponse": {
+        "description": "Forbidden.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "UnprocessableEntityResponse": {
+        "description": "Unprocessable entity.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
         }
       }
     },
@@ -18470,6 +21864,20 @@
           "type": "string"
         },
         "example": "abc123def456"
+      },
+      "cloudName": {
+        "name": "cloud_name",
+        "in": "path",
+        "description": "The cloud name of your Cloudinary product environment.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "examples": {
+          "default": {
+            "value": "your-cloud-name"
+          }
+        }
       }
     },
     "examples": {
@@ -18860,6 +22268,202 @@
             }
           ]
         }
+      },
+      "GenerateImageBasicExample": {
+        "summary": "Basic image generation",
+        "description": "Minimal request \u2014 only a prompt; falls back to the default model.",
+        "value": {
+          "prompt": "A man with a hat"
+        }
+      },
+      "GenerateImageDeclarativeSizeExample": {
+        "summary": "Declarative size (aspect ratio \u002B resolution)",
+        "description": "Portable size selection \u2014 the service resolves aspect_ratio \u002B resolution\nto the nearest dimensions the chosen model supports.\n",
+        "value": {
+          "prompt": "A photorealistic sunset over a mountain lake, 8K detail",
+          "model": {
+            "family": "flux",
+            "tier": "premium"
+          },
+          "image_size": {
+            "aspect_ratio": "16:9",
+            "resolution": "2K"
+          },
+          "target": {
+            "target_type": "managed_asset",
+            "public_id": "my-public-id",
+            "upload_preset": "some-preset"
+          },
+          "seed": 42
+        }
+      },
+      "GenerateImageDimensionsSizeExample": {
+        "summary": "Dimensions size (explicit pixels)",
+        "description": "Pixel-precise size selection via width \u002B height.",
+        "value": {
+          "prompt": "A photorealistic sunset over a mountain lake, 8K detail",
+          "model": {
+            "id": "flux-2-pro"
+          },
+          "image_size": {
+            "width": 1280,
+            "height": 720
+          },
+          "target": {
+            "target_type": "temporary"
+          },
+          "seed": 42
+        }
+      },
+      "GenerateImageAsyncExample": {
+        "summary": "Async image generation",
+        "description": "Request the generation be performed asynchronously. The API responds\n202 with a task_id; the caller polls /tasks/{task_id} or waits for\nthe webhook.\n",
+        "value": {
+          "prompt": "A futuristic city skyline at night",
+          "model": {
+            "family": "gpt-image",
+            "tier": "premium"
+          },
+          "async": true,
+          "notification_url": "https://path.to/webhook"
+        }
+      },
+      "GenerateImageSuccessExample": {
+        "summary": "Successful synchronous generation",
+        "description": "The 200 response body returned for a completed sync generation.",
+        "value": {
+          "data": {
+            "assets": [
+              {
+                "storage": {
+                  "storage_type": "temporary",
+                  "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+                  "expires_at": "2026-06-25T12:50:26Z"
+                },
+                "format": "png",
+                "width": 1024,
+                "height": 768,
+                "bytes": 2048576,
+                "model": {
+                  "family": "flux",
+                  "tier": "premium",
+                  "id": "flux-2-pro"
+                },
+                "seed": 42,
+                "created_at": "2026-04-21T14:30:00Z"
+              }
+            ]
+          },
+          "limits": {
+            "addons_quota": [
+              {
+                "type": "image_generation",
+                "used_by_request": 1,
+                "remaining": 48,
+                "limit": 50
+              }
+            ]
+          },
+          "request_id": "17c3b70c5096df0e77e838323abb7029"
+        }
+      },
+      "GenerateImageManagedAssetSuccessExample": {
+        "summary": "Successful synchronous generation (managed asset target)",
+        "description": "The 200 response body when the request targeted a managed asset.",
+        "value": {
+          "data": {
+            "assets": [
+              {
+                "storage": {
+                  "storage_type": "managed_asset",
+                  "secure_url": "https://res.cloudinary.com/demo/image/upload/v1750000000/my-public-id.png",
+                  "asset_id": "0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a",
+                  "public_id": "my-public-id",
+                  "resource_type": "image",
+                  "type": "upload",
+                  "version": 1750000000
+                },
+                "format": "png",
+                "width": 1024,
+                "height": 768,
+                "bytes": 2048576,
+                "model": {
+                  "family": "flux",
+                  "tier": "premium",
+                  "id": "flux-2-pro"
+                },
+                "seed": 42,
+                "created_at": "2026-04-21T14:30:00Z"
+              }
+            ]
+          },
+          "limits": {
+            "addons_quota": [
+              {
+                "type": "image_generation",
+                "used_by_request": 1,
+                "remaining": 48,
+                "limit": 50
+              }
+            ]
+          },
+          "request_id": "17c3b70c5096df0e77e838323abb7029"
+        }
+      },
+      "GenerateTaskCompletedExample": {
+        "summary": "Completed task (GET /tasks/{task_id})",
+        "description": "A completed async task \u2014 the asset is fully populated (storage \u002B media).",
+        "value": {
+          "data": {
+            "task_id": "053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb",
+            "status": "completed",
+            "result": {
+              "assets": [
+                {
+                  "storage": {
+                    "storage_type": "temporary",
+                    "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/stream",
+                    "expires_at": "2026-06-25T12:50:26Z"
+                  },
+                  "format": "png",
+                  "width": 1024,
+                  "height": 768,
+                  "bytes": 2048576,
+                  "model": {
+                    "family": "flux",
+                    "tier": "premium",
+                    "id": "flux-2-pro"
+                  },
+                  "seed": 42,
+                  "created_at": "2026-04-21T14:30:00Z"
+                }
+              ]
+            }
+          },
+          "request_id": "17c3b70c5096df0e77e838323abb7029"
+        }
+      },
+      "RateLimitedExample": {
+        "summary": "429 rate-limited response",
+        "description": "Returned when the account has exhausted its generation quota for the period.",
+        "value": {
+          "error": {
+            "category": "rate_limit_error",
+            "code": "MG_00429",
+            "message": "Daily generation limit exceeded. Limit resets at 2026-04-22T00:00:00Z"
+          },
+          "limits": {
+            "addons_quota": [
+              {
+                "type": "image_generation",
+                "used_by_request": 1,
+                "remaining": 0,
+                "limit": 50
+              }
+            ]
+          },
+          "request_id": "17c3b70c5096df0e77e838323abb7029"
+        }
       }
     },
     "requestBodies": {
@@ -18883,6 +22487,7 @@
     "securitySchemes": {
       "basicAuth": {
         "type": "http",
+        "description": "Basic authentication using Cloudinary API Key and API Secret.",
         "scheme": "basic"
       },
       "oauth2": {
@@ -18894,7 +22499,8 @@
             "tokenUrl": "https://oauth.cloudinary.com/oauth2/token",
             "scopes": {
               "asset_management": "Allows managing assets, including reading, updating, and deleting.",
-              "upload": "Allows uploading new assets."
+              "upload": "Allows uploading new assets.",
+              "media_generation": "Generate media"
             }
           }
         }
@@ -18914,7 +22520,8 @@
     {
       "oauth2": [
         "asset_management",
-        "upload"
+        "upload",
+        "media_generation"
       ]
     }
   ],
@@ -19002,6 +22609,14 @@
     {
       "name": "people",
       "description": "APIs for accessing and managing face recognition results."
+    },
+    {
+      "name": "Generation",
+      "description": "Generate images from text prompts using AI models."
+    },
+    {
+      "name": "Tasks",
+      "description": "Query the status of async generation tasks."
     }
   ]
 }

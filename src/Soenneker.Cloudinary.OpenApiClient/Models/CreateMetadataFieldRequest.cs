@@ -44,6 +44,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string ExternalId { get; set; }
 #endif
+        /// <summary>The group used to organize this metadata field into a collapsible section in the UI. Defaults to &quot;default&quot;. Purely presentational — it does not affect rules, search, or value validation.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Group { get; set; }
+#nullable restore
+#else
+        public string Group { get; set; }
+#endif
         /// <summary>The label of the metadata field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -103,6 +111,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "default_disabled", n => { DefaultDisabled = n.GetBoolValue(); } },
                 { "default_value", n => { DefaultValue = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "external_id", n => { ExternalId = n.GetStringValue(); } },
+                { "group", n => { Group = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "mandatory", n => { Mandatory = n.GetBoolValue(); } },
                 { "restrictions", n => { Restrictions = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions.CreateFromDiscriminatorValue); } },
@@ -123,6 +132,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("default_disabled", DefaultDisabled);
             writer.WriteObjectValue<UntypedNode>("default_value", DefaultValue);
             writer.WriteStringValue("external_id", ExternalId);
+            writer.WriteStringValue("group", Group);
             writer.WriteStringValue("label", Label);
             writer.WriteBoolValue("mandatory", Mandatory);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions>("restrictions", Restrictions);

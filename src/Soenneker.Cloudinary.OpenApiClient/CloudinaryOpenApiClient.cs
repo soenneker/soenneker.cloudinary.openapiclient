@@ -7,6 +7,7 @@ using Microsoft.Kiota.Serialization.Json;
 using Microsoft.Kiota.Serialization.Multipart;
 using Microsoft.Kiota.Serialization.Text;
 using Soenneker.Cloudinary.OpenApiClient.V1_1;
+using Soenneker.Cloudinary.OpenApiClient.V2;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace Soenneker.Cloudinary.OpenApiClient
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.V1_1RequestBuilder V1_1
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.V1_1RequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The v2 property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V2.V2RequestBuilder V2
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V2.V2RequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.CloudinaryOpenApiClient"/> and sets the default values.

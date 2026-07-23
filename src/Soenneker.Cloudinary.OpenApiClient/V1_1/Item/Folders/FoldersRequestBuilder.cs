@@ -4,6 +4,9 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.Models;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.By_id;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.By_path;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Descendants;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Item;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Search;
 using System.Collections.Generic;
@@ -19,6 +22,21 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class FoldersRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The by_id property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.By_id.By_idRequestBuilder By_id
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.By_id.By_idRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The by_path property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.By_path.By_pathRequestBuilder By_path
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.By_path.By_pathRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The descendants property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Descendants.DescendantsRequestBuilder Descendants
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Descendants.DescendantsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The search property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.Search.SearchRequestBuilder Search
         {

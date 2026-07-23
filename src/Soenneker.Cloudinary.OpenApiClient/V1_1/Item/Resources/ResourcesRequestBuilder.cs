@@ -7,13 +7,16 @@ using Soenneker.Cloudinary.OpenApiClient.Models;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_folder;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_ids;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_container_id;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_external_ids;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Get_resource;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Image;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Raw;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Restore;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Search;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Update;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Video;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Visual_search;
 using System.Collections.Generic;
@@ -44,10 +47,20 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_asset_ids.By_asset_idsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The by_container_id property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_container_id.By_container_idRequestBuilder By_container_id
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_container_id.By_container_idRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The by_external_ids property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_external_ids.By_external_idsRequestBuilder By_external_ids
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.By_external_ids.By_external_idsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The get_resource property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Get_resource.Get_resourceRequestBuilder Get_resource
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Get_resource.Get_resourceRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The image property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Image.ImageRequestBuilder Image
@@ -73,6 +86,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Search.SearchRequestBuilder Search
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Search.SearchRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The update property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Update.UpdateRequestBuilder Update
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Update.UpdateRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The video property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Video.VideoRequestBuilder Video

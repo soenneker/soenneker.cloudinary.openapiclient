@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Rename;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.InviteRequestBuilder Invite
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.InviteRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The rename property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Rename.RenameRequestBuilder Rename
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Rename.RenameRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Folder_operationsRequestBuilder"/> and sets the default values.

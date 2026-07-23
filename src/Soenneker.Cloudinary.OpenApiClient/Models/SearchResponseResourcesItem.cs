@@ -29,11 +29,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessibilityAnalysisProperty AccessibilityAnalysis { get; set; }
 #endif
-        /// <summary>The access mode of the asset.</summary>
+        /// <summary>The access mode of the asset. Null when not explicitly set.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode? AccessMode { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The aspect ratio of the asset (width/height).</summary>
+        /// <summary>The aspect ratio of the asset (width/height). Null for non-visual assets (e.g. raw, audio).</summary>
         public float? AspectRatio { get; set; }
         /// <summary>The folder where the asset is stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -97,7 +97,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Filename { get; set; }
 #endif
-        /// <summary>The format of the asset.</summary>
+        /// <summary>The format of the asset. Null for raw assets, which have no format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Format { get; set; }
@@ -105,7 +105,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Format { get; set; }
 #endif
-        /// <summary>The height of the asset in pixels.</summary>
+        /// <summary>The height of the asset in pixels. Null for non-visual assets (e.g. raw, audio).</summary>
         public int? Height { get; set; }
         /// <summary>Results of image analysis.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -131,7 +131,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemMetadataProperty Metadata { get; set; }
 #endif
-        /// <summary>The total number of pixels in the asset.</summary>
+        /// <summary>The total number of pixels in the asset. Null for non-visual assets (e.g. raw, audio).</summary>
         public int? Pixels { get; set; }
         /// <summary>The public identifier that is used to build the URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -197,7 +197,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>The version number of the asset.</summary>
         public int? Version { get; set; }
-        /// <summary>The width of the asset in pixels.</summary>
+        /// <summary>The width of the asset in pixels. Null for non-visual assets (e.g. raw, audio).</summary>
         public int? Width { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItem"/> and sets the default values.

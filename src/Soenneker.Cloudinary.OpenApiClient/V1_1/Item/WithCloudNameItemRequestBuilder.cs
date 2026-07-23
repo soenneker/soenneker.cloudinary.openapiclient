@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Derived_resources;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Download_backup;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Eval;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item;
@@ -48,6 +49,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Download_backup.Download_backupRequestBuilder Download_backup
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Download_backup.Download_backupRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The eval property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Eval.EvalRequestBuilder Eval
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Eval.EvalRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The folder_operations property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Folder_operationsRequestBuilder Folder_operations

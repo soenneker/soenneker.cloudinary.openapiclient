@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset.Destroy;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset.Download;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset.Destroy.DestroyRequestBuilder Destroy
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset.Destroy.DestroyRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The download property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset.Download.DownloadRequestBuilder Download
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset.Download.DownloadRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Asset.AssetRequestBuilder"/> and sets the default values.

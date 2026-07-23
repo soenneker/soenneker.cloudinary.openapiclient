@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>The access mode of the asset.</summary>
+    /// <summary>The access mode of the asset. Null when not explicitly set.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum SearchResponseResourcesItemAccessMode
     {

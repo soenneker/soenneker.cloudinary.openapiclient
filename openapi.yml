@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Cloudinary API v1.1
-  version: 0.5.5
+  version: 0.7.4 # x-release-please-version
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -32,6 +32,7 @@ security:
   - oauth2:
       - asset_management
       - upload
+      - media_generation
 tags:
   - name: upload
     description: Uploads files to the active product environment.
@@ -75,6 +76,10 @@ tags:
     description: APIs for searching resources using text and visual search capabilities
   - name: people
     description: APIs for accessing and managing face recognition results.
+  - name: Generation
+    description: Generate images from text prompts using AI models.
+  - name: Tasks
+    description: Query the status of async generation tasks.
 paths:
   /v1_1/{cloud_name}/{resource_type}/upload:
     parameters:
@@ -829,6 +834,105 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/asset/download:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+    get:
+      x-speakeasy-mcp:
+        name: download-asset-by-asset-id
+        disabled: true
+        scopes:
+          - admin
+      summary: Download an asset by asset ID
+      description: |
+        Generates a download link for a specific asset identified by its immutable asset ID,
+        instead of the resource type, delivery type and public ID.
+      tags:
+        - assets
+      operationId: downloadAssetByAssetId
+      parameters:
+        - $ref: '#/components/parameters/asset_id_query'
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+          description: The format to convert the asset to before downloading.
+        - name: transformation
+          in: query
+          required: false
+          schema:
+            type: string
+          description: A transformation to apply to the asset before downloading.
+        - name: attachment
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+          description: Whether to force download as an attachment.
+        - name: target_filename
+          in: query
+          required: false
+          schema:
+            type: string
+          description: The desired filename for the downloaded file.
+        - name: streaming_attachment
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: Whether to stream a video asset as an attachment.
+        - name: expires_at
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+          description: Unix timestamp indicating when the download URL should expire.
+        - $ref: '#/components/parameters/api_key_query'
+        - $ref: '#/components/parameters/signature_query'
+        - $ref: '#/components/parameters/timestamp_query'
+      responses:
+        '200':
+          description: Asset downloaded successfully
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+            video/*:
+              schema:
+                type: string
+                format: binary
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request (e.g., missing or invalid asset_id)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '403':
+          description: Forbidden (e.g., insufficient permissions for private assets)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
   /v1_1/{cloud_name}/{resource_type}/text:
     parameters:
       - $ref: '#/components/parameters/cloud_name'
@@ -892,6 +996,7 @@ paths:
           - librarian
           - builder
         title: Concatenate Video Segments
+        disabled: true
       requestBody:
         description: The concat request parameters.
         required: true
@@ -1896,6 +2001,105 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/metadata_field_datasource_values_array'
+        '401':
+          description: authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: metadata field not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/metadata_fields/{external_id}/datasource/order:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+      - name: external_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The external ID of the metadata field whose datasource is reordered.
+    post:
+      x-speakeasy-mcp:
+        name: order-metadata-datasource-post
+        scopes:
+          - builder
+        title: Order Metadata Datasource
+        idempotentHint: true
+        disabled: true
+      operationId: orderMetadataFieldDatasourcePost
+      summary: Order the datasource values of a metadata field
+      description: Reorders the allowed values (the datasource) of a metadata field according to the given field and direction. This is the backward-compatible variant of the order endpoint.
+      tags:
+        - metadata_fields
+      requestBody:
+        description: The ordering criteria for the datasource values.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/datasource_order_request'
+      responses:
+        '200':
+          description: datasource reordered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/metadata_field_datasource_values_array'
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: metadata field not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+    put:
+      x-speakeasy-mcp:
+        name: order-metadata-datasource
+        scopes:
+          - builder
+        title: Order Metadata Datasource
+        idempotentHint: true
+        disabled: true
+      operationId: orderMetadataFieldDatasource
+      summary: Order the datasource values of a metadata field
+      description: Reorders the allowed values (the datasource) of a metadata field according to the given field and direction.
+      tags:
+        - metadata_fields
+      requestBody:
+        description: The ordering criteria for the datasource values.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/datasource_order_request'
+      responses:
+        '200':
+          description: datasource reordered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/metadata_field_datasource_values_array'
+        '400':
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
         '401':
           description: authentication error
           content:
@@ -4366,6 +4570,198 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/folder_operations/rename:
+    put:
+      x-speakeasy-mcp:
+        name: rename-folder
+        scopes:
+          - librarian
+        title: Rename Folder
+        idempotentHint: true
+        disabled: true
+      summary: Rename or move a folder
+      description: Renames or moves the folder at the specified path, along with all the assets it contains, to a new path.
+      tags:
+        - folders
+      operationId: renameFolderOperation
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The source and destination folder paths.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/folder_rename_request'
+      responses:
+        '200':
+          description: The folder was successfully renamed or moved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/folder_rename_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/folders/by_id:
+    put:
+      x-speakeasy-mcp:
+        name: get-folder-by-id
+        scopes:
+          - librarian
+        title: Get Folder By ID
+        idempotentHint: true
+        disabled: true
+      summary: Get a folder by its identifier
+      description: Returns the details of the folder with the specified identifier, including its ancestors.
+      tags:
+        - folders
+      operationId: getFolderById
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The identifier of the folder to retrieve.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/folder_by_id_request'
+      responses:
+        '200':
+          description: The folder was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/folder_detail_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/folders/by_path:
+    put:
+      x-speakeasy-mcp:
+        name: get-folder-by-path
+        scopes:
+          - librarian
+        title: Get Folder By Path
+        idempotentHint: true
+        disabled: true
+      summary: Get a folder by its path
+      description: Returns the details of the folder at the specified path, including its ancestors.
+      tags:
+        - folders
+      operationId: getFolderByPath
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The path of the folder to retrieve.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/folder_by_path_request'
+      responses:
+        '200':
+          description: The folder was successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/folder_detail_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/folders/descendants:
+    put:
+      x-speakeasy-mcp:
+        name: get-folder-descendants
+        scopes:
+          - librarian
+        title: Get Folder Descendants
+        idempotentHint: true
+        disabled: true
+      summary: Get the descendants of a folder
+      description: Returns the descendant folders of the folder with the specified identifier, optionally filtered to a set of folder identifiers.
+      tags:
+        - folders
+      operationId: getFolderDescendants
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The parent folder identifier and optional filter.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/folder_descendants_request'
+      responses:
+        '200':
+          description: The descendant folders were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/folder_descendants_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: Folder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
   /v1_1/{cloud_name}/derived_resources:
     delete:
       x-speakeasy-mcp:
@@ -4404,6 +4800,249 @@ paths:
                 $ref: '#/components/schemas/api_error'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/derived_resources/invalidate_by_urls:
+    delete:
+      x-speakeasy-mcp:
+        name: invalidate-derived-by-urls
+        scopes:
+          - librarian
+        title: Invalidate Derived Assets By URLs
+        destructiveHint: true
+        idempotentHint: true
+        disabled: true
+      summary: Invalidate derived assets by delivery URLs
+      description: Deletes and invalidates the cached derived assets that back the specified delivery URLs.
+      tags:
+        - assets
+      operationId: invalidateDerivedByUrls
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The delivery URLs whose derived assets should be invalidated.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invalidate_by_urls_request'
+      responses:
+        '200':
+          description: The derived assets were successfully invalidated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invalidate_by_urls_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/resources/get_resource:
+    post:
+      x-speakeasy-mcp:
+        name: get-resource-by-body
+        scopes:
+          - librarian
+        title: Get Resource By Body Params
+        readOnlyHint: true
+        idempotentHint: true
+        disabled: true
+      summary: Get the details of a single asset by body parameters
+      description: Returns the details of a single asset identified by its public ID, delivery type, and resource type passed in the request body.
+      tags:
+        - assets
+      operationId: getResourceByBody
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The identifying attributes of the asset to retrieve.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/resource_get_by_body_request'
+      responses:
+        '200':
+          description: The asset details were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resource_internal_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/resources/update:
+    post:
+      x-speakeasy-mcp:
+        name: update-resource-by-body
+        scopes:
+          - librarian
+        title: Update Resource By Body Params
+        disabled: true
+      summary: Update the details of a single asset by body parameters
+      description: Updates the details of an existing asset (such as tags, contextual metadata, structured metadata, and moderation status) identified by its public ID, delivery type, and resource type passed in the request body.
+      tags:
+        - assets
+      operationId: updateResourceByBody
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The asset identifiers plus the attributes to update.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/resource_update_by_body_request'
+      responses:
+        '200':
+          description: The asset was successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resource_internal_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/resources/by_container_id/{container_id}:
+    get:
+      x-speakeasy-mcp:
+        name: list-resources-by-container-id
+        scopes:
+          - librarian
+        title: List Resources By Container ID
+        readOnlyHint: true
+        idempotentHint: true
+        disabled: true
+      summary: List the assets in a folder by container ID
+      description: Returns the assets contained in the folder identified by the given container ID.
+      tags:
+        - assets
+      operationId: listResourcesByContainerId
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+        - name: container_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The immutable identifier of the folder container whose assets are listed.
+          example: cd7e9d690a014c68ae8b58f08e090cb03a
+        - $ref: '#/components/parameters/max_results_query'
+        - $ref: '#/components/parameters/next_cursor_query'
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+          description: The field by which the assets are sorted. Default is "uploaded_at".
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: A comma-separated list of asset fields to include in each returned asset.
+      responses:
+        '200':
+          description: The assets in the folder were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resources_by_container_id_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '403':
+          description: Folder decoupling is not enabled for the product environment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/eval:
+    post:
+      x-speakeasy-mcp:
+        name: eval-upload-params
+        scopes:
+          - librarian
+        title: Evaluate Upload Parameters
+        disabled: true
+      summary: Evaluate a dynamic upload-parameter expression
+      description: Evaluates a dynamic eval expression against the supplied upload parameters and returns the resulting upload parameters.
+      tags:
+        - upload
+      operationId: evalUploadParams
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The eval expression and the upload parameters to evaluate it against.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/eval_request'
+      responses:
+        '200':
+          description: The evaluated upload parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eval_response'
+        '400':
+          description: Bad request (e.g. an invalid eval expression).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Authentication error.
           content:
             application/json:
               schema:
@@ -4510,6 +5149,7 @@ paths:
         scopes:
           - librarian
         title: Create Initial Backup
+        disabled: true
       operationId: createInitialBackup
       summary: Create initial backup
       description: |
@@ -4569,6 +5209,7 @@ paths:
         title: List Initial Backups
         readOnlyHint: true
         idempotentHint: true
+        disabled: true
       operationId: listInitialBackups
       summary: List initial backups
       description: Lists initial backup operations for the active product environment, ordered from most recent to oldest.
@@ -4611,6 +5252,7 @@ paths:
         title: Get Initial Backup
         readOnlyHint: true
         idempotentHint: true
+        disabled: true
       operationId: getInitialBackup
       summary: Get initial backup
       description: Retrieves the progress and status of a single initial backup operation by its ID.
@@ -4913,11 +5555,240 @@ paths:
               example:
                 error:
                   message: Can't find Person with id nonexistent
+  /v1_1/{cloud_name}/people/inspect:
+    post:
+      x-speakeasy-mcp:
+        name: inspect-people-permissions
+        scopes:
+          - admin
+        title: Inspect People Permissions
+        readOnlyHint: true
+        idempotentHint: true
+        disabled: true
+      summary: Inspect the caller's permitted actions on people
+      description: Returns, for each requested person and action, whether the authenticated caller is permitted to perform that action.
+      tags:
+        - people
+      operationId: inspectPeoplePermissions
+      parameters:
+        - $ref: '#/components/parameters/cloud_name'
+      requestBody:
+        description: The people and actions to inspect.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/people_inspect_request'
+      responses:
+        '200':
+          description: The permission inspection results were successfully computed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/people_inspect_response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+  /v2/generate/{cloud_name}/text_to_image:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      x-speakeasy-mcp:
+        name: generate-image
+        scopes:
+          - builder
+        title: Generate an Image
+      tags:
+        - Generation
+      summary: Generate an image
+      description: >
+        Generate an image from a text prompt using AI models.
+
+
+        The model is selected via the optional `model` object:
+
+        1. If `model.id` is provided, use that exact model.
+
+        2. Else if `model.family` (+ optional `model.tier`) is provided, resolve
+        via the model registry; a missing tier defaults to `standard`.
+
+        3. If `model` is omitted, use the global default (nano-banana / premium,
+        i.e. `nano-banana-2`).
+      operationId: generate_image
+      requestBody:
+        required: true
+        description: A JSON object containing the generation request parameters.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateImageRequest"
+            examples:
+              BasicExample:
+                $ref: "#/components/examples/GenerateImageBasicExample"
+              DeclarativeSizeExample:
+                $ref: "#/components/examples/GenerateImageDeclarativeSizeExample"
+              DimensionsSizeExample:
+                $ref: "#/components/examples/GenerateImageDimensionsSizeExample"
+              AsyncExample:
+                $ref: "#/components/examples/GenerateImageAsyncExample"
+      responses:
+        "200":
+          description: Image generated successfully (synchronous).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateImageResult"
+              examples:
+                Success:
+                  $ref: "#/components/examples/GenerateImageSuccessExample"
+                SuccessManagedAsset:
+                  $ref: "#/components/examples/GenerateImageManagedAssetSuccessExample"
+        "202":
+          $ref: "#/components/responses/GenerationAcceptedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedResponse"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntityResponse"
+        "429":
+          $ref: "#/components/responses/RateLimitedResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "502":
+          $ref: "#/components/responses/ModelUnavailableResponse"
+  /v2/generate/{cloud_name}/image_to_image:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+    post:
+      x-speakeasy-mcp:
+        name: generate-image-from-images
+        scopes:
+          - builder
+        title: Generate an Image from Reference Images
+      tags:
+        - Generation
+      summary: Generate an image from reference images
+      description: >
+        Generate an image guided by one or more **reference images** — restyle,
+
+        on-brand variants, character consistency, virtual try-on, edit/extend —
+
+        steered by `prompt`.
+
+
+        Only edit-capable models are selectable here. The model is selected via
+
+        the optional `model` object, exactly like `text_to_image`, but IDs are
+
+        restricted to edit models:
+
+        1. If `model.id` is provided, use that exact edit model.
+
+        2. Else if `model.family` (+ optional `model.tier`) is provided, resolve
+           to that family's edit model (e.g. `nano-banana` / `premium` →
+           `nano-banana-2-edit`).
+        3. If `model` is omitted, use the default edit model
+        (`nano-banana-2-edit`).
+
+
+        Each reference image is either a stored managed asset (by `asset_id`,
+
+        read-permission checked) or an external HTTPS `url`.
+      operationId: generate_image_from_images
+      requestBody:
+        required: true
+        description: A JSON object containing the image-to-image generation request parameters.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImageToImageRequest"
+      responses:
+        "200":
+          description: Image generated successfully (synchronous).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateImageResult"
+        "202":
+          $ref: "#/components/responses/GenerationAcceptedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedResponse"
+        "403":
+          $ref: "#/components/responses/ForbiddenResponse"
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntityResponse"
+        "429":
+          $ref: "#/components/responses/RateLimitedResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        "502":
+          $ref: "#/components/responses/ModelUnavailableResponse"
+  /v2/generate/{cloud_name}/tasks/{task_id}:
+    parameters:
+      - $ref: "#/components/parameters/cloudName"
+      - in: path
+        name: task_id
+        description: The ID of the generation task.
+        required: true
+        schema:
+          type: string
+          pattern: ^[a-f0-9]{1,256}$
+        examples:
+          default:
+            value: 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
+    get:
+      x-speakeasy-mcp:
+        name: get-generation-task
+        scopes:
+          - builder
+        title: Get a Generation Task
+        readOnlyHint: true
+        idempotentHint: true
+      tags:
+        - Tasks
+      summary: Get a generation task
+      description: Get the status of a generation task.
+      operationId: get_generation_task_status
+      responses:
+        "200":
+          description: Generation task status.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskResponse"
+              examples:
+                Completed:
+                  $ref: "#/components/examples/GenerateTaskCompletedExample"
+        "400":
+          $ref: "#/components/responses/BadRequestResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedResponse"
+        "404":
+          $ref: "#/components/responses/NotFoundResponse"
+        "429":
+          $ref: "#/components/responses/RateLimitedResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerErrorResponse"
 components:
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
+      description: Basic authentication using Cloudinary API Key and API Secret.
     oauth2:
       type: oauth2
       description: OAuth2 Authorization Code flow for user authentication
@@ -4928,6 +5799,7 @@ components:
           scopes:
             asset_management: Allows managing assets, including reading, updating, and deleting.
             upload: Allows uploading new assets.
+            media_generation: Generate media
   parameters:
     cloud_name:
       name: cloud_name
@@ -5389,6 +6261,16 @@ components:
         type: string
       description: The unique identifier of the initial backup operation.
       example: abc123def456
+    cloudName:
+      in: path
+      name: cloud_name
+      description: The cloud name of your Cloudinary product environment.
+      schema:
+        type: string
+      required: true
+      examples:
+        default:
+          value: your-cloud-name
   schemas:
     upload_resource_type:
       type: string
@@ -5516,17 +6398,17 @@ components:
         $ref: '#/components/schemas/region_coordinates'
       example:
         face:
-          - - 100
-            - 200
-          - - 300
-            - 400
+          -   - 100
+              - 200
+          -   - 300
+              - 400
         body:
-          - - 50
-            - 60
-          - - 70
-            - 80
-          - - 90
-            - 100
+          -   - 50
+              - 60
+          -   - 70
+              - 80
+          -   - 90
+              - 100
     responsive_breakpoint:
       type: object
       properties:
@@ -7000,6 +7882,9 @@ components:
             oneOf:
               - type: string
               - type: boolean
+              - type: array
+                items:
+                  type: string
         external_id:
           type: string
           description: The unique identifier for the upload preset.
@@ -7100,9 +7985,9 @@ components:
               type: object
               additionalProperties: true
           example:
-            - - width: 100
-                height: 100
-                crop: thumb
+            -   - width: 100
+                  height: 100
+                  crop: thumb
         transformation:
           type: array
           description: Parsed incoming transformation steps.
@@ -7240,6 +8125,13 @@ components:
             excluded_from_search:
               type: boolean
               description: Whether the field is excluded from UI search by default.
+        group:
+          type:
+            - string
+            - 'null'
+          description: |
+            The group used to organize this metadata field into a collapsible section in the UI. Defaults to "default". Purely presentational — it does not affect rules, search, or value validation.
+          example: address
         datasource:
           type:
             - object
@@ -7378,6 +8270,21 @@ components:
         payload:
           type: object
           description: Metadata payload for rule-based inference.
+    datasource_order_request:
+      type: object
+      description: The ordering criteria for a metadata field's datasource values.
+      properties:
+        order_by:
+          type: string
+          description: The datasource value attribute to sort by (for example, "value" or "external_id").
+          example: value
+        direction:
+          allOf:
+            - $ref: '#/components/schemas/direction_enum'
+          description: The sort direction for the datasource values. Default is "asc".
+          example: asc
+      required:
+        - order_by
     metadata_rule_apply_value:
       type: object
       description: Applies a specific value to the metadata field when the rule condition is met.
@@ -8802,7 +9709,7 @@ components:
           - name: b
             path: folder/b
             external_id: hijklmn0987654321
-        next_cursor: null
+        next_cursor:
         total_count: 2
     move_folder_request:
       description: The folder move/rename request.
@@ -9077,6 +9984,126 @@ components:
         operation: add
         roles:
           - cld::role::folder::contributor
+    folder_rename_request:
+      type: object
+      description: The source and destination folder paths.
+      properties:
+        path:
+          type: string
+          description: The full path of the folder to rename or move.
+          example: product/test
+        to_path:
+          type: string
+          description: The new full path for the folder.
+          example: product/test_renamed
+        resources_limit:
+          type: integer
+          description: The maximum number of assets that may be moved by the rename. Assets beyond this limit cause the rename to be rejected.
+          example: 100000
+        resources_size_limit:
+          type: integer
+          description: The maximum total size, in bytes, of the assets that may be moved by the rename.
+          example: 1099511627776
+        max_derived:
+          type: integer
+          description: The maximum number of derived assets that may be moved by the rename.
+          example: 1000000
+      required:
+        - path
+        - to_path
+    folder_rename_response:
+      type: object
+      description: The result of renaming or moving a folder.
+      properties:
+        folder_deleted:
+          type: boolean
+          description: Whether the source folder was deleted after the move.
+        moved:
+          type: integer
+          description: The number of assets successfully moved.
+        rejected:
+          type: integer
+          description: The number of assets rejected during the move.
+        failed:
+          type: integer
+          description: The number of assets that failed to move.
+    folder_by_id_request:
+      type: object
+      description: The identifier of the folder to retrieve.
+      properties:
+        id:
+          type: string
+          description: The immutable identifier of the folder to retrieve.
+          example: cd7e9d690a014c68ae8b58f08e090cb03a
+      required:
+        - id
+    folder_detail_response:
+      description: |
+        The details of a folder. Returns the standard folder fields plus aggregation and ancestor
+        fields when available.
+      allOf:
+        - $ref: '#/components/schemas/folder'
+        - type: object
+          properties:
+            resource_count:
+              type: integer
+              description: The number of assets directly within the folder.
+            total_bytes:
+              type: number
+              description: The total size, in bytes, of the assets within the folder.
+            last_uploaded_at:
+              type:
+                - integer
+                - 'null'
+              description: The Unix timestamp of the most recent upload into the folder.
+            ancestors:
+              type: array
+              description: The ancestor folders of this folder, ordered from root to parent.
+              items:
+                $ref: '#/components/schemas/folder'
+          additionalProperties: true
+    folder_by_path_request:
+      type: object
+      description: The path of the folder to retrieve.
+      properties:
+        path:
+          type: string
+          description: The full path of the folder to retrieve. Use an empty string for the root folder.
+          example: product/test
+        case_sensitive:
+          type: boolean
+          description: Whether to match the folder path case-sensitively. If false, the path is matched case-insensitively.
+      required:
+        - path
+    folder_descendants_request:
+      type: object
+      description: The parent folder identifier and optional descendant filter.
+      properties:
+        id:
+          type: string
+          description: The immutable identifier of the parent folder whose descendants are returned.
+          example: cd7e9d690a014c68ae8b58f08e090cb03a
+        filter_ids:
+          type: array
+          description: A list of folder identifiers to restrict the returned descendants to.
+          items:
+            type: string
+        inclusive:
+          type: boolean
+          description: Whether to include the parent folder itself in the results. If false, only descendants are returned.
+      required:
+        - id
+    folder_descendants_response:
+      type: object
+      description: The descendant folders of a folder.
+      properties:
+        folders:
+          type: array
+          description: The descendant folders.
+          items:
+            $ref: '#/components/schemas/folder_detail_response'
+      required:
+        - folders
     DerivedDestroyRequest:
       type: object
       description: Request parameters for deleting derived resources
@@ -9130,6 +10157,204 @@ components:
               example:
                 - /image/upload/w_100/sample
                 - /image/upload/w_200/sample
+    invalidate_by_urls_request:
+      type: object
+      description: The set of delivery URLs whose derived assets should be invalidated.
+      properties:
+        urls:
+          type: array
+          description: The delivery URLs whose cached derived assets should be invalidated.
+          items:
+            type: string
+          example:
+            - https://res.cloudinary.com/demo/image/upload/w_100/sample.jpg
+        skip_reporting:
+          type: boolean
+          description: Whether to skip recording this invalidation against the product environment usage. If false, the invalidation is counted towards usage. Default is false.
+      required:
+        - urls
+    invalidate_by_urls_response:
+      type: object
+      description: The result of invalidating derived assets by delivery URLs.
+      properties:
+        cdn_invalidated:
+          type: boolean
+          description: Whether the assets were invalidated directly on the CDN.
+        took:
+          type: number
+          description: The time the invalidation took, in seconds.
+        urls:
+          type: array
+          description: The delivery URLs that were invalidated.
+          items:
+            type: string
+        unauthorized_urls:
+          type: array
+          description: The delivery URLs that were skipped because the caller lacked update permission.
+          items:
+            type: string
+    resource_get_by_body_request:
+      type: object
+      description: The identifying attributes of the asset to retrieve.
+      properties:
+        public_id:
+          type: string
+          description: The public ID of the asset to retrieve.
+          example: sample
+        resource_type:
+          allOf:
+            - $ref: '#/components/schemas/resource_type'
+          description: The type of the asset (image, video, or raw).
+          example: image
+        kind:
+          allOf:
+            - $ref: '#/components/schemas/managed_delivery_type'
+          description: The delivery type of the asset.
+          example: upload
+        with_elastic:
+          type: boolean
+          description: Whether to source the asset details from the search index. If false, the details are read directly from the canonical store. Default is true.
+        derived:
+          type: boolean
+          description: Whether to include the derived assets of this asset in the response. Default is true.
+        versions:
+          type: boolean
+          description: Whether to include the backup versions of this asset in the response. Default is false.
+      required:
+        - public_id
+        - resource_type
+        - kind
+      additionalProperties: true
+    resource_internal_response:
+      description: |
+        The details of a single asset. Returns the standard asset fields, plus additional
+        internal fields when accessed over the internal transport.
+      allOf:
+        - $ref: '#/components/schemas/info'
+        - type: object
+          additionalProperties: true
+    admin_context_operation:
+      type: object
+      description: A single internal contextual-metadata operation.
+      properties:
+        name:
+          type: string
+          description: The context key to operate on.
+        value:
+          type: array
+          description: The value(s) to apply for the context key.
+          items:
+            type: string
+        type:
+          type: string
+          description: The value type of the context entry.
+        op:
+          type: string
+          description: The operation to apply to the context key (for example, "+" to add or "-" to remove).
+      required:
+        - name
+    resource_update_by_body_request:
+      type: object
+      description: |
+        The asset identifiers plus the attributes to update. The identifying fields (public_id,
+        resource_type, kind) are required; the remaining update fields are optional. Additional
+        fields accepted by the asset update API are permitted.
+      properties:
+        public_id:
+          type: string
+          description: The public ID of the asset to update.
+          example: sample
+        resource_type:
+          allOf:
+            - $ref: '#/components/schemas/resource_type'
+          description: The type of the asset (image, video, or raw).
+          example: image
+        kind:
+          allOf:
+            - $ref: '#/components/schemas/managed_delivery_type'
+          description: The delivery type of the asset.
+          example: upload
+        tags:
+          type: array
+          description: The list of tags to assign to the asset, replacing any existing tags.
+          items:
+            type: string
+        context:
+          type: object
+          additionalProperties: true
+          description: The key-value pairs of contextual metadata to assign to the asset.
+        metadata:
+          type: object
+          additionalProperties: true
+          description: The structured metadata field values to assign to the asset.
+        asset_folder:
+          type: string
+          description: The asset folder to move the asset into.
+        display_name:
+          type: string
+          description: The display name to assign to the asset.
+        moderation_status:
+          type: string
+          enum:
+            - pending
+            - approved
+            - rejected
+          description: The moderation status to set on the asset.
+        admin_context:
+          type: array
+          description: |
+            Internal-only contextual metadata operations applied with add/remove semantics. Each
+            entry names a context key, the value(s) to apply, the value type, and the operation.
+          items:
+            $ref: '#/components/schemas/admin_context_operation'
+        response_type:
+          type: string
+          description: The shape of the asset representation to return (for example, "public").
+        skip_permission_check:
+          type: boolean
+          description: Whether to skip permission enforcement for the update. Internal use only. Default is false.
+      required:
+        - public_id
+        - resource_type
+        - kind
+      additionalProperties: true
+    resources_by_container_id_response:
+      type: object
+      description: A page of assets contained in a folder, with pagination metadata.
+      properties:
+        resources:
+          type: array
+          description: The assets contained in the folder.
+          items:
+            $ref: '#/components/schemas/resource_internal_response'
+        total_count:
+          type: integer
+          description: The total number of assets in the folder.
+        next_cursor:
+          type: string
+          description: A cursor for retrieving the next page of results, when more results are available.
+      required:
+        - resources
+    eval_request:
+      type: object
+      description: |
+        The eval expression and the upload parameters to evaluate it against. The `eval` field holds
+        the dynamic expression; any other upload parameters may be supplied alongside it.
+      properties:
+        eval:
+          type: string
+          description: The dynamic eval expression to evaluate against the upload parameters.
+          example: upload_options.quality_analysis = resource_info.quality_score * 100
+        public_id:
+          type: string
+          description: The public ID of the asset the eval expression applies to.
+      required:
+        - eval
+      additionalProperties: true
+    eval_response:
+      type: object
+      description: The upload parameters resulting from evaluating the eval expression.
+      additionalProperties: true
     search_parameters:
       type: object
       description: Common parameters for resource search operations.
@@ -9291,8 +10516,10 @@ components:
                 description: The display name of the asset.
                 example: blue_sweater
               format:
-                type: string
-                description: The format of the asset.
+                type:
+                  - string
+                  - 'null'
+                description: The format of the asset. Null for raw assets, which have no format.
                 example: jpg
               version:
                 type: integer
@@ -9327,21 +10554,29 @@ components:
                 description: The size of the backup asset in bytes.
                 example: 71063
               width:
-                type: integer
-                description: The width of the asset in pixels.
+                type:
+                  - integer
+                  - 'null'
+                description: The width of the asset in pixels. Null for non-visual assets (e.g. raw, audio).
                 example: 4800
               height:
-                type: integer
-                description: The height of the asset in pixels.
+                type:
+                  - integer
+                  - 'null'
+                description: The height of the asset in pixels. Null for non-visual assets (e.g. raw, audio).
                 example: 6400
               aspect_ratio:
-                type: number
+                type:
+                  - number
+                  - 'null'
                 format: float
-                description: The aspect ratio of the asset (width/height).
+                description: The aspect ratio of the asset (width/height). Null for non-visual assets (e.g. raw, audio).
                 example: 0.75
               pixels:
-                type: integer
-                description: The total number of pixels in the asset.
+                type:
+                  - integer
+                  - 'null'
+                description: The total number of pixels in the asset. Null for non-visual assets (e.g. raw, audio).
                 example: 307200
               url:
                 type: string
@@ -9363,18 +10598,21 @@ components:
                   - pending
                 example: active
               access_mode:
-                type: string
-                description: The access mode of the asset.
+                type:
+                  - string
+                  - 'null'
+                description: The access mode of the asset. Null when not explicitly set.
                 enum:
                   - public
                   - authenticated
+                  - 
                 example: public
               access_control:
                 anyOf:
                   - $ref: '#/components/schemas/access_control'
                   - type: 'null'
                 description: The access control settings for the asset.
-                example: null
+                example:
               etag:
                 type: string
                 description: The ETag of the asset.
@@ -9730,6 +10968,790 @@ components:
           example: Jane Doe
         status:
           $ref: '#/components/schemas/person_status'
+    people_inspection_group:
+      type: object
+      description: The items to inspect for a type and the actions to check against them.
+      properties:
+        items:
+          type: object
+          additionalProperties: true
+          description: A map of caller-supplied cache keys to the person identifier to inspect.
+        actions:
+          type: object
+          additionalProperties: true
+          description: A map of action names to optional action context to inspect.
+      required:
+        - items
+        - actions
+    people_inspection_targets:
+      type: object
+      description: A map of inspectable types to the items and actions to inspect.
+      properties:
+        Person:
+          $ref: '#/components/schemas/people_inspection_group'
+      additionalProperties: true
+    people_inspect_request:
+      type: object
+      description: The people and actions to inspect.
+      properties:
+        inspections:
+          $ref: '#/components/schemas/people_inspection_targets'
+      required:
+        - inspections
+    people_inspect_response:
+      type: object
+      description: The permission inspection results.
+      properties:
+        message:
+          type: string
+          description: A status message for the inspection request.
+          example: ok
+        inspections:
+          type: object
+          additionalProperties: true
+          description: A map of inspected type to per-item, per-action permission results (true if permitted).
+      required:
+        - inspections
+    GenerateImageRequest:
+      type: object
+      description: |
+        Parameters for an image-generation request. Only `prompt` is required;
+        all other fields fall back to documented defaults.
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+          minLength: 1
+          maxLength: 4000
+          description: The text description of the image to generate.
+          examples:
+            - A photorealistic sunset over a mountain lake, 8K detail
+        model:
+          $ref: "#/components/schemas/ModelSelection"
+        image_size:
+          $ref: "#/components/schemas/ImageSize"
+        format:
+          $ref: "#/components/schemas/ImageFormat"
+        target:
+          $ref: "#/components/schemas/Target"
+        seed:
+          $ref: "#/components/schemas/Seed"
+        async:
+          $ref: "#/components/schemas/Async"
+        notification_url:
+          $ref: "#/components/schemas/NotificationUrl"
+    ImageFormat:
+      type: string
+      enum:
+        - jpeg
+        - png
+        - webp
+      description: |
+        Desired output image format. Optional; defaults to `png` when omitted.
+        Mapped to the closest format the chosen model supports — `webp` falls
+        back to `png` on models that don't support it (e.g. FLUX.2 Pro), and the
+        request is ignored entirely by models that don't expose a format option
+        (e.g. Recraft).
+      examples:
+        - png
+    Seed:
+      type:
+        - integer
+        - "null"
+      minimum: 0
+      description: |
+        Seed for reproducible generation. Supported by most models. Silently
+        ignored by models that don't support it.
+      examples:
+        - 42
+    Async:
+      type: boolean
+      default: false
+      description: |
+        Whether to perform the generation asynchronously. When true, the API
+        returns immediately with a 202 and completes in the background. Once
+        complete, a webhook notification is sent to the specified URL and/or to
+        the URLs defined in the product environment's settings.
+    NotificationUrl:
+      type: string
+      format: uri
+      description: The webhook URL to notify when the generation is complete. Only relevant when `async` is set to true.
+      examples:
+        - https://path.to/webhook
+    ImageToImageRequest:
+      type: object
+      description: |
+        Parameters for an image-to-image (reference-guided) request. Both
+        `prompt` (the edit instruction) and `reference_images` are required; all
+        other fields fall back to the same defaults as `text_to_image`.
+      required:
+        - prompt
+        - reference_images
+      properties:
+        prompt:
+          type: string
+          minLength: 1
+          maxLength: 4000
+          description: The text instruction describing the desired edit / output.
+          examples:
+            - Place the product from [1] on a marble kitchen counter, soft morning light
+        reference_images:
+          type: array
+          minItems: 1
+          maxItems: 4
+          description: |
+            Reference images that steer the generation, in order (1-indexed; the
+            prompt may address them positionally as `[1]`, `[2]`, …). Each entry
+            is either a managed asset (by `asset_id`) or an external `url`. The
+            platform accepts up to 4; a specific model may accept fewer (e.g.
+            Recraft accepts 1) — exceeding the selected model's capacity returns
+            400.
+          items:
+            $ref: "#/components/schemas/ReferenceImage"
+        model:
+          $ref: "#/components/schemas/ModelSelection"
+        image_size:
+          $ref: "#/components/schemas/ImageSize"
+        format:
+          $ref: "#/components/schemas/ImageFormat"
+        target:
+          $ref: "#/components/schemas/Target"
+        seed:
+          $ref: "#/components/schemas/Seed"
+        async:
+          $ref: "#/components/schemas/Async"
+        notification_url:
+          $ref: "#/components/schemas/NotificationUrl"
+    ReferenceImage:
+      description: |
+        A single reference image, in **one** of two mutually exclusive forms
+        determined by `source_type`:
+          * `ManagedAssetReference`: a managed asset in the caller's product
+            environment, by `asset_id` (read permission is checked).
+          * `UrlReference`: an external image by HTTPS `url`.
+      oneOf:
+        - $ref: "#/components/schemas/ManagedAssetReference"
+        - $ref: "#/components/schemas/UrlReference"
+      discriminator:
+        propertyName: source_type
+        mapping:
+          managed_asset: "#/components/schemas/ManagedAssetReference"
+          url: "#/components/schemas/UrlReference"
+    ManagedAssetReference:
+      type: object
+      title: ManagedAssetReference
+      description: |
+        A reference to a managed asset in the caller's product environment, by
+        asset ID.
+      additionalProperties: false
+      required:
+        - source_type
+        - asset_id
+      properties:
+        source_type:
+          type: string
+          description: Discriminator identifying this as a managed-asset reference.
+          enum:
+            - managed_asset
+        asset_id:
+          type: string
+          description: Cloudinary asset ID of the reference image. READ permission is enforced.
+          examples:
+            - 0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a
+    UrlReference:
+      type: object
+      title: UrlReference
+      description: A reference to an external image by HTTPS URL.
+      additionalProperties: false
+      required:
+        - source_type
+        - url
+      properties:
+        source_type:
+          type: string
+          description: Discriminator identifying this as an external-URL reference.
+          enum:
+            - url
+        url:
+          type: string
+          format: uri
+          description: HTTPS URL of the reference image.
+          examples:
+            - https://example.com/product.png
+    ModelSelection:
+      description: |
+        Selects the model, in one of two mutually exclusive forms (omit to use
+        the global default):
+          * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time
+            selector.
+          * `ModelById`: an explicit `id`, pinning one exact model.
+      oneOf:
+        - $ref: "#/components/schemas/ModelByFamily"
+        - $ref: "#/components/schemas/ModelById"
+    ModelByFamily:
+      type: object
+      title: ModelByFamily
+      description: |
+        Select a model by family and quality tier; a missing `tier` defaults to
+        `standard`.
+      additionalProperties: false
+      required:
+        - family
+      properties:
+        family:
+          type: string
+          enum:
+            - flux
+            - recraft
+            - gpt-image
+            - nano-banana
+            - ideogram
+          description: >
+            Model family:
+
+            * `flux`: Photorealistic images (FLUX.2 Klein 9B / FLUX.2 Pro).
+
+            * `recraft`: Vector and illustration (Recraft V3 / Recraft V4).
+
+            * `gpt-image`: Campaign and marketing images (GPT Image 1 Mini / GPT
+            Image 2).
+
+            * `nano-banana`: General purpose generation (Nano Banana 1 / Nano
+            Banana 2).
+
+            * `ideogram`: Realism, text rendering, and artistic generation
+            (Ideogram V4).
+          examples:
+            - flux
+        tier:
+          type: string
+          enum:
+            - standard
+            - premium
+          description: Quality tier within the family. Defaults to `standard` when omitted.
+          examples:
+            - premium
+    ModelById:
+      type: object
+      title: ModelById
+      description: Pin an exact model by ID, bypassing family/tier.
+      additionalProperties: false
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          enum:
+            - nano-banana-1
+            - nano-banana-2
+            - flux-2-klein-9b
+            - flux-2-pro
+            - recraft-v3
+            - recraft-v4
+            - gpt-image-1-mini
+            - gpt-image-2
+            - ideogram-v4-base
+            - ideogram-v4-turbo
+            - nano-banana-1-edit
+            - nano-banana-2-edit
+            - flux-2-klein-9b-edit
+            - flux-2-pro-edit
+            - recraft-v3-edit
+            - gpt-image-1-mini-edit
+            - gpt-image-2-edit
+          description: |
+            Exact model identifier; overrides family/tier when provided. The
+            `-edit` models accept reference images and are selectable only on
+            `image_to_image`; the others only on `text_to_image`.
+          examples:
+            - flux-2-pro
+    ImageSize:
+      description: |
+        Desired output size, given in **one** of two mutually exclusive forms:
+
+          * `DimensionsImageSize`: `width` and `height` in pixels, for precise
+            control.
+          * `DeclarativeImageSize`: `aspect_ratio` (and an optional `resolution`
+            tier), resolved server-side to the closest size the chosen model
+            supports. This is the portable form: most providers natively accept
+            an aspect ratio plus a resolution tier rather than raw pixels.
+
+        Omit `image_size` entirely to use the model's default size.
+      oneOf:
+        - $ref: "#/components/schemas/DimensionsImageSize"
+        - $ref: "#/components/schemas/DeclarativeImageSize"
+    DimensionsImageSize:
+      type: object
+      title: DimensionsImageSize
+      description: Exact output dimensions in pixels. Both `width` and `height` are required together.
+      additionalProperties: false
+      required:
+        - width
+        - height
+      properties:
+        width:
+          type: integer
+          minimum: 64
+          maximum: 4096
+          description: Output width in pixels.
+          examples:
+            - 1280
+        height:
+          type: integer
+          minimum: 64
+          maximum: 4096
+          description: Output height in pixels.
+          examples:
+            - 720
+    DeclarativeImageSize:
+      type: object
+      title: DeclarativeImageSize
+      description: |
+        Declarative output size — an aspect ratio plus an optional resolution
+        tier, resolved server-side to the nearest size the model supports.
+      additionalProperties: false
+      required:
+        - aspect_ratio
+      properties:
+        aspect_ratio:
+          type: string
+          description: |
+            Output aspect ratio, width-to-height. Limited to the core ratios
+            every model supports natively.
+          enum:
+            - 1:1
+            - 16:9
+            - 9:16
+            - 4:3
+            - 3:4
+          examples:
+            - 16:9
+        resolution:
+          type: string
+          description: |
+            Output resolution tier, measured on the longest edge. Defaults to
+            `1K` when omitted.
+            * `0.5K`: ~512 px
+            * `1K`: ~1024 px
+            * `2K`: ~2048 px
+            * `4K`: ~4096 px
+          enum:
+            - 0.5K
+            - 1K
+            - 2K
+            - 4K
+          examples:
+            - 2K
+    Target:
+      description: |
+        Where to store the generated output, determined by `target_type`.
+        Optional; defaults to a `managed_asset` target when omitted.
+      oneOf:
+        - $ref: "#/components/schemas/ManagedAssetTarget"
+        - $ref: "#/components/schemas/TemporaryTarget"
+      discriminator:
+        propertyName: target_type
+        mapping:
+          managed_asset: "#/components/schemas/ManagedAssetTarget"
+          temporary: "#/components/schemas/TemporaryTarget"
+    ManagedAssetTarget:
+      type: object
+      description: Store the output as a permanent managed asset in your Cloudinary product environment (the default).
+      additionalProperties: false
+      required:
+        - target_type
+      properties:
+        target_type:
+          type: string
+          description: Discriminator identifying this as a managed-asset target.
+          enum:
+            - managed_asset
+        public_id:
+          type: string
+          description: Public ID to store the asset under. Auto-assigned when omitted.
+          examples:
+            - my-public-id
+        upload_preset:
+          type: string
+          description: Upload preset to apply. Uses the product environment's default when omitted.
+          examples:
+            - some-preset
+    TemporaryTarget:
+      type: object
+      description: Store the output as a short-lived asset on the upload service.
+      additionalProperties: false
+      required:
+        - target_type
+      properties:
+        target_type:
+          type: string
+          description: Discriminator identifying this as a temporary target.
+          enum:
+            - temporary
+    Storage:
+      description: |
+        Where a generated asset is stored — mirrors the request `target`,
+        determined by `storage_type`. `secure_url` is always present.
+      oneOf:
+        - $ref: "#/components/schemas/ManagedAssetStorage"
+        - $ref: "#/components/schemas/TemporaryStorage"
+      discriminator:
+        propertyName: storage_type
+        mapping:
+          managed_asset: "#/components/schemas/ManagedAssetStorage"
+          temporary: "#/components/schemas/TemporaryStorage"
+    ManagedAssetStorage:
+      type: object
+      description: |
+        A generated asset stored as a permanent managed asset. Reference it in
+        other Cloudinary APIs by `asset_id`, or by the
+        `resource_type` / `type` / `public_id` triple.
+      additionalProperties: false
+      required:
+        - storage_type
+        - secure_url
+        - public_id
+        - resource_type
+        - type
+        - version
+      properties:
+        storage_type:
+          type: string
+          description: Discriminator identifying this as managed-asset storage.
+          enum:
+            - managed_asset
+        secure_url:
+          type: string
+          format: uri
+          description: The URL to fetch the generated asset.
+          examples:
+            - https://res.cloudinary.com/demo/image/upload/v1/my-public-id.png
+        asset_id:
+          type: string
+          description: Cloudinary asset ID — a stable, globally-unique reference to the asset.
+          examples:
+            - 0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a
+        public_id:
+          type: string
+          description: Public ID of the stored asset.
+          examples:
+            - my-public-id
+        resource_type:
+          type: string
+          description: Cloudinary resource type of the stored asset.
+          enum:
+            - image
+            - video
+            - raw
+          examples:
+            - image
+        type:
+          type: string
+          description: Cloudinary delivery type of the stored asset (e.g. `upload`, `private`, `authenticated`).
+          examples:
+            - upload
+        version:
+          type: integer
+          format: int64
+          description: Version of the stored asset.
+    TemporaryStorage:
+      type: object
+      description: A generated asset stored as a short-lived asset on the upload service.
+      additionalProperties: false
+      required:
+        - storage_type
+        - secure_url
+        - expires_at
+      properties:
+        storage_type:
+          type: string
+          description: Discriminator identifying this as temporary storage.
+          enum:
+            - temporary
+        secure_url:
+          type: string
+          format: uri
+          description: The URL to fetch the generated asset.
+          examples:
+            - https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/stream
+        expires_at:
+          type: string
+          format: date-time
+          description: Time in UTC when secure_url stops being valid.
+          examples:
+            - 2026-06-25T12:50:26Z
+    GenerateImageResult:
+      type: object
+      description: Successful synchronous image-generation response.
+      required:
+        - request_id
+      properties:
+        data:
+          $ref: "#/components/schemas/GeneratedAssets"
+        limits:
+          $ref: "#/components/schemas/Limits"
+        request_id:
+          type: string
+          description: Unique identifier for this request, for correlation and support.
+          examples:
+            - 17c3b70c5096df0e77e838323abb7029
+    GeneratedAssets:
+      type: object
+      description: Wrapper holding the array of generated assets.
+      required:
+        - assets
+      properties:
+        assets:
+          type: array
+          description: The generated assets. Currently a single asset is returned.
+          items:
+            $ref: "#/components/schemas/GeneratedAsset"
+    GeneratedAsset:
+      type: object
+      description: |
+        A generated asset: where it is stored (`storage`) plus its media
+        metadata. The media fields are populated once the task completes; an
+        in-progress asset carries only `storage`.
+      required:
+        - storage
+      properties:
+        storage:
+          $ref: "#/components/schemas/Storage"
+        format:
+          type: string
+          enum:
+            - png
+            - jpeg
+            - webp
+          description: The image format of the stored asset.
+          examples:
+            - png
+        width:
+          type: integer
+          description: The width of the generated image in pixels; zero if the model doesn't provide dimensions.
+          examples:
+            - 1024
+        height:
+          type: integer
+          description: The height of the generated image in pixels; zero if the model doesn't provide dimensions.
+          examples:
+            - 768
+        bytes:
+          type: integer
+          format: int64
+          description: The size of the generated image in bytes.
+          examples:
+            - 2048576
+        model:
+          $ref: "#/components/schemas/Model"
+        seed:
+          type:
+            - integer
+            - "null"
+          description: >
+            The seed used for generation. Echoes input or returns the
+            model-generated seed.
+
+            Null when the model doesn't support seeds.
+          examples:
+            - 42
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp when the image was generated.
+          examples:
+            - 2026-04-21T14:30:00Z
+    Model:
+      type: object
+      description: Identifies the model that produced a generation result.
+      required:
+        - family
+        - tier
+        - id
+      properties:
+        family:
+          type: string
+          description: The model family used.
+          examples:
+            - flux
+        tier:
+          type: string
+          description: The quality tier used.
+          examples:
+            - premium
+        id:
+          type: string
+          description: The exact model identifier used for generation.
+          examples:
+            - flux-2-pro
+    TaskStatus:
+      type: string
+      description: |
+        The status of an async generation task.
+        * `pending`: accepted and queued, not yet started.
+        * `processing`: generation is in progress.
+        * `completed`: generation finished; `result` is populated.
+        * `failed`: generation did not complete successfully.
+      enum:
+        - pending
+        - processing
+        - completed
+        - failed
+    Task:
+      type: object
+      description: |
+        An async generation task. Returned when a generation is accepted (202)
+        and from GET /tasks/{task_id} as it progresses. The `result` is filled
+        in once `status` is `completed`.
+      required:
+        - task_id
+        - status
+      properties:
+        task_id:
+          type: string
+          description: Identifier for the async generation task. Use it to poll `GET /generate/{cloud_name}/tasks/{task_id}`.
+          examples:
+            - 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
+        status:
+          $ref: "#/components/schemas/TaskStatus"
+        result:
+          type:
+            - object
+            - "null"
+          allOf:
+            - $ref: "#/components/schemas/GeneratedAssets"
+          description: |
+            The generated assets. Populated once `status` is `completed`.
+        limits:
+          $ref: "#/components/schemas/Limits"
+    TaskResponse:
+      type: object
+      description: |
+        Envelope for an async generation task — returned by the accepted (202)
+        response and by GET /tasks/{task_id}.
+      required:
+        - request_id
+      properties:
+        data:
+          $ref: "#/components/schemas/Task"
+        request_id:
+          type: string
+          description: Unique identifier for this request, for correlation and support.
+          examples:
+            - 17c3b70c5096df0e77e838323abb7029
+      examples:
+        - data:
+            task_id: 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
+            status: pending
+          request_id: 17c3b70c5096df0e77e838323abb7029
+    ErrorResponse:
+      type: object
+      description: Wrapper for error responses; includes the error object and a request_id for correlation.
+      required:
+        - error
+        - request_id
+      properties:
+        error:
+          $ref: "#/components/schemas/Error"
+        request_id:
+          type: string
+          description: Unique identifier for this request, for correlation and support.
+          examples:
+            - 17c3b70c5096df0e77e838323abb7029
+    Error:
+      type: object
+      description: Details of an error, including a coarse category for retry logic, a stable error code, and a human-readable message.
+      properties:
+        category:
+          $ref: "#/components/schemas/ErrorCategory"
+        code:
+          type: string
+          description: Stable, machine-readable error code for programmatic handling.
+          examples:
+            - MG_00001
+        message:
+          type: string
+          description: Human-readable description of what went wrong.
+          examples:
+            - missing parameters
+        details:
+          type: object
+          description: Additional structured context about the error, when available.
+          examples:
+            - parameters:
+                - prompt
+      examples:
+        - category: user_error
+          code: MG_00001
+          message: missing parameters
+          details:
+            parameters:
+              - param1
+              - param2
+    ErrorCategory:
+      type: string
+      description: >
+        Coarse classification of an error, primarily used by clients to decide
+        whether to retry.
+
+        * `user_error`: the request was invalid; do not retry without changes.
+
+        * `auth_error`: authentication or authorization failed.
+
+        * `server_error`: an unexpected server-side error; retrying may succeed.
+
+        * `rate_limit_error`: quota or rate limit exceeded; retry later.
+      enum:
+        - user_error
+        - auth_error
+        - server_error
+        - rate_limit_error
+    Limits:
+      type: object
+      description: Rate limit information for the account's add-on quotas.
+      properties:
+        addons_quota:
+          type: array
+          description: Per-add-on quota usage for this account.
+          items:
+            $ref: "#/components/schemas/AddonQuota"
+          examples:
+            -   - type: image_generation
+                  used_by_request: 1
+                  remaining: 48
+                  limit: 50
+    AddonQuota:
+      type: object
+      description: Quota usage for a single add-on.
+      required:
+        - type
+        - used_by_request
+        - remaining
+        - limit
+      properties:
+        type:
+          $ref: "#/components/schemas/Feature"
+        used_by_request:
+          type:
+            - integer
+            - "null"
+          description: Number of generations consumed by this request.
+        remaining:
+          type:
+            - integer
+            - "null"
+          description: Generations remaining in the current period.
+        limit:
+          type:
+            - integer
+            - "null"
+          description: Maximum generations allowed per period.
+    Feature:
+      type: string
+      description: The add-on a quota applies to.
+      enum:
+        - image_generation
   requestBodies:
     upload_request_body:
       description: The file to upload and associated parameters.
@@ -9888,94 +11910,94 @@ components:
             secure_url: https://res.cloudinary.com/cld-docs/image/upload/w_230,h_168,c_fit/v1312461204/sample.jpg
         etag: 619dfd2901577eb4259f91a2c0e43dac
         faces:
-          - - 98
-            - 74
-            - 61
-            - 83
-          - - 140
-            - 130
-            - 52
-            - 71
+          -   - 98
+              - 74
+              - 61
+              - 83
+          -   - 140
+              - 130
+              - 52
+              - 71
         illustration_score: 0
         semi_transparent: false
         grayscale: false
         colors:
-          - - '#162E02'
-            - 6.7
-          - - '#385B0C'
-            - 6.3
-          - - '#F3285C'
-            - 5
-          - - '#B3CB6E'
-            - 5
-          - - '#688F1C'
-            - 4.4
-          - - '#324D07'
-            - 4.4
-          - - '#8EAA34'
-            - 4.3
-          - - '#4F6D0D'
-            - 4.2
-          - - '#789446'
-            - 4.1
-          - - '#DF1327'
-            - 3.9
-          - - '#A10B12'
-            - 3.7
-          - - '#273804'
-            - 3.4
-          - - '#0D1802'
-            - 3.4
-          - - '#D5E191'
-            - 3.2
-          - - '#646E20'
-            - 3.1
-          - - '#94AF4D'
-            - 2.9
-          - - '#FB54A9'
-            - 2.8
-          - - '#48570B'
-            - 2.7
-          - - '#ACC655'
-            - 2.7
-          - - '#FCA2D9'
-            - 2.7
-          - - '#63110A'
-            - 2.6
-          - - '#E9B327'
-            - 2.2
-          - - '#6D644D'
-            - 2.1
-          - - '#6D8D12'
-            - 2
-          - - '#8F9F27'
-            - 1.9
-          - - '#C3573E'
-            - 1.8
-          - - '#CFD76E'
-            - 1.6
-          - - '#A0B058'
-            - 1.6
-          - - '#FCD0E9'
-            - 1.6
-          - - '#728F2D'
-            - 1.4
-          - - '#F958A1'
-            - 1.4
-          - - '#D1B694'
-            - 1
+          -   - '#162E02'
+              - 6.7
+          -   - '#385B0C'
+              - 6.3
+          -   - '#F3285C'
+              - 5
+          -   - '#B3CB6E'
+              - 5
+          -   - '#688F1C'
+              - 4.4
+          -   - '#324D07'
+              - 4.4
+          -   - '#8EAA34'
+              - 4.3
+          -   - '#4F6D0D'
+              - 4.2
+          -   - '#789446'
+              - 4.1
+          -   - '#DF1327'
+              - 3.9
+          -   - '#A10B12'
+              - 3.7
+          -   - '#273804'
+              - 3.4
+          -   - '#0D1802'
+              - 3.4
+          -   - '#D5E191'
+              - 3.2
+          -   - '#646E20'
+              - 3.1
+          -   - '#94AF4D'
+              - 2.9
+          -   - '#FB54A9'
+              - 2.8
+          -   - '#48570B'
+              - 2.7
+          -   - '#ACC655'
+              - 2.7
+          -   - '#FCA2D9'
+              - 2.7
+          -   - '#63110A'
+              - 2.6
+          -   - '#E9B327'
+              - 2.2
+          -   - '#6D644D'
+              - 2.1
+          -   - '#6D8D12'
+              - 2
+          -   - '#8F9F27'
+              - 1.9
+          -   - '#C3573E'
+              - 1.8
+          -   - '#CFD76E'
+              - 1.6
+          -   - '#A0B058'
+              - 1.6
+          -   - '#FCD0E9'
+              - 1.6
+          -   - '#728F2D'
+              - 1.4
+          -   - '#F958A1'
+              - 1.4
+          -   - '#D1B694'
+              - 1
         predominant:
           google:
-            - - yellow
-              - 52.9
-            - - pink
-              - 13.5
-            - - red
-              - 12
-            - - black
-              - 10.1
-            - - green
-              - 6.3
+            -   - yellow
+                - 52.9
+            -   - pink
+                - 13.5
+            -   - red
+                - 12
+            -   - black
+                - 10.1
+            -   - green
+                - 6.3
         versions:
           - version_id: d214063097a43d1d1293db61a397f60f
             version: '1312461204'
@@ -10006,5 +12028,223 @@ components:
           - kind: manual
             status: approved
             updated_at: '2025-05-13T11:15:22Z'
+    GenerateImageBasicExample:
+      summary: Basic image generation
+      description: Minimal request — only a prompt; falls back to the default model.
+      value:
+        prompt: A man with a hat
+    GenerateImageDeclarativeSizeExample:
+      summary: Declarative size (aspect ratio + resolution)
+      description: |
+        Portable size selection — the service resolves aspect_ratio + resolution
+        to the nearest dimensions the chosen model supports.
+      value:
+        prompt: A photorealistic sunset over a mountain lake, 8K detail
+        model:
+          family: flux
+          tier: premium
+        image_size:
+          aspect_ratio: 16:9
+          resolution: 2K
+        target:
+          target_type: managed_asset
+          public_id: my-public-id
+          upload_preset: some-preset
+        seed: 42
+    GenerateImageDimensionsSizeExample:
+      summary: Dimensions size (explicit pixels)
+      description: Pixel-precise size selection via width + height.
+      value:
+        prompt: A photorealistic sunset over a mountain lake, 8K detail
+        model:
+          id: flux-2-pro
+        image_size:
+          width: 1280
+          height: 720
+        target:
+          target_type: temporary
+        seed: 42
+    GenerateImageAsyncExample:
+      summary: Async image generation
+      description: |
+        Request the generation be performed asynchronously. The API responds
+        202 with a task_id; the caller polls /tasks/{task_id} or waits for
+        the webhook.
+      value:
+        prompt: A futuristic city skyline at night
+        model:
+          family: gpt-image
+          tier: premium
+        async: true
+        notification_url: https://path.to/webhook
+    GenerateImageSuccessExample:
+      summary: Successful synchronous generation
+      description: The 200 response body returned for a completed sync generation.
+      value:
+        data:
+          assets:
+            - storage:
+                storage_type: temporary
+                secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+                expires_at: 2026-06-25T12:50:26Z
+              format: png
+              width: 1024
+              height: 768
+              bytes: 2048576
+              model:
+                family: flux
+                tier: premium
+                id: flux-2-pro
+              seed: 42
+              created_at: 2026-04-21T14:30:00Z
+        limits:
+          addons_quota:
+            - type: image_generation
+              used_by_request: 1
+              remaining: 48
+              limit: 50
+        request_id: 17c3b70c5096df0e77e838323abb7029
+    GenerateImageManagedAssetSuccessExample:
+      summary: Successful synchronous generation (managed asset target)
+      description: The 200 response body when the request targeted a managed asset.
+      value:
+        data:
+          assets:
+            - storage:
+                storage_type: managed_asset
+                secure_url: https://res.cloudinary.com/demo/image/upload/v1750000000/my-public-id.png
+                asset_id: 0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a
+                public_id: my-public-id
+                resource_type: image
+                type: upload
+                version: 1750000000
+              format: png
+              width: 1024
+              height: 768
+              bytes: 2048576
+              model:
+                family: flux
+                tier: premium
+                id: flux-2-pro
+              seed: 42
+              created_at: 2026-04-21T14:30:00Z
+        limits:
+          addons_quota:
+            - type: image_generation
+              used_by_request: 1
+              remaining: 48
+              limit: 50
+        request_id: 17c3b70c5096df0e77e838323abb7029
+    GenerateTaskCompletedExample:
+      summary: Completed task (GET /tasks/{task_id})
+      description: A completed async task — the asset is fully populated (storage + media).
+      value:
+        data:
+          task_id: 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
+          status: completed
+          result:
+            assets:
+              - storage:
+                  storage_type: temporary
+                  secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/stream
+                  expires_at: 2026-06-25T12:50:26Z
+                format: png
+                width: 1024
+                height: 768
+                bytes: 2048576
+                model:
+                  family: flux
+                  tier: premium
+                  id: flux-2-pro
+                seed: 42
+                created_at: 2026-04-21T14:30:00Z
+        request_id: 17c3b70c5096df0e77e838323abb7029
+    RateLimitedExample:
+      summary: 429 rate-limited response
+      description: Returned when the account has exhausted its generation quota for the period.
+      value:
+        error:
+          category: rate_limit_error
+          code: MG_00429
+          message: Daily generation limit exceeded. Limit resets at 2026-04-22T00:00:00Z
+        limits:
+          addons_quota:
+            - type: image_generation
+              used_by_request: 1
+              remaining: 0
+              limit: 50
+        request_id: 17c3b70c5096df0e77e838323abb7029
+  responses:
+    GenerationAcceptedResponse:
+      description: Generation accepted.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/TaskResponse"
+    BadRequestResponse:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    UnauthorizedResponse:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFoundResponse:
+      description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    RateLimitedResponse:
+      description: Rate limited.
+      content:
+        application/json:
+          schema:
+            type: object
+            title: RateLimitedResponse
+            required:
+              - error
+              - request_id
+            properties:
+              error:
+                $ref: "#/components/schemas/Error"
+              limits:
+                $ref: "#/components/schemas/Limits"
+              request_id:
+                type: string
+                description: Unique identifier for this request, for correlation and support.
+                examples:
+                  - 17c3b70c5096df0e77e838323abb7029
+          examples:
+            RateLimited:
+              $ref: "#/components/examples/RateLimitedExample"
+    InternalServerErrorResponse:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    ModelUnavailableResponse:
+      description: Model unavailable.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    ForbiddenResponse:
+      description: Forbidden.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    UnprocessableEntityResponse:
+      description: Unprocessable entity.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
 x-speakeasy-globals:
   parameters: []
