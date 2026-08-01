@@ -87,7 +87,7 @@
             "content": {
               "text/html": {
                 "schema": {
-                  "$ref": "#/components/schemas/Upload302ResponseResponseHtml"
+                  "$ref": "#/components/schemas/Upload302HtmlResponseSchema"
                 }
               }
             }
@@ -170,7 +170,7 @@
             "content": {
               "text/html": {
                 "schema": {
-                  "$ref": "#/components/schemas/UploadNoResourceType302ResponseResponseHtml"
+                  "$ref": "#/components/schemas/UploadNoResourceType302HtmlResponseSchema"
                 }
               }
             }
@@ -293,7 +293,7 @@
             "content": {
               "text/html": {
                 "schema": {
-                  "$ref": "#/components/schemas/UploadChunk302ResponseResponseHtml"
+                  "$ref": "#/components/schemas/UploadChunk302HtmlResponseSchema"
                 }
               }
             }
@@ -480,12 +480,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadAsset200ResponseResponseJson"
+                  "$ref": "#/components/schemas/DownloadAsset200Response"
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadAsset200ResponseResponseOctetStream2"
+                  "$ref": "#/components/schemas/DownloadAsset200OctetStreamResponseSchema"
                 }
               }
             }
@@ -810,7 +810,7 @@
             "content": {
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerateArchive200ResponseResponseOctetStream"
+                  "$ref": "#/components/schemas/GenerateArchive200OctetStreamResponseSchema"
                 }
               },
               "application/json": {
@@ -909,17 +909,17 @@
             "content": {
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadBackupAsset200ResponseResponseOctetStream"
+                  "$ref": "#/components/schemas/DownloadBackupAsset200OctetStreamResponseSchema"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadBackupAsset200ResponseResponseJson"
+                  "$ref": "#/components/schemas/DownloadBackupAsset200Response"
                 }
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadBackupAsset200ResponseResponsePlain2"
+                  "$ref": "#/components/schemas/DownloadBackupAsset200PlainResponseSchema"
                 }
               }
             }
@@ -1159,12 +1159,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadAssetByAssetId200ResponseResponseJson"
+                  "$ref": "#/components/schemas/DownloadAssetByAssetId200Response"
                 }
               },
               "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadAssetByAssetId200ResponseResponseOctetStream2"
+                  "$ref": "#/components/schemas/DownloadAssetByAssetId200OctetStreamResponseSchema"
                 }
               }
             }
@@ -2351,7 +2351,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SearchMetadataFieldDatasource200ResponseResponseJson"
+                  "$ref": "#/components/schemas/SearchMetadataFieldDatasource200ResponseSchema"
                 }
               }
             }
@@ -4722,7 +4722,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteResourcesByPublicId200ResponseResponseJson"
+                  "$ref": "#/components/schemas/DeleteResourcesByPublicId200ResponseSchema"
                 },
                 "examples": {
                   "deleteResourceResponseExample": {
@@ -18838,7 +18838,7 @@
           }
         }
       },
-      "Upload302Response": {
+      "Upload302HtmlResponse": {
         "type": "string",
         "description": "HTML redirect response"
       },
@@ -18869,7 +18869,7 @@
           }
         }
       },
-      "UploadNoResourceType302Response": {
+      "UploadNoResourceType302HtmlResponse": {
         "type": "string",
         "description": "HTML redirect response"
       },
@@ -18904,51 +18904,51 @@
           }
         }
       },
-      "UploadChunk302Response": {
+      "UploadChunk302HtmlResponse": {
         "type": "string",
         "description": "HTML redirect response"
       },
-      "DownloadAsset200Response": {
+      "DownloadAsset200MediaResponse": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadAsset200ResponseResponseMedia": {
+      "DownloadAsset200MediaResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadAsset200ResponseResponseOctetStream": {
+      "DownloadAsset200OctetStreamResponse": {
         "type": "string",
         "format": "binary"
       },
-      "GenerateArchive200Response": {
+      "GenerateArchive200OctetStreamResponse": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadBackupAsset200Response": {
+      "DownloadBackupAsset200OctetStreamResponse": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadBackupAsset200ResponseResponseMedia": {
+      "DownloadBackupAsset200MediaResponse": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadBackupAsset200ResponseResponseMedia2": {
+      "DownloadBackupAsset200MediaResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadBackupAsset200ResponseResponsePlain": {
+      "DownloadBackupAsset200PlainResponse": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadAssetByAssetId200Response": {
+      "DownloadAssetByAssetId200MediaResponse": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadAssetByAssetId200ResponseResponseMedia": {
+      "DownloadAssetByAssetId200MediaResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadAssetByAssetId200ResponseResponseOctetStream": {
+      "DownloadAssetByAssetId200OctetStreamResponse": {
         "type": "string",
         "format": "binary"
       },
@@ -19367,51 +19367,51 @@
           }
         }
       },
-      "Upload302ResponseResponseHtml": {
+      "Upload302HtmlResponseSchema": {
         "type": "string",
         "description": "HTML redirect response"
       },
-      "UploadNoResourceType302ResponseResponseHtml": {
+      "UploadNoResourceType302HtmlResponseSchema": {
         "type": "string",
         "description": "HTML redirect response"
       },
-      "UploadChunk302ResponseResponseHtml": {
+      "UploadChunk302HtmlResponseSchema": {
         "type": "string",
         "description": "HTML redirect response"
       },
-      "DownloadAsset200ResponseResponseJson": {
+      "DownloadAsset200Response": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadAsset200ResponseResponseOctetStream2": {
+      "DownloadAsset200OctetStreamResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "GenerateArchive200ResponseResponseOctetStream": {
+      "GenerateArchive200OctetStreamResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadBackupAsset200ResponseResponseOctetStream": {
+      "DownloadBackupAsset200OctetStreamResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadBackupAsset200ResponseResponseJson": {
+      "DownloadBackupAsset200Response": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadBackupAsset200ResponseResponsePlain2": {
+      "DownloadBackupAsset200PlainResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadAssetByAssetId200ResponseResponseJson": {
+      "DownloadAssetByAssetId200Response": {
         "type": "string",
         "format": "binary"
       },
-      "DownloadAssetByAssetId200ResponseResponseOctetStream2": {
+      "DownloadAssetByAssetId200OctetStreamResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "SearchMetadataFieldDatasource200ResponseResponseJson": {
+      "SearchMetadataFieldDatasource200ResponseSchema": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/DatasourceSearchResult"
@@ -19423,7 +19423,7 @@
           "$ref": "#/components/schemas/RestoreResponseAdditionalProperties"
         }
       },
-      "DeleteResourcesByPublicId200ResponseResponseJson": {
+      "DeleteResourcesByPublicId200ResponseSchema": {
         "type": "object"
       },
       "EvalUploadParams200Response": {
