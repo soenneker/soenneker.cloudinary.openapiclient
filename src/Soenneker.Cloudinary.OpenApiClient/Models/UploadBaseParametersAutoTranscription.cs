@@ -37,9 +37,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription();
-            if("UploadBaseParametersAutoTranscription_1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("UploadBaseParametersAutoTranscriptionBranch1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.UploadBaseParametersAutoTranscriptionBranch1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1();
             }

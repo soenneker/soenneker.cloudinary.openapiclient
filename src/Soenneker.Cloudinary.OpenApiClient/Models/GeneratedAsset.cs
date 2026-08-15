@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// &quot;A generated asset: where it is stored (`storage`) plus its mediametadata. The media fields are populated once the task completes; anin-progress asset carries only `storage`.&quot;
+    /// A generated asset: where it is stored (`storage`) plus its mediametadata. The media fields are populated once the task completes; anin-progress asset carries only `storage`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GeneratedAsset : IAdditionalDataHolder, IParsable

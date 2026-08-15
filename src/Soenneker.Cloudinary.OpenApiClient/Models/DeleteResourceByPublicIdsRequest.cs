@@ -17,9 +17,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Delete all assets (of the relevant resource_type and type), including derived assets (up to a maximum of 1000 original resources).</summary>
         public bool? All { get; set; }
-        /// <summary>&quot;Whether to also invalidate the copies of the resource on the CDN. It usually takes between a few seconds and a few minutes for the invalidation to fully propagate through the CDN. Default: false.&quot;</summary>
+        /// <summary>Whether to also invalidate the copies of the resource on the CDN. It usually takes between a few seconds and a few minutes for the invalidation to fully propagate through the CDN. Default: false.</summary>
         public bool? Invalidate { get; set; }
-        /// <summary>&quot;Whether to delete only the derived assets. Default: false.&quot;</summary>
+        /// <summary>Whether to delete only the derived assets. Default: false.</summary>
         public bool? KeepOriginal { get; set; }
         /// <summary>(Only when deleting by prefix or all) When a deletion request has more than 1000 resources to delete, the response includes the partial boolean parameter set to true, as well as a next_cursor value. You can then specify this returned next_cursor value as a parameter of the following deletion request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public List<string> PublicIds { get; set; }
 #endif
-        /// <summary>&quot;The type of asset. Relevant as a parameter only when using the SDKs (the resource_type is included in the endpoint URL when using the REST API). Note: use video for all video and audio assets, such as .mp3. Default: image.&quot;</summary>
+        /// <summary>The type of asset. Relevant as a parameter only when using the SDKs (the resource_type is included in the endpoint URL when using the REST API). Note: use video for all video and audio assets, such as .mp3. Default: image.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType? ResourceType { get; set; }

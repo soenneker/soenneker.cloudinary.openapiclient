@@ -37,11 +37,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues();
             if("MetadataRuleActivateValuesOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.MetadataRuleActivateValuesOneOf2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2();
+            }
+            else if("MetadataRuleActivateValuesWrapper".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.MetadataRuleActivateValuesWrapper = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper();
             }
             return result;
         }

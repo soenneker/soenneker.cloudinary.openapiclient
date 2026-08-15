@@ -19,7 +19,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public bool? Async { get; set; }
         /// <summary>Desired output image format. Optional; defaults to `png` when omitted.Mapped to the closest format the chosen model supports — `webp` fallsback to `png` on models that don&apos;t support it (e.g. FLUX.2 Pro), and therequest is ignored entirely by models that don&apos;t expose a format option(e.g. Recraft).</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ImageFormat? Format { get; set; }
-        /// <summary>&quot;Desired output size, given in **one** of two mutually exclusive forms:  * `DimensionsImageSize`: `width` and `height` in pixels, for precise    control.  * `DeclarativeImageSize`: `aspect_ratio` (and an optional `resolution`    tier), resolved server-side to the closest size the chosen model    supports. This is the portable form: most providers natively accept    an aspect ratio plus a resolution tier rather than raw pixels.Omit `image_size` entirely to use the model&apos;s default size.&quot;</summary>
+        /// <summary>Desired output size, given in **one** of two mutually exclusive forms:  * `DimensionsImageSize`: `width` and `height` in pixels, for precise    control.  * `DeclarativeImageSize`: `aspect_ratio` (and an optional `resolution`    tier), resolved server-side to the closest size the chosen model    supports. This is the portable form: most providers natively accept    an aspect ratio plus a resolution tier rather than raw pixels.Omit `image_size` entirely to use the model&apos;s default size.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ImageSize? ImageSize { get; set; }
@@ -27,7 +27,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ImageSize ImageSize { get; set; }
 #endif
-        /// <summary>&quot;Selects the model, in one of two mutually exclusive forms (omit to usethe global default):  * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time    selector.  * `ModelById`: an explicit `id`, pinning one exact model.&quot;</summary>
+        /// <summary>Selects the model, in one of two mutually exclusive forms (omit to usethe global default):  * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time    selector.  * `ModelById`: an explicit `id`, pinning one exact model.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelSelection? Model { get; set; }

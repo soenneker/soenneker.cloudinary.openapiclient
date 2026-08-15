@@ -37,7 +37,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.ImageSize CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.ImageSize();
             if("DeclarativeImageSize".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {

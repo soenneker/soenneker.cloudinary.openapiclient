@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;Coarse classification of an error, primarily used by clients to decide whether to retry.* `user_error`: the request was invalid; do not retry without changes.* `auth_error`: authentication or authorization failed.* `server_error`: an unexpected server-side error; retrying may succeed.* `rate_limit_error`: quota or rate limit exceeded; retry later.&quot;</summary>
+        /// <summary>Coarse classification of an error, primarily used by clients to decide whether to retry.* `user_error`: the request was invalid; do not retry without changes.* `auth_error`: authentication or authorization failed.* `server_error`: an unexpected server-side error; retrying may succeed.* `rate_limit_error`: quota or rate limit exceeded; retry later.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ErrorCategory? Category { get; set; }
         /// <summary>Stable, machine-readable error code for programmatic handling.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

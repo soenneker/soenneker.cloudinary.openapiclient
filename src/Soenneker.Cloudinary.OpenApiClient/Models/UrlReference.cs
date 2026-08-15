@@ -14,7 +14,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     public partial class UrlReference : IParsable
     {
         /// <summary>Discriminator identifying this as an external-URL reference.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UrlReferenceSourceType? SourceType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UrlSourceType? SourceType { get; set; }
         /// <summary>HTTPS URL of the reference image.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,7 +41,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "source_type", n => { SourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UrlReferenceSourceType>(); } },
+                { "source_type", n => { SourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UrlSourceType>(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
         }
@@ -52,7 +52,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UrlReferenceSourceType>("source_type", SourceType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UrlSourceType>("source_type", SourceType);
             writer.WriteStringValue("url", Url);
         }
     }

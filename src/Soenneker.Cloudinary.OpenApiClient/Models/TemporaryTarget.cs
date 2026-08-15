@@ -14,7 +14,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     public partial class TemporaryTarget : IParsable
     {
         /// <summary>Discriminator identifying this as a temporary target.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryTargetTargetType? TargetType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryTargetType? TargetType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -33,7 +33,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "target_type", n => { TargetType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryTargetTargetType>(); } },
+                { "target_type", n => { TargetType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryTargetType>(); } },
             };
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryTargetTargetType>("target_type", TargetType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryTargetType>("target_type", TargetType);
         }
     }
 }

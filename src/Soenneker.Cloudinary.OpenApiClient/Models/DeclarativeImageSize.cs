@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>Output aspect ratio, width-to-height. Limited to the core ratiosevery model supports natively.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeAspectRatio? AspectRatio { get; set; }
-        /// <summary>&quot;Output resolution tier, measured on the longest edge. Defaults to`1K` when omitted.* `0.5K`: ~512 px* `1K`: ~1024 px* `2K`: ~2048 px* `4K`: ~4096 px&quot;</summary>
+        /// <summary>Output resolution tier, measured on the longest edge. Defaults to`1K` when omitted.* `0.5K`: ~512 px* `1K`: ~1024 px* `2K`: ~2048 px* `4K`: ~4096 px</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeResolution? Resolution { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

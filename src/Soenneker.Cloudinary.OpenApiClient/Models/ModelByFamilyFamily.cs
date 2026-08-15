@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>&quot;Model family:* `flux`: Photorealistic images (FLUX.2 Klein 9B / FLUX.2 Pro).* `recraft`: Vector and illustration (Recraft V3 / Recraft V4).* `gpt-image`: Campaign and marketing images (GPT Image 1 Mini / GPT Image 2).* `nano-banana`: General purpose generation (Nano Banana 1 / Nano Banana 2).* `ideogram`: Realism, text rendering, and artistic generation (Ideogram V4).&quot;</summary>
+    /// <summary>Model family:* `flux`: Photorealistic images (FLUX.2 Klein 9B / FLUX.2 Pro).* `recraft`: Vector and illustration (Recraft V3 / Recraft V4).* `gpt-image`: Campaign and marketing images (GPT Image 1 Mini / GPT Image 2).* `nano-banana`: General purpose generation (Nano Banana 1 / Nano Banana 2).* `ideogram`: Realism, text rendering, and artistic generation (Ideogram V4).</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ModelByFamilyFamily
     {

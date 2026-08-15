@@ -3,13 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>Always &apos;video&apos; — concat produces an MP4.</summary>
+    /// <summary>The status of the explode operation.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum ConcatResponseResourceType
+    public enum ProcessingStatus
     {
-        [EnumMember(Value = "video")]
+        [EnumMember(Value = "processing")]
         #pragma warning disable CS1591
-        Video,
+        Processing,
         #pragma warning restore CS1591
     }
 }

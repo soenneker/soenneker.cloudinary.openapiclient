@@ -3,13 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>The status of the explode operation.</summary>
+    /// <summary>Discriminator identifying this as a managed-asset reference.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum ExplodeResponseStatus
+    public enum ManagedAssetSourceType
     {
-        [EnumMember(Value = "processing")]
+        [EnumMember(Value = "managed_asset")]
         #pragma warning disable CS1591
-        Processing,
+        ManagedAsset,
         #pragma warning restore CS1591
     }
 }

@@ -31,7 +31,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.TaskResult Result { get; set; }
 #endif
-        /// <summary>&quot;The status of an async generation task.* `pending`: accepted and queued, not yet started.* `processing`: generation is in progress.* `completed`: generation finished; `result` is populated.* `failed`: generation did not complete successfully.&quot;</summary>
+        /// <summary>The status of an async generation task.* `pending`: accepted and queued, not yet started.* `processing`: generation is in progress.* `completed`: generation finished; `result` is populated.* `failed`: generation did not complete successfully.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.TaskStatus? Status { get; set; }
         /// <summary>Identifier for the async generation task. Use it to poll `GET /generate/{cloud_name}/tasks/{task_id}`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

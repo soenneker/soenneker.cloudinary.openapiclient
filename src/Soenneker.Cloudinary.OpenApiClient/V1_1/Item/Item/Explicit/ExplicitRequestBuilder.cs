@@ -34,7 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Explicit
         {
         }
         /// <summary>
-        /// &quot;Applies actions such as transformations, tags, or metadata updates to an existing asset without re-uploading it.This is useful for applying new transformations, adding tags, or updating metadata on assets that are already in your cloud.Note: Always prefer delivery URL transformations over this method, unless eager transformations are specifically required.&quot;
+        /// Applies actions such as transformations, tags, or metadata updates to an existing asset without re-uploading it.This is useful for applying new transformations, adding tags, or updating metadata on assets that are already in your cloud.Note: Always prefer delivery URL transformations over this method, unless eager transformations are specifically required.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Explicit
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.UploadResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Applies actions such as transformations, tags, or metadata updates to an existing asset without re-uploading it.This is useful for applying new transformations, adding tags, or updating metadata on assets that are already in your cloud.Note: Always prefer delivery URL transformations over this method, unless eager transformations are specifically required.&quot;
+        /// Applies actions such as transformations, tags, or metadata updates to an existing asset without re-uploading it.This is useful for applying new transformations, adding tags, or updating metadata on assets that are already in your cloud.Note: Always prefer delivery URL transformations over this method, unless eager transformations are specifically required.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -24,7 +24,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string SecureUrl { get; set; }
 #endif
         /// <summary>Discriminator identifying this as temporary storage.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryStorageStorageType? StorageType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryStorageType? StorageType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -45,7 +45,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "expires_at", n => { ExpiresAt = n.GetDateTimeOffsetValue(); } },
                 { "secure_url", n => { SecureUrl = n.GetStringValue(); } },
-                { "storage_type", n => { StorageType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryStorageStorageType>(); } },
+                { "storage_type", n => { StorageType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryStorageType>(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("expires_at", ExpiresAt);
             writer.WriteStringValue("secure_url", SecureUrl);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryStorageStorageType>("storage_type", StorageType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TemporaryStorageType>("storage_type", StorageType);
         }
     }
 }

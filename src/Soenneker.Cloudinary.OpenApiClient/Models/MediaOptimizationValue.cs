@@ -3,13 +3,14 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>Discriminator identifying this as a managed-asset reference.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum ManagedAssetReferenceSourceType
+    #pragma warning disable CS1591
+    public enum MediaOptimizationValue
+    #pragma warning restore CS1591
     {
-        [EnumMember(Value = "managed_asset")]
+        [EnumMember(Value = "media_optimization")]
         #pragma warning disable CS1591
-        ManagedAsset,
+        MediaOptimization,
         #pragma warning restore CS1591
     }
 }

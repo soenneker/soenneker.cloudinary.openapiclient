@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>&quot;The status of an async generation task.* `pending`: accepted and queued, not yet started.* `processing`: generation is in progress.* `completed`: generation finished; `result` is populated.* `failed`: generation did not complete successfully.&quot;</summary>
+    /// <summary>The status of an async generation task.* `pending`: accepted and queued, not yet started.* `processing`: generation is in progress.* `completed`: generation finished; `result` is populated.* `failed`: generation did not complete successfully.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum TaskStatus
     {

@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string ApiKey { get; set; }
 #endif
-        /// <summary>&quot;The format for the generated derived images. Default: png&quot;</summary>
+        /// <summary>The format for the generated derived images. Default: png</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Format { get; set; }

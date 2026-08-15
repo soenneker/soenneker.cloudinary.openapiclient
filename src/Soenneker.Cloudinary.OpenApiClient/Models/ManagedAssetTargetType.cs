@@ -3,14 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
+    /// <summary>Discriminator identifying this as a managed-asset target.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum UploadPresetInputAllOf2ParameterWhitelistWrapperValue
-    #pragma warning restore CS1591
+    public enum ManagedAssetTargetType
     {
-        [EnumMember(Value = "none")]
+        [EnumMember(Value = "managed_asset")]
         #pragma warning disable CS1591
-        None,
+        ManagedAsset,
         #pragma warning restore CS1591
     }
 }

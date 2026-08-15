@@ -40,7 +40,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string SecureUrl { get; set; }
 #endif
         /// <summary>Discriminator identifying this as managed-asset storage.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorageStorageType? StorageType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorageType? StorageType { get; set; }
         /// <summary>Cloudinary delivery type of the stored asset (e.g. `upload`, `private`, `authenticated`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -73,7 +73,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorageResourceType>(); } },
                 { "secure_url", n => { SecureUrl = n.GetStringValue(); } },
-                { "storage_type", n => { StorageType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorageStorageType>(); } },
+                { "storage_type", n => { StorageType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorageType>(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetLongValue(); } },
             };
@@ -89,7 +89,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorageResourceType>("resource_type", ResourceType);
             writer.WriteStringValue("secure_url", SecureUrl);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorageStorageType>("storage_type", StorageType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorageType>("storage_type", StorageType);
             writer.WriteStringValue("type", Type);
             writer.WriteLongValue("version", Version);
         }

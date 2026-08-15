@@ -116,7 +116,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
             /// <summary>The sort direction for the results. Default is &quot;desc&quot;.</summary>
             [QueryParameter("direction")]
             public global::Soenneker.Cloudinary.OpenApiClient.Models.DirectionEnum? Direction { get; set; }
-            /// <summary>&quot;The maximum number of people to return. Default: 50.&quot;</summary>
+            /// <summary>The maximum number of people to return. Default: 50.</summary>
             [QueryParameter("max_results")]
             public int? MaxResults { get; set; }
             /// <summary>Filter people whose names start with the given prefix (case insensitive).</summary>
@@ -129,7 +129,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
             [QueryParameter("name_prefix")]
             public string NamePrefix { get; set; }
 #endif
-            /// <summary>&quot;Filter by whether the person has been named. Default: all.&quot;</summary>
+            /// <summary>Filter by whether the person has been named. Default: all.</summary>
             [QueryParameter("name_status")]
             public global::Soenneker.Cloudinary.OpenApiClient.Models.ListPeopleNameStatusParameter? NameStatus { get; set; }
             /// <summary>The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.</summary>
@@ -142,7 +142,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
             [QueryParameter("next_cursor")]
             public string NextCursor { get; set; }
 #endif
-            /// <summary>&quot;The field to sort results by. Default: name (ascending).&quot;</summary>
+            /// <summary>The field to sort results by. Default: name (ascending).</summary>
             [QueryParameter("sort_by")]
             public global::Soenneker.Cloudinary.OpenApiClient.Models.ListPeopleSortByParameter? SortBy { get; set; }
             /// <summary>Filter by person status.</summary>

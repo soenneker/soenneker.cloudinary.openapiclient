@@ -92,7 +92,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Video.Analytics.Views
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ViewsRequestBuilderGetQueryParameters 
         {
-            /// <summary>&quot;A set of conditions used to limit the results to rows that match those conditions. For example: `?expression=video_public_id=skate`&quot;</summary>
+            /// <summary>A set of conditions used to limit the results to rows that match those conditions. For example: `?expression=video_public_id=skate`</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("expression")]

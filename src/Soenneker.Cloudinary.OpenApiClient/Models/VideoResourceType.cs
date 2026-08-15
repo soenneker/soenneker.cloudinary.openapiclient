@@ -3,13 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>Discriminator identifying this as an external-URL reference.</summary>
+    /// <summary>Always &apos;video&apos; — concat produces an MP4.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum UrlReferenceSourceType
+    public enum VideoResourceType
     {
-        [EnumMember(Value = "url")]
+        [EnumMember(Value = "video")]
         #pragma warning disable CS1591
-        Url,
+        Video,
         #pragma warning restore CS1591
     }
 }

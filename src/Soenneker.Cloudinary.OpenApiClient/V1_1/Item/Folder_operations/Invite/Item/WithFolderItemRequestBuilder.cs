@@ -63,7 +63,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRolesResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRolesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Assigns or removes folder roles for a principal (user, group, or API key).Supports all system folder roles (see [System roles reference](https://cloudinary.com/documentation/permissions_system_roles_policies#folder_roles)).Enterprise customers can also assign custom roles by ID.Note: Assigning roles to users or groups via this endpoint requires their user or group IDs, which are available through the Provisioning API (Enterprise only). Free customers can use this endpoint to assign roles only to API keys, but can assign folder roles to users and groups through the UI.&quot;
+        /// Assigns or removes folder roles for a principal (user, group, or API key).Supports all system folder roles (see [System roles reference](https://cloudinary.com/documentation/permissions_system_roles_policies#folder_roles)).Enterprise customers can also assign custom roles by ID.Note: Assigning roles to users or groups via this endpoint requires their user or group IDs, which are available through the Provisioning API (Enterprise only). Free customers can use this endpoint to assign roles only to API keys, but can assign folder roles to users and groups through the UI.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SuccessResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -113,7 +113,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Assigns or removes folder roles for a principal (user, group, or API key).Supports all system folder roles (see [System roles reference](https://cloudinary.com/documentation/permissions_system_roles_policies#folder_roles)).Enterprise customers can also assign custom roles by ID.Note: Assigning roles to users or groups via this endpoint requires their user or group IDs, which are available through the Provisioning API (Enterprise only). Free customers can use this endpoint to assign roles only to API keys, but can assign folder roles to users and groups through the UI.&quot;
+        /// Assigns or removes folder roles for a principal (user, group, or API key).Supports all system folder roles (see [System roles reference](https://cloudinary.com/documentation/permissions_system_roles_policies#folder_roles)).Enterprise customers can also assign custom roles by ID.Note: Assigning roles to users or groups via this endpoint requires their user or group IDs, which are available through the Provisioning API (Enterprise only). Free customers can use this endpoint to assign roles only to API keys, but can assign folder roles to users and groups through the UI.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -149,7 +149,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithFolderItemRequestBuilderGetQueryParameters 
         {
-            /// <summary>&quot;Whether to include in the response the roles the authenticated user can assign on this folder, based on their permission level. Default: `false`.&quot;</summary>
+            /// <summary>Whether to include in the response the roles the authenticated user can assign on this folder, based on their permission level. Default: `false`.</summary>
             [QueryParameter("permitted_roles")]
             public bool? PermittedRoles { get; set; }
         }

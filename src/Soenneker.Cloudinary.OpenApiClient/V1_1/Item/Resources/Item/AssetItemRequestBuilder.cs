@@ -170,13 +170,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class AssetItemRequestBuilderGetQueryParameters 
         {
-            /// <summary>&quot;Whether to return accessibility analysis scores for the image. Default: false.&quot;</summary>
+            /// <summary>Whether to return accessibility analysis scores for the image. Default: false.</summary>
             [QueryParameter("accessibility_analysis")]
             public bool? AccessibilityAnalysis { get; set; }
-            /// <summary>&quot;Whether to include color information (predominant colors and histogram of 32 leading colors). Default: false.&quot;</summary>
+            /// <summary>Whether to include color information (predominant colors and histogram of 32 leading colors). Default: false.</summary>
             [QueryParameter("colors")]
             public bool? Colors { get; set; }
-            /// <summary>&quot;Whether to include previously specified custom cropping coordinates and faces coordinates. Default: false.&quot;</summary>
+            /// <summary>Whether to include previously specified custom cropping coordinates and faces coordinates. Default: false.</summary>
             [QueryParameter("coordinates")]
             public bool? Coordinates { get; set; }
             /// <summary>The cursor for the next page of derived assets when there are more derived images than max_results.</summary>
@@ -189,25 +189,25 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
             [QueryParameter("derived_next_cursor")]
             public string DerivedNextCursor { get; set; }
 #endif
-            /// <summary>&quot;Whether to include a list of coordinates of detected faces. Default: false.&quot;</summary>
+            /// <summary>Whether to include a list of coordinates of detected faces. Default: false.</summary>
             [QueryParameter("faces")]
             public bool? Faces { get; set; }
-            /// <summary>&quot;Maximum number of derived assets to return. Default: 10.&quot;</summary>
+            /// <summary>Maximum number of derived assets to return. Default: 10.</summary>
             [QueryParameter("max_results")]
             public int? MaxResults { get; set; }
-            /// <summary>&quot;Whether to include IPTC, XMP, and detailed Exif metadata in the response. Default: false.&quot;</summary>
+            /// <summary>Whether to include IPTC, XMP, and detailed Exif metadata in the response. Default: false.</summary>
             [QueryParameter("media_metadata")]
             public bool? MediaMetadata { get; set; }
-            /// <summary>&quot;Whether to report the number of pages in multi-page documents (e.g., PDF). Default: false.&quot;</summary>
+            /// <summary>Whether to report the number of pages in multi-page documents (e.g., PDF). Default: false.</summary>
             [QueryParameter("pages")]
             public bool? Pages { get; set; }
-            /// <summary>&quot;Whether to include the perceptual hash (pHash) of the uploaded photo for image similarity detection. Default: false.&quot;</summary>
+            /// <summary>Whether to include the perceptual hash (pHash) of the uploaded photo for image similarity detection. Default: false.</summary>
             [QueryParameter("phash")]
             public bool? Phash { get; set; }
-            /// <summary>&quot;Whether to return quality analysis scores for the image. Default: false.&quot;</summary>
+            /// <summary>Whether to return quality analysis scores for the image. Default: false.</summary>
             [QueryParameter("quality_analysis")]
             public bool? QualityAnalysis { get; set; }
-            /// <summary>&quot;Whether to include details of all the backed up versions of the asset. Default: false.&quot;</summary>
+            /// <summary>Whether to include details of all the backed up versions of the asset. Default: false.</summary>
             [QueryParameter("versions")]
             public bool? Versions { get; set; }
         }

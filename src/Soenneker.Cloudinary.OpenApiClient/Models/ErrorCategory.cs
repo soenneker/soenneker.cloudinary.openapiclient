@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>&quot;Coarse classification of an error, primarily used by clients to decide whether to retry.* `user_error`: the request was invalid; do not retry without changes.* `auth_error`: authentication or authorization failed.* `server_error`: an unexpected server-side error; retrying may succeed.* `rate_limit_error`: quota or rate limit exceeded; retry later.&quot;</summary>
+    /// <summary>Coarse classification of an error, primarily used by clients to decide whether to retry.* `user_error`: the request was invalid; do not retry without changes.* `auth_error`: authentication or authorization failed.* `server_error`: an unexpected server-side error; retrying may succeed.* `rate_limit_error`: quota or rate limit exceeded; retry later.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ErrorCategory
     {

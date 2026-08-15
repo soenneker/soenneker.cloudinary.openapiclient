@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string PublicId { get; set; }
 #endif
         /// <summary>Discriminator identifying this as a managed-asset target.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetTargetTargetType? TargetType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetTargetType? TargetType { get; set; }
         /// <summary>Upload preset to apply. Uses the product environment&apos;s default when omitted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,7 +50,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
-                { "target_type", n => { TargetType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetTargetTargetType>(); } },
+                { "target_type", n => { TargetType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetTargetType>(); } },
                 { "upload_preset", n => { UploadPreset = n.GetStringValue(); } },
             };
         }
@@ -62,7 +62,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("public_id", PublicId);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetTargetTargetType>("target_type", TargetType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetTargetType>("target_type", TargetType);
             writer.WriteStringValue("upload_preset", UploadPreset);
         }
     }

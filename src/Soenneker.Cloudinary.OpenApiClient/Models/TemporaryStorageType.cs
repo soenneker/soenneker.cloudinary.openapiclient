@@ -3,14 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
+    /// <summary>Discriminator identifying this as temporary storage.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum DeliveryTypeAllWrapperValue
-    #pragma warning restore CS1591
+    public enum TemporaryStorageType
     {
-        [EnumMember(Value = "media_optimization")]
+        [EnumMember(Value = "temporary")]
         #pragma warning disable CS1591
-        MediaOptimization,
+        Temporary,
         #pragma warning restore CS1591
     }
 }

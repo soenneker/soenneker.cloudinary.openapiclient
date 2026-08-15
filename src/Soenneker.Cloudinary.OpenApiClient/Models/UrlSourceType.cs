@@ -3,13 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>The status of the concat job. Always &apos;processing&apos;.</summary>
+    /// <summary>Discriminator identifying this as an external-URL reference.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum ConcatResponseStatus
+    public enum UrlSourceType
     {
-        [EnumMember(Value = "processing")]
+        [EnumMember(Value = "url")]
         #pragma warning disable CS1591
-        Processing,
+        Url,
         #pragma warning restore CS1591
     }
 }

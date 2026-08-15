@@ -47,7 +47,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Categorization { get; set; }
 #endif
-        /// <summary>&quot;Whether to clear invalid metadata fields. If false, invalid fields will be preserved. Default: false&quot;</summary>
+        /// <summary>Whether to clear invalid metadata fields. If false, invalid fields will be preserved. Default: false</summary>
         public bool? ClearInvalid { get; set; }
         /// <summary>A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., &quot;alt=My image|caption=Nice photo&quot;). A literal = or | inside a value must be escaped with a prepending backslash, and a literal backslash must be doubled. A double quote must not be escaped.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -139,9 +139,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam Tags { get; set; }
 #endif
-        /// <summary>&quot;Whether to ensure the display name is unique across all resources. If false, the operation will fail if a resource with the same display name exists. Default: false&quot;</summary>
+        /// <summary>Whether to ensure the display name is unique across all resources. If false, the operation will fail if a resource with the same display name exists. Default: false</summary>
         public bool? UniqueDisplayName { get; set; }
-        /// <summary>&quot;Whether to index the resource with visual search. If true, the resource will be indexed for visual search capabilities. Default: false&quot;</summary>
+        /// <summary>Whether to index the resource with visual search. If true, the resource will be indexed for visual search capabilities. Default: false</summary>
         public bool? VisualSearch { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest"/> and sets the default values.

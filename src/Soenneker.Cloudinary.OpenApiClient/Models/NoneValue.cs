@@ -3,13 +3,14 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>Discriminator identifying this as a temporary target.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum TemporaryTargetTargetType
+    #pragma warning disable CS1591
+    public enum NoneValue
+    #pragma warning restore CS1591
     {
-        [EnumMember(Value = "temporary")]
+        [EnumMember(Value = "none")]
         #pragma warning disable CS1591
-        Temporary,
+        None,
         #pragma warning restore CS1591
     }
 }

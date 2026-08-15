@@ -3,13 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>Discriminator identifying this as temporary storage.</summary>
+    /// <summary>The status of the asynchronous upload. Will be &apos;pending&apos; for async uploads.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum TemporaryStorageStorageType
+    public enum PendingStatus
     {
-        [EnumMember(Value = "temporary")]
+        [EnumMember(Value = "pending")]
         #pragma warning disable CS1591
-        Temporary,
+        Pending,
         #pragma warning restore CS1591
     }
 }

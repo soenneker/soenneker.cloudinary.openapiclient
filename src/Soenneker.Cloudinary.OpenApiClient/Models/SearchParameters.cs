@@ -31,7 +31,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Expression { get; set; }
 #endif
-        /// <summary>&quot;A comma-separated list of fields to include in the response.Notes:- This parameter takes precedence over the with_field parameter, so if you want any additional asset attributes returned, make sure to also include them in this list (e.g., tags or context).- The following fields are always included in the response: public_id, asset_id, asset_folder, created_at, status, type, and resource_type.&quot;</summary>
+        /// <summary>A comma-separated list of fields to include in the response.Notes:- This parameter takes precedence over the with_field parameter, so if you want any additional asset attributes returned, make sure to also include them in this list (e.g., tags or context).- The following fields are always included in the response: public_id, asset_id, asset_folder, created_at, status, type, and resource_type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Fields { get; set; }
@@ -49,7 +49,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string NextCursor { get; set; }
 #endif
-        /// <summary>&quot;An array of single-key objects mapping a field to a sort direction. Each object must contain exactly one field name mapped to &apos;asc&apos; or &apos;desc&apos;.Default: [{\&quot;created_at\&quot;: \&quot;desc\&quot;}].&quot;</summary>
+        /// <summary>An array of single-key objects mapping a field to a sort direction. Each object must contain exactly one field name mapped to &apos;asc&apos; or &apos;desc&apos;.Default: [{&quot;created_at&quot;: &quot;desc&quot;}].</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersSortByItem>? SortBy { get; set; }

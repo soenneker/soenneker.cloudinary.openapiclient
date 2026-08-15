@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>&quot;Output resolution tier, measured on the longest edge. Defaults to`1K` when omitted.* `0.5K`: ~512 px* `1K`: ~1024 px* `2K`: ~2048 px* `4K`: ~4096 px&quot;</summary>
+    /// <summary>Output resolution tier, measured on the longest edge. Defaults to`1K` when omitted.* `0.5K`: ~512 px* `1K`: ~1024 px* `2K`: ~2048 px* `4K`: ~4096 px</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DeclarativeImageSizeResolution
     {

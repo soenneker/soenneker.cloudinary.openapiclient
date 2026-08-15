@@ -3,9 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>Discriminator identifying this as a managed-asset target.</summary>
+    /// <summary>Discriminator identifying this as managed-asset storage.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum ManagedAssetTargetTargetType
+    public enum ManagedAssetStorageType
     {
         [EnumMember(Value = "managed_asset")]
         #pragma warning disable CS1591

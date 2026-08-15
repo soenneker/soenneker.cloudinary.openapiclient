@@ -28,7 +28,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAccessMode? AccessMode { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;A comma-separated list of file formats that are allowed for uploading. Files of other types will be rejected. The formats can be any combination of image types, video formats or raw file extensions.Note: You can also add the `format` parameter to convert other file types instead of rejecting them. In this case, only files that would normally be rejected are converted, any file format allowed for upload won&apos;t be converted.&quot;</summary>
+        /// <summary>A comma-separated list of file formats that are allowed for uploading. Files of other types will be rejected. The formats can be any combination of image types, video formats or raw file extensions.Note: You can also add the `format` parameter to convert other file types instead of rejecting them. In this case, only files that would normally be rejected are converted, any file format allowed for upload won&apos;t be converted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AllowedFormats { get; set; }
@@ -44,7 +44,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string AssetFolder { get; set; }
 #endif
-        /// <summary>&quot;When set to true, returns the uploaded asset&apos;s public_id immediately in the response, before the upload is completed (asynchronously). Default: false.&quot;</summary>
+        /// <summary>When set to true, returns the uploaded asset&apos;s public_id immediately in the response, before the upload is completed (asynchronously). Default: false.</summary>
         public bool? Async { get; set; }
         /// <summary>Whether to trigger automatic generation of video chapters. Chapters will be generated and saved as a .vtt file with -chapters appended to the public ID of the video. You can enable chapters as part of the Cloudinary Video Player. Relevant for videos only.</summary>
         public bool? AutoChaptering { get; set; }
@@ -58,7 +58,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription AutoTranscription { get; set; }
 #endif
-        /// <summary>&quot;Automatically remove the background of an image using an add-on.- Set to cloudinary_ai to use the deep-learning based Cloudinary AI Background Removal add-on.  Optionally append a template suffix (e.g., cloudinary_ai:fine_edges).- Note: this feature has been superseded by background removal on the fly.- Set to pixelz to use the human-powered Pixelz Remove-The-Background Editing add-on service.Relevant for images only.&quot;</summary>
+        /// <summary>Automatically remove the background of an image using an add-on.- Set to cloudinary_ai to use the deep-learning based Cloudinary AI Background Removal add-on.  Optionally append a template suffix (e.g., cloudinary_ai:fine_edges).- Note: this feature has been superseded by background removal on the fly.- Set to pixelz to use the human-powered Pixelz Remove-The-Background Editing add-on service.Relevant for images only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? BackgroundRemoval { get; set; }
@@ -68,7 +68,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>Whether to backup the uploaded asset. When set to true, backs up uploaded assets to a secondary storage bucket.</summary>
         public bool? Backup { get; set; }
-        /// <summary>&quot;A URL to redirect to after the upload/explicit is completed instead of returning the upload response.Signed upload result parameters are added to the callback URL. This parameter is ignored for XHR (Ajax XMLHttpRequest) or JavaScript Fetch API upload requests.Note: This parameter is relevant for direct uploads from a form in the browser. It is automatically set if you perform direct upload from the browser using Cloudinary&apos;s SDKs and the jQuery plugin.&quot;</summary>
+        /// <summary>A URL to redirect to after the upload/explicit is completed instead of returning the upload response.Signed upload result parameters are added to the callback URL. This parameter is ignored for XHR (Ajax XMLHttpRequest) or JavaScript Fetch API upload requests.Note: This parameter is relevant for direct uploads from a form in the browser. It is automatically set if you perform direct upload from the browser using Cloudinary&apos;s SDKs and the jQuery plugin.</summary>
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,9 +87,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>Whether to return a cinemagraph analysis value for the media asset between 0 and 1, where 0 means the asset is not a cinemagraph and 1 means the asset is a cinemagraph. Relevant for animated images and video only. A static image will return 0.</summary>
         public bool? CinemagraphAnalysis { get; set; }
-        /// <summary>&quot;Whether to clear metadata field values that have become invalid due to a change in metadata rules. If false, the API returns an error if any existing metadata value is no longer valid. Default: false.&quot;</summary>
+        /// <summary>Whether to clear metadata field values that have become invalid due to a change in metadata rules. If false, the API returns an error if any existing metadata value is no longer valid. Default: false.</summary>
         public bool? ClearInvalid { get; set; }
-        /// <summary>&quot;Whether to retrieve predominant colors &amp; color histogram of the uploaded image. Note: If all returned colors are opaque, then 6-digit RGB hex values are returned. If one or more colors contain an alpha channel, then 8-digit RGBA hex quadruplet values are returned.&quot;</summary>
+        /// <summary>Whether to retrieve predominant colors &amp; color histogram of the uploaded image. Note: If all returned colors are opaque, then 6-digit RGB hex values are returned. If one or more colors contain an alpha channel, then 8-digit RGBA hex quadruplet values are returned.</summary>
         public bool? Colors { get; set; }
         /// <summary>A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., &quot;alt=My image|caption=Nice photo&quot;). A literal = or | inside a value must be escaped with a prepending backslash, and a literal backslash must be doubled. A double quote must not be escaped.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -188,7 +188,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Format { get; set; }
 #endif
-        /// <summary>&quot;An HTTP header or a list of headers lines for adding as response HTTP headers when delivering the asset to your users. Supported headers: Link, Authorization, X-Robots-Tag.&quot;</summary>
+        /// <summary>An HTTP header or a list of headers lines for adding as response HTTP headers when delivering the asset to your users. Supported headers: Link, Authorization, X-Robots-Tag.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Headers { get; set; }
@@ -196,9 +196,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Headers { get; set; }
 #endif
-        /// <summary>&quot;Whether to invalidate CDN cache copies of a previously uploaded asset that shares the same public ID. Default: false.&quot;</summary>
+        /// <summary>Whether to invalidate CDN cache copies of a previously uploaded asset that shares the same public ID. Default: false.</summary>
         public bool? Invalidate { get; set; }
-        /// <summary>&quot;Whether to return IPTC, XMP, and detailed Exif metadata of the uploaded asset in the response.Supported for images, video, and audio.- Returned metadata for images includes: PixelsPerUnitX, PixelsPerUnitY, PixelUnits, Colorspace, and DPI.- Returned metadata for audio and video includes: audio_codec, audio_bit_rate, audio_frequency, channels, channel_layout.- Additional metadata for video includes: pix_format, codec, level, profile, video_bit_rate, dar.&quot;</summary>
+        /// <summary>Whether to return IPTC, XMP, and detailed Exif metadata of the uploaded asset in the response.Supported for images, video, and audio.- Returned metadata for images includes: PixelsPerUnitX, PixelsPerUnitY, PixelUnits, Colorspace, and DPI.- Returned metadata for audio and video includes: audio_codec, audio_bit_rate, audio_frequency, channels, channel_layout.- Additional metadata for video includes: pix_format, codec, level, profile, video_bit_rate, dar.</summary>
         public bool? MediaMetadata { get; set; }
         /// <summary>A pipe-separated list or a map of custom metadata fields (by external_id) and the values to assign to each of them. The = &quot; and | characters can be supported as values when escaped with a prepended backslash (\). For a multi-select field, you can set a maximum of 3000 different metadata values on an asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -208,7 +208,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get; set; }
 #endif
-        /// <summary>&quot;For all asset types, set to:- manual to add the uploaded asset to a list of pending assets that can be moderated using the Admin API or the Cloudinary Console.- perception_point to automatically moderate the uploaded asset using the Perception Point Malware Detection add-on.For images only, set to:- webpurify to automatically moderate the uploaded image using the WebPurify Image Moderation add-on.- aws_rek to automatically moderate the uploaded image using the Amazon Rekognition AI Moderation add-on.- duplicate:&lt;threshold&gt; to detect if the same or a similar image already exists using the Cloudinary Duplicate Image Detection add-on. Set threshold to a float greater than 0 and less than or equal to 1.0 to specify how similar an image needs to be in order to be considered a duplicate. Set threshold to 0 to add an image to the index of images that are searched when duplicate detection is invoked for another image.For videos only, set to:- aws_rek_video to automatically moderate the uploaded video using the Amazon Rekognition Video Moderation add-on.- google_video_moderation automatically moderate the uploaded video using the Google AI Video Moderation add-on.To request multiple moderations in a single API call:- Send the desired list of moderations as a pipe-separated string with manual moderation, if relevant, being last.Note: Rejected assets are automatically invalidated on the CDN within approximately ten minutes.&quot;</summary>
+        /// <summary>For all asset types, set to:- manual to add the uploaded asset to a list of pending assets that can be moderated using the Admin API or the Cloudinary Console.- perception_point to automatically moderate the uploaded asset using the Perception Point Malware Detection add-on.For images only, set to:- webpurify to automatically moderate the uploaded image using the WebPurify Image Moderation add-on.- aws_rek to automatically moderate the uploaded image using the Amazon Rekognition AI Moderation add-on.- duplicate:&lt;threshold&gt; to detect if the same or a similar image already exists using the Cloudinary Duplicate Image Detection add-on. Set threshold to a float greater than 0 and less than or equal to 1.0 to specify how similar an image needs to be in order to be considered a duplicate. Set threshold to 0 to add an image to the index of images that are searched when duplicate detection is invoked for another image.For videos only, set to:- aws_rek_video to automatically moderate the uploaded video using the Amazon Rekognition Video Moderation add-on.- google_video_moderation automatically moderate the uploaded video using the Google AI Video Moderation add-on.To request multiple moderations in a single API call:- Send the desired list of moderations as a pipe-separated string with manual moderation, if relevant, being last.Note: Rejected assets are automatically invalidated on the CDN within approximately ten minutes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Moderation { get; set; }
@@ -248,7 +248,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string OnSuccess { get; set; }
 #endif
-        /// <summary>&quot;Whether to overwrite existing assets with the same public ID. When set to false, return immediately if an asset with the same public ID already exists. Default: true (when using unsigned upload, the default is false and cannot be changed to true).&quot;</summary>
+        /// <summary>Whether to overwrite existing assets with the same public ID. When set to false, return immediately if an asset with the same public ID already exists. Default: true (when using unsigned upload, the default is false and cannot be changed to true).</summary>
         public bool? Overwrite { get; set; }
         /// <summary>The parameters that are allowed to be used in an upload request utilizing this preset. If not specified or empty array, all parameters are allowed. If &quot;none&quot;, no parameters are allowed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -286,7 +286,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>Whether to return a quality analysis value for the image between 0 and 1, where 0 means the image is blurry and out of focus and 1 means the image is sharp and in focus. Relevant for images only.</summary>
         public bool? QualityAnalysis { get; set; }
-        /// <summary>&quot;Generates a related file based on the uploaded file.- Set to aspose to automatically create a PDF or other image format from a raw Office document using the Aspose Document Conversion add-on. (Asynchronous)- Set to google_speech to instruct the Google AI Video Transcription add-on to generate an automatic transcript raw file from an uploaded video. (Asynchronous)- Set to extract_text to extract all the text from a PDF file and store it in a raw JSON file with a public ID in the format: [pdf_public_id].extract_text.json. The full URL of the generated JSON file is included in the API response. Unlike the above raw_convert options, this option doesn&apos;t require registering for an add-on.(Synchronous)- Set to azure_video_indexer to generate AI-powered video insights from Microsoft Azure. (Asynchronous)&quot;</summary>
+        /// <summary>Generates a related file based on the uploaded file.- Set to aspose to automatically create a PDF or other image format from a raw Office document using the Aspose Document Conversion add-on. (Asynchronous)- Set to google_speech to instruct the Google AI Video Transcription add-on to generate an automatic transcript raw file from an uploaded video. (Asynchronous)- Set to extract_text to extract all the text from a PDF file and store it in a raw JSON file with a public ID in the format: [pdf_public_id].extract_text.json. The full URL of the generated JSON file is included in the API response. Unlike the above raw_convert options, this option doesn&apos;t require registering for an add-on.(Synchronous)- Set to azure_video_indexer to generate AI-powered video insights from Microsoft Azure. (Asynchronous)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RawConvert { get; set; }
@@ -338,7 +338,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>Whether the display name should be unique.</summary>
         public bool? UniqueDisplayName { get; set; }
-        /// <summary>&quot;When set to false and used together with use_filename, if an asset with the same file name already exists, no random characters are appended to the file name. Instead, the asset is overwritten. Default: true (random characters are added to the file name if needed).&quot;</summary>
+        /// <summary>When set to false and used together with use_filename, if an asset with the same file name already exists, no random characters are appended to the file name. Instead, the asset is overwritten. Default: true (random characters are added to the file name if needed).</summary>
         public bool? UniqueFilename { get; set; }
         /// <summary>Whether the upload preset allows unsigned uploads.</summary>
         public bool? Unsigned { get; set; }
@@ -352,7 +352,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>Whether to add the asset_folder value as a prefix to the public_id value (prepended with a forward slash). This ensures that the public ID path will always match the initial asset folder, and can help to retain the behavior that previously existed in fixed folder mode. However, keep in mind that even when this option is used during upload, an asset with a certain public ID path can later be moved to a completely different asset folder hierarchy without impacting the public ID. This option only ensures path matching for the initial upload. Relevant only when public_id_prefix (or folder) has not been separately specified.</summary>
         public bool? UseAssetFolderAsPublicIdPrefix { get; set; }
-        /// <summary>&quot;Whether to use the original file name of the uploaded asset if available for the public ID. The file name is normalized and random characters are appended to ensure uniqueness if the file name already exists. Default: false.&quot;</summary>
+        /// <summary>Whether to use the original file name of the uploaded asset if available for the public ID. The file name is normalized and random characters are appended to ensure uniqueness if the file name already exists. Default: false.</summary>
         public bool? UseFilename { get; set; }
         /// <summary>Whether to automatically assign the original filename of the uploaded asset as the asset&apos;s display name. Relevant only if the display_name parameter isn&apos;t set.</summary>
         public bool? UseFilenameAsDisplayName { get; set; }

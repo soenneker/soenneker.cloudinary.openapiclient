@@ -34,7 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Metadata
         {
         }
         /// <summary>
-        /// &quot;Assigns structured metadata field values to the given assets, addressing them by public ID.Values are merged into each asset&apos;s existing structured metadata: fields not mentionedkeep their current values, and an empty value clears the field. Every referenced fieldmust already exist in the product environment. Conditional metadata rules are evaluatedas part of the update.&quot;
+        /// Assigns structured metadata field values to the given assets, addressing them by public ID.Values are merged into each asset&apos;s existing structured metadata: fields not mentionedkeep their current values, and an empty value clears the field. Every referenced fieldmust already exist in the product environment. Conditional metadata rules are evaluatedas part of the update.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.PublicIdsResponse"/></returns>
         /// <param name="body">Structured metadata values plus the assets they apply to.</param>
@@ -63,7 +63,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Metadata
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.PublicIdsResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.PublicIdsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Assigns structured metadata field values to the given assets, addressing them by public ID.Values are merged into each asset&apos;s existing structured metadata: fields not mentionedkeep their current values, and an empty value clears the field. Every referenced fieldmust already exist in the product environment. Conditional metadata rules are evaluatedas part of the update.&quot;
+        /// Assigns structured metadata field values to the given assets, addressing them by public ID.Values are merged into each asset&apos;s existing structured metadata: fields not mentionedkeep their current values, and an empty value clears the field. Every referenced fieldmust already exist in the product environment. Conditional metadata rules are evaluatedas part of the update.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Structured metadata values plus the assets they apply to.</param>

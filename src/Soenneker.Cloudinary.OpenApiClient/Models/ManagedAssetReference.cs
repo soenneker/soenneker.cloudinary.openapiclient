@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string AssetId { get; set; }
 #endif
         /// <summary>Discriminator identifying this as a managed-asset reference.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetReferenceSourceType? SourceType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetSourceType? SourceType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -42,7 +42,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "asset_id", n => { AssetId = n.GetStringValue(); } },
-                { "source_type", n => { SourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetReferenceSourceType>(); } },
+                { "source_type", n => { SourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetSourceType>(); } },
             };
         }
         /// <summary>
@@ -53,7 +53,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("asset_id", AssetId);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetReferenceSourceType>("source_type", SourceType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetSourceType>("source_type", SourceType);
         }
     }
 }
