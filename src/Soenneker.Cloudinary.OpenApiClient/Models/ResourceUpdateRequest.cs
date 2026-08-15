@@ -49,7 +49,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>&quot;Whether to clear invalid metadata fields. If false, invalid fields will be preserved. Default: false&quot;</summary>
         public bool? ClearInvalid { get; set; }
-        /// <summary>A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., &quot;alt=My image|caption=Nice photo&quot;). The =, &quot;, and | characters can be escaped with a prepending backslash (\).</summary>
+        /// <summary>A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., &quot;alt=My image|caption=Nice photo&quot;). A literal = or | inside a value must be escaped with a prepending backslash, and a literal backslash must be doubled. A double quote must not be escaped.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Context { get; set; }

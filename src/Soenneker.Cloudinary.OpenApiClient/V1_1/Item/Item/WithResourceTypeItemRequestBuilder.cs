@@ -2,12 +2,15 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Context;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Explicit;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Explode;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Generate_archive;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Metadata;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Rename;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Tags;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Text;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Upload_chunked;
@@ -23,6 +26,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithResourceTypeItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The context property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Context.ContextRequestBuilder Context
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Context.ContextRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The destroy property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Destroy.DestroyRequestBuilder Destroy
         {
@@ -48,10 +56,20 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Generate_archive.Generate_archiveRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The metadata property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Metadata.MetadataRequestBuilder Metadata
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Metadata.MetadataRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The rename property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Rename.RenameRequestBuilder Rename
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Rename.RenameRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The tags property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Tags.TagsRequestBuilder Tags
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Tags.TagsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The text property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Text.TextRequestBuilder Text

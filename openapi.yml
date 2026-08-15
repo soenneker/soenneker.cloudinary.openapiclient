@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Cloudinary API v1.1
-  version: 0.7.4 # x-release-please-version
+  version: 0.7.5 # x-release-please-version
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -48,8 +48,8 @@ tags:
     description: Enables you to manage all the resources (assets) stored in your product environment.
   - name: asset_relations
     description: Enables you to manage relationships between assets.
-  - name: metadata
-    description: Enables you to manage the custom metadata (tags/context/structured metadata) stored with specific assets.
+  - name: asset_metadata
+    description: Enables you to manage the tags, contextual metadata, and structured metadata values stored on specific assets.
   - name: moderations
     description: Enables you to manage moderation definitions.
   - name: streaming_profiles
@@ -623,6 +623,228 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/api_error'
+  /v1_1/{cloud_name}/{resource_type}/tags:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+      - $ref: '#/components/parameters/resource_type'
+    post:
+      x-speakeasy-mcp:
+        name: manage-asset-tags
+        scopes:
+          - librarian
+        title: Manage Asset Tags
+        destructiveHint: true
+      summary: Adds, removes, or replaces tags on multiple assets
+      description: |
+        Applies a tag command to the given assets, addressing them by public ID.
+
+        The number of tags multiplied by the number of public IDs must not exceed 10,000.
+      tags:
+        - asset_metadata
+      operationId: updateAssetsTags
+      requestBody:
+        description: The tag command, the tags to apply, and the assets to apply them to.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tags_update_request'
+            example:
+              command: add
+              public_ids:
+                - sample
+                - product_image
+                - banner_2023
+              tags:
+                - animal
+                - dog
+      responses:
+        '200':
+          description: Tag command applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/public_ids_response'
+              example:
+                public_ids:
+                  - sample
+                  - product_image
+                  - banner_2023
+        '400':
+          description: Bad request (e.g., invalid command, blank tag, tag containing a comma, or the 10,000 tags-times-assets limit exceeded)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: 'Invalid command - bogus. Must be one of: add, remove, replace, remove_all'
+        '401':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: api_secret mismatch
+        '403':
+          description: Forbidden (e.g., insufficient permissions for the requested assets)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: This token is unauthorized to perform the requested action
+  /v1_1/{cloud_name}/{resource_type}/context:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+      - $ref: '#/components/parameters/resource_type'
+    post:
+      x-speakeasy-mcp:
+        name: manage-asset-context
+        scopes:
+          - librarian
+        title: Manage Asset Contextual Metadata
+        destructiveHint: true
+      summary: Adds or clears contextual metadata on multiple assets
+      description: |
+        Applies a contextual-metadata command to the given assets, addressing them by public ID.
+      tags:
+        - asset_metadata
+      operationId: updateAssetsContext
+      requestBody:
+        description: The context command, the metadata to apply, and the assets to apply it to.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/context_update_request'
+            example:
+              command: add
+              public_ids:
+                - sample
+                - product_image
+                - banner_2023
+              context: alt=My image|caption=Nice photo
+      responses:
+        '200':
+          description: Context command applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/public_ids_response'
+              example:
+                public_ids:
+                  - sample
+                  - product_image
+                  - banner_2023
+        '400':
+          description: Bad request (e.g., invalid command, or `context` missing when adding)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Missing required parameter - context
+        '401':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: api_secret mismatch
+        '403':
+          description: Forbidden (e.g., insufficient permissions for the requested assets)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: This token is unauthorized to perform the requested action
+  /v1_1/{cloud_name}/{resource_type}/metadata:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+      - $ref: '#/components/parameters/resource_type'
+    post:
+      x-speakeasy-mcp:
+        name: manage-asset-metadata
+        scopes:
+          - librarian
+        title: Manage Asset Structured Metadata
+        destructiveHint: true
+      summary: Sets structured metadata values on multiple assets
+      description: |
+        Assigns structured metadata field values to the given assets, addressing them by public ID.
+
+        Values are merged into each asset's existing structured metadata: fields not mentioned
+        keep their current values, and an empty value clears the field. Every referenced field
+        must already exist in the product environment. Conditional metadata rules are evaluated
+        as part of the update.
+      tags:
+        - asset_metadata
+      operationId: updateAssetsMetadata
+      requestBody:
+        description: The structured metadata values to assign and the assets to assign them to.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/metadata_update_request'
+            example:
+              public_ids:
+                - sample
+                - product_image
+                - banner_2023
+              metadata:
+                in_stock_id: 50
+                color_id:
+                  - green
+                  - red
+      responses:
+        '200':
+          description: Structured metadata applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/public_ids_response'
+              example:
+                public_ids:
+                  - sample
+                  - product_image
+                  - banner_2023
+        '400':
+          description: Bad request (e.g., unknown metadata field, invalid value for the field type, or no metadata fields defined in the product environment)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: 'The following metadata fields do not exist: ["colour_id"]'
+        '401':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: api_secret mismatch
+        '403':
+          description: Forbidden (e.g., insufficient permissions for the requested assets)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: This token is unauthorized to perform the requested action
   /v1_1/{cloud_name}/{resource_type}/generate_archive:
     parameters:
       - $ref: '#/components/parameters/cloud_name'
@@ -3706,10 +3928,10 @@ paths:
               - view_ended_at
               - video_duration
               - view_watch_time
-              - '-view_ended_at'
-              - '-video_duration'
-              - '-view_watch_time'
-            default: '-view_ended_at'
+              - -view_ended_at
+              - -video_duration
+              - -view_watch_time
+            default: -view_ended_at
           description: Specifies the expression field by which to sort the results. Prepend values with a '-' to reverse the order.
         - $ref: '#/components/parameters/next_cursor_query'
       responses:
@@ -6711,7 +6933,7 @@ components:
       example: animal,dog
     context_param:
       type: string
-      description: A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., "alt=My image|caption=Nice photo"). The =, ", and | characters can be escaped with a prepending backslash (\).
+      description: A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., "alt=My image|caption=Nice photo"). A literal = or | inside a value must be escaped with a prepending backslash, and a literal backslash must be doubled. A double quote must not be escaped.
       example: alt=My image|caption=Nice photo
     upload_serializable_input:
       type: object
@@ -7305,6 +7527,112 @@ components:
               oneOf:
                 - type: string
                 - type: integer
+    public_ids_param:
+      type: array
+      items:
+        type: string
+      maxItems: 1000
+      description: The public IDs of the assets to apply the operation to. At most 1000 are processed per request; any beyond the first 1000 are ignored rather than rejected. Public IDs that do not exist, or that the caller lacks update permission for, are skipped rather than failing the request, so the returned `public_ids` may be shorter than the requested list.
+      example:
+        - sample
+        - product_image
+        - banner_2023
+    asset_metadata_common_parameters:
+      type: object
+      description: Fields common to every bulk metadata-management operation.
+      properties:
+        public_ids:
+          $ref: '#/components/schemas/public_ids_param'
+        type:
+          allOf:
+            - $ref: '#/components/schemas/delivery_type_all'
+          description: The delivery type of the assets to operate on. Defaults to `upload`.
+      required:
+        - public_ids
+    tags_update_request:
+      description: A tag command plus the assets it applies to.
+      allOf:
+        - $ref: '#/components/schemas/asset_metadata_common_parameters'
+        - type: object
+          properties:
+            command:
+              type: string
+              enum:
+                - add
+                - remove
+                - replace
+                - remove_all
+              description: |-
+                The tag operation to apply.
+
+                - `add` adds the given tags, leaving existing tags untouched.
+                - `remove` removes the given tags, leaving other tags untouched.
+                - `replace` overwrites the full tag list with the given tags.
+                - `remove_all` clears every tag. The `tags` field is ignored.
+            tags:
+              type: array
+              items:
+                type: string
+              description: The tag names to apply. Required for `add`, `remove`, and `replace`; ignored for `remove_all`. A tag name must not contain a comma.
+              example:
+                - animal
+                - dog
+          required:
+            - command
+    public_ids_response:
+      type: object
+      description: The result of a bulk operation addressed by public ID.
+      properties:
+        public_ids:
+          type: array
+          items:
+            type: string
+          description: The public IDs the operation was actually applied to. Shorter than the requested list when assets were missing, unauthorized, or beyond the 1000-asset limit.
+        unauthorized:
+          type: array
+          items:
+            type: string
+          description: The public IDs the caller lacks update permission for. Present only when at least one requested asset was unauthorized.
+    context_update_request:
+      description: A contextual-metadata command plus the assets it applies to.
+      allOf:
+        - $ref: '#/components/schemas/asset_metadata_common_parameters'
+        - type: object
+          properties:
+            command:
+              type: string
+              enum:
+                - add
+                - remove_all
+              description: |-
+                The contextual-metadata operation to apply.
+
+                - `add` merges the given key-value pairs into each asset's existing context. Keys
+                  already present are overwritten; keys not mentioned are left intact. `context`
+                  is required.
+                - `remove_all` clears all contextual metadata. The `context` field is ignored.
+            context:
+              allOf:
+                - $ref: '#/components/schemas/context_param'
+              description: |-
+                The key-value pairs to merge. Required for `add`; ignored for `remove_all`.
+                An empty value deletes that key rather than storing an empty string, so `"alt="` removes `alt` while leaving other keys intact. Deletes and sets may be combined: `"alt=|owner=new"`.
+                A literal `=` or `|` inside a value must be escaped with a prepending backslash, and a literal backslash must be doubled. A double quote must not be escaped.
+          required:
+            - command
+    metadata_update_request:
+      description: Structured metadata values plus the assets they apply to.
+      allOf:
+        - $ref: '#/components/schemas/asset_metadata_common_parameters'
+        - type: object
+          properties:
+            metadata:
+              $ref: '#/components/schemas/structured_metadata_param'
+            clear_invalid:
+              type: boolean
+              description: Whether to clear a value already stored on the asset that is no longer valid — for example because its datasource entry was deleted — instead of failing the update for that asset. Applies only to fields governed by an active conditional metadata rule; an invalid value sent in this request is always rejected. Default is false.
+          required:
+            - metadata
     archive_resource_type:
       type: string
       enum:
@@ -9116,7 +9444,7 @@ components:
           type: string
           description: Quality override value that will override any automatic quality transformations.
           examples:
-            - '80:420'
+            - 80:420
             - auto:best
         moderation_status:
           type: string

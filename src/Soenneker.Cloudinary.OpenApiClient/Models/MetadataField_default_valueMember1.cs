@@ -7,30 +7,29 @@ using System.IO;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>
-    /// User-defined contextual metadata as key-value pairs.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class InfoContextCustom : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class MetadataField_default_valueMember1 : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContextCustom"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_default_valueMember1"/> and sets the default values.
         /// </summary>
-        public InfoContextCustom()
+        public MetadataField_default_valueMember1()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContextCustom"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_default_valueMember1"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContextCustom CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_default_valueMember1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContextCustom();
+            return new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField_default_valueMember1();
         }
         /// <summary>
         /// The deserialization information for the current model

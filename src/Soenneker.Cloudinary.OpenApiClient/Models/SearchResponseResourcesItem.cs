@@ -16,10 +16,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The access control settings for the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessControl? AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? AccessControl { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessControl AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> AccessControl { get; set; }
 #endif
         /// <summary>Results of accessibility analysis.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -224,7 +224,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "access_control", n => { AccessControl = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessControl>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessControl.CreateFromDiscriminatorValue); } },
+                { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "access_mode", n => { AccessMode = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode>(); } },
                 { "accessibility_analysis", n => { AccessibilityAnalysis = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessibilityAnalysisProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessibilityAnalysisProperty.CreateFromDiscriminatorValue); } },
                 { "aspect_ratio", n => { AspectRatio = n.GetFloatValue(); } },
@@ -265,7 +265,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessControl>("access_control", AccessControl);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>("access_control", AccessControl);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessibilityAnalysisProperty>("accessibility_analysis", AccessibilityAnalysis);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode>("access_mode", AccessMode);
             writer.WriteFloatValue("aspect_ratio", AspectRatio);

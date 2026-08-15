@@ -16,10 +16,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The access_control property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.InfoAccessControl? AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? AccessControl { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.InfoAccessControl AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> AccessControl { get; set; }
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -334,7 +334,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "access_control", n => { AccessControl = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoAccessControl>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoAccessControl.CreateFromDiscriminatorValue); } },
+                { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "animated", n => { Animated = n.GetBoolValue(); } },
                 { "aspect_ratio", n => { AspectRatio = n.GetDoubleValue(); } },
                 { "asset_folder", n => { AssetFolder = n.GetStringValue(); } },
@@ -391,7 +391,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoAccessControl>("access_control", AccessControl);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>("access_control", AccessControl);
             writer.WriteBoolValue("animated", Animated);
             writer.WriteDoubleValue("aspect_ratio", AspectRatio);
             writer.WriteStringValue("asset_folder", AssetFolder);
