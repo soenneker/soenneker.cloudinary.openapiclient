@@ -16027,6 +16027,7 @@
           "resources_size_limit": {
             "type": "integer",
             "description": "The maximum total size, in bytes, of the assets that may be moved by the rename.",
+            "format": "int64",
             "example": 1099511627776
           },
           "max_derived": {

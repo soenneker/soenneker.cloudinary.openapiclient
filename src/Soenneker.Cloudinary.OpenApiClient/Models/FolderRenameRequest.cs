@@ -28,7 +28,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The maximum number of assets that may be moved by the rename. Assets beyond this limit cause the rename to be rejected.</summary>
         public int? ResourcesLimit { get; set; }
         /// <summary>The maximum total size, in bytes, of the assets that may be moved by the rename.</summary>
-        public int? ResourcesSizeLimit { get; set; }
+        public long? ResourcesSizeLimit { get; set; }
         /// <summary>The new full path for the folder.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,7 +65,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "max_derived", n => { MaxDerived = n.GetIntValue(); } },
                 { "path", n => { Path = n.GetStringValue(); } },
                 { "resources_limit", n => { ResourcesLimit = n.GetIntValue(); } },
-                { "resources_size_limit", n => { ResourcesSizeLimit = n.GetIntValue(); } },
+                { "resources_size_limit", n => { ResourcesSizeLimit = n.GetLongValue(); } },
                 { "to_path", n => { ToPath = n.GetStringValue(); } },
             };
         }
@@ -79,7 +79,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteIntValue("max_derived", MaxDerived);
             writer.WriteStringValue("path", Path);
             writer.WriteIntValue("resources_limit", ResourcesLimit);
-            writer.WriteIntValue("resources_size_limit", ResourcesSizeLimit);
+            writer.WriteLongValue("resources_size_limit", ResourcesSizeLimit);
             writer.WriteStringValue("to_path", ToPath);
             writer.WriteAdditionalData(AdditionalData);
         }
