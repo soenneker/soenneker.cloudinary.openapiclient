@@ -12,7 +12,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     public partial class Info : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The access_control property</summary>
+        /// <summary>Restricts access to the asset by specifying one or more access types.The asset is restricted unless at least one listed access type is valid.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? AccessControl { get; set; }

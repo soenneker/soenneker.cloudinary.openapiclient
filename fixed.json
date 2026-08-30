@@ -18708,19 +18708,14 @@
         "description": "Included if \u0027context=true\u0027 parameter is used."
       },
       "InfoAccessControl": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccessControlItem"
-            },
-            "description": "Restricts access to the asset by specifying one or more access types.\nThe asset is restricted unless at least one listed access type is valid.\n"
-          },
-          {
-            "type": "null"
-          }
-        ]
+        "type": [
+          "null",
+          "array"
+        ],
+        "items": {
+          "$ref": "#/components/schemas/AccessControlItem"
+        },
+        "description": "Restricts access to the asset by specifying one or more access types.\nThe asset is restricted unless at least one listed access type is valid.\n"
       },
       "InfoFaces": {
         "type": [
@@ -19102,19 +19097,13 @@
         "description": "Fields or ranges to aggregate search results by. Requires a Tier 2 search plan; on Tier 1 the field is accepted but aggregations are omitted from the response.\n"
       },
       "SearchResponseResourcesItemAccessControl": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccessControlItem"
-            },
-            "description": "Restricts access to the asset by specifying one or more access types.\nThe asset is restricted unless at least one listed access type is valid.\n"
-          },
-          {
-            "type": "null"
-          }
+        "type": [
+          "null",
+          "array"
         ],
+        "items": {
+          "$ref": "#/components/schemas/AccessControlItem"
+        },
         "description": "The access control settings for the asset.",
         "example": null
       },
