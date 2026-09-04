@@ -17326,6 +17326,9 @@
         "description": "Parameters for an image-to-image (reference-guided) request. Both\n\u0060prompt\u0060 (the edit instruction) and \u0060reference_images\u0060 are required; all\nother fields fall back to the same defaults as \u0060text_to_image\u0060.\n"
       },
       "ReferenceImage": {
+        "required": [
+          "source_type"
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -17350,6 +17353,9 @@
             "type": "string",
             "description": "HTTPS URL of the reference image.",
             "format": "uri"
+          },
+          "source_type": {
+            "type": "string"
           }
         },
         "description": "A single reference image, in **one** of two mutually exclusive forms\ndetermined by \u0060source_type\u0060:\n  * \u0060ManagedAssetReference\u0060: a managed asset in the caller\u0027s product\n    environment, by \u0060asset_id\u0060 (read permission is checked).\n  * \u0060UrlReference\u0060: an external image by HTTPS \u0060url\u0060.\n",
@@ -17548,6 +17554,9 @@
         "description": "Declarative output size \u2014 an aspect ratio plus an optional resolution\ntier, resolved server-side to the nearest size the model supports.\n"
       },
       "Target": {
+        "required": [
+          "target_type"
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -17571,6 +17580,9 @@
             ],
             "type": "string",
             "description": "Upload preset to apply. Uses the product environment\u0027s default when omitted."
+          },
+          "target_type": {
+            "type": "string"
           }
         },
         "description": "Where to store the generated output, determined by \u0060target_type\u0060.\nOptional; defaults to a \u0060managed_asset\u0060 target when omitted.\n",
@@ -17625,6 +17637,9 @@
         "description": "Store the output as a short-lived asset on the upload service."
       },
       "Storage": {
+        "required": [
+          "storage_type"
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -17679,6 +17694,9 @@
             "type": "string",
             "description": "Time in UTC when secure_url stops being valid.",
             "format": "date-time"
+          },
+          "storage_type": {
+            "type": "string"
           }
         },
         "description": "Where a generated asset is stored \u2014 mirrors the request \u0060target\u0060,\ndetermined by \u0060storage_type\u0060. \u0060secure_url\u0060 is always present.\n",
