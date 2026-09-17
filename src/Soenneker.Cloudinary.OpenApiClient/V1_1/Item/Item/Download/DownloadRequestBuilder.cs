@@ -78,7 +78,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item.Download
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.Headers.TryAdd("Accept", "image/*, video/*, application/octet-stream, application/json");
             return requestInfo;
         }
         /// <summary>

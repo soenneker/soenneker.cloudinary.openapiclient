@@ -76,7 +76,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Download_backup
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9");
             return requestInfo;
         }
         /// <summary>

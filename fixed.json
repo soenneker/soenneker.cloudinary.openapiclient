@@ -26,25 +26,7 @@
             "api",
             "api-eu",
             "api-ap"
-          ],
-          "x-ms-enum": {
-            "name": "GeneratedEnum",
-            "modelAsString": false,
-            "values": [
-              {
-                "value": "api",
-                "name": "Api"
-              },
-              {
-                "value": "api-eu",
-                "name": "ApiEu"
-              },
-              {
-                "value": "api-ap",
-                "name": "ApiAp"
-              }
-            ]
-          }
+          ]
         }
       }
     },
@@ -133,16 +115,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/upload_resource_type"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/upload": {
       "post": {
@@ -217,13 +210,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/upload_chunked": {
       "post": {
@@ -274,6 +273,22 @@
               "type": "integer"
             },
             "example": 3
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -333,14 +348,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
-        {
-          "$ref": "#/components/parameters/upload_resource_type"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/rename": {
       "post": {
@@ -401,16 +409,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/resource_type"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/download": {
       "get": {
@@ -481,15 +500,36 @@
           {
             "description": "The timestamp to use for the request in unix time. This is automatically computed by the Cloudinary\u0027s SDKs.",
             "$ref": "#/components/parameters/timestamp_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Asset downloaded successfully",
             "content": {
-              "application/json": {
+              "image/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadAsset200Response"
+                  "$ref": "#/components/schemas/DownloadAsset200MediaResponseSchema2"
+                }
+              },
+              "video/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DownloadAsset200MediaResponseSchema3"
                 }
               },
               "application/octet-stream": {
@@ -541,14 +581,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
-        {
-          "$ref": "#/components/parameters/resource_type"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/destroy": {
       "post": {
@@ -619,16 +652,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/resource_type"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/explode": {
       "post": {
@@ -700,12 +744,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "resourceType",
           "in": "path",
@@ -787,16 +838,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/resource_type"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/tags": {
       "post": {
@@ -892,16 +954,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/resource_type"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/context": {
       "post": {
@@ -994,16 +1067,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/resource_type"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/metadata": {
       "post": {
@@ -1101,16 +1185,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/resource_type"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/generate_archive": {
       "post": {
@@ -1187,16 +1282,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/archive_resource_type"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/download_backup": {
       "get": {
@@ -1232,6 +1338,14 @@
           {
             "description": "The timestamp to use for the request in unix time. This is automatically computed by the Cloudinary\u0027s SDKs.",
             "$ref": "#/components/parameters/timestamp_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1243,9 +1357,14 @@
                   "$ref": "#/components/schemas/DownloadBackupAsset200OctetStreamResponseSchema"
                 }
               },
-              "application/json": {
+              "image/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadBackupAsset200Response"
+                  "$ref": "#/components/schemas/DownloadBackupAsset200MediaResponseSchema2"
+                }
+              },
+              "video/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DownloadBackupAsset200MediaResponseSchema3"
                 }
               },
               "text/plain": {
@@ -1339,11 +1458,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/asset/destroy": {
       "post": {
@@ -1355,8 +1470,12 @@
         "operationId": "DestroyByAssetId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1488,15 +1607,28 @@
           {
             "description": "The timestamp to use for the request in unix time. This is automatically computed by the Cloudinary\u0027s SDKs.",
             "$ref": "#/components/parameters/timestamp_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Asset downloaded successfully",
             "content": {
-              "application/json": {
+              "image/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/DownloadAssetByAssetId200Response"
+                  "$ref": "#/components/schemas/DownloadAssetByAssetId200MediaResponseSchema2"
+                }
+              },
+              "video/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DownloadAssetByAssetId200MediaResponseSchema3"
                 }
               },
               "application/octet-stream": {
@@ -1548,11 +1680,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/{resourceType}/text": {
       "post": {
@@ -1604,12 +1732,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "resourceType",
           "in": "path",
@@ -1671,13 +1806,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/transformations": {
       "get": {
@@ -1688,10 +1829,6 @@
         "description": "Retrieves a list of all transformations, which can be filtered to show either only named or unnamed transformations.\n",
         "operationId": "ListTransformations",
         "parameters": [
-          {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
           {
             "name": "named",
             "in": "query",
@@ -1707,6 +1844,14 @@
           {
             "description": "The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.",
             "$ref": "#/components/parameters/next_cursor_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1763,12 +1908,16 @@
         "operationId": "GetTransformation",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The transformation identifier. Can be either a named transformation (e.g., \u0027small_profile_thumbnail\u0027) or a transformation string (e.g., \u0027w_100,h_150,c_fill,g_auto\u0027).\n",
             "$ref": "#/components/parameters/transformation"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1833,12 +1982,16 @@
         "operationId": "CreateTransformation",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The valid transformation name to create.",
             "$ref": "#/components/parameters/transformation_name"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1914,12 +2067,16 @@
         "operationId": "UpdateTransformation",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The transformation identifier. Can be either a named transformation (e.g., \u0027small_profile_thumbnail\u0027) or a transformation string (e.g., \u0027w_100,h_150,c_fill,g_auto\u0027).\n",
             "$ref": "#/components/parameters/transformation"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -1985,10 +2142,6 @@
         "operationId": "DeleteTransformation",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The transformation identifier. Can be either a named transformation (e.g., \u0027small_profile_thumbnail\u0027) or a transformation string (e.g., \u0027w_100,h_150,c_fill,g_auto\u0027).\n",
             "$ref": "#/components/parameters/transformation"
           },
@@ -2000,6 +2153,14 @@
               "type": "boolean"
             },
             "example": true
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2120,7 +2281,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "get": {
         "tags": [
@@ -2148,6 +2319,14 @@
           {
             "description": "The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.",
             "$ref": "#/components/parameters/next_cursor_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2183,11 +2362,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/upload_presets/{name}": {
       "get": {
@@ -2237,7 +2412,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -2302,7 +2487,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -2351,12 +2546,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "name",
           "in": "path",
@@ -2428,7 +2630,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "get": {
         "tags": [
@@ -2447,6 +2659,14 @@
               "items": {
                 "type": "string"
               }
+            }
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -2483,11 +2703,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/metadata_fields/{externalId}": {
       "get": {
@@ -2538,7 +2754,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -2609,7 +2835,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -2669,12 +2905,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "externalId",
           "in": "path",
@@ -2726,13 +2969,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/metadata_fields/order": {
       "put": {
@@ -2784,13 +3033,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/metadata_fields/{externalId}/reorder": {
       "put": {
@@ -2852,12 +3107,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "externalId",
           "in": "path",
@@ -2939,7 +3201,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -3000,12 +3272,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "externalId",
           "in": "path",
@@ -3050,6 +3329,14 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -3098,9 +3385,6 @@
         }
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "externalId",
           "in": "path",
@@ -3172,7 +3456,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -3233,12 +3527,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "externalId",
           "in": "path",
@@ -3320,12 +3621,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "externalId",
           "in": "path",
@@ -3397,7 +3705,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "get": {
         "tags": [
@@ -3437,13 +3755,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/metadata_rules/{externalId}": {
       "put": {
@@ -3515,7 +3839,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -3575,12 +3909,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "externalId",
           "in": "path",
@@ -3616,6 +3957,14 @@
           {
             "description": "The maximum number of results to return. Default is 10.",
             "$ref": "#/components/parameters/max_results_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3725,7 +4074,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -3790,7 +4149,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -3804,6 +4173,14 @@
             "name": "folder",
             "in": "query",
             "description": "The folder name of the mapping to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string"
@@ -3847,11 +4224,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/upload_mappings/replace": {
       "put": {
@@ -3905,13 +4278,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/triggers": {
       "get": {
@@ -3928,6 +4307,14 @@
             "description": "The type of event that will trigger the notification response.",
             "schema": {
               "$ref": "#/components/schemas/EventType"
+            }
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -4048,13 +4435,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/triggers/{id}": {
       "put": {
@@ -4131,7 +4524,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -4196,12 +4599,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "id",
           "in": "path",
@@ -4292,12 +4702,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "id",
           "in": "path",
@@ -4320,8 +4737,12 @@
         "operationId": "ListResourceTypes",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4358,10 +4779,6 @@
         "operationId": "ListImages",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The delivery type to filter by. When omitted, returns assets of all delivery types.",
             "$ref": "#/components/parameters/delivery_type_all_query"
           },
@@ -4396,6 +4813,14 @@
           {
             "description": "Additional fields to include in the response. The fields public_id and asset_id are always included.",
             "$ref": "#/components/parameters/fields"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4442,10 +4867,6 @@
         "operationId": "ListVideos",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The delivery type to filter by. When omitted, returns assets of all delivery types.",
             "$ref": "#/components/parameters/delivery_type_all_query"
           },
@@ -4480,6 +4901,14 @@
           {
             "description": "Additional fields to include in the response. The fields public_id and asset_id are always included.",
             "$ref": "#/components/parameters/fields"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4526,10 +4955,6 @@
         "operationId": "ListRawFiles",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The delivery type to filter by. When omitted, returns assets of all delivery types.",
             "$ref": "#/components/parameters/delivery_type_all_query"
           },
@@ -4564,6 +4989,14 @@
           {
             "description": "Additional fields to include in the response. The fields public_id and asset_id are always included.",
             "$ref": "#/components/parameters/fields"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4610,10 +5043,6 @@
         "operationId": "ListResourcesByAssetFolder",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The full path of the asset folder.",
             "$ref": "#/components/parameters/asset_folder_query"
           },
@@ -4636,6 +5065,14 @@
           {
             "description": "Additional fields to include in the response. The fields public_id and asset_id are always included.",
             "$ref": "#/components/parameters/fields"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4692,10 +5129,6 @@
         "operationId": "ListResourcesByAssetIDs",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "List of asset IDs to retrieve (max 100).",
             "$ref": "#/components/parameters/asset_ids_query"
           },
@@ -4706,6 +5139,14 @@
           {
             "description": "Additional fields to include in the response. The fields public_id and asset_id are always included.",
             "$ref": "#/components/parameters/fields"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4762,14 +5203,6 @@
         "operationId": "ListResourcesByContext",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The type of resource (image, video, or raw).",
-            "$ref": "#/components/parameters/resource_type"
-          },
-          {
             "description": "Context key to filter by.",
             "$ref": "#/components/parameters/context_key"
           },
@@ -4792,6 +5225,22 @@
           {
             "description": "Additional fields to include in the response. The fields public_id and asset_id are always included.",
             "$ref": "#/components/parameters/fields"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4839,22 +5288,6 @@
         "operationId": "ListResourcesByModerationKindAndStatus",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The type of resource (image, video, or raw).",
-            "$ref": "#/components/parameters/resource_type"
-          },
-          {
-            "description": "The type of moderation to filter by.",
-            "$ref": "#/components/parameters/moderation_kind"
-          },
-          {
-            "description": "The moderation status to filter by.",
-            "$ref": "#/components/parameters/moderation_status"
-          },
-          {
             "description": "Additional fields to include in the response. The fields public_id and asset_id are always included.",
             "$ref": "#/components/parameters/fields"
           },
@@ -4869,6 +5302,38 @@
           {
             "description": "The sort direction for the results. Default is \u0022desc\u0022.",
             "$ref": "#/components/parameters/direction"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "moderationKind",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "moderationStatus",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -4915,8 +5380,12 @@
         "operationId": "RestoreResourcesByAssetIDs",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5041,10 +5510,6 @@
         "operationId": "ListResourcesByExternalIDs",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "name": "external_ids",
             "in": "query",
             "description": "List of external IDs for identifying the assets to retrieve. Either external_ids or asset_ids must be provided.",
@@ -5080,6 +5545,14 @@
           {
             "description": "Whether to include image moderation status of each asset. Default is false.",
             "$ref": "#/components/parameters/moderations_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5141,16 +5614,24 @@
         "operationId": "DeleteResourcesByPublicId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The type of resource (image, video, or raw).",
-            "$ref": "#/components/parameters/resource_type"
-          },
-          {
             "description": "The delivery type of the asset.",
             "$ref": "#/components/parameters/delivery_type_all"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5223,20 +5704,8 @@
         "operationId": "GetResourceByPublicId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The type of resource (image, video, or raw).",
-            "$ref": "#/components/parameters/resource_type"
-          },
-          {
             "description": "The delivery type of the asset.",
             "$ref": "#/components/parameters/delivery_type_all"
-          },
-          {
-            "description": "The public ID of the asset.",
-            "$ref": "#/components/parameters/public_id"
           },
           {
             "description": "Whether to include color information (predominant colors and histogram of 32 leading colors). Default: false.",
@@ -5281,6 +5750,30 @@
           {
             "description": "The cursor for the next page of derived assets when there are more derived images than max_results.",
             "$ref": "#/components/parameters/derived_next_cursor"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5340,20 +5833,32 @@
         "operationId": "UpdateResourceByPublicId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The type of resource (image, video, or raw).",
-            "$ref": "#/components/parameters/resource_type"
-          },
-          {
             "description": "The delivery type of the asset.",
             "$ref": "#/components/parameters/delivery_type_all"
           },
           {
-            "description": "The public ID of the asset.",
-            "$ref": "#/components/parameters/public_id"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5426,14 +5931,6 @@
         "operationId": "GetResourceByAssetId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The asset ID of the resource. Must be a 32-character hexadecimal string.",
-            "$ref": "#/components/parameters/asset_id"
-          },
-          {
             "description": "Whether to include color information (predominant colors and histogram of 32 leading colors). Default: false.",
             "$ref": "#/components/parameters/colors"
           },
@@ -5476,6 +5973,22 @@
           {
             "description": "The cursor for the next page of derived assets when there are more derived images than max_results.",
             "$ref": "#/components/parameters/derived_next_cursor"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5535,12 +6048,20 @@
         "operationId": "UpdateResourceByAssetId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "description": "The asset ID of the resource. Must be a 32-character hexadecimal string.",
-            "$ref": "#/components/parameters/asset_id"
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5614,14 +6135,6 @@
         "operationId": "ListResourceTags",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The type of resource (image, video, or raw).",
-            "$ref": "#/components/parameters/resource_type"
-          },
-          {
             "description": "Limit the returned tags to those that start with the specified prefix.",
             "$ref": "#/components/parameters/prefix_tags"
           },
@@ -5632,6 +6145,22 @@
           {
             "description": "Maximum number of results to return (1-500).",
             "$ref": "#/components/parameters/max_results"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5679,12 +6208,20 @@
         "operationId": "DeleteBackupVersions",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "description": "The asset ID of the resource. Must be a 32-character hexadecimal string.",
-            "$ref": "#/components/parameters/asset_id"
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5762,10 +6299,6 @@
         "operationId": "GetUsage",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "name": "date",
             "in": "query",
             "description": "The date for which to retrieve usage details (YYYY-MM-DD). If not specified, returns the current usage.",
@@ -5773,6 +6306,14 @@
               "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
               "type": "string",
               "format": "date"
+            }
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -5820,10 +6361,6 @@
         "operationId": "GetVideoViews",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "name": "expression",
             "in": "query",
             "description": "A set of conditions used to limit the results to rows that match those conditions. For example: \u0060?expression=video_public_id=skate\u0060",
@@ -5846,6 +6383,14 @@
           {
             "description": "The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.",
             "$ref": "#/components/parameters/next_cursor_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5909,12 +6454,20 @@
         "operationId": "CreateAssetRelationsByAssetId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "description": "The asset ID of the resource. Must be a 32-character hexadecimal string.",
-            "$ref": "#/components/parameters/asset_id"
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5990,12 +6543,20 @@
         "operationId": "DeleteAssetRelationsByAssetId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "description": "The asset ID of the resource. Must be a 32-character hexadecimal string.",
-            "$ref": "#/components/parameters/asset_id"
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -6073,20 +6634,32 @@
         "operationId": "CreateAssetRelationsByPublicId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The type of resource (image, video, or raw).",
-            "$ref": "#/components/parameters/resource_type"
-          },
-          {
             "description": "The delivery type of the asset.",
             "$ref": "#/components/parameters/delivery_type"
           },
           {
-            "description": "The public ID of the asset.",
-            "$ref": "#/components/parameters/public_id"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -6162,20 +6735,32 @@
         "operationId": "DeleteAssetRelationsByPublicId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
-            "description": "The type of resource (image, video, or raw).",
-            "$ref": "#/components/parameters/resource_type"
-          },
-          {
             "description": "The delivery type of the asset.",
             "$ref": "#/components/parameters/delivery_type"
           },
           {
-            "description": "The public ID of the asset.",
-            "$ref": "#/components/parameters/public_id"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -6307,7 +6892,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "get": {
         "tags": [
@@ -6336,13 +6931,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/streaming_profiles/{name}": {
       "get": {
@@ -6382,7 +6983,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -6447,7 +7058,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -6496,12 +7117,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "name",
           "in": "path",
@@ -6572,7 +7200,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -6623,7 +7261,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -6634,12 +7282,16 @@
         "operationId": "CreateFolder",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "description": "The full path of the folder, including any nested folders. Must not be empty, and must not contain double slashes or leading/trailing slashes.",
             "$ref": "#/components/parameters/folder_path"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6753,12 +7405,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "$ref": "#/components/parameters/folder_path"
         }
@@ -6774,8 +7433,12 @@
         "operationId": "ListRootFolders",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6822,10 +7485,6 @@
         "operationId": "SearchFolders",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "name": "expression",
             "in": "query",
             "description": "The (Lucene-like) string expression specifying the search query. If not passed, returns all folders (up to max_results).",
@@ -6861,6 +7520,14 @@
           {
             "description": "The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.",
             "$ref": "#/components/parameters/next_cursor_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6924,8 +7591,12 @@
         "operationId": "SearchFoldersPost",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7013,6 +7684,22 @@
           {
             "description": "Whether to include in the response the roles the authenticated user can assign on this folder, based on their permission level. Default: \u0060false\u0060.\n",
             "$ref": "#/components/parameters/permitted_roles_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -7137,16 +7824,27 @@
               }
             }
           }
-        }
-      },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
         },
-        {
-          "$ref": "#/components/parameters/folder_id"
-        }
-      ]
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "folderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "parameters": []
     },
     "/v1_1/{cloudName}/folder_operations/rename": {
       "put": {
@@ -7158,8 +7856,12 @@
         "operationId": "RenameFolderOperation",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7227,8 +7929,12 @@
         "operationId": "GetFolderById",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7296,8 +8002,12 @@
         "operationId": "GetFolderByPath",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7365,8 +8075,12 @@
         "operationId": "GetFolderDescendants",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7434,8 +8148,12 @@
         "operationId": "DerivedDestroy",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7493,8 +8211,12 @@
         "operationId": "InvalidateDerivedByUrls",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7552,8 +8274,12 @@
         "operationId": "GetResourceByBody",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7621,8 +8347,12 @@
         "operationId": "UpdateResourceByBody",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7690,10 +8420,6 @@
         "operationId": "ListResourcesByContainerId",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
-          },
-          {
             "name": "containerId",
             "in": "path",
             "description": "The immutable identifier of the folder container whose assets are listed.",
@@ -7723,6 +8449,14 @@
             "name": "fields",
             "in": "query",
             "description": "A comma-separated list of asset fields to include in each returned asset.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -7782,8 +8516,12 @@
         "operationId": "EvalUploadParams",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7881,13 +8619,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/resources/visual_search": {
       "post": {
@@ -7939,13 +8683,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/operations/initial_backup": {
       "post": {
@@ -8024,7 +8774,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "get": {
         "tags": [
@@ -8041,6 +8801,14 @@
           {
             "description": "The cursor for pagination. Use the next_cursor value from a previous response to get the next page of results.",
             "$ref": "#/components/parameters/next_cursor_query"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -8081,11 +8849,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/operations/initial_backup/{id}": {
       "get": {
@@ -8157,12 +8921,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "$ref": "#/components/parameters/initial_backup_id"
         }
@@ -8232,6 +9003,14 @@
           {
             "description": "The sort direction for the results. Default is \u0022desc\u0022.",
             "$ref": "#/components/parameters/direction"
+          },
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -8292,11 +9071,7 @@
           }
         }
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        }
-      ]
+      "parameters": []
     },
     "/v1_1/{cloudName}/people/{personId}": {
       "get": {
@@ -8377,7 +9152,17 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -8500,12 +9285,19 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloud_name"
-        },
         {
           "name": "personId",
           "in": "path",
@@ -8528,8 +9320,12 @@
         "operationId": "InspectPeoplePermissions",
         "parameters": [
           {
-            "description": "The cloud name of your product environment.",
-            "$ref": "#/components/parameters/cloud_name"
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -8657,13 +9453,19 @@
             "description": "Model unavailable.",
             "$ref": "#/components/responses/ModelUnavailableResponse"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloudName"
-        }
-      ]
+      "parameters": []
     },
     "/v2/generate/{cloudName}/image_to_image": {
       "post": {
@@ -8731,13 +9533,19 @@
             "description": "Model unavailable.",
             "$ref": "#/components/responses/ModelUnavailableResponse"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/cloudName"
-        }
-      ]
+      "parameters": []
     },
     "/v2/generate/{cloudName}/tasks/{taskId}": {
       "get": {
@@ -8783,12 +9591,19 @@
             "description": "Internal server error.",
             "$ref": "#/components/responses/InternalServerErrorResponse"
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "cloudName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "parameters": [
-        {
-          "$ref": "#/components/parameters/cloudName"
-        },
         {
           "name": "taskId",
           "in": "path",
@@ -21168,7 +21983,11 @@
         "type": "string",
         "description": "HTML redirect response"
       },
-      "DownloadAsset200Response": {
+      "DownloadAsset200MediaResponseSchema2": {
+        "type": "string",
+        "format": "binary"
+      },
+      "DownloadAsset200MediaResponseSchema3": {
         "type": "string",
         "format": "binary"
       },
@@ -21184,7 +22003,11 @@
         "type": "string",
         "format": "binary"
       },
-      "DownloadBackupAsset200Response": {
+      "DownloadBackupAsset200MediaResponseSchema2": {
+        "type": "string",
+        "format": "binary"
+      },
+      "DownloadBackupAsset200MediaResponseSchema3": {
         "type": "string",
         "format": "binary"
       },
@@ -21192,7 +22015,11 @@
         "type": "string",
         "format": "binary"
       },
-      "DownloadAssetByAssetId200Response": {
+      "DownloadAssetByAssetId200MediaResponseSchema2": {
+        "type": "string",
+        "format": "binary"
+      },
+      "DownloadAssetByAssetId200MediaResponseSchema3": {
         "type": "string",
         "format": "binary"
       },
