@@ -116,6 +116,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "upload-asset",
+          "scopes": [
+            "librarian",
+            "builder"
+          ],
+          "title": "Upload Asset"
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -210,6 +218,9 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true
         },
         "parameters": [
           {
@@ -346,6 +357,12 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "scopes": [
+            "librarian"
+          ]
         }
       },
       "parameters": []
@@ -409,6 +426,14 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "asset-rename",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Asset Rename",
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -579,6 +604,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "download-asset",
+          "disabled": true,
+          "scopes": [
+            "admin"
+          ]
         }
       },
       "parameters": []
@@ -955,6 +987,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "manage-asset-tags",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Manage Asset Tags",
+          "destructiveHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -1067,6 +1107,14 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "manage-asset-context",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Manage Asset Contextual Metadata",
+          "destructiveHint": true
         },
         "parameters": [
           {
@@ -1186,6 +1234,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "manage-asset-metadata",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Manage Asset Structured Metadata",
+          "destructiveHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -1282,6 +1338,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "generate-archive",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Generate Archive"
         },
         "parameters": [
           {
@@ -1456,6 +1519,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "download-asset-backup",
+          "scope": [
+            "advanced_librarian"
+          ],
+          "title": "Download Asset Backup",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "parameters": []
@@ -1530,6 +1602,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-asset",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Delete Asset",
+          "destructiveHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -1678,6 +1759,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "download-asset-by-asset-id",
+          "disabled": true,
+          "scopes": [
+            "admin"
+          ]
         }
       },
       "parameters": []
@@ -1807,6 +1895,15 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "concat",
+          "scopes": [
+            "librarian",
+            "builder"
+          ],
+          "title": "Concatenate Video Segments",
+          "disabled": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -1895,6 +1992,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-transformations",
+          "scopes": [
+            "admin"
+          ],
+          "title": "List Transformations",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -1971,6 +2077,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-transformation-details",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Get Transformation Details",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "post": {
@@ -2056,6 +2171,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "create-transformation",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Create Transformation"
         }
       },
       "put": {
@@ -2131,6 +2253,14 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "update-transformation",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Update Transformation",
+          "idempotentHint": true
         }
       },
       "delete": {
@@ -2214,6 +2344,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-transformation",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Delete Transformation",
+          "destructiveHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -2281,6 +2420,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "create-upload-preset",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Create Upload Preset"
         },
         "parameters": [
           {
@@ -2360,6 +2506,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-upload-presets",
+          "scopes": [
+            "builder"
+          ],
+          "title": "List Upload Presets",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "parameters": []
@@ -2412,6 +2567,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-upload-preset-details",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Get Upload Preset Details",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -2488,6 +2652,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "update-upload-preset",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Update Upload Preset",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -2546,6 +2718,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-upload-preset",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Delete Upload Preset",
+          "destructiveHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -2631,6 +2812,13 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "create-metadata-field",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Create Metadata Field"
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -2701,6 +2889,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-metadata-fields",
+          "scopes": [
+            "builder"
+          ],
+          "title": "List Metadata Fields",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "parameters": []
@@ -2754,6 +2951,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-metadata-field",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Get Metadata Field",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -2836,6 +3042,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "update-metadata-field",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Update Metadata Field",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -2905,6 +3119,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-metadata-field",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Delete Metadata Field",
+          "destructiveHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -3202,6 +3425,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "update-metadata-datasource-values",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Update Metadata Datasource Values",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -3272,6 +3503,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-metadata-datasource-values",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Delete Metadata Datasource Values",
+          "destructiveHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -3457,6 +3697,15 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "order-metadata-datasource-post",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Order Metadata Datasource",
+          "idempotentHint": true,
+          "disabled": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -3527,6 +3776,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "order-metadata-datasource",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Order Metadata Datasource",
+          "idempotentHint": true,
+          "disabled": true
         },
         "parameters": [
           {
@@ -3706,6 +3964,13 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "create-metadata-rule",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Create Metadata Rule"
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -3755,6 +4020,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-metadata-rules",
+          "scopes": [
+            "builder"
+          ],
+          "title": "List Metadata Rules",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -3840,6 +4114,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "update-metadata-rule",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Update Metadata Rule",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -3909,6 +4191,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-metadata-rule",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Delete Metadata Rule",
+          "destructiveHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -4008,6 +4299,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-upload-mappings",
+          "scopes": [
+            "builder"
+          ],
+          "title": "List Upload Mappings",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "post": {
@@ -4074,6 +4374,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "create-upload-mapping",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Create Upload Mapping"
         },
         "parameters": [
           {
@@ -4150,6 +4457,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "update-upload-mapping",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Update Upload Mapping",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -4222,6 +4537,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-upload-mapping",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Delete Upload Mapping",
+          "destructiveHint": true,
+          "idempotentHint": true
         }
       },
       "parameters": []
@@ -4359,6 +4683,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-triggers",
+          "scopes": [
+            "admin"
+          ],
+          "title": "List Triggers",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "post": {
@@ -4435,6 +4768,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "create-trigger",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Create Trigger"
         },
         "parameters": [
           {
@@ -4525,6 +4865,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "update-trigger",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Update Trigger",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -4599,6 +4947,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-trigger",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Delete Trigger",
+          "destructiveHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -4702,6 +5059,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "test-trigger",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Test Trigger Filter",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -4854,6 +5220,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-images",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Images",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -4942,6 +5317,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-videos",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Videos",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -5030,6 +5414,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-files",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Files",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -5601,7 +5994,8 @@
               }
             }
           }
-        }
+        },
+        "x-speakeasy-ignore": true
       }
     },
     "/v1_1/{cloudName}/resources/{resourceType}/{type}": {
@@ -6037,6 +6431,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-asset-details",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Get Asset Details",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "put": {
@@ -6121,6 +6524,14 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "asset-update",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Asset Update",
+          "idempotentHint": true
         }
       }
     },
@@ -6194,6 +6605,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-tags",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Tags",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -6348,6 +6768,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-usage-details",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Get Usage Details",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -6532,6 +6961,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "create-asset-relations",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Create Asset Relations"
         }
       },
       "delete": {
@@ -6621,6 +7057,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-asset-relations",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Delete Asset Relations",
+          "destructiveHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -6893,6 +7338,13 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "create-streaming-profile",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Create Streaming Profile"
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -6931,6 +7383,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-streaming-profiles",
+          "scopes": [
+            "builder"
+          ],
+          "title": "List Streaming Profiles",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -6983,6 +7444,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-streaming-profile",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Get Streaming Profile",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -7059,6 +7529,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "update-streaming-profile",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Update Streaming Profile",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -7117,6 +7595,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-streaming-profile",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Delete Streaming Profile",
+          "destructiveHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -7262,6 +7749,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "move-folder",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Move Folder",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -7355,6 +7850,13 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "create-folder",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Create Folder"
         }
       },
       "delete": {
@@ -7405,6 +7907,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-folder",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Delete Folder",
+          "destructiveHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -7580,6 +8091,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "search-folders",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Search Folders",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "post": {
@@ -7753,6 +8273,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-folder-roles",
+          "disabled": true,
+          "scopes": [
+            "admin"
+          ],
+          "title": "Get Folder Roles",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "post": {
@@ -7824,6 +8354,14 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "assign-folder-roles",
+          "disabled": true,
+          "scopes": [
+            "admin"
+          ],
+          "title": "Assign Folder Roles"
         },
         "parameters": [
           {
@@ -7916,6 +8454,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "rename-folder",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Rename Folder",
+          "idempotentHint": true,
+          "disabled": true
         }
       }
     },
@@ -7989,6 +8536,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-folder-by-id",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Get Folder By ID",
+          "idempotentHint": true,
+          "disabled": true
         }
       }
     },
@@ -8062,6 +8618,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-folder-by-path",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Get Folder By Path",
+          "idempotentHint": true,
+          "disabled": true
         }
       }
     },
@@ -8135,6 +8700,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-folder-descendants",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Get Folder Descendants",
+          "idempotentHint": true,
+          "disabled": true
         }
       }
     },
@@ -8198,6 +8772,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-derived-assets",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Delete Derived Assets",
+          "destructiveHint": true,
+          "idempotentHint": true
         }
       }
     },
@@ -8261,6 +8844,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "invalidate-derived-by-urls",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Invalidate Derived Assets By URLs",
+          "destructiveHint": true,
+          "idempotentHint": true,
+          "disabled": true
         }
       }
     },
@@ -8334,6 +8927,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-resource-by-body",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Get Resource By Body Params",
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "disabled": true
         }
       }
     },
@@ -8407,6 +9010,14 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "update-resource-by-body",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Update Resource By Body Params",
+          "disabled": true
         }
       }
     },
@@ -8503,6 +9114,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-resources-by-container-id",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Resources By Container ID",
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "disabled": true
         }
       }
     },
@@ -8566,6 +9187,14 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "eval-upload-params",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Evaluate Upload Parameters",
+          "disabled": true
         }
       }
     },
@@ -8619,6 +9248,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "search-assets",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Search Assets",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -8683,6 +9321,15 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "visual-search-assets",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Visual Search Assets",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -8775,6 +9422,14 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "create-initial-backup",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Create Initial Backup",
+          "disabled": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -8847,6 +9502,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-initial-backups",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Initial Backups",
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "disabled": true
         }
       },
       "parameters": []
@@ -8921,6 +9586,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-initial-backup",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Get Initial Backup",
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "disabled": true
         },
         "parameters": [
           {
@@ -9069,6 +9744,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "list-people",
+          "scopes": [
+            "admin"
+          ],
+          "title": "List People",
+          "readOnlyHint": true,
+          "idempotentHint": true
         }
       },
       "parameters": []
@@ -9152,6 +9837,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "get-person",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Get Person",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -9286,6 +9981,15 @@
             }
           }
         },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "update-person",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Update Person",
+          "idempotentHint": true
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -9370,6 +10074,16 @@
               }
             }
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "inspect-people-permissions",
+          "scopes": [
+            "admin"
+          ],
+          "title": "Inspect People Permissions",
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "disabled": true
         }
       }
     },
@@ -9454,6 +10168,13 @@
             "$ref": "#/components/responses/ModelUnavailableResponse"
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "generate-image",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Generate an Image"
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -9534,6 +10255,13 @@
             "$ref": "#/components/responses/ModelUnavailableResponse"
           }
         },
+        "x-speakeasy-mcp": {
+          "name": "generate-image-from-images",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Generate an Image from Reference Images"
+        },
         "parameters": [
           {
             "name": "cloudName",
@@ -9591,6 +10319,15 @@
             "description": "Internal server error.",
             "$ref": "#/components/responses/InternalServerErrorResponse"
           }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-generation-task",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Get a Generation Task",
+          "readOnlyHint": true,
+          "idempotentHint": true
         },
         "parameters": [
           {
@@ -25267,5 +26004,8 @@
       "name": "Tasks",
       "description": "Query the status of async generation tasks."
     }
-  ]
+  ],
+  "x-speakeasy-globals": {
+    "parameters": []
+  }
 }
