@@ -10823,49 +10823,10 @@
         "description": "A comma-separated list of tag names, or an array of tag names.",
         "example": "animal,dog"
       },
-      "UploadBaseParametersResponsiveBreakpoints": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/UploadBaseParametersResponsiveBreakpointsBranch1"
-          },
-          {
-            "$ref": "#/components/schemas/ResponsiveBreakpoint"
-          }
-        ],
-        "properties": {
-          "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResponsiveBreakpoint"
-            }
-          },
-          "create_derived": {
-            "type": "boolean",
-            "description": "Whether to generate and store the derived images. Default is true."
-          },
-          "max_width": {
-            "type": "integer",
-            "description": "The maximum width for responsive breakpoint images."
-          },
-          "min_width": {
-            "type": "integer",
-            "description": "The minimum width for responsive breakpoint images."
-          },
-          "bytes_step": {
-            "type": "integer",
-            "description": "The minimum byte size difference between consecutive breakpoint images."
-          },
-          "max_images": {
-            "type": "integer",
-            "description": "The maximum number of breakpoint images to generate."
-          },
-          "transformation": {
-            "type": "string",
-            "description": "A transformation string to apply before generating breakpoints."
-          }
-        },
-        "description": "Settings to automatically generate breakpoints for responsive images."
+      "ContextParam": {
+        "type": "string",
+        "description": "A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., \u0022alt=My image|caption=Nice photo\u0022). A literal = or | inside a value must be escaped with a prepending backslash, and a literal backslash must be doubled. A double quote must not be escaped.",
+        "example": "alt=My image|caption=Nice photo"
       },
       "UploadSerializableInput": {
         "type": "object",
@@ -12064,63 +12025,15 @@
           }
         }
       },
-      "UploadBaseParametersRegions": {
-        "type": "object",
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/UploadBaseParametersRegionsBranch1"
-          },
-          {
-            "type": "object",
-            "additionalProperties": {
-              "minItems": 2,
-              "type": "array",
-              "items": {
-                "maxItems": 2,
-                "minItems": 2,
-                "type": "array",
-                "items": {
-                  "type": "integer"
-                },
-                "description": "A single [x, y] coordinate pair."
-              },
-              "description": "Coordinate pairs defining the region boundary."
-            },
-            "description": "A map of named region coordinate groups for cropping with region gravity.\nEach key is a region name (letters, numbers, or hyphens only).\nEach value is an array of at least two [x, y] integer coordinate pairs\ndefining the region boundary.\n"
-          }
-        ],
-        "properties": {
-          "value": {
-            "type": "string"
-          }
-        },
-        "description": "Named region coordinate groups for cropping with region gravity.\nCan be a JSON-encoded string or an object. Each region name may contain\nonly letters, numbers, or hyphens, and must have at least two coordinate pairs.\n",
-        "example": "{\u0022face\u0022: [[100, 200], [300, 400]], \u0022body\u0022: [[50, 60], [70, 80], [90, 100]]}"
+      "VersionId": {
+        "pattern": "^([0-9a-f]{32})\u002B$",
+        "type": "string",
+        "description": "Hexadecimal version ID; length is a positive multiple of 32 (typically 32 or 64)."
       },
-      "UploadBaseParametersAutoTranscription": {
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/UploadBaseParametersAutoTranscriptionBranch1"
-          },
-          {
-            "$ref": "#/components/schemas/UploadBaseParametersAutoTranscriptionOneOf2"
-          }
-        ],
-        "properties": {
-          "value": {
-            "type": "boolean",
-            "description": "Whether to trigger automatic generation of video transcription. Transcription will be generated and saved as a .vtt file with -transcription appended to the public ID of the video. Relevant for videos only.",
-            "example": true
-          },
-          "translate": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Array of target language codes for transcription translation."
-          }
-        }
+      "AssetId": {
+        "pattern": "^[0-9a-f]{32}$",
+        "type": "string",
+        "description": "A 32-character hexadecimal asset ID."
       },
       "TagsResponse": {
         "type": [
@@ -12435,22 +12348,10 @@
           "batch_id": "9c2f5a46b3a6c4d9e8f7g0h1i2j3k4l5"
         }
       },
-      "StructuredMetadataValueAdditionalProperties": {
-        "type": "object",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "integer"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
+      "HtmlRedirect": {
+        "type": "string",
+        "description": "HTML redirect response",
+        "example": "\u003Chtml\u003E\u003Cbody\u003EYou are being \u003Ca href=\u0022http://example.cloudinary.com?bytes=5243000\u0026amp;done=false\u0026amp;kind=upload\u0026amp;resource_type=image\u0022\u003Eredirected\u003C/a\u003E.\u003C/body\u003E\u003C/html\u003E"
       },
       "ApiError": {
         "required": [
@@ -14139,18 +14040,10 @@
           }
         }
       },
-      "AccessControlItemEnd": {
-        "type": "object",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "integer"
-          }
-        ],
-        "description": "The end date and time when anonymous access expires. Accepts ISO 8601 string or Unix timestamp.",
-        "example": "2024-06-30T23:59:59Z"
+      "AllowedForStrict": {
+        "type": "boolean",
+        "description": "Whether to allow this named transformation when strict transformations are enabled. Strict transformations prevent transformations from being dynamically applied to media assets.\n",
+        "example": true
       },
       "UpdateRequest": {
         "type": "object",
@@ -18782,43 +18675,18 @@
         ],
         "description": "Seed for reproducible generation. Supported by most models. Silently\nignored by models that don\u0027t support it.\n"
       },
-      "AccessControlItemStart": {
-        "type": "object",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "integer"
-          }
-        ],
-        "description": "The start date and time when anonymous access becomes available. Accepts ISO 8601 string or Unix timestamp.",
-        "example": "2024-03-15T09:00:00Z"
+      "Async": {
+        "type": "boolean",
+        "description": "Whether to perform the generation asynchronously. When true, the API\nreturns immediately with a 202 and completes in the background. Once\ncomplete, a webhook notification is sent to the specified URL and/or to\nthe URLs defined in the product environment\u0027s settings.\n",
+        "default": false
       },
-      "RateLimitedResponseResponse": {
-        "title": "RateLimitedResponse",
-        "required": [
-          "error",
-          "request_id"
+      "NotificationUrl": {
+        "examples": [
+          "https://path.to/webhook"
         ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "description": "Details of an error, including a coarse category for retry logic, a stable error code, and a human-readable message.",
-            "$ref": "#/components/schemas/Error"
-          },
-          "limits": {
-            "description": "Rate limit information for the account\u0027s add-on quotas.",
-            "$ref": "#/components/schemas/Limits"
-          },
-          "request_id": {
-            "examples": [
-              "17c3b70c5096df0e77e838323abb7029"
-            ],
-            "type": "string",
-            "description": "Unique identifier for this request, for correlation and support."
-          }
-        }
+        "type": "string",
+        "description": "The webhook URL to notify when the generation is complete. Only relevant when \u0060async\u0060 is set to true.",
+        "format": "uri"
       },
       "ImageToImageRequest": {
         "required": [
@@ -19740,6 +19608,176 @@
             }
           ]
         }
+      },
+      "RateLimitedResponseResponse": {
+        "title": "RateLimitedResponse",
+        "required": [
+          "error",
+          "request_id"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "description": "Details of an error, including a coarse category for retry logic, a stable error code, and a human-readable message.",
+            "$ref": "#/components/schemas/Error"
+          },
+          "limits": {
+            "description": "Rate limit information for the account\u0027s add-on quotas.",
+            "$ref": "#/components/schemas/Limits"
+          },
+          "request_id": {
+            "examples": [
+              "17c3b70c5096df0e77e838323abb7029"
+            ],
+            "type": "string",
+            "description": "Unique identifier for this request, for correlation and support."
+          }
+        }
+      },
+      "AccessControlItemStart": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "description": "The start date and time when anonymous access becomes available. Accepts ISO 8601 string or Unix timestamp.",
+        "example": "2024-03-15T09:00:00Z"
+      },
+      "AccessControlItemEnd": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "description": "The end date and time when anonymous access expires. Accepts ISO 8601 string or Unix timestamp.",
+        "example": "2024-06-30T23:59:59Z"
+      },
+      "StructuredMetadataValueAdditionalProperties": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "UploadBaseParametersAutoTranscription": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/UploadBaseParametersAutoTranscriptionBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/UploadBaseParametersAutoTranscriptionOneOf2"
+          }
+        ],
+        "properties": {
+          "value": {
+            "type": "boolean",
+            "description": "Whether to trigger automatic generation of video transcription. Transcription will be generated and saved as a .vtt file with -transcription appended to the public ID of the video. Relevant for videos only.",
+            "example": true
+          },
+          "translate": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of target language codes for transcription translation."
+          }
+        }
+      },
+      "UploadBaseParametersRegions": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/UploadBaseParametersRegionsBranch1"
+          },
+          {
+            "type": "object",
+            "additionalProperties": {
+              "minItems": 2,
+              "type": "array",
+              "items": {
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                },
+                "description": "A single [x, y] coordinate pair."
+              },
+              "description": "Coordinate pairs defining the region boundary."
+            },
+            "description": "A map of named region coordinate groups for cropping with region gravity.\nEach key is a region name (letters, numbers, or hyphens only).\nEach value is an array of at least two [x, y] integer coordinate pairs\ndefining the region boundary.\n"
+          }
+        ],
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        },
+        "description": "Named region coordinate groups for cropping with region gravity.\nCan be a JSON-encoded string or an object. Each region name may contain\nonly letters, numbers, or hyphens, and must have at least two coordinate pairs.\n",
+        "example": "{\u0022face\u0022: [[100, 200], [300, 400]], \u0022body\u0022: [[50, 60], [70, 80], [90, 100]]}"
+      },
+      "UploadBaseParametersResponsiveBreakpoints": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/UploadBaseParametersResponsiveBreakpointsBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/ResponsiveBreakpoint"
+          }
+        ],
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResponsiveBreakpoint"
+            }
+          },
+          "create_derived": {
+            "type": "boolean",
+            "description": "Whether to generate and store the derived images. Default is true."
+          },
+          "max_width": {
+            "type": "integer",
+            "description": "The maximum width for responsive breakpoint images."
+          },
+          "min_width": {
+            "type": "integer",
+            "description": "The minimum width for responsive breakpoint images."
+          },
+          "bytes_step": {
+            "type": "integer",
+            "description": "The minimum byte size difference between consecutive breakpoint images."
+          },
+          "max_images": {
+            "type": "integer",
+            "description": "The maximum number of breakpoint images to generate."
+          },
+          "transformation": {
+            "type": "string",
+            "description": "A transformation string to apply before generating breakpoints."
+          }
+        },
+        "description": "Settings to automatically generate breakpoints for responsive images."
       },
       "UploadTypeParameterType": {
         "type": "object",
@@ -22656,17 +22694,16 @@
           }
         }
       },
-      "UploadBaseParametersResponsiveBreakpointsBranch1": {
+      "UploadBaseParametersAutoTranscriptionBranch1": {
         "required": [
           "value"
         ],
         "type": "object",
         "properties": {
           "value": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ResponsiveBreakpoint"
-            }
+            "type": "boolean",
+            "description": "Whether to trigger automatic generation of video transcription. Transcription will be generated and saved as a .vtt file with -transcription appended to the public ID of the video. Relevant for videos only.",
+            "example": true
           }
         }
       },
@@ -22681,16 +22718,17 @@
           }
         }
       },
-      "UploadBaseParametersAutoTranscriptionBranch1": {
+      "UploadBaseParametersResponsiveBreakpointsBranch1": {
         "required": [
           "value"
         ],
         "type": "object",
         "properties": {
           "value": {
-            "type": "boolean",
-            "description": "Whether to trigger automatic generation of video transcription. Transcription will be generated and saved as a .vtt file with -transcription appended to the public ID of the video. Relevant for videos only.",
-            "example": true
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResponsiveBreakpoint"
+            }
           }
         }
       },
@@ -24816,7 +24854,9 @@
         "description": "The asset ID of the resource. Must be a 32-character hexadecimal string.",
         "required": true,
         "schema": {
-          "type": "string"
+          "pattern": "^[0-9a-f]{32}$",
+          "type": "string",
+          "description": "A 32-character hexadecimal asset ID."
         },
         "example": "f4e6579cf84dd9cf5683b21f5b30c7d9"
       },
@@ -25186,7 +25226,9 @@
         "description": "The asset ID of the resource. Must be a 32-character hexadecimal string.",
         "required": true,
         "schema": {
-          "type": "string"
+          "pattern": "^[0-9a-f]{32}$",
+          "type": "string",
+          "description": "A 32-character hexadecimal asset ID."
         },
         "example": "f4e6579cf84dd9cf5683b21f5b30c7d9"
       },
