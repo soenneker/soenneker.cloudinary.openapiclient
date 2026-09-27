@@ -12,7 +12,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.7.5"
+    "version": "0.7.6"
   },
   "servers": [
     {
@@ -10093,7 +10093,7 @@
           "Generation"
         ],
         "summary": "Generate an image",
-        "description": "Generate an image from a text prompt using AI models.\n\nThe model is selected via the optional \u0060model\u0060 object:\n1. If \u0060model.id\u0060 is provided, use that exact model.\n2. Else if \u0060model.family\u0060 (\u002B optional \u0060model.tier\u0060) is provided, resolve via the model registry; a missing tier defaults to \u0060standard\u0060.\n3. If \u0060model\u0060 is omitted, use the global default (nano-banana / premium, i.e. \u0060nano-banana-2\u0060).\n",
+        "description": "Generate an image from a text prompt using AI models.\n\nThe model is selected via the optional \u0060model\u0060 object:\n1. If \u0060model.id\u0060 is provided, use that exact model.\n2. Else if \u0060model.family\u0060 (\u002B optional \u0060model.tier\u0060) is provided, resolve via the model registry; a missing tier defaults to \u0060standard\u0060.\n3. Else if \u0060model.mode\u0060 is \u0060auto\u0060, the service picks the model for the request (optionally steered by \u0060model.preference\u0060).\n4. Otherwise, use the global default (nano-banana / premium, i.e. \u0060nano-banana-2\u0060).\n",
         "operationId": "GenerateImage",
         "requestBody": {
           "description": "A JSON object containing the generation request parameters.",
@@ -10114,6 +10114,9 @@
                 },
                 "AsyncExample": {
                   "$ref": "#/components/examples/GenerateImageAsyncExample"
+                },
+                "AutoModelExample": {
+                  "$ref": "#/components/examples/GenerateImageAutoModelExample"
                 }
               }
             }
@@ -10194,7 +10197,7 @@
           "Generation"
         ],
         "summary": "Generate an image from reference images",
-        "description": "Generate an image guided by one or more **reference images** \u2014 restyle,\non-brand variants, character consistency, virtual try-on, edit/extend \u2014\nsteered by \u0060prompt\u0060.\n\nOnly edit-capable models are selectable here. The model is selected via\nthe optional \u0060model\u0060 object, exactly like \u0060text_to_image\u0060, but IDs are\nrestricted to edit models:\n1. If \u0060model.id\u0060 is provided, use that exact edit model.\n2. Else if \u0060model.family\u0060 (\u002B optional \u0060model.tier\u0060) is provided, resolve\n   to that family\u0027s edit model (e.g. \u0060nano-banana\u0060 / \u0060premium\u0060 \u2192\n   \u0060nano-banana-2-edit\u0060).\n3. If \u0060model\u0060 is omitted, use the default edit model (\u0060nano-banana-2-edit\u0060).\n\nEach reference image is either a stored managed asset (by \u0060asset_id\u0060,\nread-permission checked) or an external HTTPS \u0060url\u0060.\n",
+        "description": "Generate an image guided by one or more **reference images** \u2014 restyle,\non-brand variants, character consistency, virtual try-on, edit/extend \u2014\nsteered by \u0060prompt\u0060.\n\nOnly edit-capable models are selectable here. The model is selected via\nthe optional \u0060model\u0060 object, exactly like \u0060text_to_image\u0060, but IDs are\nrestricted to edit models:\n1. If \u0060model.id\u0060 is provided, use that exact edit model.\n2. Else if \u0060model.family\u0060 (\u002B optional \u0060model.tier\u0060) is provided, resolve\n   to that family\u0027s edit model (e.g. \u0060nano-banana\u0060 / \u0060premium\u0060 \u2192\n   \u0060nano-banana-2-edit\u0060).\n3. Else if \u0060model.mode\u0060 is \u0060auto\u0060, the service picks an edit model for\n   the request (optionally steered by \u0060model.preference\u0060).\n4. Otherwise, use the default edit model (\u0060nano-banana-2-edit\u0060).\n\nEach reference image is either a stored managed asset (by \u0060asset_id\u0060,\nread-permission checked) or an external HTTPS \u0060url\u0060.\n",
         "operationId": "GenerateImageFromImages",
         "requestBody": {
           "description": "A JSON object containing the image-to-image generation request parameters.",
@@ -10202,6 +10205,20 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ImageToImageRequest"
+              },
+              "examples": {
+                "BasicExample": {
+                  "$ref": "#/components/examples/ImageToImageBasicExample"
+                },
+                "FamilyModelExample": {
+                  "$ref": "#/components/examples/ImageToImageFamilyModelExample"
+                },
+                "ExplicitModelExample": {
+                  "$ref": "#/components/examples/ImageToImageExplicitModelExample"
+                },
+                "AutoModelExample": {
+                  "$ref": "#/components/examples/ImageToImageAutoModelExample"
+                }
               }
             }
           },
@@ -18594,7 +18611,7 @@
         "properties": {
           "prompt": {
             "examples": [
-              "A photorealistic sunset over a mountain lake, 8K detail"
+              "A photorealistic sunset over a mountain lake"
             ],
             "maxLength": 4000,
             "minLength": 1,
@@ -18602,7 +18619,7 @@
             "description": "The text description of the image to generate."
           },
           "model": {
-            "description": "Selects the model, in one of two mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n",
+            "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n",
             "$ref": "#/components/schemas/ModelSelection"
           },
           "image_size": {
@@ -18618,7 +18635,7 @@
             "$ref": "#/components/schemas/Target"
           },
           "seed": {
-            "description": "Seed for reproducible generation. Supported by most models. Silently\nignored by models that don\u0027t support it.\n",
+            "description": "Seed for reproducible generation. Supported by the \u0060flux\u0060, \u0060nano-banana\u0060\nand \u0060ideogram\u0060 models and by \u0060qwen-image-3\u0060; silently ignored by the\nmodels that don\u0027t support it, which report \u0060seed\u0060 as null in the\nresponse.\n",
             "$ref": "#/components/schemas/Seed"
           },
           "async": {
@@ -18673,7 +18690,7 @@
           "null",
           "integer"
         ],
-        "description": "Seed for reproducible generation. Supported by most models. Silently\nignored by models that don\u0027t support it.\n"
+        "description": "Seed for reproducible generation. Supported by the \u0060flux\u0060, \u0060nano-banana\u0060\nand \u0060ideogram\u0060 models and by \u0060qwen-image-3\u0060; silently ignored by the\nmodels that don\u0027t support it, which report \u0060seed\u0060 as null in the\nresponse.\n"
       },
       "Async": {
         "type": "boolean",
@@ -18711,10 +18728,10 @@
             "items": {
               "$ref": "#/components/schemas/ReferenceImage"
             },
-            "description": "Reference images that steer the generation, in order (1-indexed; the\nprompt may address them positionally as \u0060[1]\u0060, \u0060[2]\u0060, \u2026). Each entry\nis either a managed asset (by \u0060asset_id\u0060) or an external \u0060url\u0060. The\nplatform accepts up to 4; a specific model may accept fewer (e.g.\nRecraft accepts 1) \u2014 exceeding the selected model\u0027s capacity returns\n400.\n"
+            "description": "Reference images that steer the generation, in order (1-indexed; the\nprompt may address them positionally as \u0060[1]\u0060, \u0060[2]\u0060, \u2026). Each entry\nis either a managed asset (by \u0060asset_id\u0060) or an external \u0060url\u0060. The\nplatform accepts up to 4; a specific model may accept fewer \u2014 the\n\u0060recraft-v3-edit\u0060 and \u0060mai-image\u0060 edit models accept 1, and the\n\u0060grok-imagine\u0060 and \u0060qwen-image\u0060 edit models accept 3. Exceeding the\nselected model\u0027s capacity returns 400.\n"
           },
           "model": {
-            "description": "Selects the model, in one of two mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n",
+            "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n",
             "$ref": "#/components/schemas/ModelSelection"
           },
           "image_size": {
@@ -18730,7 +18747,7 @@
             "$ref": "#/components/schemas/Target"
           },
           "seed": {
-            "description": "Seed for reproducible generation. Supported by most models. Silently\nignored by models that don\u0027t support it.\n",
+            "description": "Seed for reproducible generation. Supported by the \u0060flux\u0060, \u0060nano-banana\u0060\nand \u0060ideogram\u0060 models and by \u0060qwen-image-3\u0060; silently ignored by the\nmodels that don\u0027t support it, which report \u0060seed\u0060 as null in the\nresponse.\n",
             "$ref": "#/components/schemas/Seed"
           },
           "async": {
@@ -18842,6 +18859,9 @@
           },
           {
             "$ref": "#/components/schemas/ModelById"
+          },
+          {
+            "$ref": "#/components/schemas/ModelAuto"
           }
         ],
         "properties": {
@@ -18853,9 +18873,15 @@
           },
           "id": {
             "$ref": "#/components/schemas/ModelByIdId"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/AutoMode"
+          },
+          "preference": {
+            "$ref": "#/components/schemas/ModelAutoPreference"
           }
         },
-        "description": "Selects the model, in one of two mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n"
+        "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n"
       },
       "ModelByFamily": {
         "title": "ModelByFamily",
@@ -18887,6 +18913,23 @@
         },
         "additionalProperties": false,
         "description": "Pin an exact model by ID, bypassing family/tier."
+      },
+      "ModelAuto": {
+        "title": "ModelAuto",
+        "required": [
+          "mode"
+        ],
+        "type": "object",
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/AutoMode"
+          },
+          "preference": {
+            "$ref": "#/components/schemas/ModelAutoPreference"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Let the service choose the model for this request. The response reports\nthe resolved model in \u0060data.assets[].model\u0060, as for the other forms; on\n\u0060image_to_image\u0060 it is always an edit model.\n"
       },
       "ImageSize": {
         "type": "object",
@@ -19328,21 +19371,21 @@
               "flux"
             ],
             "type": "string",
-            "description": "The model family used."
+            "description": "The family this model belongs to, or \u0060unmapped\u0060 when it belongs to\nnone.\n\nA family holds exactly two tiers, so the family/tier taxonomy can\nname only part of the roster. Models outside it are offered by \u0060id\u0060\nonly and genuinely have no family \u2014 \u0060unmapped\u0060 says so, rather than\nattributing a grouping the model is not part of. This describes the\nmodel, not how the request selected it: a model that does belong to\na family reports it whether it was chosen by \u0060family\u0060/\u0060tier\u0060 or\npinned by \u0060id\u0060.\n\nNot an enum: new families are added over time, so treat any value\nas possible.\n"
           },
           "tier": {
             "examples": [
               "premium"
             ],
             "type": "string",
-            "description": "The quality tier used."
+            "description": "The quality tier this model holds within its family, or \u0060unmapped\u0060\nwhen it holds none \u2014 see \u0060family\u0060.\n"
           },
           "id": {
             "examples": [
               "flux-2-pro"
             ],
             "type": "string",
-            "description": "The exact model identifier used for generation."
+            "description": "The exact model identifier used for generation. Always a concrete\nmodel, and always the reliable field to key on \u2014 unlike \u0060family\u0060\nand \u0060tier\u0060, which can be \u0060unmapped\u0060.\n"
           }
         },
         "description": "Identifies the model that produced a generation result."
@@ -23836,21 +23879,47 @@
         "enum": [
           "nano-banana-1",
           "nano-banana-2",
+          "nano-banana-2-lite",
           "flux-2-klein-9b",
           "flux-2-pro",
+          "flux-2-flash",
           "recraft-v3",
           "recraft-v4",
           "gpt-image-1-mini",
           "gpt-image-2",
+          "gpt-image-2.5-flare",
+          "gpt-image-2.5-sunburst",
+          "muse-image",
+          "mai-image-2.5",
+          "mai-image-2.5-pro",
+          "seedream-5-pro",
+          "grok-imagine-image",
+          "recraft-v4.1-utility",
+          "recraft-v4.1-utility-pro",
+          "seedream-5-lite",
+          "grok-imagine-image-2.0-low",
+          "qwen-image-3",
           "ideogram-v4-base",
           "ideogram-v4-turbo",
           "nano-banana-1-edit",
           "nano-banana-2-edit",
+          "nano-banana-2-lite-edit",
           "flux-2-klein-9b-edit",
           "flux-2-pro-edit",
+          "flux-2-flash-edit",
           "recraft-v3-edit",
           "gpt-image-1-mini-edit",
-          "gpt-image-2-edit"
+          "gpt-image-2-edit",
+          "gpt-image-2.5-flare-edit",
+          "gpt-image-2.5-sunburst-edit",
+          "muse-image-edit",
+          "mai-image-2.5-edit",
+          "mai-image-2.5-pro-edit",
+          "seedream-5-pro-edit",
+          "grok-imagine-image-edit",
+          "seedream-5-lite-edit",
+          "grok-imagine-image-2.0-low-edit",
+          "qwen-image-3-edit"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -23868,12 +23937,20 @@
               "name": "NanoBanana2"
             },
             {
+              "value": "nano-banana-2-lite",
+              "name": "NanoBanana2Lite"
+            },
+            {
               "value": "flux-2-klein-9b",
               "name": "Flux2Klein9B"
             },
             {
               "value": "flux-2-pro",
               "name": "Flux2Pro"
+            },
+            {
+              "value": "flux-2-flash",
+              "name": "Flux2Flash"
             },
             {
               "value": "recraft-v3",
@@ -23892,6 +23969,54 @@
               "name": "GptImage2"
             },
             {
+              "value": "gpt-image-2.5-flare",
+              "name": "GptImage25Flare"
+            },
+            {
+              "value": "gpt-image-2.5-sunburst",
+              "name": "GptImage25Sunburst"
+            },
+            {
+              "value": "muse-image",
+              "name": "MuseImage"
+            },
+            {
+              "value": "mai-image-2.5",
+              "name": "MaiImage25"
+            },
+            {
+              "value": "mai-image-2.5-pro",
+              "name": "MaiImage25Pro"
+            },
+            {
+              "value": "seedream-5-pro",
+              "name": "Seedream5Pro"
+            },
+            {
+              "value": "grok-imagine-image",
+              "name": "GrokImagineImage"
+            },
+            {
+              "value": "recraft-v4.1-utility",
+              "name": "RecraftV41Utility"
+            },
+            {
+              "value": "recraft-v4.1-utility-pro",
+              "name": "RecraftV41UtilityPro"
+            },
+            {
+              "value": "seedream-5-lite",
+              "name": "Seedream5Lite"
+            },
+            {
+              "value": "grok-imagine-image-2.0-low",
+              "name": "GrokImagineImage20Low"
+            },
+            {
+              "value": "qwen-image-3",
+              "name": "QwenImage3"
+            },
+            {
               "value": "ideogram-v4-base",
               "name": "IdeogramV4Base"
             },
@@ -23908,12 +24033,20 @@
               "name": "NanoBanana2Edit"
             },
             {
+              "value": "nano-banana-2-lite-edit",
+              "name": "NanoBanana2LiteEdit"
+            },
+            {
               "value": "flux-2-klein-9b-edit",
               "name": "Flux2Klein9BEdit"
             },
             {
               "value": "flux-2-pro-edit",
               "name": "Flux2ProEdit"
+            },
+            {
+              "value": "flux-2-flash-edit",
+              "name": "Flux2FlashEdit"
             },
             {
               "value": "recraft-v3-edit",
@@ -23926,6 +24059,113 @@
             {
               "value": "gpt-image-2-edit",
               "name": "GptImage2Edit"
+            },
+            {
+              "value": "gpt-image-2.5-flare-edit",
+              "name": "GptImage25FlareEdit"
+            },
+            {
+              "value": "gpt-image-2.5-sunburst-edit",
+              "name": "GptImage25SunburstEdit"
+            },
+            {
+              "value": "muse-image-edit",
+              "name": "MuseImageEdit"
+            },
+            {
+              "value": "mai-image-2.5-edit",
+              "name": "MaiImage25Edit"
+            },
+            {
+              "value": "mai-image-2.5-pro-edit",
+              "name": "MaiImage25ProEdit"
+            },
+            {
+              "value": "seedream-5-pro-edit",
+              "name": "Seedream5ProEdit"
+            },
+            {
+              "value": "grok-imagine-image-edit",
+              "name": "GrokImagineImageEdit"
+            },
+            {
+              "value": "seedream-5-lite-edit",
+              "name": "Seedream5LiteEdit"
+            },
+            {
+              "value": "grok-imagine-image-2.0-low-edit",
+              "name": "GrokImagineImage20LowEdit"
+            },
+            {
+              "value": "qwen-image-3-edit",
+              "name": "QwenImage3Edit"
+            }
+          ]
+        }
+      },
+      "AutoMode": {
+        "examples": [
+          "auto"
+        ],
+        "enum": [
+          "auto"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The only valid value; selects automatic model selection.",
+        "x-ms-enum": {
+          "name": "AutoMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "auto",
+              "name": "Auto"
+            }
+          ]
+        }
+      },
+      "ModelAutoPreference": {
+        "examples": [
+          "quality"
+        ],
+        "enum": [
+          "balanced",
+          "quality",
+          "economy",
+          "balanced_fast",
+          "quality_fast",
+          "economy_fast"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "What the choice optimizes for:\n* \u0060balanced\u0060 (default): quality and cost weighted equally.\n* \u0060quality\u0060: quality only; cost isn\u0027t weighed.\n* \u0060economy\u0060: cost first, quality second.\n* \u0060balanced_fast\u0060, \u0060quality_fast\u0060, \u0060economy_fast\u0060: as above, but also\n  favor faster generation, and never pick a model that typically\n  takes longer than 30 seconds.\n",
+        "x-ms-enum": {
+          "name": "ModelAutoPreference",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "balanced",
+              "name": "Balanced"
+            },
+            {
+              "value": "quality",
+              "name": "Quality"
+            },
+            {
+              "value": "economy",
+              "name": "Economy"
+            },
+            {
+              "value": "balanced_fast",
+              "name": "BalancedFast"
+            },
+            {
+              "value": "quality_fast",
+              "name": "QualityFast"
+            },
+            {
+              "value": "economy_fast",
+              "name": "EconomyFast"
             }
           ]
         }
@@ -25714,7 +25954,7 @@
         "summary": "Declarative size (aspect ratio \u002B resolution)",
         "description": "Portable size selection \u2014 the service resolves aspect_ratio \u002B resolution\nto the nearest dimensions the chosen model supports.\n",
         "value": {
-          "prompt": "A photorealistic sunset over a mountain lake, 8K detail",
+          "prompt": "A photorealistic sunset over a mountain lake",
           "model": {
             "family": "flux",
             "tier": "premium"
@@ -25735,7 +25975,7 @@
         "summary": "Dimensions size (explicit pixels)",
         "description": "Pixel-precise size selection via width \u002B height.",
         "value": {
-          "prompt": "A photorealistic sunset over a mountain lake, 8K detail",
+          "prompt": "A photorealistic sunset over a mountain lake",
           "model": {
             "id": "flux-2-pro"
           },
@@ -25760,6 +26000,109 @@
           },
           "async": true,
           "notification_url": "https://path.to/webhook"
+        }
+      },
+      "GenerateImageAutoModelExample": {
+        "summary": "Automatic model selection",
+        "description": "Let the service choose the model for the prompt; \u0060preference\u0060 says what\nthe choice optimizes for (default \u0060balanced\u0060). The response echoes the\nmodel that was actually used.\n",
+        "value": {
+          "prompt": "A photorealistic sunset over a mountain lake",
+          "model": {
+            "mode": "auto",
+            "preference": "quality"
+          },
+          "image_size": {
+            "aspect_ratio": "16:9",
+            "resolution": "2K"
+          },
+          "target": {
+            "target_type": "temporary"
+          },
+          "seed": 42
+        }
+      },
+      "ImageToImageBasicExample": {
+        "summary": "Basic image-to-image edit",
+        "description": "Minimal request: an edit instruction and one reference image by HTTPS\nURL; falls back to the default edit model.\n",
+        "value": {
+          "prompt": "Place the product from [1] on a marble kitchen counter, soft morning light",
+          "reference_images": [
+            {
+              "source_type": "url",
+              "url": "https://example.com/product.png"
+            }
+          ]
+        }
+      },
+      "ImageToImageFamilyModelExample": {
+        "summary": "Edit model by family and tier",
+        "description": "Select the edit model by family (\u002B optional tier); the family resolves to\nthat family\u0027s edit model, here \u0060nano-banana-2-edit\u0060.\n",
+        "value": {
+          "prompt": "Restyle [1] as a watercolor painting, keep the composition",
+          "reference_images": [
+            {
+              "source_type": "managed_asset",
+              "asset_id": "0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a"
+            }
+          ],
+          "model": {
+            "family": "nano-banana",
+            "tier": "premium"
+          },
+          "image_size": {
+            "aspect_ratio": "4:3",
+            "resolution": "1K"
+          },
+          "target": {
+            "target_type": "temporary"
+          },
+          "seed": 42
+        }
+      },
+      "ImageToImageExplicitModelExample": {
+        "summary": "Edit model by ID",
+        "description": "Pin one exact edit model by ID. Only \u0060-edit\u0060 models are selectable on\nthis endpoint.\n",
+        "value": {
+          "prompt": "Replace the background of [1] with a bright studio backdrop",
+          "reference_images": [
+            {
+              "source_type": "url",
+              "url": "https://example.com/product.png"
+            }
+          ],
+          "model": {
+            "id": "flux-2-pro-edit"
+          },
+          "image_size": {
+            "width": 1280,
+            "height": 720
+          },
+          "target": {
+            "target_type": "managed_asset",
+            "public_id": "my-public-id",
+            "upload_preset": "some-preset"
+          },
+          "seed": 42
+        }
+      },
+      "ImageToImageAutoModelExample": {
+        "summary": "Automatic edit-model selection",
+        "description": "Let the service choose the edit model for the reference images and the\ninstruction; the resolved model in the response is always an \u0060-edit\u0060 model.\n",
+        "value": {
+          "prompt": "Make it look like a watercolor painting, keep the composition",
+          "reference_images": [
+            {
+              "source_type": "url",
+              "url": "https://example.com/photo.jpg"
+            }
+          ],
+          "model": {
+            "mode": "auto"
+          },
+          "image_size": {
+            "aspect_ratio": "4:3",
+            "resolution": "1K"
+          }
         }
       },
       "GenerateImageSuccessExample": {

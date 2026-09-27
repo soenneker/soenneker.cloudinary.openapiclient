@@ -8,11 +8,19 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ModelById"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ModelById"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ModelSelection : IComposedTypeWrapper, IParsable
     {
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto? ModelAuto { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto ModelAuto { get; set; }
+#endif
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,7 +47,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelSelection();
-            if("ModelByFamily".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("ModelAuto".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.ModelAuto = new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto();
+            }
+            else if("ModelByFamily".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ModelByFamily = new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily();
             }
@@ -55,7 +67,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(ModelByFamily != null)
+            if(ModelAuto != null)
+            {
+                return ModelAuto.GetFieldDeserializers();
+            }
+            else if(ModelByFamily != null)
             {
                 return ModelByFamily.GetFieldDeserializers();
             }
@@ -72,7 +88,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(ModelByFamily != null)
+            if(ModelAuto != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto>(null, ModelAuto);
+            }
+            else if(ModelByFamily != null)
             {
                 writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily>(null, ModelByFamily);
             }

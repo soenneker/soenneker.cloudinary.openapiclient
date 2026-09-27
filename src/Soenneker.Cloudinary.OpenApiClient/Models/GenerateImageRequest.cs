@@ -27,7 +27,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ImageSize ImageSize { get; set; }
 #endif
-        /// <summary>Selects the model, in one of two mutually exclusive forms (omit to usethe global default):  * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time    selector.  * `ModelById`: an explicit `id`, pinning one exact model.</summary>
+        /// <summary>Selects the model, in one of three mutually exclusive forms (omit to usethe global default):  * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time    selector.  * `ModelById`: an explicit `id`, pinning one exact model.  * `ModelAuto`: `mode: auto`, letting the service choose the model for    the request (+ optional `preference`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelSelection? Model { get; set; }
@@ -51,7 +51,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Prompt { get; set; }
 #endif
-        /// <summary>Seed for reproducible generation. Supported by most models. Silentlyignored by models that don&apos;t support it.</summary>
+        /// <summary>Seed for reproducible generation. Supported by the `flux`, `nano-banana`and `ideogram` models and by `qwen-image-3`; silently ignored by themodels that don&apos;t support it, which report `seed` as null in theresponse.</summary>
         public int? Seed { get; set; }
         /// <summary>Where to store the generated output, determined by `target_type`.Optional; defaults to a `managed_asset` target when omitted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

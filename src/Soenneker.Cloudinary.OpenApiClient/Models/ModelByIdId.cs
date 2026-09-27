@@ -15,6 +15,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning disable CS1591
         NanoBanana2,
         #pragma warning restore CS1591
+        [EnumMember(Value = "nano-banana-2-lite")]
+        #pragma warning disable CS1591
+        NanoBanana2Lite,
+        #pragma warning restore CS1591
         [EnumMember(Value = "flux-2-klein-9b")]
         #pragma warning disable CS1591
         Flux2Klein9B,
@@ -22,6 +26,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         [EnumMember(Value = "flux-2-pro")]
         #pragma warning disable CS1591
         Flux2Pro,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "flux-2-flash")]
+        #pragma warning disable CS1591
+        Flux2Flash,
         #pragma warning restore CS1591
         [EnumMember(Value = "recraft-v3")]
         #pragma warning disable CS1591
@@ -39,6 +47,54 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning disable CS1591
         GptImage2,
         #pragma warning restore CS1591
+        [EnumMember(Value = "gpt-image-2.5-flare")]
+        #pragma warning disable CS1591
+        GptImage25Flare,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "gpt-image-2.5-sunburst")]
+        #pragma warning disable CS1591
+        GptImage25Sunburst,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "muse-image")]
+        #pragma warning disable CS1591
+        MuseImage,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "mai-image-2.5")]
+        #pragma warning disable CS1591
+        MaiImage25,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "mai-image-2.5-pro")]
+        #pragma warning disable CS1591
+        MaiImage25Pro,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "seedream-5-pro")]
+        #pragma warning disable CS1591
+        Seedream5Pro,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "grok-imagine-image")]
+        #pragma warning disable CS1591
+        GrokImagineImage,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "recraft-v4.1-utility")]
+        #pragma warning disable CS1591
+        RecraftV41Utility,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "recraft-v4.1-utility-pro")]
+        #pragma warning disable CS1591
+        RecraftV41UtilityPro,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "seedream-5-lite")]
+        #pragma warning disable CS1591
+        Seedream5Lite,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "grok-imagine-image-2.0-low")]
+        #pragma warning disable CS1591
+        GrokImagineImage20Low,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "qwen-image-3")]
+        #pragma warning disable CS1591
+        QwenImage3,
+        #pragma warning restore CS1591
         [EnumMember(Value = "ideogram-v4-base")]
         #pragma warning disable CS1591
         IdeogramV4Base,
@@ -55,6 +111,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning disable CS1591
         NanoBanana2Edit,
         #pragma warning restore CS1591
+        [EnumMember(Value = "nano-banana-2-lite-edit")]
+        #pragma warning disable CS1591
+        NanoBanana2LiteEdit,
+        #pragma warning restore CS1591
         [EnumMember(Value = "flux-2-klein-9b-edit")]
         #pragma warning disable CS1591
         Flux2Klein9BEdit,
@@ -62,6 +122,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         [EnumMember(Value = "flux-2-pro-edit")]
         #pragma warning disable CS1591
         Flux2ProEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "flux-2-flash-edit")]
+        #pragma warning disable CS1591
+        Flux2FlashEdit,
         #pragma warning restore CS1591
         [EnumMember(Value = "recraft-v3-edit")]
         #pragma warning disable CS1591
@@ -74,6 +138,46 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         [EnumMember(Value = "gpt-image-2-edit")]
         #pragma warning disable CS1591
         GptImage2Edit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "gpt-image-2.5-flare-edit")]
+        #pragma warning disable CS1591
+        GptImage25FlareEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "gpt-image-2.5-sunburst-edit")]
+        #pragma warning disable CS1591
+        GptImage25SunburstEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "muse-image-edit")]
+        #pragma warning disable CS1591
+        MuseImageEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "mai-image-2.5-edit")]
+        #pragma warning disable CS1591
+        MaiImage25Edit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "mai-image-2.5-pro-edit")]
+        #pragma warning disable CS1591
+        MaiImage25ProEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "seedream-5-pro-edit")]
+        #pragma warning disable CS1591
+        Seedream5ProEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "grok-imagine-image-edit")]
+        #pragma warning disable CS1591
+        GrokImagineImageEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "seedream-5-lite-edit")]
+        #pragma warning disable CS1591
+        Seedream5LiteEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "grok-imagine-image-2.0-low-edit")]
+        #pragma warning disable CS1591
+        GrokImagineImage20LowEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "qwen-image-3-edit")]
+        #pragma warning disable CS1591
+        QwenImage3Edit,
         #pragma warning restore CS1591
     }
 }

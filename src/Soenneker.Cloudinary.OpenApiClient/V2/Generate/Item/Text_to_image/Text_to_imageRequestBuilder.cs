@@ -34,7 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image
         {
         }
         /// <summary>
-        /// Generate an image from a text prompt using AI models.The model is selected via the optional `model` object:1. If `model.id` is provided, use that exact model.2. Else if `model.family` (+ optional `model.tier`) is provided, resolve via the model registry; a missing tier defaults to `standard`.3. If `model` is omitted, use the global default (nano-banana / premium, i.e. `nano-banana-2`).
+        /// Generate an image from a text prompt using AI models.The model is selected via the optional `model` object:1. If `model.id` is provided, use that exact model.2. Else if `model.family` (+ optional `model.tier`) is provided, resolve via the model registry; a missing tier defaults to `standard`.3. Else if `model.mode` is `auto`, the service picks the model for the request (optionally steered by `model.preference`).4. Otherwise, use the global default (nano-banana / premium, i.e. `nano-banana-2`).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult"/></returns>
         /// <param name="body">Parameters for an image-generation request. Only `prompt` is required;all other fields fall back to documented defaults.</param>
@@ -69,7 +69,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Generate an image from a text prompt using AI models.The model is selected via the optional `model` object:1. If `model.id` is provided, use that exact model.2. Else if `model.family` (+ optional `model.tier`) is provided, resolve via the model registry; a missing tier defaults to `standard`.3. If `model` is omitted, use the global default (nano-banana / premium, i.e. `nano-banana-2`).
+        /// Generate an image from a text prompt using AI models.The model is selected via the optional `model` object:1. If `model.id` is provided, use that exact model.2. Else if `model.family` (+ optional `model.tier`) is provided, resolve via the model registry; a missing tier defaults to `standard`.3. Else if `model.mode` is `auto`, the service picks the model for the request (optionally steered by `model.preference`).4. Otherwise, use the global default (nano-banana / premium, i.e. `nano-banana-2`).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Parameters for an image-generation request. Only `prompt` is required;all other fields fall back to documented defaults.</param>

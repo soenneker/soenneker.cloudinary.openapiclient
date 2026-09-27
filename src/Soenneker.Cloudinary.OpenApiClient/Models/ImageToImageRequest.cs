@@ -27,7 +27,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ImageSize ImageSize { get; set; }
 #endif
-        /// <summary>Selects the model, in one of two mutually exclusive forms (omit to usethe global default):  * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time    selector.  * `ModelById`: an explicit `id`, pinning one exact model.</summary>
+        /// <summary>Selects the model, in one of three mutually exclusive forms (omit to usethe global default):  * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time    selector.  * `ModelById`: an explicit `id`, pinning one exact model.  * `ModelAuto`: `mode: auto`, letting the service choose the model for    the request (+ optional `preference`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelSelection? Model { get; set; }
@@ -51,7 +51,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Prompt { get; set; }
 #endif
-        /// <summary>Reference images that steer the generation, in order (1-indexed; theprompt may address them positionally as `[1]`, `[2]`, …). Each entryis either a managed asset (by `asset_id`) or an external `url`. Theplatform accepts up to 4; a specific model may accept fewer (e.g.Recraft accepts 1) — exceeding the selected model&apos;s capacity returns400.</summary>
+        /// <summary>Reference images that steer the generation, in order (1-indexed; theprompt may address them positionally as `[1]`, `[2]`, …). Each entryis either a managed asset (by `asset_id`) or an external `url`. Theplatform accepts up to 4; a specific model may accept fewer — the`recraft-v3-edit` and `mai-image` edit models accept 1, and the`grok-imagine` and `qwen-image` edit models accept 3. Exceeding theselected model&apos;s capacity returns 400.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ReferenceImage>? ReferenceImages { get; set; }
@@ -59,7 +59,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ReferenceImage> ReferenceImages { get; set; }
 #endif
-        /// <summary>Seed for reproducible generation. Supported by most models. Silentlyignored by models that don&apos;t support it.</summary>
+        /// <summary>Seed for reproducible generation. Supported by the `flux`, `nano-banana`and `ideogram` models and by `qwen-image-3`; silently ignored by themodels that don&apos;t support it, which report `seed` as null in theresponse.</summary>
         public int? Seed { get; set; }
         /// <summary>Where to store the generated output, determined by `target_type`.Optional; defaults to a `managed_asset` target when omitted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
