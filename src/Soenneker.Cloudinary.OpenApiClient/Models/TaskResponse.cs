@@ -23,6 +23,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.TaskObject Data { get; set; }
 #endif
+        /// <summary>Tips and guidance attached to the response to help you get the mostout of the generation. Each entry is plain text you can show to auser or act on as-is. Omitted when there is nothing to add.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Notice>? Notices { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.Notice> Notices { get; set; }
+#endif
         /// <summary>Unique identifier for this request, for correlation and support.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,6 +65,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TaskObject>(global::Soenneker.Cloudinary.OpenApiClient.Models.TaskObject.CreateFromDiscriminatorValue); } },
+                { "notices", n => { Notices = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Notice>(global::Soenneker.Cloudinary.OpenApiClient.Models.Notice.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "request_id", n => { RequestId = n.GetStringValue(); } },
             };
         }
@@ -68,6 +77,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TaskObject>("data", Data);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.Notice>("notices", Notices);
             writer.WriteStringValue("request_id", RequestId);
             writer.WriteAdditionalData(AdditionalData);
         }

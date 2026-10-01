@@ -12,7 +12,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.7.6"
+    "version": "0.7.7"
   },
   "servers": [
     {
@@ -18613,7 +18613,7 @@
             "examples": [
               "A photorealistic sunset over a mountain lake"
             ],
-            "maxLength": 4000,
+            "maxLength": 16384,
             "minLength": 1,
             "type": "string",
             "description": "The text description of the image to generate."
@@ -18716,7 +18716,7 @@
             "examples": [
               "Place the product from [1] on a marble kitchen counter, soft morning light"
             ],
-            "maxLength": 4000,
+            "maxLength": 16384,
             "minLength": 1,
             "type": "string",
             "description": "The text instruction describing the desired edit / output."
@@ -19273,6 +19273,13 @@
             "description": "Rate limit information for the account\u0027s add-on quotas.",
             "$ref": "#/components/schemas/Limits"
           },
+          "notices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notice"
+            },
+            "description": "Tips and guidance attached to the response to help you get the most\nout of the generation. Each entry is plain text you can show to a\nuser or act on as-is. Omitted when there is nothing to add.\n"
+          },
           "request_id": {
             "examples": [
               "17c3b70c5096df0e77e838323abb7029"
@@ -19371,21 +19378,21 @@
               "flux"
             ],
             "type": "string",
-            "description": "The family this model belongs to, or \u0060unmapped\u0060 when it belongs to\nnone.\n\nA family holds exactly two tiers, so the family/tier taxonomy can\nname only part of the roster. Models outside it are offered by \u0060id\u0060\nonly and genuinely have no family \u2014 \u0060unmapped\u0060 says so, rather than\nattributing a grouping the model is not part of. This describes the\nmodel, not how the request selected it: a model that does belong to\na family reports it whether it was chosen by \u0060family\u0060/\u0060tier\u0060 or\npinned by \u0060id\u0060.\n\nNot an enum: new families are added over time, so treat any value\nas possible.\n"
+            "description": "The family this model belongs to. \u0060none\u0060 when the model is not part\nof any family.\n\nA family holds exactly two tiers (\u0060standard\u0060 and \u0060premium\u0060), so the\nfamily/tier taxonomy names only part of the roster. The remaining\nmodels are selected by \u0060id\u0060 alone and are not part of any family,\nwhich is reported as \u0060none\u0060 rather than as a family the model does\nnot belong to. This describes the model, not how it was selected: a\nmodel that belongs to a family reports it whether it was chosen by\n\u0060family\u0060 and \u0060tier\u0060 or pinned by \u0060id\u0060.\n\nNot an enum: new families are added over time, so treat any value\nas possible.\n"
           },
           "tier": {
             "examples": [
               "premium"
             ],
             "type": "string",
-            "description": "The quality tier this model holds within its family, or \u0060unmapped\u0060\nwhen it holds none \u2014 see \u0060family\u0060.\n"
+            "description": "The quality tier this model holds within its family. \u0060none\u0060 when\nthe model is not part of any family. See \u0060family\u0060.\n"
           },
           "id": {
             "examples": [
               "flux-2-pro"
             ],
             "type": "string",
-            "description": "The exact model identifier used for generation. Always a concrete\nmodel, and always the reliable field to key on \u2014 unlike \u0060family\u0060\nand \u0060tier\u0060, which can be \u0060unmapped\u0060.\n"
+            "description": "The exact model identifier used for generation. Always a concrete\nmodel, and the reliable field to key on: unlike \u0060family\u0060 and\n\u0060tier\u0060, it is never \u0060none\u0060.\n"
           }
         },
         "description": "Identifies the model that produced a generation result."
@@ -19470,6 +19477,13 @@
             "description": "An async generation task. Returned when a generation is accepted (202)\nand from GET /tasks/{task_id} as it progresses. The \u0060result\u0060 is filled\nin once \u0060status\u0060 is \u0060completed\u0060.\n",
             "$ref": "#/components/schemas/Task"
           },
+          "notices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notice"
+            },
+            "description": "Tips and guidance attached to the response to help you get the most\nout of the generation. Each entry is plain text you can show to a\nuser or act on as-is. Omitted when there is nothing to add.\n"
+          },
           "request_id": {
             "examples": [
               "17c3b70c5096df0e77e838323abb7029"
@@ -19490,6 +19504,13 @@
           "error": {
             "description": "Details of an error, including a coarse category for retry logic, a stable error code, and a human-readable message.",
             "$ref": "#/components/schemas/Error"
+          },
+          "notices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notice"
+            },
+            "description": "Tips and guidance attached to the response to help you get the most\nout of the generation. Each entry is plain text you can show to a\nuser or act on as-is. Omitted when there is nothing to add.\n"
           },
           "request_id": {
             "examples": [
@@ -19572,6 +19593,41 @@
               "name": "RateLimitError"
             }
           ]
+        }
+      },
+      "Notices": {
+        "examples": [
+          [
+            {
+              "severity": "warning",
+              "text": "You\u0027ve used 40 of your 50 Image Generation credits. 10 remain. Tell the user the balance is nearly spent, do not estimate how many images it covers, and show them: https://console.cloudinary.com/app/image/generation/plans"
+            }
+          ]
+        ],
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Notice"
+        },
+        "description": "Tips and guidance attached to the response to help you get the most\nout of the generation. Each entry is plain text you can show to a\nuser or act on as-is. Omitted when there is nothing to add.\n",
+        "x-experimental": true
+      },
+      "Notice": {
+        "required": [
+          "severity",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "severity": {
+            "$ref": "#/components/schemas/NoticeSeverity"
+          },
+          "text": {
+            "examples": [
+              "This model does not output webp; the image was stored as png. Deliver it with f_auto or f_webp to get webp."
+            ],
+            "type": "string",
+            "description": "The tip or guidance, in plain text. Show it as-is or follow it; the wording may change between releases."
+          }
         }
       },
       "Limits": {
@@ -19667,6 +19723,13 @@
           "limits": {
             "description": "Rate limit information for the account\u0027s add-on quotas.",
             "$ref": "#/components/schemas/Limits"
+          },
+          "notices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notice"
+            },
+            "description": "Tips and guidance attached to the response to help you get the most\nout of the generation. Each entry is plain text you can show to a\nuser or act on as-is. Omitted when there is nothing to add.\n"
           },
           "request_id": {
             "examples": [
@@ -24377,6 +24440,34 @@
             {
               "value": "webp",
               "name": "Webp"
+            }
+          ]
+        }
+      },
+      "NoticeSeverity": {
+        "enum": [
+          "info",
+          "warning",
+          "blocking"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "How much weight to give the message.\n* \u0060info\u0060: for awareness; nothing to do.\n* \u0060warning\u0060: worth relaying to the user before continuing.\n* \u0060blocking\u0060: the request was not served; the text says what unblocks it.\n",
+        "x-ms-enum": {
+          "name": "NoticeSeverity",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "info",
+              "name": "Info"
+            },
+            {
+              "value": "warning",
+              "name": "Warning"
+            },
+            {
+              "value": "blocking",
+              "name": "Blocking"
             }
           ]
         }

@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The family this model belongs to, or `unmapped` when it belongs tonone.A family holds exactly two tiers, so the family/tier taxonomy canname only part of the roster. Models outside it are offered by `id`only and genuinely have no family — `unmapped` says so, rather thanattributing a grouping the model is not part of. This describes themodel, not how the request selected it: a model that does belong toa family reports it whether it was chosen by `family`/`tier` orpinned by `id`.Not an enum: new families are added over time, so treat any valueas possible.</summary>
+        /// <summary>The family this model belongs to. `none` when the model is not partof any family.A family holds exactly two tiers (`standard` and `premium`), so thefamily/tier taxonomy names only part of the roster. The remainingmodels are selected by `id` alone and are not part of any family,which is reported as `none` rather than as a family the model doesnot belong to. This describes the model, not how it was selected: amodel that belongs to a family reports it whether it was chosen by`family` and `tier` or pinned by `id`.Not an enum: new families are added over time, so treat any valueas possible.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Family { get; set; }
@@ -23,7 +23,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Family { get; set; }
 #endif
-        /// <summary>The exact model identifier used for generation. Always a concretemodel, and always the reliable field to key on — unlike `family`and `tier`, which can be `unmapped`.</summary>
+        /// <summary>The exact model identifier used for generation. Always a concretemodel, and the reliable field to key on: unlike `family` and`tier`, it is never `none`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -31,7 +31,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The quality tier this model holds within its family, or `unmapped`when it holds none — see `family`.</summary>
+        /// <summary>The quality tier this model holds within its family. `none` whenthe model is not part of any family. See `family`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Tier { get; set; }

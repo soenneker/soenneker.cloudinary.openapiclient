@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Cloudinary API v1.1
-  version: 0.7.6 # x-release-please-version
+  version: 0.7.7 # x-release-please-version
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -11357,7 +11357,7 @@ components:
         prompt:
           type: string
           minLength: 1
-          maxLength: 4000
+          maxLength: 16384
           description: The text description of the image to generate.
           examples:
             - A photorealistic sunset over a mountain lake
@@ -11428,7 +11428,7 @@ components:
         prompt:
           type: string
           minLength: 1
-          maxLength: 4000
+          maxLength: 16384
           description: The text instruction describing the desired edit / output.
           examples:
             - Place the product from [1] on a marble kitchen counter, soft morning light
@@ -11900,6 +11900,8 @@ components:
           $ref: "#/components/schemas/GeneratedAssets"
         limits:
           $ref: "#/components/schemas/Limits"
+        notices:
+          $ref: "#/components/schemas/Notices"
         request_id:
           type: string
           description: Unique identifier for this request, for correlation and support.
@@ -11982,16 +11984,16 @@ components:
         family:
           type: string
           description: |
-            The family this model belongs to, or `unmapped` when it belongs to
-            none.
+            The family this model belongs to. `none` when the model is not part
+            of any family.
 
-            A family holds exactly two tiers, so the family/tier taxonomy can
-            name only part of the roster. Models outside it are offered by `id`
-            only and genuinely have no family — `unmapped` says so, rather than
-            attributing a grouping the model is not part of. This describes the
-            model, not how the request selected it: a model that does belong to
-            a family reports it whether it was chosen by `family`/`tier` or
-            pinned by `id`.
+            A family holds exactly two tiers (`standard` and `premium`), so the
+            family/tier taxonomy names only part of the roster. The remaining
+            models are selected by `id` alone and are not part of any family,
+            which is reported as `none` rather than as a family the model does
+            not belong to. This describes the model, not how it was selected: a
+            model that belongs to a family reports it whether it was chosen by
+            `family` and `tier` or pinned by `id`.
 
             Not an enum: new families are added over time, so treat any value
             as possible.
@@ -12000,16 +12002,16 @@ components:
         tier:
           type: string
           description: |
-            The quality tier this model holds within its family, or `unmapped`
-            when it holds none — see `family`.
+            The quality tier this model holds within its family. `none` when
+            the model is not part of any family. See `family`.
           examples:
             - premium
         id:
           type: string
           description: |
             The exact model identifier used for generation. Always a concrete
-            model, and always the reliable field to key on — unlike `family`
-            and `tier`, which can be `unmapped`.
+            model, and the reliable field to key on: unlike `family` and
+            `tier`, it is never `none`.
           examples:
             - flux-2-pro
     TaskStatus:
@@ -12062,6 +12064,8 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Task"
+        notices:
+          $ref: "#/components/schemas/Notices"
         request_id:
           type: string
           description: Unique identifier for this request, for correlation and support.
@@ -12081,6 +12085,8 @@ components:
       properties:
         error:
           $ref: "#/components/schemas/Error"
+        notices:
+          $ref: "#/components/schemas/Notices"
         request_id:
           type: string
           description: Unique identifier for this request, for correlation and support.
@@ -12134,6 +12140,44 @@ components:
         - auth_error
         - server_error
         - rate_limit_error
+    Notices:
+      type: array
+      x-experimental: true
+      description: |
+        Tips and guidance attached to the response to help you get the most
+        out of the generation. Each entry is plain text you can show to a
+        user or act on as-is. Omitted when there is nothing to add.
+      items:
+        $ref: "#/components/schemas/Notice"
+      examples:
+        -   - severity: warning
+              text: "You've used 40 of your 50 Image Generation credits. 10 remain. Tell the user the balance is nearly spent, do not estimate how many images it covers, and show them: https://console.cloudinary.com/app/image/generation/plans"
+    Notice:
+      type: object
+      required:
+        - severity
+        - text
+      properties:
+        severity:
+          type: string
+          description: >
+            How much weight to give the message.
+
+            * `info`: for awareness; nothing to do.
+
+            * `warning`: worth relaying to the user before continuing.
+
+            * `blocking`: the request was not served; the text says what
+            unblocks it.
+          enum:
+            - info
+            - warning
+            - blocking
+        text:
+          type: string
+          description: The tip or guidance, in plain text. Show it as-is or follow it; the wording may change between releases.
+          examples:
+            - This model does not output webp; the image was stored as png. Deliver it with f_auto or f_webp to get webp.
     Limits:
       type: object
       description: Rate limit information for the account's add-on quotas.
@@ -12726,6 +12770,8 @@ components:
                 $ref: "#/components/schemas/Error"
               limits:
                 $ref: "#/components/schemas/Limits"
+              notices:
+                $ref: "#/components/schemas/Notices"
               request_id:
                 type: string
                 description: Unique identifier for this request, for correlation and support.
