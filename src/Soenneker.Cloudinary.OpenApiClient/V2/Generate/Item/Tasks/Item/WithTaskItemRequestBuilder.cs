@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Tasks.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v2\generate\{cloudName}\tasks\{taskId}
+    /// Background generation tasks and their results.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithTaskItemRequestBuilder : BaseRequestBuilder
@@ -34,7 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Tasks.Item
         {
         }
         /// <summary>
-        /// Get the status of a generation task.
+        /// Check on an image generation running in the background: whether it ispending, processing, completed or failed, and, once it has completed,the generated images with their URLs, size and format.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TaskResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Tasks.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.TaskResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.TaskResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get the status of a generation task.
+        /// Check on an image generation running in the background: whether it ispending, processing, completed or failed, and, once it has completed,the generated images with their URLs, size and format.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

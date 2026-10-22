@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Tasks
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TasksRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v2.generate.item.tasks.item collection</summary>
+        /// <summary>Background generation tasks and their results.</summary>
         /// <param name="position">The ID of the generation task.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Tasks.Item.WithTaskItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Tasks.Item.WithTaskItemRequestBuilder this[string position]

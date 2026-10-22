@@ -8,20 +8,20 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Quota usage for a single add-on.
+    /// Credit usage for a single add-on.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AddonQuota : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Maximum generations allowed per period.</summary>
+        /// <summary>Credits available per period.</summary>
         public int? Limit { get; set; }
-        /// <summary>Generations remaining in the current period.</summary>
+        /// <summary>Credits remaining in the current period.</summary>
         public int? Remaining { get; set; }
         /// <summary>The add-on a quota applies to.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Feature? Type { get; set; }
-        /// <summary>Number of generations consumed by this request.</summary>
+        /// <summary>Credits used by this request; 0 when no image was generated.</summary>
         public int? UsedByRequest { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.AddonQuota"/> and sets the default values.

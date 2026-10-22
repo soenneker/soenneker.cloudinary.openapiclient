@@ -17,7 +17,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCloudNameItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The image_to_image property</summary>
+        /// <summary>Edit, restyle or combine images guided by a text prompt.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Image_to_image.Image_to_imageRequestBuilder Image_to_image
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Image_to_image.Image_to_imageRequestBuilder(PathParameters, RequestAdapter);
@@ -27,7 +27,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Tasks.TasksRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The text_to_image property</summary>
+        /// <summary>Generate images from a text prompt.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image.Text_to_imageRequestBuilder Text_to_image
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image.Text_to_imageRequestBuilder(PathParameters, RequestAdapter);

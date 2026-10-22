@@ -31,6 +31,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning disable CS1591
         Flux2Flash,
         #pragma warning restore CS1591
+        [EnumMember(Value = "flux-3")]
+        #pragma warning disable CS1591
+        Flux3,
+        #pragma warning restore CS1591
         [EnumMember(Value = "recraft-v3")]
         #pragma warning disable CS1591
         RecraftV3,
@@ -126,6 +130,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         [EnumMember(Value = "flux-2-flash-edit")]
         #pragma warning disable CS1591
         Flux2FlashEdit,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "flux-3-edit")]
+        #pragma warning disable CS1591
+        Flux3Edit,
         #pragma warning restore CS1591
         [EnumMember(Value = "recraft-v3-edit")]
         #pragma warning disable CS1591

@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Store the output as a short-lived asset on the upload service.
+    /// Return the image at a short-lived URL (valid until `expires_at`) withoutsaving it to the user&apos;s Cloudinary account.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TemporaryTarget : IParsable

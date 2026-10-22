@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>The only valid value; selects automatic model selection.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.AutoMode? Mode { get; set; }
-        /// <summary>What the choice optimizes for:* `balanced` (default): quality and cost weighted equally.* `quality`: quality only; cost isn&apos;t weighed.* `economy`: cost first, quality second.* `balanced_fast`, `quality_fast`, `economy_fast`: as above, but also  favor faster generation, and never pick a model that typically  takes longer than 30 seconds.</summary>
+        /// <summary>What the choice optimizes for:* `balanced` (default): quality and cost weighted equally.* `quality`: quality only; cost isn&apos;t weighed.* `economy`: cost first, quality second.* `balanced_fast`, `quality_fast`, `economy_fast`: as above, but  also favor faster generation, and never pick a model that  typically takes longer than 30 seconds.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAutoPreference? Preference { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

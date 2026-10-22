@@ -15,7 +15,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>Discriminator identifying this as an external-URL reference.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.UrlSourceType? SourceType { get; set; }
-        /// <summary>HTTPS URL of the reference image.</summary>
+        /// <summary>Public HTTPS URL of the reference image.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Url { get; set; }

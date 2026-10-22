@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Cloudinary API v1.1
-  version: 0.7.7 # x-release-please-version
+  version: 0.7.8 # x-release-please-version
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -5821,6 +5821,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/api_error'
   /v2/generate/{cloud_name}/text_to_image:
+    summary: Text to image
+    description: Generate images from a text prompt.
     parameters:
       - $ref: "#/components/parameters/cloudName"
     post:
@@ -5831,23 +5833,25 @@ paths:
         title: Generate an Image
       tags:
         - Generation
-      summary: Generate an image
-      description: >
-        Generate an image from a text prompt using AI models.
+      summary: Generate an image from a text prompt
+      description: |
+        Create any image from a text description with AI: photos, illustrations,
+        logos, icons, product shots, banners, ads, social posts, concept art,
+        mockups, and images with readable text. One call gives you the best
+        image models — Nano Banana, GPT Image, FLUX, Ideogram, Recraft and more.
+        Leave out `model` and a strong default is used.
 
+        **Storage is optional.** Get the image at a temporary link without
+        saving anything to your account, or keep it in your Media Library, ready
+        to deliver, transform and optimize.
 
-        The model is selected via the optional `model` object:
+        **What you get back.** Each image comes with its URL, size, format and
+        the model that made it, either in the response or, for longer jobs, from
+        a background task you can check or be notified about. Each generation
+        uses Image Generation credits.
 
-        1. If `model.id` is provided, use that exact model.
-
-        2. Else if `model.family` (+ optional `model.tier`) is provided, resolve
-        via the model registry; a missing tier defaults to `standard`.
-
-        3. Else if `model.mode` is `auto`, the service picks the model for the
-        request (optionally steered by `model.preference`).
-
-        4. Otherwise, use the global default (nano-banana / premium, i.e.
-        `nano-banana-2`).
+        To edit, restyle or combine existing images, use image-to-image
+        (`generate-image-from-images`) instead.
       operationId: generate_image
       requestBody:
         required: true
@@ -5894,6 +5898,8 @@ paths:
         "502":
           $ref: "#/components/responses/ModelUnavailableResponse"
   /v2/generate/{cloud_name}/image_to_image:
+    summary: Image to image
+    description: Edit, restyle or combine images guided by a text prompt.
     parameters:
       - $ref: "#/components/parameters/cloudName"
     post:
@@ -5904,25 +5910,25 @@ paths:
         title: Generate an Image from Reference Images
       tags:
         - Generation
-      summary: Generate an image from reference images
+      summary: Edit or combine images with a text prompt
       description: |
-        Generate an image guided by one or more **reference images** — restyle,
-        on-brand variants, character consistency, virtual try-on, edit/extend —
-        steered by `prompt`.
+        Edit, restyle or combine existing images with AI, guided by a text
+        prompt: replace a background, add or remove objects, apply a style, make
+        on-brand variants, keep a character or product consistent across scenes,
+        virtual try-on, or extend an image. Pass up to 4 reference images, each
+        a public HTTPS `url` or an `asset_id` from the user's Cloudinary
+        account, and refer to them in the prompt as `[1]`, `[2]`, …. For a local
+        file, upload it first and reference it by its `asset_id`. Leave out
+        `model` and a strong default edit model is used; only edit-capable
+        models are accepted.
 
-        Only edit-capable models are selectable here. The model is selected via
-        the optional `model` object, exactly like `text_to_image`, but IDs are
-        restricted to edit models:
-        1. If `model.id` is provided, use that exact edit model.
-        2. Else if `model.family` (+ optional `model.tier`) is provided, resolve
-           to that family's edit model (e.g. `nano-banana` / `premium` →
-           `nano-banana-2-edit`).
-        3. Else if `model.mode` is `auto`, the service picks an edit model for
-           the request (optionally steered by `model.preference`).
-        4. Otherwise, use the default edit model (`nano-banana-2-edit`).
+        **Storage is optional.** Get the image at a temporary link without
+        saving anything to your account, or keep it in your Media Library.
 
-        Each reference image is either a stored managed asset (by `asset_id`,
-        read-permission checked) or an external HTTPS `url`.
+        **What you get back.** Each image comes with its URL, size, format and
+        the model that made it, either in the response or, for longer jobs, from
+        a background task you can check or be notified about. Each generation
+        uses Image Generation credits.
       operationId: generate_image_from_images
       requestBody:
         required: true
@@ -5947,6 +5953,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GenerateImageResult"
+              examples:
+                Success:
+                  $ref: "#/components/examples/ImageToImageSuccessExample"
         "202":
           $ref: "#/components/responses/GenerationAcceptedResponse"
         "400":
@@ -5966,6 +5975,8 @@ paths:
         "502":
           $ref: "#/components/responses/ModelUnavailableResponse"
   /v2/generate/{cloud_name}/tasks/{task_id}:
+    summary: Generation tasks
+    description: Background generation tasks and their results.
     parameters:
       - $ref: "#/components/parameters/cloudName"
       - in: path
@@ -5974,7 +5985,10 @@ paths:
         required: true
         schema:
           type: string
+          description: Task ID returned when a background generation is accepted.
           pattern: ^[a-f0-9]{1,256}$
+          examples:
+            - 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
         examples:
           default:
             value: 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
@@ -5988,8 +6002,11 @@ paths:
         idempotentHint: true
       tags:
         - Tasks
-      summary: Get a generation task
-      description: Get the status of a generation task.
+      summary: Check the status and result of a generation task
+      description: |
+        Check on an image generation running in the background: whether it is
+        pending, processing, completed or failed, and, once it has completed,
+        the generated images with their URLs, size and format.
       operationId: get_generation_task_status
       responses:
         "200":
@@ -6495,10 +6512,13 @@ components:
       description: The cloud name of your Cloudinary product environment.
       schema:
         type: string
+        description: Cloud name of the product environment.
+        examples:
+          - demo
       required: true
       examples:
         default:
-          value: your-cloud-name
+          value: demo
   schemas:
     upload_resource_type:
       type: string
@@ -11375,6 +11395,12 @@ components:
           $ref: "#/components/schemas/Async"
         notification_url:
           $ref: "#/components/schemas/NotificationUrl"
+      examples:
+        - prompt: A photorealistic sunset over a mountain lake
+          image_size:
+            aspect_ratio: 16:9
+          target:
+            target_type: temporary
     ImageFormat:
       type: string
       enum:
@@ -11409,6 +11435,8 @@ components:
         returns immediately with a 202 and completes in the background. Once
         complete, a webhook notification is sent to the specified URL and/or to
         the URLs defined in the product environment's settings.
+      examples:
+        - false
     NotificationUrl:
       type: string
       format: uri
@@ -11446,6 +11474,9 @@ components:
             selected model's capacity returns 400.
           items:
             $ref: "#/components/schemas/ReferenceImage"
+          examples:
+            -   - source_type: url
+                  url: https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg
         model:
           $ref: "#/components/schemas/ModelSelection"
         image_size:
@@ -11460,6 +11491,11 @@ components:
           $ref: "#/components/schemas/Async"
         notification_url:
           $ref: "#/components/schemas/NotificationUrl"
+      examples:
+        - prompt: Place the shoes from [1] on a marble kitchen counter, soft morning light
+          reference_images:
+            - source_type: url
+              url: https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg
     ReferenceImage:
       description: |
         A single reference image, in **one** of two mutually exclusive forms
@@ -11475,6 +11511,9 @@ components:
         mapping:
           managed_asset: "#/components/schemas/ManagedAssetReference"
           url: "#/components/schemas/UrlReference"
+      examples:
+        - source_type: url
+          url: https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg
     ManagedAssetReference:
       type: object
       title: ManagedAssetReference
@@ -11491,11 +11530,16 @@ components:
           description: Discriminator identifying this as a managed-asset reference.
           enum:
             - managed_asset
+          examples:
+            - managed_asset
         asset_id:
           type: string
           description: Cloudinary asset ID of the reference image. READ permission is enforced.
           examples:
             - 0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a
+      examples:
+        - source_type: managed_asset
+          asset_id: 0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a
     UrlReference:
       type: object
       title: UrlReference
@@ -11510,16 +11554,22 @@ components:
           description: Discriminator identifying this as an external-URL reference.
           enum:
             - url
+          examples:
+            - url
         url:
           type: string
           format: uri
-          description: HTTPS URL of the reference image.
+          description: Public HTTPS URL of the reference image.
           examples:
             - https://example.com/product.png
+      examples:
+        - source_type: url
+          url: https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg
     ModelSelection:
       description: |
         Selects the model, in one of three mutually exclusive forms (omit to use
-        the global default):
+        the default: `nano-banana-2`, or `nano-banana-2-edit` for
+        image-to-image):
           * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time
             selector.
           * `ModelById`: an explicit `id`, pinning one exact model.
@@ -11529,6 +11579,8 @@ components:
         - $ref: "#/components/schemas/ModelByFamily"
         - $ref: "#/components/schemas/ModelById"
         - $ref: "#/components/schemas/ModelAuto"
+      examples:
+        - mode: auto
     ModelByFamily:
       type: object
       title: ModelByFamily
@@ -11547,21 +11599,16 @@ components:
             - gpt-image
             - nano-banana
             - ideogram
-          description: >
+          description: |
             Model family:
-
             * `flux`: Photorealistic images (FLUX.2 Klein 9B / FLUX.2 Pro).
-
             * `recraft`: Vector and illustration (Recraft V3 / Recraft V4).
-
             * `gpt-image`: Campaign and marketing images (GPT Image 1 Mini / GPT
-            Image 2).
-
+              Image 2).
             * `nano-banana`: General purpose generation (Nano Banana 1 / Nano
-            Banana 2).
-
+              Banana 2).
             * `ideogram`: Realism, text rendering, and artistic generation
-            (Ideogram V4).
+              (Ideogram V4).
           examples:
             - flux
         tier:
@@ -11572,6 +11619,9 @@ components:
           description: Quality tier within the family. Defaults to `standard` when omitted.
           examples:
             - premium
+      examples:
+        - family: flux
+          tier: premium
     ModelById:
       type: object
       title: ModelById
@@ -11589,6 +11639,7 @@ components:
             - flux-2-klein-9b
             - flux-2-pro
             - flux-2-flash
+            - flux-3
             - recraft-v3
             - recraft-v4
             - gpt-image-1-mini
@@ -11613,6 +11664,7 @@ components:
             - flux-2-klein-9b-edit
             - flux-2-pro-edit
             - flux-2-flash-edit
+            - flux-3-edit
             - recraft-v3-edit
             - gpt-image-1-mini-edit
             - gpt-image-2-edit
@@ -11632,6 +11684,8 @@ components:
             `image_to_image`; the others only on `text_to_image`.
           examples:
             - flux-2-pro
+      examples:
+        - id: flux-2-pro
     ModelAuto:
       type: object
       title: ModelAuto
@@ -11660,21 +11714,19 @@ components:
             - quality_fast
             - economy_fast
           default: balanced
-          description: >
+          description: |
             What the choice optimizes for:
-
             * `balanced` (default): quality and cost weighted equally.
-
             * `quality`: quality only; cost isn't weighed.
-
             * `economy`: cost first, quality second.
-
             * `balanced_fast`, `quality_fast`, `economy_fast`: as above, but
-            also
-              favor faster generation, and never pick a model that typically
-              takes longer than 30 seconds.
+              also favor faster generation, and never pick a model that
+              typically takes longer than 30 seconds.
           examples:
             - quality
+      examples:
+        - mode: auto
+          preference: quality
     ImageSize:
       description: |
         Desired output size, given in **one** of two mutually exclusive forms:
@@ -11690,6 +11742,9 @@ components:
       oneOf:
         - $ref: "#/components/schemas/DimensionsImageSize"
         - $ref: "#/components/schemas/DeclarativeImageSize"
+      examples:
+        - aspect_ratio: 16:9
+          resolution: 2K
     DimensionsImageSize:
       type: object
       title: DimensionsImageSize
@@ -11713,6 +11768,9 @@ components:
           description: Output height in pixels.
           examples:
             - 720
+      examples:
+        - width: 1280
+          height: 720
     DeclarativeImageSize:
       type: object
       title: DeclarativeImageSize
@@ -11752,10 +11810,17 @@ components:
             - 4K
           examples:
             - 2K
+      examples:
+        - aspect_ratio: 16:9
+          resolution: 2K
     Target:
       description: |
-        Where to store the generated output, determined by `target_type`.
-        Optional; defaults to a `managed_asset` target when omitted.
+        Where the generated image goes, determined by `target_type`. Use
+        `temporary` when the user only wants the image: a short-lived URL,
+        nothing saved to their account. Omit it, or use `managed_asset`, to
+        store the image permanently in their Media Library. If the caller lacks
+        upload permission, the image is returned as `temporary` instead, with a
+        `warning` notice.
       oneOf:
         - $ref: "#/components/schemas/ManagedAssetTarget"
         - $ref: "#/components/schemas/TemporaryTarget"
@@ -11764,6 +11829,8 @@ components:
         mapping:
           managed_asset: "#/components/schemas/ManagedAssetTarget"
           temporary: "#/components/schemas/TemporaryTarget"
+      examples:
+        - target_type: temporary
     ManagedAssetTarget:
       type: object
       description: Store the output as a permanent managed asset in your Cloudinary product environment (the default).
@@ -11776,6 +11843,8 @@ components:
           description: Discriminator identifying this as a managed-asset target.
           enum:
             - managed_asset
+          examples:
+            - managed_asset
         public_id:
           type: string
           description: Public ID to store the asset under. Auto-assigned when omitted.
@@ -11786,9 +11855,14 @@ components:
           description: Upload preset to apply. Uses the product environment's default when omitted.
           examples:
             - some-preset
+      examples:
+        - target_type: managed_asset
+          public_id: my-public-id
     TemporaryTarget:
       type: object
-      description: Store the output as a short-lived asset on the upload service.
+      description: |
+        Return the image at a short-lived URL (valid until `expires_at`) without
+        saving it to the user's Cloudinary account.
       additionalProperties: false
       required:
         - target_type
@@ -11798,10 +11872,16 @@ components:
           description: Discriminator identifying this as a temporary target.
           enum:
             - temporary
+          examples:
+            - temporary
+      examples:
+        - target_type: temporary
     Storage:
       description: |
-        Where a generated asset is stored — mirrors the request `target`,
-        determined by `storage_type`. `secure_url` is always present.
+        Where the generated asset is actually stored, determined by
+        `storage_type`. Usually matches the request `target`; a `managed_asset`
+        request falls back to `temporary` when the caller lacks upload
+        permission. `secure_url` is always present.
       oneOf:
         - $ref: "#/components/schemas/ManagedAssetStorage"
         - $ref: "#/components/schemas/TemporaryStorage"
@@ -11810,6 +11890,10 @@ components:
         mapping:
           managed_asset: "#/components/schemas/ManagedAssetStorage"
           temporary: "#/components/schemas/TemporaryStorage"
+      examples:
+        - storage_type: temporary
+          secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+          expires_at: 2026-06-25T12:50:26Z
     ManagedAssetStorage:
       type: object
       description: |
@@ -11829,6 +11913,8 @@ components:
           type: string
           description: Discriminator identifying this as managed-asset storage.
           enum:
+            - managed_asset
+          examples:
             - managed_asset
         secure_url:
           type: string
@@ -11864,6 +11950,16 @@ components:
           type: integer
           format: int64
           description: Version of the stored asset.
+          examples:
+            - 1750000000
+      examples:
+        - storage_type: managed_asset
+          secure_url: https://res.cloudinary.com/demo/image/upload/v1750000000/my-public-id.png
+          asset_id: 0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a
+          public_id: my-public-id
+          resource_type: image
+          type: upload
+          version: 1750000000
     TemporaryStorage:
       type: object
       description: A generated asset stored as a short-lived asset on the upload service.
@@ -11878,6 +11974,8 @@ components:
           description: Discriminator identifying this as temporary storage.
           enum:
             - temporary
+          examples:
+            - temporary
         secure_url:
           type: string
           format: uri
@@ -11890,6 +11988,10 @@ components:
           description: Time in UTC when secure_url stops being valid.
           examples:
             - 2026-06-25T12:50:26Z
+      examples:
+        - storage_type: temporary
+          secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+          expires_at: 2026-06-25T12:50:26Z
     GenerateImageResult:
       type: object
       description: Successful synchronous image-generation response.
@@ -11907,6 +12009,14 @@ components:
           description: Unique identifier for this request, for correlation and support.
           examples:
             - 17c3b70c5096df0e77e838323abb7029
+      examples:
+        - data:
+            assets:
+              - storage:
+                  storage_type: temporary
+                  secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+                  expires_at: 2026-06-25T12:50:26Z
+          request_id: 17c3b70c5096df0e77e838323abb7029
     GeneratedAssets:
       type: object
       description: Wrapper holding the array of generated assets.
@@ -11918,6 +12028,17 @@ components:
           description: The generated assets. Currently a single asset is returned.
           items:
             $ref: "#/components/schemas/GeneratedAsset"
+          examples:
+            -   - storage:
+                    storage_type: temporary
+                    secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+                    expires_at: 2026-06-25T12:50:26Z
+      examples:
+        - assets:
+            - storage:
+                storage_type: temporary
+                secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+                expires_at: 2026-06-25T12:50:26Z
     GeneratedAsset:
       type: object
       description: |
@@ -11960,11 +12081,9 @@ components:
           type:
             - integer
             - "null"
-          description: >
+          description: |
             The seed used for generation. Echoes input or returns the
-            model-generated seed.
-
-            Null when the model doesn't support seeds.
+            model-generated seed. Null when the model doesn't support seeds.
           examples:
             - 42
         created_at:
@@ -11973,6 +12092,21 @@ components:
           description: The timestamp when the image was generated.
           examples:
             - 2026-04-21T14:30:00Z
+      examples:
+        - storage:
+            storage_type: temporary
+            secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+            expires_at: 2026-06-25T12:50:26Z
+          format: png
+          width: 1024
+          height: 768
+          bytes: 2048576
+          model:
+            family: flux
+            tier: premium
+            id: flux-2-pro
+          seed: 42
+          created_at: 2026-04-21T14:30:00Z
     Model:
       type: object
       description: Identifies the model that produced a generation result.
@@ -12014,6 +12148,10 @@ components:
             `tier`, it is never `none`.
           examples:
             - flux-2-pro
+      examples:
+        - family: flux
+          tier: premium
+          id: flux-2-pro
     TaskStatus:
       type: string
       description: |
@@ -12027,6 +12165,8 @@ components:
         - processing
         - completed
         - failed
+      examples:
+        - completed
     Task:
       type: object
       description: |
@@ -12052,8 +12192,17 @@ components:
             - $ref: "#/components/schemas/GeneratedAssets"
           description: |
             The generated assets. Populated once `status` is `completed`.
+          examples:
+            - assets:
+                - storage:
+                    storage_type: temporary
+                    secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+                    expires_at: 2026-06-25T12:50:26Z
         limits:
           $ref: "#/components/schemas/Limits"
+      examples:
+        - task_id: 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
+          status: pending
     TaskResponse:
       type: object
       description: |
@@ -12092,6 +12241,15 @@ components:
           description: Unique identifier for this request, for correlation and support.
           examples:
             - 17c3b70c5096df0e77e838323abb7029
+      examples:
+        - error:
+            category: user_error
+            code: MG_00001
+            message: missing parameters
+            details:
+              parameters:
+                - prompt
+          request_id: 17c3b70c5096df0e77e838323abb7029
     Error:
       type: object
       description: Details of an error, including a coarse category for retry logic, a stable error code, and a human-readable message.
@@ -12110,6 +12268,7 @@ components:
             - missing parameters
         details:
           type: object
+          additionalProperties: true
           description: Additional structured context about the error, when available.
           examples:
             - parameters:
@@ -12124,22 +12283,20 @@ components:
               - param2
     ErrorCategory:
       type: string
-      description: >
+      description: |
         Coarse classification of an error, primarily used by clients to decide
         whether to retry.
-
         * `user_error`: the request was invalid; do not retry without changes.
-
         * `auth_error`: authentication or authorization failed.
-
         * `server_error`: an unexpected server-side error; retrying may succeed.
-
         * `rate_limit_error`: quota or rate limit exceeded; retry later.
       enum:
         - user_error
         - auth_error
         - server_error
         - rate_limit_error
+      examples:
+        - user_error
     Notices:
       type: array
       x-experimental: true
@@ -12154,30 +12311,33 @@ components:
               text: "You've used 40 of your 50 Image Generation credits. 10 remain. Tell the user the balance is nearly spent, do not estimate how many images it covers, and show them: https://console.cloudinary.com/app/image/generation/plans"
     Notice:
       type: object
+      description: A single tip or piece of guidance, with how much weight to give it.
       required:
         - severity
         - text
       properties:
         severity:
           type: string
-          description: >
+          description: |
             How much weight to give the message.
-
             * `info`: for awareness; nothing to do.
-
             * `warning`: worth relaying to the user before continuing.
-
             * `blocking`: the request was not served; the text says what
-            unblocks it.
+              unblocks it.
           enum:
             - info
             - warning
             - blocking
+          examples:
+            - info
         text:
           type: string
           description: The tip or guidance, in plain text. Show it as-is or follow it; the wording may change between releases.
           examples:
-            - This model does not output webp; the image was stored as png. Deliver it with f_auto or f_webp to get webp.
+            - "You've used 25 of your 50 Image Generation credits. No action needed. If this run will keep generating, tell the user their balance is half spent and show them: https://console.cloudinary.com/app/image/generation/plans"
+      examples:
+        - severity: info
+          text: "You've used 25 of your 50 Image Generation credits. No action needed. If this run will keep generating, tell the user their balance is half spent and show them: https://console.cloudinary.com/app/image/generation/plans"
     Limits:
       type: object
       description: Rate limit information for the account's add-on quotas.
@@ -12192,9 +12352,15 @@ components:
                   used_by_request: 1
                   remaining: 48
                   limit: 50
+      examples:
+        - addons_quota:
+            - type: image_generation
+              used_by_request: 1
+              remaining: 48
+              limit: 50
     AddonQuota:
       type: object
-      description: Quota usage for a single add-on.
+      description: Credit usage for a single add-on.
       required:
         - type
         - used_by_request
@@ -12207,21 +12373,34 @@ components:
           type:
             - integer
             - "null"
-          description: Number of generations consumed by this request.
+          description: Credits used by this request; 0 when no image was generated.
+          examples:
+            - 1
         remaining:
           type:
             - integer
             - "null"
-          description: Generations remaining in the current period.
+          description: Credits remaining in the current period.
+          examples:
+            - 48
         limit:
           type:
             - integer
             - "null"
-          description: Maximum generations allowed per period.
+          description: Credits available per period.
+          examples:
+            - 50
+      examples:
+        - type: image_generation
+          used_by_request: 1
+          remaining: 48
+          limit: 50
     Feature:
       type: string
       description: The add-on a quota applies to.
       enum:
+        - image_generation
+      examples:
         - image_generation
   requestBodies:
     upload_request_body:
@@ -12577,11 +12756,9 @@ components:
             url: https://example.com/product.png
     ImageToImageFamilyModelExample:
       summary: Edit model by family and tier
-      description: >
+      description: |
         Select the edit model by family (+ optional tier); the family resolves
-        to
-
-        that family's edit model, here `nano-banana-2-edit`.
+        to that family's edit model, here `nano-banana-2-edit`.
       value:
         prompt: Restyle [1] as a watercolor painting, keep the composition
         reference_images:
@@ -12618,9 +12795,8 @@ components:
         seed: 42
     ImageToImageAutoModelExample:
       summary: Automatic edit-model selection
-      description: >
+      description: |
         Let the service choose the edit model for the reference images and the
-
         instruction; the resolved model in the response is always an `-edit`
         model.
       value:
@@ -12691,6 +12867,33 @@ components:
               remaining: 48
               limit: 50
         request_id: 17c3b70c5096df0e77e838323abb7029
+    ImageToImageSuccessExample:
+      summary: Successful synchronous image-to-image generation
+      description: The 200 response body for an image-to-image request; the model is always an edit model.
+      value:
+        data:
+          assets:
+            - storage:
+                storage_type: temporary
+                secure_url: https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png
+                expires_at: 2026-06-25T12:50:26Z
+              format: png
+              width: 1024
+              height: 768
+              bytes: 2048576
+              model:
+                family: nano-banana
+                tier: premium
+                id: nano-banana-2-edit
+              seed: 42
+              created_at: 2026-04-21T14:30:00Z
+        limits:
+          addons_quota:
+            - type: image_generation
+              used_by_request: 1
+              remaining: 48
+              limit: 50
+        request_id: 17c3b70c5096df0e77e838323abb7029
     GenerateTaskCompletedExample:
       summary: Completed task (GET /tasks/{task_id})
       description: A completed async task — the asset is fully populated (storage + media).
@@ -12716,19 +12919,22 @@ components:
                 created_at: 2026-04-21T14:30:00Z
         request_id: 17c3b70c5096df0e77e838323abb7029
     RateLimitedExample:
-      summary: 429 rate-limited response
-      description: Returned when the account has exhausted its generation quota for the period.
+      summary: 429 out of credits
+      description: Returned when the account's Image Generation credits are used up.
       value:
         error:
           category: rate_limit_error
-          code: MG_00429
-          message: Daily generation limit exceeded. Limit resets at 2026-04-22T00:00:00Z
+          code: MG_00602
+          message: Generation limit exceeded. Upgrade your plan at https://console.cloudinary.com/app/image/generation/plans
         limits:
           addons_quota:
             - type: image_generation
-              used_by_request: 1
+              used_by_request: 0
               remaining: 0
               limit: 50
+        notices:
+          - severity: blocking
+            text: "Your Image Generation credits are used up (50 of 50). This request did not generate an image. This is not a rate limit: retrying now returns this same response, and it changes only once credits are added, or the quota renews on plans that renew. Stop and tell the user their credits are finished, show them this link to add credits or review the plan: https://console.cloudinary.com/app/image/generation/plans, and once the balance changes re-run this same request unchanged."
         request_id: 17c3b70c5096df0e77e838323abb7029
   responses:
     GenerationAcceptedResponse:
@@ -12737,12 +12943,34 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/TaskResponse"
+          examples:
+            Accepted:
+              summary: Background generation accepted
+              description: The generation runs in the background; check the task for its result.
+              value:
+                data:
+                  task_id: 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
+                  status: pending
+                request_id: 17c3b70c5096df0e77e838323abb7029
     BadRequestResponse:
       description: Bad request.
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            MissingParameters:
+              summary: Missing required parameters
+              description: A required parameter is missing from the request.
+              value:
+                error:
+                  category: user_error
+                  code: MG_00001
+                  message: missing parameters
+                  details:
+                    parameters:
+                      - prompt
+                request_id: 17c3b70c5096df0e77e838323abb7029
     UnauthorizedResponse:
       description: Unauthorized.
       content:
@@ -12755,6 +12983,25 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            ReferenceNotFound:
+              summary: Reference asset not found
+              description: A reference image's asset_id was not found in the product environment.
+              value:
+                error:
+                  category: user_error
+                  code: MG_00704
+                  message: reference asset '0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a' not found
+                request_id: 17c3b70c5096df0e77e838323abb7029
+            TaskNotFound:
+              summary: Task not found
+              description: No task with this ID exists in the product environment.
+              value:
+                error:
+                  category: user_error
+                  code: MG_00015
+                  message: task not found
+                request_id: 17c3b70c5096df0e77e838323abb7029
     RateLimitedResponse:
       description: Rate limited.
       content:
@@ -12762,6 +13009,7 @@ components:
           schema:
             type: object
             title: RateLimitedResponse
+            description: Error returned when the account is out of Image Generation credits, with the current quota.
             required:
               - error
               - request_id
@@ -12786,6 +13034,16 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            InternalError:
+              summary: Internal error
+              description: An unexpected server-side error; retrying may succeed.
+              value:
+                error:
+                  category: server_error
+                  code: MG_00500
+                  message: internal error
+                request_id: 17c3b70c5096df0e77e838323abb7029
     ModelUnavailableResponse:
       description: Model unavailable.
       content:
@@ -12798,11 +13056,35 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            NotSubscribed:
+              summary: Not subscribed to Image Generation
+              description: The account is not subscribed to the Image Generation add-on.
+              value:
+                error:
+                  category: auth_error
+                  code: MG_00601
+                  message: Account does not have an active subscription for image generation. Subscribe at https://console.cloudinary.com/app/marketplace/details/image_generation
+                request_id: 17c3b70c5096df0e77e838323abb7029
     UnprocessableEntityResponse:
-      description: Unprocessable entity.
+      description: |
+        The model rejected the input. A content check flagged the prompt or a
+        reference image, a reference URL could not be downloaded, or the model
+        could not produce an image for this prompt. Rephrase the prompt or pass
+        the reference image another way, then retry.
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            ContentPolicy:
+              summary: Prompt rejected by the content policy
+              description: The model provider's content check rejected the prompt.
+              value:
+                error:
+                  category: user_error
+                  code: MG_00700
+                  message: The prompt was rejected by the content policy and could not be processed.
+                request_id: 17c3b70c5096df0e77e838323abb7029
 x-speakeasy-globals:
   parameters: []

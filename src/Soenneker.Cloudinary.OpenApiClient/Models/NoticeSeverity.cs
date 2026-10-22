@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>How much weight to give the message.* `info`: for awareness; nothing to do.* `warning`: worth relaying to the user before continuing.* `blocking`: the request was not served; the text says what unblocks it.</summary>
+    /// <summary>How much weight to give the message.* `info`: for awareness; nothing to do.* `warning`: worth relaying to the user before continuing.* `blocking`: the request was not served; the text says what  unblocks it.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum NoticeSeverity
     {

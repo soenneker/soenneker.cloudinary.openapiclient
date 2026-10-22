@@ -27,7 +27,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ImageSize ImageSize { get; set; }
 #endif
-        /// <summary>Selects the model, in one of three mutually exclusive forms (omit to usethe global default):  * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time    selector.  * `ModelById`: an explicit `id`, pinning one exact model.  * `ModelAuto`: `mode: auto`, letting the service choose the model for    the request (+ optional `preference`).</summary>
+        /// <summary>Selects the model, in one of three mutually exclusive forms (omit to usethe default: `nano-banana-2`, or `nano-banana-2-edit` forimage-to-image):  * `ModelByFamily`: `family` (+ optional `tier`); the stable-over-time    selector.  * `ModelById`: an explicit `id`, pinning one exact model.  * `ModelAuto`: `mode: auto`, letting the service choose the model for    the request (+ optional `preference`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelSelection? Model { get; set; }
@@ -53,7 +53,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #endif
         /// <summary>Seed for reproducible generation. Supported by the `flux`, `nano-banana`and `ideogram` models and by `qwen-image-3`; silently ignored by themodels that don&apos;t support it, which report `seed` as null in theresponse.</summary>
         public int? Seed { get; set; }
-        /// <summary>Where to store the generated output, determined by `target_type`.Optional; defaults to a `managed_asset` target when omitted.</summary>
+        /// <summary>Where the generated image goes, determined by `target_type`. Use`temporary` when the user only wants the image: a short-lived URL,nothing saved to their account. Omit it, or use `managed_asset`, tostore the image permanently in their Media Library. If the caller lacksupload permission, the image is returned as `temporary` instead, with a`warning` notice.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Target? Target { get; set; }

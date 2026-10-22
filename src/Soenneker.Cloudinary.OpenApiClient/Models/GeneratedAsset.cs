@@ -31,9 +31,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelValue Model { get; set; }
 #endif
-        /// <summary>The seed used for generation. Echoes input or returns the model-generated seed.Null when the model doesn&apos;t support seeds.</summary>
+        /// <summary>The seed used for generation. Echoes input or returns themodel-generated seed. Null when the model doesn&apos;t support seeds.</summary>
         public int? Seed { get; set; }
-        /// <summary>Where a generated asset is stored — mirrors the request `target`,determined by `storage_type`. `secure_url` is always present.</summary>
+        /// <summary>Where the generated asset is actually stored, determined by`storage_type`. Usually matches the request `target`; a `managed_asset`request falls back to `temporary` when the caller lacks uploadpermission. `secure_url` is always present.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.Storage? Storage { get; set; }

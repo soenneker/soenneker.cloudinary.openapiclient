@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v2\generate\{cloudName}\text_to_image
+    /// Generate images from a text prompt.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Text_to_imageRequestBuilder : BaseRequestBuilder
@@ -34,7 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image
         {
         }
         /// <summary>
-        /// Generate an image from a text prompt using AI models.The model is selected via the optional `model` object:1. If `model.id` is provided, use that exact model.2. Else if `model.family` (+ optional `model.tier`) is provided, resolve via the model registry; a missing tier defaults to `standard`.3. Else if `model.mode` is `auto`, the service picks the model for the request (optionally steered by `model.preference`).4. Otherwise, use the global default (nano-banana / premium, i.e. `nano-banana-2`).
+        /// Create any image from a text description with AI: photos, illustrations,logos, icons, product shots, banners, ads, social posts, concept art,mockups, and images with readable text. One call gives you the bestimage models — Nano Banana, GPT Image, FLUX, Ideogram, Recraft and more.Leave out `model` and a strong default is used.**Storage is optional.** Get the image at a temporary link withoutsaving anything to your account, or keep it in your Media Library, readyto deliver, transform and optimize.**What you get back.** Each image comes with its URL, size, format andthe model that made it, either in the response or, for longer jobs, froma background task you can check or be notified about. Each generationuses Image Generation credits.To edit, restyle or combine existing images, use image-to-image(`generate-image-from-images`) instead.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult"/></returns>
         /// <param name="body">Parameters for an image-generation request. Only `prompt` is required;all other fields fall back to documented defaults.</param>
@@ -69,7 +69,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Generate an image from a text prompt using AI models.The model is selected via the optional `model` object:1. If `model.id` is provided, use that exact model.2. Else if `model.family` (+ optional `model.tier`) is provided, resolve via the model registry; a missing tier defaults to `standard`.3. Else if `model.mode` is `auto`, the service picks the model for the request (optionally steered by `model.preference`).4. Otherwise, use the global default (nano-banana / premium, i.e. `nano-banana-2`).
+        /// Create any image from a text description with AI: photos, illustrations,logos, icons, product shots, banners, ads, social posts, concept art,mockups, and images with readable text. One call gives you the bestimage models — Nano Banana, GPT Image, FLUX, Ideogram, Recraft and more.Leave out `model` and a strong default is used.**Storage is optional.** Get the image at a temporary link withoutsaving anything to your account, or keep it in your Media Library, readyto deliver, transform and optimize.**What you get back.** Each image comes with its URL, size, format andthe model that made it, either in the response or, for longer jobs, froma background task you can check or be notified about. Each generationuses Image Generation credits.To edit, restyle or combine existing images, use image-to-image(`generate-image-from-images`) instead.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Parameters for an image-generation request. Only `prompt` is required;all other fields fall back to documented defaults.</param>

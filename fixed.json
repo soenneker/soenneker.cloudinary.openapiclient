@@ -12,7 +12,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.7.7"
+    "version": "0.7.8"
   },
   "servers": [
     {
@@ -10088,12 +10088,14 @@
       }
     },
     "/v2/generate/{cloudName}/text_to_image": {
+      "summary": "Text to image",
+      "description": "Generate images from a text prompt.",
       "post": {
         "tags": [
           "Generation"
         ],
-        "summary": "Generate an image",
-        "description": "Generate an image from a text prompt using AI models.\n\nThe model is selected via the optional \u0060model\u0060 object:\n1. If \u0060model.id\u0060 is provided, use that exact model.\n2. Else if \u0060model.family\u0060 (\u002B optional \u0060model.tier\u0060) is provided, resolve via the model registry; a missing tier defaults to \u0060standard\u0060.\n3. Else if \u0060model.mode\u0060 is \u0060auto\u0060, the service picks the model for the request (optionally steered by \u0060model.preference\u0060).\n4. Otherwise, use the global default (nano-banana / premium, i.e. \u0060nano-banana-2\u0060).\n",
+        "summary": "Generate an image from a text prompt",
+        "description": "Create any image from a text description with AI: photos, illustrations,\nlogos, icons, product shots, banners, ads, social posts, concept art,\nmockups, and images with readable text. One call gives you the best\nimage models \u2014 Nano Banana, GPT Image, FLUX, Ideogram, Recraft and more.\nLeave out \u0060model\u0060 and a strong default is used.\n\n**Storage is optional.** Get the image at a temporary link without\nsaving anything to your account, or keep it in your Media Library, ready\nto deliver, transform and optimize.\n\n**What you get back.** Each image comes with its URL, size, format and\nthe model that made it, either in the response or, for longer jobs, from\na background task you can check or be notified about. Each generation\nuses Image Generation credits.\n\nTo edit, restyle or combine existing images, use image-to-image\n(\u0060generate-image-from-images\u0060) instead.\n",
         "operationId": "GenerateImage",
         "requestBody": {
           "description": "A JSON object containing the generation request parameters.",
@@ -10155,7 +10157,7 @@
             "$ref": "#/components/responses/UnauthorizedResponse"
           },
           "422": {
-            "description": "Unprocessable entity.",
+            "description": "The model rejected the input. A content check flagged the prompt or a\nreference image, a reference URL could not be downloaded, or the model\ncould not produce an image for this prompt. Rephrase the prompt or pass\nthe reference image another way, then retry.\n",
             "$ref": "#/components/responses/UnprocessableEntityResponse"
           },
           "429": {
@@ -10192,12 +10194,14 @@
       "parameters": []
     },
     "/v2/generate/{cloudName}/image_to_image": {
+      "summary": "Image to image",
+      "description": "Edit, restyle or combine images guided by a text prompt.",
       "post": {
         "tags": [
           "Generation"
         ],
-        "summary": "Generate an image from reference images",
-        "description": "Generate an image guided by one or more **reference images** \u2014 restyle,\non-brand variants, character consistency, virtual try-on, edit/extend \u2014\nsteered by \u0060prompt\u0060.\n\nOnly edit-capable models are selectable here. The model is selected via\nthe optional \u0060model\u0060 object, exactly like \u0060text_to_image\u0060, but IDs are\nrestricted to edit models:\n1. If \u0060model.id\u0060 is provided, use that exact edit model.\n2. Else if \u0060model.family\u0060 (\u002B optional \u0060model.tier\u0060) is provided, resolve\n   to that family\u0027s edit model (e.g. \u0060nano-banana\u0060 / \u0060premium\u0060 \u2192\n   \u0060nano-banana-2-edit\u0060).\n3. Else if \u0060model.mode\u0060 is \u0060auto\u0060, the service picks an edit model for\n   the request (optionally steered by \u0060model.preference\u0060).\n4. Otherwise, use the default edit model (\u0060nano-banana-2-edit\u0060).\n\nEach reference image is either a stored managed asset (by \u0060asset_id\u0060,\nread-permission checked) or an external HTTPS \u0060url\u0060.\n",
+        "summary": "Edit or combine images with a text prompt",
+        "description": "Edit, restyle or combine existing images with AI, guided by a text\nprompt: replace a background, add or remove objects, apply a style, make\non-brand variants, keep a character or product consistent across scenes,\nvirtual try-on, or extend an image. Pass up to 4 reference images, each\na public HTTPS \u0060url\u0060 or an \u0060asset_id\u0060 from the user\u0027s Cloudinary\naccount, and refer to them in the prompt as \u0060[1]\u0060, \u0060[2]\u0060, \u2026. For a local\nfile, upload it first and reference it by its \u0060asset_id\u0060. Leave out\n\u0060model\u0060 and a strong default edit model is used; only edit-capable\nmodels are accepted.\n\n**Storage is optional.** Get the image at a temporary link without\nsaving anything to your account, or keep it in your Media Library.\n\n**What you get back.** Each image comes with its URL, size, format and\nthe model that made it, either in the response or, for longer jobs, from\na background task you can check or be notified about. Each generation\nuses Image Generation credits.\n",
         "operationId": "GenerateImageFromImages",
         "requestBody": {
           "description": "A JSON object containing the image-to-image generation request parameters.",
@@ -10231,6 +10235,11 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GenerateImageResult"
+                },
+                "examples": {
+                  "Success": {
+                    "$ref": "#/components/examples/ImageToImageSuccessExample"
+                  }
                 }
               }
             }
@@ -10256,7 +10265,7 @@
             "$ref": "#/components/responses/NotFoundResponse"
           },
           "422": {
-            "description": "Unprocessable entity.",
+            "description": "The model rejected the input. A content check flagged the prompt or a\nreference image, a reference URL could not be downloaded, or the model\ncould not produce an image for this prompt. Rephrase the prompt or pass\nthe reference image another way, then retry.\n",
             "$ref": "#/components/responses/UnprocessableEntityResponse"
           },
           "429": {
@@ -10293,12 +10302,14 @@
       "parameters": []
     },
     "/v2/generate/{cloudName}/tasks/{taskId}": {
+      "summary": "Generation tasks",
+      "description": "Background generation tasks and their results.",
       "get": {
         "tags": [
           "Tasks"
         ],
-        "summary": "Get a generation task",
-        "description": "Get the status of a generation task.",
+        "summary": "Check the status and result of a generation task",
+        "description": "Check on an image generation running in the background: whether it is\npending, processing, completed or failed, and, once it has completed,\nthe generated images with their URLs, size and format.\n",
         "operationId": "GetGenerationTaskStatus",
         "responses": {
           "200": {
@@ -10364,8 +10375,12 @@
           "description": "The ID of the generation task.",
           "required": true,
           "schema": {
+            "examples": [
+              "053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb"
+            ],
             "pattern": "^[a-f0-9]{1,256}$",
-            "type": "string"
+            "type": "string",
+            "description": "Task ID returned when a background generation is accepted."
           },
           "examples": {
             "default": {
@@ -18604,6 +18619,17 @@
         "description": "The permission inspection results."
       },
       "GenerateImageRequest": {
+        "examples": [
+          {
+            "prompt": "A photorealistic sunset over a mountain lake",
+            "image_size": {
+              "aspect_ratio": "16:9"
+            },
+            "target": {
+              "target_type": "temporary"
+            }
+          }
+        ],
         "required": [
           "prompt"
         ],
@@ -18619,7 +18645,7 @@
             "description": "The text description of the image to generate."
           },
           "model": {
-            "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n",
+            "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe default: \u0060nano-banana-2\u0060, or \u0060nano-banana-2-edit\u0060 for\nimage-to-image):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n",
             "$ref": "#/components/schemas/ModelSelection"
           },
           "image_size": {
@@ -18631,7 +18657,7 @@
             "$ref": "#/components/schemas/ImageFormat"
           },
           "target": {
-            "description": "Where to store the generated output, determined by \u0060target_type\u0060.\nOptional; defaults to a \u0060managed_asset\u0060 target when omitted.\n",
+            "description": "Where the generated image goes, determined by \u0060target_type\u0060. Use\n\u0060temporary\u0060 when the user only wants the image: a short-lived URL,\nnothing saved to their account. Omit it, or use \u0060managed_asset\u0060, to\nstore the image permanently in their Media Library. If the caller lacks\nupload permission, the image is returned as \u0060temporary\u0060 instead, with a\n\u0060warning\u0060 notice.\n",
             "$ref": "#/components/schemas/Target"
           },
           "seed": {
@@ -18693,6 +18719,9 @@
         "description": "Seed for reproducible generation. Supported by the \u0060flux\u0060, \u0060nano-banana\u0060\nand \u0060ideogram\u0060 models and by \u0060qwen-image-3\u0060; silently ignored by the\nmodels that don\u0027t support it, which report \u0060seed\u0060 as null in the\nresponse.\n"
       },
       "Async": {
+        "examples": [
+          false
+        ],
         "type": "boolean",
         "description": "Whether to perform the generation asynchronously. When true, the API\nreturns immediately with a 202 and completes in the background. Once\ncomplete, a webhook notification is sent to the specified URL and/or to\nthe URLs defined in the product environment\u0027s settings.\n",
         "default": false
@@ -18706,6 +18735,17 @@
         "format": "uri"
       },
       "ImageToImageRequest": {
+        "examples": [
+          {
+            "prompt": "Place the shoes from [1] on a marble kitchen counter, soft morning light",
+            "reference_images": [
+              {
+                "source_type": "url",
+                "url": "https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg"
+              }
+            ]
+          }
+        ],
         "required": [
           "prompt",
           "reference_images"
@@ -18722,6 +18762,14 @@
             "description": "The text instruction describing the desired edit / output."
           },
           "reference_images": {
+            "examples": [
+              [
+                {
+                  "source_type": "url",
+                  "url": "https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg"
+                }
+              ]
+            ],
             "maxItems": 4,
             "minItems": 1,
             "type": "array",
@@ -18731,7 +18779,7 @@
             "description": "Reference images that steer the generation, in order (1-indexed; the\nprompt may address them positionally as \u0060[1]\u0060, \u0060[2]\u0060, \u2026). Each entry\nis either a managed asset (by \u0060asset_id\u0060) or an external \u0060url\u0060. The\nplatform accepts up to 4; a specific model may accept fewer \u2014 the\n\u0060recraft-v3-edit\u0060 and \u0060mai-image\u0060 edit models accept 1, and the\n\u0060grok-imagine\u0060 and \u0060qwen-image\u0060 edit models accept 3. Exceeding the\nselected model\u0027s capacity returns 400.\n"
           },
           "model": {
-            "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n",
+            "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe default: \u0060nano-banana-2\u0060, or \u0060nano-banana-2-edit\u0060 for\nimage-to-image):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n",
             "$ref": "#/components/schemas/ModelSelection"
           },
           "image_size": {
@@ -18743,7 +18791,7 @@
             "$ref": "#/components/schemas/ImageFormat"
           },
           "target": {
-            "description": "Where to store the generated output, determined by \u0060target_type\u0060.\nOptional; defaults to a \u0060managed_asset\u0060 target when omitted.\n",
+            "description": "Where the generated image goes, determined by \u0060target_type\u0060. Use\n\u0060temporary\u0060 when the user only wants the image: a short-lived URL,\nnothing saved to their account. Omit it, or use \u0060managed_asset\u0060, to\nstore the image permanently in their Media Library. If the caller lacks\nupload permission, the image is returned as \u0060temporary\u0060 instead, with a\n\u0060warning\u0060 notice.\n",
             "$ref": "#/components/schemas/Target"
           },
           "seed": {
@@ -18763,6 +18811,12 @@
         "description": "Parameters for an image-to-image (reference-guided) request. Both\n\u0060prompt\u0060 (the edit instruction) and \u0060reference_images\u0060 are required; all\nother fields fall back to the same defaults as \u0060text_to_image\u0060.\n"
       },
       "ReferenceImage": {
+        "examples": [
+          {
+            "source_type": "url",
+            "url": "https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg"
+          }
+        ],
         "required": [
           "source_type"
         ],
@@ -18788,7 +18842,7 @@
               "https://example.com/product.png"
             ],
             "type": "string",
-            "description": "HTTPS URL of the reference image.",
+            "description": "Public HTTPS URL of the reference image.",
             "format": "uri"
           },
           "source_type": {
@@ -18807,6 +18861,12 @@
         }
       },
       "ManagedAssetReference": {
+        "examples": [
+          {
+            "source_type": "managed_asset",
+            "asset_id": "0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a"
+          }
+        ],
         "title": "ManagedAssetReference",
         "required": [
           "source_type",
@@ -18829,6 +18889,12 @@
         "description": "A reference to a managed asset in the caller\u0027s product environment, by\nasset ID.\n"
       },
       "UrlReference": {
+        "examples": [
+          {
+            "source_type": "url",
+            "url": "https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg"
+          }
+        ],
         "title": "UrlReference",
         "required": [
           "source_type",
@@ -18844,7 +18910,7 @@
               "https://example.com/product.png"
             ],
             "type": "string",
-            "description": "HTTPS URL of the reference image.",
+            "description": "Public HTTPS URL of the reference image.",
             "format": "uri"
           }
         },
@@ -18852,6 +18918,11 @@
         "description": "A reference to an external image by HTTPS URL."
       },
       "ModelSelection": {
+        "examples": [
+          {
+            "mode": "auto"
+          }
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -18881,9 +18952,15 @@
             "$ref": "#/components/schemas/ModelAutoPreference"
           }
         },
-        "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe global default):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n"
+        "description": "Selects the model, in one of three mutually exclusive forms (omit to use\nthe default: \u0060nano-banana-2\u0060, or \u0060nano-banana-2-edit\u0060 for\nimage-to-image):\n  * \u0060ModelByFamily\u0060: \u0060family\u0060 (\u002B optional \u0060tier\u0060); the stable-over-time\n    selector.\n  * \u0060ModelById\u0060: an explicit \u0060id\u0060, pinning one exact model.\n  * \u0060ModelAuto\u0060: \u0060mode: auto\u0060, letting the service choose the model for\n    the request (\u002B optional \u0060preference\u0060).\n"
       },
       "ModelByFamily": {
+        "examples": [
+          {
+            "family": "flux",
+            "tier": "premium"
+          }
+        ],
         "title": "ModelByFamily",
         "required": [
           "family"
@@ -18901,6 +18978,11 @@
         "description": "Select a model by family and quality tier; a missing \u0060tier\u0060 defaults to\n\u0060standard\u0060.\n"
       },
       "ModelById": {
+        "examples": [
+          {
+            "id": "flux-2-pro"
+          }
+        ],
         "title": "ModelById",
         "required": [
           "id"
@@ -18915,6 +18997,12 @@
         "description": "Pin an exact model by ID, bypassing family/tier."
       },
       "ModelAuto": {
+        "examples": [
+          {
+            "mode": "auto",
+            "preference": "quality"
+          }
+        ],
         "title": "ModelAuto",
         "required": [
           "mode"
@@ -18932,6 +19020,12 @@
         "description": "Let the service choose the model for this request. The response reports\nthe resolved model in \u0060data.assets[].model\u0060, as for the other forms; on\n\u0060image_to_image\u0060 it is always an edit model.\n"
       },
       "ImageSize": {
+        "examples": [
+          {
+            "aspect_ratio": "16:9",
+            "resolution": "2K"
+          }
+        ],
         "type": "object",
         "oneOf": [
           {
@@ -18970,6 +19064,12 @@
         "description": "Desired output size, given in **one** of two mutually exclusive forms:\n\n  * \u0060DimensionsImageSize\u0060: \u0060width\u0060 and \u0060height\u0060 in pixels, for precise\n    control.\n  * \u0060DeclarativeImageSize\u0060: \u0060aspect_ratio\u0060 (and an optional \u0060resolution\u0060\n    tier), resolved server-side to the closest size the chosen model\n    supports. This is the portable form: most providers natively accept\n    an aspect ratio plus a resolution tier rather than raw pixels.\n\nOmit \u0060image_size\u0060 entirely to use the model\u0027s default size.\n"
       },
       "DimensionsImageSize": {
+        "examples": [
+          {
+            "width": 1280,
+            "height": 720
+          }
+        ],
         "title": "DimensionsImageSize",
         "required": [
           "width",
@@ -19000,6 +19100,12 @@
         "description": "Exact output dimensions in pixels. Both \u0060width\u0060 and \u0060height\u0060 are required together."
       },
       "DeclarativeImageSize": {
+        "examples": [
+          {
+            "aspect_ratio": "16:9",
+            "resolution": "2K"
+          }
+        ],
         "title": "DeclarativeImageSize",
         "required": [
           "aspect_ratio"
@@ -19017,6 +19123,11 @@
         "description": "Declarative output size \u2014 an aspect ratio plus an optional resolution\ntier, resolved server-side to the nearest size the model supports.\n"
       },
       "Target": {
+        "examples": [
+          {
+            "target_type": "temporary"
+          }
+        ],
         "required": [
           "target_type"
         ],
@@ -19048,7 +19159,7 @@
             "type": "string"
           }
         },
-        "description": "Where to store the generated output, determined by \u0060target_type\u0060.\nOptional; defaults to a \u0060managed_asset\u0060 target when omitted.\n",
+        "description": "Where the generated image goes, determined by \u0060target_type\u0060. Use\n\u0060temporary\u0060 when the user only wants the image: a short-lived URL,\nnothing saved to their account. Omit it, or use \u0060managed_asset\u0060, to\nstore the image permanently in their Media Library. If the caller lacks\nupload permission, the image is returned as \u0060temporary\u0060 instead, with a\n\u0060warning\u0060 notice.\n",
         "discriminator": {
           "propertyName": "target_type",
           "mapping": {
@@ -19060,6 +19171,12 @@
         }
       },
       "ManagedAssetTarget": {
+        "examples": [
+          {
+            "target_type": "managed_asset",
+            "public_id": "my-public-id"
+          }
+        ],
         "required": [
           "target_type"
         ],
@@ -19087,6 +19204,11 @@
         "description": "Store the output as a permanent managed asset in your Cloudinary product environment (the default)."
       },
       "TemporaryTarget": {
+        "examples": [
+          {
+            "target_type": "temporary"
+          }
+        ],
         "required": [
           "target_type"
         ],
@@ -19097,9 +19219,16 @@
           }
         },
         "additionalProperties": false,
-        "description": "Store the output as a short-lived asset on the upload service."
+        "description": "Return the image at a short-lived URL (valid until \u0060expires_at\u0060) without\nsaving it to the user\u0027s Cloudinary account.\n"
       },
       "Storage": {
+        "examples": [
+          {
+            "storage_type": "temporary",
+            "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+            "expires_at": "2026-06-25T12:50:26Z"
+          }
+        ],
         "required": [
           "storage_type"
         ],
@@ -19146,6 +19275,9 @@
             "description": "Cloudinary delivery type of the stored asset (e.g. \u0060upload\u0060, \u0060private\u0060, \u0060authenticated\u0060)."
           },
           "version": {
+            "examples": [
+              1750000000
+            ],
             "type": "integer",
             "description": "Version of the stored asset.",
             "format": "int64"
@@ -19162,7 +19294,7 @@
             "type": "string"
           }
         },
-        "description": "Where a generated asset is stored \u2014 mirrors the request \u0060target\u0060,\ndetermined by \u0060storage_type\u0060. \u0060secure_url\u0060 is always present.\n",
+        "description": "Where the generated asset is actually stored, determined by\n\u0060storage_type\u0060. Usually matches the request \u0060target\u0060; a \u0060managed_asset\u0060\nrequest falls back to \u0060temporary\u0060 when the caller lacks upload\npermission. \u0060secure_url\u0060 is always present.\n",
         "discriminator": {
           "propertyName": "storage_type",
           "mapping": {
@@ -19174,6 +19306,17 @@
         }
       },
       "ManagedAssetStorage": {
+        "examples": [
+          {
+            "storage_type": "managed_asset",
+            "secure_url": "https://res.cloudinary.com/demo/image/upload/v1750000000/my-public-id.png",
+            "asset_id": "0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a",
+            "public_id": "my-public-id",
+            "resource_type": "image",
+            "type": "upload",
+            "version": 1750000000
+          }
+        ],
         "required": [
           "storage_type",
           "secure_url",
@@ -19220,6 +19363,9 @@
             "description": "Cloudinary delivery type of the stored asset (e.g. \u0060upload\u0060, \u0060private\u0060, \u0060authenticated\u0060)."
           },
           "version": {
+            "examples": [
+              1750000000
+            ],
             "type": "integer",
             "description": "Version of the stored asset.",
             "format": "int64"
@@ -19229,6 +19375,13 @@
         "description": "A generated asset stored as a permanent managed asset. Reference it in\nother Cloudinary APIs by \u0060asset_id\u0060, or by the\n\u0060resource_type\u0060 / \u0060type\u0060 / \u0060public_id\u0060 triple.\n"
       },
       "TemporaryStorage": {
+        "examples": [
+          {
+            "storage_type": "temporary",
+            "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+            "expires_at": "2026-06-25T12:50:26Z"
+          }
+        ],
         "required": [
           "storage_type",
           "secure_url",
@@ -19260,6 +19413,22 @@
         "description": "A generated asset stored as a short-lived asset on the upload service."
       },
       "GenerateImageResult": {
+        "examples": [
+          {
+            "data": {
+              "assets": [
+                {
+                  "storage": {
+                    "storage_type": "temporary",
+                    "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+                    "expires_at": "2026-06-25T12:50:26Z"
+                  }
+                }
+              ]
+            },
+            "request_id": "17c3b70c5096df0e77e838323abb7029"
+          }
+        ],
         "required": [
           "request_id"
         ],
@@ -19291,12 +19460,36 @@
         "description": "Successful synchronous image-generation response."
       },
       "GeneratedAssets": {
+        "examples": [
+          {
+            "assets": [
+              {
+                "storage": {
+                  "storage_type": "temporary",
+                  "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+                  "expires_at": "2026-06-25T12:50:26Z"
+                }
+              }
+            ]
+          }
+        ],
         "required": [
           "assets"
         ],
         "type": "object",
         "properties": {
           "assets": {
+            "examples": [
+              [
+                {
+                  "storage": {
+                    "storage_type": "temporary",
+                    "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+                    "expires_at": "2026-06-25T12:50:26Z"
+                  }
+                }
+              ]
+            ],
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GeneratedAsset"
@@ -19307,13 +19500,33 @@
         "description": "Wrapper holding the array of generated assets."
       },
       "GeneratedAsset": {
+        "examples": [
+          {
+            "storage": {
+              "storage_type": "temporary",
+              "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+              "expires_at": "2026-06-25T12:50:26Z"
+            },
+            "format": "png",
+            "width": 1024,
+            "height": 768,
+            "bytes": 2048576,
+            "model": {
+              "family": "flux",
+              "tier": "premium",
+              "id": "flux-2-pro"
+            },
+            "seed": 42,
+            "created_at": "2026-04-21T14:30:00Z"
+          }
+        ],
         "required": [
           "storage"
         ],
         "type": "object",
         "properties": {
           "storage": {
-            "description": "Where a generated asset is stored \u2014 mirrors the request \u0060target\u0060,\ndetermined by \u0060storage_type\u0060. \u0060secure_url\u0060 is always present.\n",
+            "description": "Where the generated asset is actually stored, determined by\n\u0060storage_type\u0060. Usually matches the request \u0060target\u0060; a \u0060managed_asset\u0060\nrequest falls back to \u0060temporary\u0060 when the caller lacks upload\npermission. \u0060secure_url\u0060 is always present.\n",
             "$ref": "#/components/schemas/Storage"
           },
           "format": {
@@ -19352,7 +19565,7 @@
               "null",
               "integer"
             ],
-            "description": "The seed used for generation. Echoes input or returns the model-generated seed.\nNull when the model doesn\u0027t support seeds.\n"
+            "description": "The seed used for generation. Echoes input or returns the\nmodel-generated seed. Null when the model doesn\u0027t support seeds.\n"
           },
           "created_at": {
             "examples": [
@@ -19366,6 +19579,13 @@
         "description": "A generated asset: where it is stored (\u0060storage\u0060) plus its media\nmetadata. The media fields are populated once the task completes; an\nin-progress asset carries only \u0060storage\u0060.\n"
       },
       "ModelValue": {
+        "examples": [
+          {
+            "family": "flux",
+            "tier": "premium",
+            "id": "flux-2-pro"
+          }
+        ],
         "required": [
           "family",
           "tier",
@@ -19398,6 +19618,9 @@
         "description": "Identifies the model that produced a generation result."
       },
       "TaskStatus": {
+        "examples": [
+          "completed"
+        ],
         "enum": [
           "pending",
           "processing",
@@ -19431,6 +19654,12 @@
         }
       },
       "Task": {
+        "examples": [
+          {
+            "task_id": "053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb",
+            "status": "pending"
+          }
+        ],
         "required": [
           "task_id",
           "status"
@@ -19495,6 +19724,21 @@
         "description": "Envelope for an async generation task \u2014 returned by the accepted (202)\nresponse and by GET /tasks/{task_id}.\n"
       },
       "ErrorResponse": {
+        "examples": [
+          {
+            "error": {
+              "category": "user_error",
+              "code": "MG_00001",
+              "message": "missing parameters",
+              "details": {
+                "parameters": [
+                  "prompt"
+                ]
+              }
+            },
+            "request_id": "17c3b70c5096df0e77e838323abb7029"
+          }
+        ],
         "required": [
           "error",
           "request_id"
@@ -19539,7 +19783,7 @@
         "type": "object",
         "properties": {
           "category": {
-            "description": "Coarse classification of an error, primarily used by clients to decide whether to retry.\n* \u0060user_error\u0060: the request was invalid; do not retry without changes.\n* \u0060auth_error\u0060: authentication or authorization failed.\n* \u0060server_error\u0060: an unexpected server-side error; retrying may succeed.\n* \u0060rate_limit_error\u0060: quota or rate limit exceeded; retry later.\n",
+            "description": "Coarse classification of an error, primarily used by clients to decide\nwhether to retry.\n* \u0060user_error\u0060: the request was invalid; do not retry without changes.\n* \u0060auth_error\u0060: authentication or authorization failed.\n* \u0060server_error\u0060: an unexpected server-side error; retrying may succeed.\n* \u0060rate_limit_error\u0060: quota or rate limit exceeded; retry later.\n",
             "$ref": "#/components/schemas/ErrorCategory"
           },
           "code": {
@@ -19563,6 +19807,9 @@
         "description": "Details of an error, including a coarse category for retry logic, a stable error code, and a human-readable message."
       },
       "ErrorCategory": {
+        "examples": [
+          "user_error"
+        ],
         "enum": [
           "user_error",
           "auth_error",
@@ -19571,7 +19818,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Coarse classification of an error, primarily used by clients to decide whether to retry.\n* \u0060user_error\u0060: the request was invalid; do not retry without changes.\n* \u0060auth_error\u0060: authentication or authorization failed.\n* \u0060server_error\u0060: an unexpected server-side error; retrying may succeed.\n* \u0060rate_limit_error\u0060: quota or rate limit exceeded; retry later.\n",
+        "description": "Coarse classification of an error, primarily used by clients to decide\nwhether to retry.\n* \u0060user_error\u0060: the request was invalid; do not retry without changes.\n* \u0060auth_error\u0060: authentication or authorization failed.\n* \u0060server_error\u0060: an unexpected server-side error; retrying may succeed.\n* \u0060rate_limit_error\u0060: quota or rate limit exceeded; retry later.\n",
         "x-ms-enum": {
           "name": "ErrorCategory",
           "modelAsString": false,
@@ -19612,6 +19859,12 @@
         "x-experimental": true
       },
       "Notice": {
+        "examples": [
+          {
+            "severity": "info",
+            "text": "You\u0027ve used 25 of your 50 Image Generation credits. No action needed. If this run will keep generating, tell the user their balance is half spent and show them: https://console.cloudinary.com/app/image/generation/plans"
+          }
+        ],
         "required": [
           "severity",
           "text"
@@ -19623,14 +19876,27 @@
           },
           "text": {
             "examples": [
-              "This model does not output webp; the image was stored as png. Deliver it with f_auto or f_webp to get webp."
+              "You\u0027ve used 25 of your 50 Image Generation credits. No action needed. If this run will keep generating, tell the user their balance is half spent and show them: https://console.cloudinary.com/app/image/generation/plans"
             ],
             "type": "string",
             "description": "The tip or guidance, in plain text. Show it as-is or follow it; the wording may change between releases."
           }
-        }
+        },
+        "description": "A single tip or piece of guidance, with how much weight to give it."
       },
       "Limits": {
+        "examples": [
+          {
+            "addons_quota": [
+              {
+                "type": "image_generation",
+                "used_by_request": 1,
+                "remaining": 48,
+                "limit": 50
+              }
+            ]
+          }
+        ],
         "type": "object",
         "properties": {
           "addons_quota": {
@@ -19654,6 +19920,14 @@
         "description": "Rate limit information for the account\u0027s add-on quotas."
       },
       "AddonQuota": {
+        "examples": [
+          {
+            "type": "image_generation",
+            "used_by_request": 1,
+            "remaining": 48,
+            "limit": 50
+          }
+        ],
         "required": [
           "type",
           "used_by_request",
@@ -19667,30 +19941,42 @@
             "$ref": "#/components/schemas/Feature"
           },
           "used_by_request": {
+            "examples": [
+              1
+            ],
             "type": [
               "null",
               "integer"
             ],
-            "description": "Number of generations consumed by this request."
+            "description": "Credits used by this request; 0 when no image was generated."
           },
           "remaining": {
+            "examples": [
+              48
+            ],
             "type": [
               "null",
               "integer"
             ],
-            "description": "Generations remaining in the current period."
+            "description": "Credits remaining in the current period."
           },
           "limit": {
+            "examples": [
+              50
+            ],
             "type": [
               "null",
               "integer"
             ],
-            "description": "Maximum generations allowed per period."
+            "description": "Credits available per period."
           }
         },
-        "description": "Quota usage for a single add-on."
+        "description": "Credit usage for a single add-on."
       },
       "Feature": {
+        "examples": [
+          "image_generation"
+        ],
         "enum": [
           "image_generation"
         ],
@@ -19738,7 +20024,8 @@
             "type": "string",
             "description": "Unique identifier for this request, for correlation and support."
           }
-        }
+        },
+        "description": "Error returned when the account is out of Image Generation credits, with the current quota."
       },
       "AccessControlItemStart": {
         "type": "object",
@@ -20910,12 +21197,36 @@
         "additionalProperties": false
       },
       "TaskResult": {
+        "examples": [
+          {
+            "assets": [
+              {
+                "storage": {
+                  "storage_type": "temporary",
+                  "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+                  "expires_at": "2026-06-25T12:50:26Z"
+                }
+              }
+            ]
+          }
+        ],
         "required": [
           "assets"
         ],
         "type": "object",
         "properties": {
           "assets": {
+            "examples": [
+              [
+                {
+                  "storage": {
+                    "storage_type": "temporary",
+                    "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+                    "expires_at": "2026-06-25T12:50:26Z"
+                  }
+                }
+              ]
+            ],
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GeneratedAsset"
@@ -23833,6 +24144,9 @@
         }
       },
       "ManagedAssetSourceType": {
+        "examples": [
+          "managed_asset"
+        ],
         "enum": [
           "managed_asset"
         ],
@@ -23851,6 +24165,9 @@
         }
       },
       "UrlSourceType": {
+        "examples": [
+          "url"
+        ],
         "enum": [
           "url"
         ],
@@ -23881,7 +24198,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Model family:\n* \u0060flux\u0060: Photorealistic images (FLUX.2 Klein 9B / FLUX.2 Pro).\n* \u0060recraft\u0060: Vector and illustration (Recraft V3 / Recraft V4).\n* \u0060gpt-image\u0060: Campaign and marketing images (GPT Image 1 Mini / GPT Image 2).\n* \u0060nano-banana\u0060: General purpose generation (Nano Banana 1 / Nano Banana 2).\n* \u0060ideogram\u0060: Realism, text rendering, and artistic generation (Ideogram V4).\n",
+        "description": "Model family:\n* \u0060flux\u0060: Photorealistic images (FLUX.2 Klein 9B / FLUX.2 Pro).\n* \u0060recraft\u0060: Vector and illustration (Recraft V3 / Recraft V4).\n* \u0060gpt-image\u0060: Campaign and marketing images (GPT Image 1 Mini / GPT\n  Image 2).\n* \u0060nano-banana\u0060: General purpose generation (Nano Banana 1 / Nano\n  Banana 2).\n* \u0060ideogram\u0060: Realism, text rendering, and artistic generation\n  (Ideogram V4).\n",
         "x-ms-enum": {
           "name": "ModelByFamilyFamily",
           "modelAsString": false,
@@ -23946,6 +24263,7 @@
           "flux-2-klein-9b",
           "flux-2-pro",
           "flux-2-flash",
+          "flux-3",
           "recraft-v3",
           "recraft-v4",
           "gpt-image-1-mini",
@@ -23970,6 +24288,7 @@
           "flux-2-klein-9b-edit",
           "flux-2-pro-edit",
           "flux-2-flash-edit",
+          "flux-3-edit",
           "recraft-v3-edit",
           "gpt-image-1-mini-edit",
           "gpt-image-2-edit",
@@ -24014,6 +24333,10 @@
             {
               "value": "flux-2-flash",
               "name": "Flux2Flash"
+            },
+            {
+              "value": "flux-3",
+              "name": "Flux3"
             },
             {
               "value": "recraft-v3",
@@ -24112,6 +24435,10 @@
               "name": "Flux2FlashEdit"
             },
             {
+              "value": "flux-3-edit",
+              "name": "Flux3Edit"
+            },
+            {
               "value": "recraft-v3-edit",
               "name": "RecraftV3Edit"
             },
@@ -24201,7 +24528,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "What the choice optimizes for:\n* \u0060balanced\u0060 (default): quality and cost weighted equally.\n* \u0060quality\u0060: quality only; cost isn\u0027t weighed.\n* \u0060economy\u0060: cost first, quality second.\n* \u0060balanced_fast\u0060, \u0060quality_fast\u0060, \u0060economy_fast\u0060: as above, but also\n  favor faster generation, and never pick a model that typically\n  takes longer than 30 seconds.\n",
+        "description": "What the choice optimizes for:\n* \u0060balanced\u0060 (default): quality and cost weighted equally.\n* \u0060quality\u0060: quality only; cost isn\u0027t weighed.\n* \u0060economy\u0060: cost first, quality second.\n* \u0060balanced_fast\u0060, \u0060quality_fast\u0060, \u0060economy_fast\u0060: as above, but\n  also favor faster generation, and never pick a model that\n  typically takes longer than 30 seconds.\n",
         "x-ms-enum": {
           "name": "ModelAutoPreference",
           "modelAsString": false,
@@ -24311,6 +24638,9 @@
         }
       },
       "ManagedAssetTargetType": {
+        "examples": [
+          "managed_asset"
+        ],
         "enum": [
           "managed_asset"
         ],
@@ -24329,6 +24659,9 @@
         }
       },
       "TemporaryTargetType": {
+        "examples": [
+          "temporary"
+        ],
         "enum": [
           "temporary"
         ],
@@ -24347,6 +24680,9 @@
         }
       },
       "ManagedAssetStorageType": {
+        "examples": [
+          "managed_asset"
+        ],
         "enum": [
           "managed_asset"
         ],
@@ -24396,6 +24732,9 @@
         }
       },
       "TemporaryStorageType": {
+        "examples": [
+          "temporary"
+        ],
         "enum": [
           "temporary"
         ],
@@ -24445,6 +24784,9 @@
         }
       },
       "NoticeSeverity": {
+        "examples": [
+          "info"
+        ],
         "enum": [
           "info",
           "warning",
@@ -24452,7 +24794,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "How much weight to give the message.\n* \u0060info\u0060: for awareness; nothing to do.\n* \u0060warning\u0060: worth relaying to the user before continuing.\n* \u0060blocking\u0060: the request was not served; the text says what unblocks it.\n",
+        "description": "How much weight to give the message.\n* \u0060info\u0060: for awareness; nothing to do.\n* \u0060warning\u0060: worth relaying to the user before continuing.\n* \u0060blocking\u0060: the request was not served; the text says what\n  unblocks it.\n",
         "x-ms-enum": {
           "name": "NoticeSeverity",
           "modelAsString": false,
@@ -25006,6 +25348,19 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/TaskResponse"
+            },
+            "examples": {
+              "Accepted": {
+                "summary": "Background generation accepted",
+                "description": "The generation runs in the background; check the task for its result.",
+                "value": {
+                  "data": {
+                    "task_id": "053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb",
+                    "status": "pending"
+                  },
+                  "request_id": "17c3b70c5096df0e77e838323abb7029"
+                }
+              }
             }
           }
         }
@@ -25016,6 +25371,25 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "MissingParameters": {
+                "summary": "Missing required parameters",
+                "description": "A required parameter is missing from the request.",
+                "value": {
+                  "error": {
+                    "category": "user_error",
+                    "code": "MG_00001",
+                    "message": "missing parameters",
+                    "details": {
+                      "parameters": [
+                        "prompt"
+                      ]
+                    }
+                  },
+                  "request_id": "17c3b70c5096df0e77e838323abb7029"
+                }
+              }
             }
           }
         }
@@ -25036,6 +25410,32 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "ReferenceNotFound": {
+                "summary": "Reference asset not found",
+                "description": "A reference image\u0027s asset_id was not found in the product environment.",
+                "value": {
+                  "error": {
+                    "category": "user_error",
+                    "code": "MG_00704",
+                    "message": "reference asset \u00270d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a\u0027 not found"
+                  },
+                  "request_id": "17c3b70c5096df0e77e838323abb7029"
+                }
+              },
+              "TaskNotFound": {
+                "summary": "Task not found",
+                "description": "No task with this ID exists in the product environment.",
+                "value": {
+                  "error": {
+                    "category": "user_error",
+                    "code": "MG_00015",
+                    "message": "task not found"
+                  },
+                  "request_id": "17c3b70c5096df0e77e838323abb7029"
+                }
+              }
             }
           }
         }
@@ -25061,6 +25461,20 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "InternalError": {
+                "summary": "Internal error",
+                "description": "An unexpected server-side error; retrying may succeed.",
+                "value": {
+                  "error": {
+                    "category": "server_error",
+                    "code": "MG_00500",
+                    "message": "internal error"
+                  },
+                  "request_id": "17c3b70c5096df0e77e838323abb7029"
+                }
+              }
             }
           }
         }
@@ -25081,16 +25495,44 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "NotSubscribed": {
+                "summary": "Not subscribed to Image Generation",
+                "description": "The account is not subscribed to the Image Generation add-on.",
+                "value": {
+                  "error": {
+                    "category": "auth_error",
+                    "code": "MG_00601",
+                    "message": "Account does not have an active subscription for image generation. Subscribe at https://console.cloudinary.com/app/marketplace/details/image_generation"
+                  },
+                  "request_id": "17c3b70c5096df0e77e838323abb7029"
+                }
+              }
             }
           }
         }
       },
       "UnprocessableEntityResponse": {
-        "description": "Unprocessable entity.",
+        "description": "The model rejected the input. A content check flagged the prompt or a\nreference image, a reference URL could not be downloaded, or the model\ncould not produce an image for this prompt. Rephrase the prompt or pass\nthe reference image another way, then retry.\n",
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "ContentPolicy": {
+                "summary": "Prompt rejected by the content policy",
+                "description": "The model provider\u0027s content check rejected the prompt.",
+                "value": {
+                  "error": {
+                    "category": "user_error",
+                    "code": "MG_00700",
+                    "message": "The prompt was rejected by the content policy and could not be processed."
+                  },
+                  "request_id": "17c3b70c5096df0e77e838323abb7029"
+                }
+              }
             }
           }
         }
@@ -25636,11 +26078,15 @@
         "description": "The cloud name of your Cloudinary product environment.",
         "required": true,
         "schema": {
-          "type": "string"
+          "examples": [
+            "demo"
+          ],
+          "type": "string",
+          "description": "Cloud name of the product environment."
         },
         "examples": {
           "default": {
-            "value": "your-cloud-name"
+            "value": "demo"
           }
         }
       }
@@ -26127,7 +26573,7 @@
       },
       "ImageToImageFamilyModelExample": {
         "summary": "Edit model by family and tier",
-        "description": "Select the edit model by family (\u002B optional tier); the family resolves to\nthat family\u0027s edit model, here \u0060nano-banana-2-edit\u0060.\n",
+        "description": "Select the edit model by family (\u002B optional tier); the family resolves\nto that family\u0027s edit model, here \u0060nano-banana-2-edit\u0060.\n",
         "value": {
           "prompt": "Restyle [1] as a watercolor painting, keep the composition",
           "reference_images": [
@@ -26178,7 +26624,7 @@
       },
       "ImageToImageAutoModelExample": {
         "summary": "Automatic edit-model selection",
-        "description": "Let the service choose the edit model for the reference images and the\ninstruction; the resolved model in the response is always an \u0060-edit\u0060 model.\n",
+        "description": "Let the service choose the edit model for the reference images and the\ninstruction; the resolved model in the response is always an \u0060-edit\u0060\nmodel.\n",
         "value": {
           "prompt": "Make it look like a watercolor painting, keep the composition",
           "reference_images": [
@@ -26278,6 +26724,45 @@
           "request_id": "17c3b70c5096df0e77e838323abb7029"
         }
       },
+      "ImageToImageSuccessExample": {
+        "summary": "Successful synchronous image-to-image generation",
+        "description": "The 200 response body for an image-to-image request; the model is always an edit model.",
+        "value": {
+          "data": {
+            "assets": [
+              {
+                "storage": {
+                  "storage_type": "temporary",
+                  "secure_url": "https://upload-global.cloudinary.com/v2/demo/uploads/a78a2e043c2da0b50a98961d60a8b05a/image.png",
+                  "expires_at": "2026-06-25T12:50:26Z"
+                },
+                "format": "png",
+                "width": 1024,
+                "height": 768,
+                "bytes": 2048576,
+                "model": {
+                  "family": "nano-banana",
+                  "tier": "premium",
+                  "id": "nano-banana-2-edit"
+                },
+                "seed": 42,
+                "created_at": "2026-04-21T14:30:00Z"
+              }
+            ]
+          },
+          "limits": {
+            "addons_quota": [
+              {
+                "type": "image_generation",
+                "used_by_request": 1,
+                "remaining": 48,
+                "limit": 50
+              }
+            ]
+          },
+          "request_id": "17c3b70c5096df0e77e838323abb7029"
+        }
+      },
       "GenerateTaskCompletedExample": {
         "summary": "Completed task (GET /tasks/{task_id})",
         "description": "A completed async task \u2014 the asset is fully populated (storage \u002B media).",
@@ -26312,24 +26797,30 @@
         }
       },
       "RateLimitedExample": {
-        "summary": "429 rate-limited response",
-        "description": "Returned when the account has exhausted its generation quota for the period.",
+        "summary": "429 out of credits",
+        "description": "Returned when the account\u0027s Image Generation credits are used up.",
         "value": {
           "error": {
             "category": "rate_limit_error",
-            "code": "MG_00429",
-            "message": "Daily generation limit exceeded. Limit resets at 2026-04-22T00:00:00Z"
+            "code": "MG_00602",
+            "message": "Generation limit exceeded. Upgrade your plan at https://console.cloudinary.com/app/image/generation/plans"
           },
           "limits": {
             "addons_quota": [
               {
                 "type": "image_generation",
-                "used_by_request": 1,
+                "used_by_request": 0,
                 "remaining": 0,
                 "limit": 50
               }
             ]
           },
+          "notices": [
+            {
+              "severity": "blocking",
+              "text": "Your Image Generation credits are used up (50 of 50). This request did not generate an image. This is not a rate limit: retrying now returns this same response, and it changes only once credits are added, or the quota renews on plans that renew. Stop and tell the user their credits are finished, show them this link to add credits or review the plan: https://console.cloudinary.com/app/image/generation/plans, and once the balance changes re-run this same request unchanged."
+            }
+          ],
           "request_id": "17c3b70c5096df0e77e838323abb7029"
         }
       }

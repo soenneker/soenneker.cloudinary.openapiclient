@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
+    /// <summary>
+    /// A single tip or piece of guidance, with how much weight to give it.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Notice : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>How much weight to give the message.* `info`: for awareness; nothing to do.* `warning`: worth relaying to the user before continuing.* `blocking`: the request was not served; the text says what unblocks it.</summary>
+        /// <summary>How much weight to give the message.* `info`: for awareness; nothing to do.* `warning`: worth relaying to the user before continuing.* `blocking`: the request was not served; the text says what  unblocks it.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.NoticeSeverity? Severity { get; set; }
         /// <summary>The tip or guidance, in plain text. Show it as-is or follow it; the wording may change between releases.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
