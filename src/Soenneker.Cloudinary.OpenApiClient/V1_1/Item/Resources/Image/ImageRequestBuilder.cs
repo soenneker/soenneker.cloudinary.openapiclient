@@ -145,15 +145,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Image
             [QueryParameter("tags")]
             public bool? Tags { get; set; }
             /// <summary>The delivery type to filter by. When omitted, returns assets of all delivery types.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("type")]
-            public string? Type { get; set; }
-#nullable restore
-#else
-            [QueryParameter("type")]
-            public string Type { get; set; }
-#endif
+            public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll? Type { get; set; }
         }
     }
 }

@@ -170,13 +170,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public List<string> Tags { get; set; }
 #endif
         /// <summary>All supported delivery types.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll Type { get; set; }
-#endif
         /// <summary>The timestamp when the asset was uploaded.</summary>
         public DateTimeOffset? UploadedAt { get; set; }
         /// <summary>Information about who uploaded the asset.</summary>
@@ -250,7 +244,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "secure_url", n => { SecureUrl = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemStatus>(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(); } },
                 { "uploaded_at", n => { UploadedAt = n.GetDateTimeOffsetValue(); } },
                 { "uploaded_by", n => { UploadedBy = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemUploadedBy>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemUploadedBy.CreateFromDiscriminatorValue); } },
                 { "url", n => { Url = n.GetStringValue(); } },
@@ -291,7 +285,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("secure_url", SecureUrl);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemStatus>("status", Status);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
             writer.WriteDateTimeOffsetValue("uploaded_at", UploadedAt);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemUploadedBy>("uploaded_by", UploadedBy);
             writer.WriteStringValue("url", Url);

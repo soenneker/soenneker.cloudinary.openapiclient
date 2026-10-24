@@ -16,7 +16,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup
     public partial class BackupRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.resources.backup.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The asset ID of the resource. Must be a 32-character hexadecimal string.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item.WithAssetItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item.WithAssetItemRequestBuilder this[string position]
         {

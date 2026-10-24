@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.Item.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\related_assets\{asset-id}\{type}\{publicId}
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\related_assets\{assetId}\{type}\{publicId}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPublicItemRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithPublicItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets/{asset%2Did}/{type}/{publicId}", pathParameters)
+        public WithPublicItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets/{assetId}/{type}/{publicId}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithPublicItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets/{asset%2Did}/{type}/{publicId}", rawUrl)
+        public WithPublicItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets/{assetId}/{type}/{publicId}", rawUrl)
         {
         }
         /// <summary>

@@ -17,14 +17,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to include the derived assets of this asset in the response. Default is true.</summary>
         public bool? Derived { get; set; }
-        /// <summary>The delivery type of the asset.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>Managed delivery types for assets uploaded and stored by Cloudinary.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestKind? Kind { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestKind Kind { get; set; }
-#endif
         /// <summary>The public ID of the asset to retrieve.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,14 +27,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string PublicId { get; set; }
 #endif
-        /// <summary>The type of the asset (image, video, or raw).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>The type of resource.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestResourceType? ResourceType { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestResourceType ResourceType { get; set; }
-#endif
         /// <summary>Whether to include the backup versions of this asset in the response. Default is false.</summary>
         public bool? Versions { get; set; }
         /// <summary>Whether to source the asset details from the search index. If false, the details are read directly from the canonical store. Default is true.</summary>
@@ -71,9 +59,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "derived", n => { Derived = n.GetBoolValue(); } },
-                { "kind", n => { Kind = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestKind>(global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestKind.CreateFromDiscriminatorValue); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestKind>(); } },
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
-                { "resource_type", n => { ResourceType = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestResourceType>(global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestResourceType.CreateFromDiscriminatorValue); } },
+                { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestResourceType>(); } },
                 { "versions", n => { Versions = n.GetBoolValue(); } },
                 { "with_elastic", n => { WithElastic = n.GetBoolValue(); } },
             };
@@ -86,9 +74,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("derived", Derived);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestKind>("kind", Kind);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestKind>("kind", Kind);
             writer.WriteStringValue("public_id", PublicId);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestResourceType>("resource_type", ResourceType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceGetByBodyRequestResourceType>("resource_type", ResourceType);
             writer.WriteBoolValue("versions", Versions);
             writer.WriteBoolValue("with_elastic", WithElastic);
             writer.WriteAdditionalData(AdditionalData);

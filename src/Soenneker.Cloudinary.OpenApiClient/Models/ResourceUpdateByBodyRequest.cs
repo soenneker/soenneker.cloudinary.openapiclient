@@ -47,14 +47,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The delivery type of the asset.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>Managed delivery types for assets uploaded and stored by Cloudinary.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestKind? Kind { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestKind Kind { get; set; }
-#endif
         /// <summary>The structured metadata field values to assign to the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -73,14 +67,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public string PublicId { get; set; }
 #endif
-        /// <summary>The type of the asset (image, video, or raw).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>The type of resource.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestResourceType? ResourceType { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestResourceType ResourceType { get; set; }
-#endif
         /// <summary>The shape of the asset representation to return (for example, &quot;public&quot;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -128,11 +116,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "asset_folder", n => { AssetFolder = n.GetStringValue(); } },
                 { "context", n => { Context = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestContextProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestContextProperty.CreateFromDiscriminatorValue); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
-                { "kind", n => { Kind = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestKind>(global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestKind.CreateFromDiscriminatorValue); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestKind>(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestMetadataProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestMetadataProperty.CreateFromDiscriminatorValue); } },
                 { "moderation_status", n => { ModerationStatus = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestModerationStatus>(); } },
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
-                { "resource_type", n => { ResourceType = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestResourceType>(global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestResourceType.CreateFromDiscriminatorValue); } },
+                { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestResourceType>(); } },
                 { "response_type", n => { ResponseType = n.GetStringValue(); } },
                 { "skip_permission_check", n => { SkipPermissionCheck = n.GetBoolValue(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -149,11 +137,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("asset_folder", AssetFolder);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestContextProperty>("context", Context);
             writer.WriteStringValue("display_name", DisplayName);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestKind>("kind", Kind);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestKind>("kind", Kind);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestMetadataProperty>("metadata", Metadata);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestModerationStatus>("moderation_status", ModerationStatus);
             writer.WriteStringValue("public_id", PublicId);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestResourceType>("resource_type", ResourceType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateByBodyRequestResourceType>("resource_type", ResourceType);
             writer.WriteStringValue("response_type", ResponseType);
             writer.WriteBoolValue("skip_permission_check", SkipPermissionCheck);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);

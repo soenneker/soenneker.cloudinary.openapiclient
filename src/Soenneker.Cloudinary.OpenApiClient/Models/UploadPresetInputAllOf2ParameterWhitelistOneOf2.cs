@@ -3,13 +3,14 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
-    /// <summary>Static asset delivery type.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum AssetDeliveryType
+    #pragma warning disable CS1591
+    public enum UploadPresetInputAllOf2ParameterWhitelistOneOf2
+    #pragma warning restore CS1591
     {
-        [EnumMember(Value = "asset")]
+        [EnumMember(Value = "none")]
         #pragma warning disable CS1591
-        Asset,
+        None,
         #pragma warning restore CS1591
     }
 }

@@ -8,27 +8,21 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistBranch1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistWrapper"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistOneOf2"/>, List&lt;string&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UploadPresetInputAllOf2ParameterWhitelist : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistBranch1"/></summary>
+        /// <summary>Composed type representation for type List&lt;string&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistBranch1? UploadPresetInputAllOf2ParameterWhitelistBranch1 { get; set; }
+        public List<string>? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistBranch1 UploadPresetInputAllOf2ParameterWhitelistBranch1 { get; set; }
+        public List<string> String { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistWrapper? UploadPresetInputAllOf2ParameterWhitelistWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistWrapper UploadPresetInputAllOf2ParameterWhitelistWrapper { get; set; }
-#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistOneOf2"/></summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistOneOf2? UploadPresetInputAllOf2ParameterWhitelistOneOf2 { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -39,13 +33,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelist();
-            if("UploadPresetInputAllOf2ParameterWhitelistBranch1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if(parseNode.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistOneOf2>() is global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistOneOf2 uploadPresetInputAllOf2ParameterWhitelistOneOf2Value)
             {
-                result.UploadPresetInputAllOf2ParameterWhitelistBranch1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistBranch1();
+                result.UploadPresetInputAllOf2ParameterWhitelistOneOf2 = uploadPresetInputAllOf2ParameterWhitelistOneOf2Value;
             }
-            else if("UploadPresetInputAllOf2ParameterWhitelistWrapper".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
             {
-                result.UploadPresetInputAllOf2ParameterWhitelistWrapper = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistWrapper();
+                result.String = stringValue;
             }
             return result;
         }
@@ -55,14 +49,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(UploadPresetInputAllOf2ParameterWhitelistBranch1 != null)
-            {
-                return UploadPresetInputAllOf2ParameterWhitelistBranch1.GetFieldDeserializers();
-            }
-            else if(UploadPresetInputAllOf2ParameterWhitelistWrapper != null)
-            {
-                return UploadPresetInputAllOf2ParameterWhitelistWrapper.GetFieldDeserializers();
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -72,13 +58,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(UploadPresetInputAllOf2ParameterWhitelistBranch1 != null)
+            if(UploadPresetInputAllOf2ParameterWhitelistOneOf2 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistBranch1>(null, UploadPresetInputAllOf2ParameterWhitelistBranch1);
+                writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistOneOf2>(null, UploadPresetInputAllOf2ParameterWhitelistOneOf2);
             }
-            else if(UploadPresetInputAllOf2ParameterWhitelistWrapper != null)
+            else if(String != null)
             {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetInputAllOf2ParameterWhitelistWrapper>(null, UploadPresetInputAllOf2ParameterWhitelistWrapper);
+                writer.WriteCollectionOfPrimitiveValues<string>(null, String);
             }
         }
     }

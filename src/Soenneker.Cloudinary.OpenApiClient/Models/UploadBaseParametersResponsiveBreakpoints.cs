@@ -8,26 +8,26 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpointsBranch1"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint"/>, List&lt;global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UploadBaseParametersResponsiveBreakpoints : IComposedTypeWrapper, IParsable
     {
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint>? ResponsiveBreakpoint { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint> ResponsiveBreakpoint { get; set; }
+#endif
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint? ResponsiveBreakpoint { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint? UploadBaseParametersResponsiveBreakpointsResponsiveBreakpoint { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint ResponsiveBreakpoint { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpointsBranch1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpointsBranch1? UploadBaseParametersResponsiveBreakpointsBranch1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpointsBranch1 UploadBaseParametersResponsiveBreakpointsBranch1 { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint UploadBaseParametersResponsiveBreakpointsResponsiveBreakpoint { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,8 +38,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints();
-            result.ResponsiveBreakpoint = new global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint();
-            result.UploadBaseParametersResponsiveBreakpointsBranch1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpointsBranch1();
+            if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint>(global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint> responsiveBreakpointValue)
+            {
+                result.ResponsiveBreakpoint = responsiveBreakpointValue;
+            }
+            else {
+                result.UploadBaseParametersResponsiveBreakpointsResponsiveBreakpoint = new global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint();
+            }
             return result;
         }
         /// <summary>
@@ -48,9 +53,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(ResponsiveBreakpoint != null || UploadBaseParametersResponsiveBreakpointsBranch1 != null)
+            if(UploadBaseParametersResponsiveBreakpointsResponsiveBreakpoint != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(ResponsiveBreakpoint, UploadBaseParametersResponsiveBreakpointsBranch1);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(UploadBaseParametersResponsiveBreakpointsResponsiveBreakpoint);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -61,7 +66,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint>(null, ResponsiveBreakpoint, UploadBaseParametersResponsiveBreakpointsBranch1);
+            if(ResponsiveBreakpoint != null)
+            {
+                writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint>(null, ResponsiveBreakpoint);
+            }
+            else {
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ResponsiveBreakpoint>(null, UploadBaseParametersResponsiveBreakpointsResponsiveBreakpoint);
+            }
         }
     }
 }

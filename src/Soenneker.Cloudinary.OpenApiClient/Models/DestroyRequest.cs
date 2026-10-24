@@ -51,13 +51,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The timestamp to use for the request in unix time. This is automatically computed by the Cloudinary&apos;s SDKs.</summary>
         public long? Timestamp { get; set; }
         /// <summary>All supported delivery types.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll Type { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DestroyRequest"/> and sets the default values.
         /// </summary>
@@ -90,7 +84,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "signature", n => { Signature = n.GetStringValue(); } },
                 { "timestamp", n => { Timestamp = n.GetLongValue(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(); } },
             };
         }
         /// <summary>
@@ -106,7 +100,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteStringValue("signature", Signature);
             writer.WriteLongValue("timestamp", Timestamp);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

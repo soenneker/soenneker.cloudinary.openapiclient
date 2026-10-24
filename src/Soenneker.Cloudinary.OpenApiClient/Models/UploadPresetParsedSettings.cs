@@ -311,13 +311,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty> Transformation { get; set; }
 #endif
         /// <summary>The delivery type that defines if and how the uploaded asset is available for public delivery. By default, all uploaded assets are public (upload).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType Type { get; set; }
-#endif
         /// <summary>Whether the display name should be unique.</summary>
         public bool? UniqueDisplayName { get; set; }
         /// <summary>When set to false and used together with use_filename, if an asset with the same file name already exists, no random characters are appended to the file name. Instead, the asset is overwritten. Default: true (random characters are added to the file name if needed).</summary>
@@ -415,7 +409,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "return_delete_token", n => { ReturnDeleteToken = n.GetBoolValue(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "transformation", n => { Transformation = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType>(); } },
                 { "unique_display_name", n => { UniqueDisplayName = n.GetBoolValue(); } },
                 { "unique_filename", n => { UniqueFilename = n.GetBoolValue(); } },
                 { "upload_preset", n => { UploadPreset = n.GetStringValue(); } },
@@ -482,7 +476,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("return_delete_token", ReturnDeleteToken);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty>("transformation", Transformation);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType>("type", Type);
             writer.WriteBoolValue("unique_display_name", UniqueDisplayName);
             writer.WriteBoolValue("unique_filename", UniqueFilename);
             writer.WriteStringValue("upload_preset", UploadPreset);

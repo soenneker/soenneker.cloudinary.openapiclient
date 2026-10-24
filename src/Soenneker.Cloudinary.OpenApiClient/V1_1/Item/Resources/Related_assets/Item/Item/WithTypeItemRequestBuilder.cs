@@ -10,13 +10,13 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\related_assets\{asset-id}\{type}
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\related_assets\{assetId}\{type}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithTypeItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.resources.related_assets.item.item.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The public ID of the asset.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.Item.Item.WithPublicItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.Item.Item.Item.WithPublicItemRequestBuilder this[string position]
         {
@@ -32,7 +32,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTypeItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets/{asset%2Did}/{type}", pathParameters)
+        public WithTypeItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets/{assetId}/{type}", pathParameters)
         {
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Related_assets.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTypeItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets/{asset%2Did}/{type}", rawUrl)
+        public WithTypeItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/related_assets/{assetId}/{type}", rawUrl)
         {
         }
     }

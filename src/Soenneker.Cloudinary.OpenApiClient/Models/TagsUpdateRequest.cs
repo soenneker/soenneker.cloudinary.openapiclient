@@ -34,13 +34,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public List<string> Tags { get; set; }
 #endif
         /// <summary>The delivery type of the assets to operate on. Defaults to `upload`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType Type { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TagsUpdateRequest"/> and sets the default values.
         /// </summary>
@@ -69,7 +63,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "command", n => { Command = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsUpdateRequestCommand>(); } },
                 { "public_ids", n => { PublicIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType>(global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType>(); } },
             };
         }
         /// <summary>
@@ -82,7 +76,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsUpdateRequestCommand>("command", Command);
             writer.WriteCollectionOfPrimitiveValues<string>("public_ids", PublicIds);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

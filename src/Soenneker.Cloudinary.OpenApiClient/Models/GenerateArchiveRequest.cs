@@ -148,13 +148,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string Transformations { get; set; }
 #endif
         /// <summary>All supported delivery types.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll Type { get; set; }
-#endif
         /// <summary>Whether to use the original filenames of the assets in the archive instead of public IDs (when available).</summary>
         public bool? UseOriginalFilename { get; set; }
         /// <summary>
@@ -213,7 +207,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "target_tags", n => { TargetTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "timestamp", n => { Timestamp = n.GetLongValue(); } },
                 { "transformations", n => { Transformations = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(); } },
                 { "use_original_filename", n => { UseOriginalFilename = n.GetBoolValue(); } },
             };
         }
@@ -248,7 +242,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("target_tags", TargetTags);
             writer.WriteLongValue("timestamp", Timestamp);
             writer.WriteStringValue("transformations", Transformations);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
             writer.WriteBoolValue("use_original_filename", UseOriginalFilename);
             writer.WriteAdditionalData(AdditionalData);
         }

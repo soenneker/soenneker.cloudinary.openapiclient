@@ -15,14 +15,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The sort direction for the datasource values. Default is &quot;asc&quot;.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>Sort direction.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceOrderRequestDirection? Direction { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceOrderRequestDirection Direction { get; set; }
-#endif
         /// <summary>The datasource value attribute to sort by (for example, &quot;value&quot; or &quot;external_id&quot;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -56,7 +50,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "direction", n => { Direction = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceOrderRequestDirection>(global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceOrderRequestDirection.CreateFromDiscriminatorValue); } },
+                { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceOrderRequestDirection>(); } },
                 { "order_by", n => { OrderBy = n.GetStringValue(); } },
             };
         }
@@ -67,7 +61,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceOrderRequestDirection>("direction", Direction);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DatasourceOrderRequestDirection>("direction", Direction);
             writer.WriteStringValue("order_by", OrderBy);
             writer.WriteAdditionalData(AdditionalData);
         }

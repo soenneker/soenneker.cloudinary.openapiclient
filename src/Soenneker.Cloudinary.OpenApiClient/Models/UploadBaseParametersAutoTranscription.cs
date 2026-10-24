@@ -8,19 +8,13 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UploadBaseParametersAutoTranscription : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1? UploadBaseParametersAutoTranscriptionBranch1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1 UploadBaseParametersAutoTranscriptionBranch1 { get; set; }
-#endif
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,13 +33,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription();
-            if("UploadBaseParametersAutoTranscriptionBranch1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.UploadBaseParametersAutoTranscriptionBranch1 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1();
-            }
-            else if("UploadBaseParametersAutoTranscriptionOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("UploadBaseParametersAutoTranscriptionOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.UploadBaseParametersAutoTranscriptionOneOf2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2();
+            }
+            else if(parseNode.GetBoolValue() is bool booleanValue)
+            {
+                result.Boolean = booleanValue;
             }
             return result;
         }
@@ -55,11 +49,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(UploadBaseParametersAutoTranscriptionBranch1 != null)
-            {
-                return UploadBaseParametersAutoTranscriptionBranch1.GetFieldDeserializers();
-            }
-            else if(UploadBaseParametersAutoTranscriptionOneOf2 != null)
+            if(UploadBaseParametersAutoTranscriptionOneOf2 != null)
             {
                 return UploadBaseParametersAutoTranscriptionOneOf2.GetFieldDeserializers();
             }
@@ -72,13 +62,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(UploadBaseParametersAutoTranscriptionBranch1 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionBranch1>(null, UploadBaseParametersAutoTranscriptionBranch1);
-            }
-            else if(UploadBaseParametersAutoTranscriptionOneOf2 != null)
+            if(UploadBaseParametersAutoTranscriptionOneOf2 != null)
             {
                 writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscriptionOneOf2>(null, UploadBaseParametersAutoTranscriptionOneOf2);
+            }
+            else if(Boolean != null)
+            {
+                writer.WriteBoolValue(null, Boolean);
             }
         }
     }

@@ -51,10 +51,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The colors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Colors { get; set; }
+        public List<UntypedNode>? Colors { get; set; }
 #nullable restore
 #else
-        public UntypedNode Colors { get; set; }
+        public List<UntypedNode> Colors { get; set; }
 #endif
         /// <summary>Included if &apos;context=true&apos; parameter is used.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,13 +279,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public List<string> Tags { get; set; }
 #endif
         /// <summary>All supported delivery types.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll Type { get; set; }
-#endif
         /// <summary>The uploaded_at property</summary>
         public DateTimeOffset? UploadedAt { get; set; }
         /// <summary>The url property</summary>
@@ -341,7 +335,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "backup", n => { Backup = n.GetBoolValue(); } },
                 { "backup_bytes", n => { BackupBytes = n.GetIntValue(); } },
                 { "bytes", n => { Bytes = n.GetIntValue(); } },
-                { "colors", n => { Colors = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "colors", n => { Colors = n.GetCollectionOfPrimitiveValues<UntypedNode>()?.AsList(); } },
                 { "context", n => { Context = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContext>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContext.CreateFromDiscriminatorValue); } },
                 { "coordinates", n => { Coordinates = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCoordinates>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCoordinates.CreateFromDiscriminatorValue); } },
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
@@ -375,7 +369,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "status", n => { Status = n.GetStringValue(); } },
                 { "substatus", n => { Substatus = n.GetStringValue(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(); } },
                 { "uploaded_at", n => { UploadedAt = n.GetDateTimeOffsetValue(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
@@ -398,7 +392,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("backup", Backup);
             writer.WriteIntValue("backup_bytes", BackupBytes);
             writer.WriteIntValue("bytes", Bytes);
-            writer.WriteObjectValue<UntypedNode>("colors", Colors);
+            writer.WriteCollectionOfPrimitiveValues<UntypedNode>("colors", Colors);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContext>("context", Context);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCoordinates>("coordinates", Coordinates);
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
@@ -432,7 +426,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("status", Status);
             writer.WriteStringValue("substatus", Substatus);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
             writer.WriteDateTimeOffsetValue("uploaded_at", UploadedAt);
             writer.WriteStringValue("url", Url);
             writer.WriteIntValue("version", Version);

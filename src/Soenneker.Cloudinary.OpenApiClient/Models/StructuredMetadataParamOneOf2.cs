@@ -7,31 +7,30 @@ using System.IO;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
+    /// <summary>
+    /// A map of custom metadata fields (by external_id) and the values to assign to each of them.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class ManagedDeliveryTypeWrapper : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class StructuredMetadataParamOneOf2 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Managed delivery types for assets uploaded and stored by Cloudinary.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2"/> and sets the default values.
         /// </summary>
-        public ManagedDeliveryTypeWrapper()
+        public StructuredMetadataParamOneOf2()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryTypeWrapper();
+            return new global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -41,7 +40,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType>(); } },
             };
         }
         /// <summary>
@@ -51,7 +49,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedDeliveryType>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -45,14 +45,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #else
         public List<string> PublicIds { get; set; }
 #endif
-        /// <summary>The type of asset. Relevant as a parameter only when using the SDKs (the resource_type is included in the endpoint URL when using the REST API). Note: use video for all video and audio assets, such as .mp3. Default: image.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
+        /// <summary>The type of resource.</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType? ResourceType { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType ResourceType { get; set; }
-#endif
         /// <summary>Only the derived assets matching this hash of transformation parameters will be deleted. You can include multiple transformations separated by a pipe character (|).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -94,7 +88,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "next_cursor", n => { NextCursor = n.GetStringValue(); } },
                 { "prefix", n => { Prefix = n.GetStringValue(); } },
                 { "public_ids", n => { PublicIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "resource_type", n => { ResourceType = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType>(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType.CreateFromDiscriminatorValue); } },
+                { "resource_type", n => { ResourceType = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType>(); } },
                 { "transformations", n => { Transformations = n.GetStringValue(); } },
             };
         }
@@ -111,7 +105,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("next_cursor", NextCursor);
             writer.WriteStringValue("prefix", Prefix);
             writer.WriteCollectionOfPrimitiveValues<string>("public_ids", PublicIds);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType>("resource_type", ResourceType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType>("resource_type", ResourceType);
             writer.WriteStringValue("transformations", Transformations);
             writer.WriteAdditionalData(AdditionalData);
         }

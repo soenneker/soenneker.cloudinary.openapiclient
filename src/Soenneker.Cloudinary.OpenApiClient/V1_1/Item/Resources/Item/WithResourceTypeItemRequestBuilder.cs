@@ -15,10 +15,10 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\{asset-id}
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\{resourceType}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class AssetItemRequestBuilder : BaseRequestBuilder
+    public partial class WithResourceTypeItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The context property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Context.ContextRequestBuilder Context
@@ -43,19 +43,19 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
             }
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AssetItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}{?accessibility_analysis*,colors*,coordinates*,derived_next_cursor*,faces*,max_results*,media_metadata*,pages*,phash*,quality_analysis*,versions*}", pathParameters)
+        public WithResourceTypeItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{resourceType}{?accessibility_analysis*,colors*,coordinates*,derived_next_cursor*,faces*,max_results*,media_metadata*,pages*,phash*,quality_analysis*,versions*}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AssetItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}{?accessibility_analysis*,colors*,coordinates*,derived_next_cursor*,faces*,max_results*,media_metadata*,pages*,phash*,quality_analysis*,versions*}", rawUrl)
+        public WithResourceTypeItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{resourceType}{?accessibility_analysis*,colors*,coordinates*,derived_next_cursor*,faces*,max_results*,media_metadata*,pages*,phash*,quality_analysis*,versions*}", rawUrl)
         {
         }
         /// <summary>
@@ -69,11 +69,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Info?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder.AssetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Info?> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder.WithResourceTypeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Info> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder.AssetItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.Info> GetAsync(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder.WithResourceTypeItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -121,11 +121,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder.AssetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder.WithResourceTypeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder.AssetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder.WithResourceTypeItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -158,17 +158,17 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder WithUrl(string rawUrl)
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder(rawUrl, RequestAdapter);
+            return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
         /// Returns the details of a single resource specified by its asset ID.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class AssetItemRequestBuilderGetQueryParameters 
+        public partial class WithResourceTypeItemRequestBuilderGetQueryParameters 
         {
             /// <summary>Whether to return accessibility analysis scores for the image. Default: false.</summary>
             [QueryParameter("accessibility_analysis")]

@@ -20,13 +20,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Whether the upload is complete. Will be false for all but the last chunk.</summary>
         public bool? Done { get; set; }
         /// <summary>Delivery types accepted by upload and rename operations.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType? Kind { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType Kind { get; set; }
-#endif
         /// <summary>The public ID assigned to the upload. May be omitted in early chunks if it will be auto-generated upon completion.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -70,7 +64,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "bytes", n => { Bytes = n.GetIntValue(); } },
                 { "done", n => { Done = n.GetBoolValue(); } },
-                { "kind", n => { Kind = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType>(global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType.CreateFromDiscriminatorValue); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType>(); } },
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "resource_type", n => { ResourceType = n.GetStringValue(); } },
             };
@@ -84,7 +78,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("bytes", Bytes);
             writer.WriteBoolValue("done", Done);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType>("kind", Kind);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadDeliveryType>("kind", Kind);
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteStringValue("resource_type", ResourceType);
             writer.WriteAdditionalData(AdditionalData);

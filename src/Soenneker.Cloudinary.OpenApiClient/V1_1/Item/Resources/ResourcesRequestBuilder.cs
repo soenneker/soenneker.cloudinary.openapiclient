@@ -103,15 +103,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Visual_search.Visual_searchRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.resources.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder"/></returns>
-        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder this[string position]
+        /// <param name="position">The asset ID of the resource. Must be a 32-character hexadecimal string.</param>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder"/></returns>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("asset%2Did", position);
-                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.AssetItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("resourceType", position);
+                return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.WithResourceTypeItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

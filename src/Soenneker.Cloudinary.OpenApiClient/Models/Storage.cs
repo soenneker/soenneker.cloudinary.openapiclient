@@ -39,7 +39,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("storage_type")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.Storage();
-            if("ManagedAssetStorage".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("managed_asset".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ManagedAssetStorage = new global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetStorage();
             }

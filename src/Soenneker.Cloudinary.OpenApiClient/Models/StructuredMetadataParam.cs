@@ -8,28 +8,27 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// A pipe-separated list or a map of custom metadata fields (by external_id) and the values to assign to each of them. The = &quot; and | characters can be supported as values when escaped with a prepended backslash (\). For a multi-select field, you can set a maximum of 3000 different metadata values on an asset.
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class StructuredMetadataParam : IAdditionalDataHolder, IParsable
+    public partial class StructuredMetadataParam : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>A pipe-separated list of custom metadata fields (by external_id) and the values to assign to each of them.</summary>
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Value { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public string Value { get; set; }
+        public string String { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam"/> and sets the default values.
-        /// </summary>
-        public StructuredMetadataParam()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2? StructuredMetadataParamOneOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2 StructuredMetadataParamOneOf2 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -38,7 +37,17 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam();
+            if("StructuredMetadataParamOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.StructuredMetadataParamOneOf2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2();
+            }
+            else if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,10 +55,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(StructuredMetadataParamOneOf2 != null)
             {
-                { "value", n => { Value = n.GetStringValue(); } },
-            };
+                return StructuredMetadataParamOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -58,8 +68,14 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("value", Value);
-            writer.WriteAdditionalData(AdditionalData);
+            if(StructuredMetadataParamOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParamOneOf2>(null, StructuredMetadataParamOneOf2);
+            }
+            else if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
         }
     }
 }

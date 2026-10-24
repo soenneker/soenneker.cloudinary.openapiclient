@@ -8,11 +8,13 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf1"/>, <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MetadataRuleActivateValues : IComposedTypeWrapper, IParsable
     {
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf1"/></summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf1? MetadataRuleActivateValuesOneOf1 { get; set; }
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -20,14 +22,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2 MetadataRuleActivateValuesOneOf2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper? MetadataRuleActivateValuesWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper MetadataRuleActivateValuesWrapper { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -39,13 +33,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues();
-            if("MetadataRuleActivateValuesOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if(parseNode.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf1>() is global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf1 metadataRuleActivateValuesOneOf1Value)
+            {
+                result.MetadataRuleActivateValuesOneOf1 = metadataRuleActivateValuesOneOf1Value;
+            }
+            else if("MetadataRuleActivateValuesOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.MetadataRuleActivateValuesOneOf2 = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2();
-            }
-            else if("MetadataRuleActivateValuesWrapper".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.MetadataRuleActivateValuesWrapper = new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper();
             }
             return result;
         }
@@ -59,10 +53,6 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 return MetadataRuleActivateValuesOneOf2.GetFieldDeserializers();
             }
-            else if(MetadataRuleActivateValuesWrapper != null)
-            {
-                return MetadataRuleActivateValuesWrapper.GetFieldDeserializers();
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -72,13 +62,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(MetadataRuleActivateValuesOneOf2 != null)
+            if(MetadataRuleActivateValuesOneOf1 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf1>(null, MetadataRuleActivateValuesOneOf1);
+            }
+            else if(MetadataRuleActivateValuesOneOf2 != null)
             {
                 writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2>(null, MetadataRuleActivateValuesOneOf2);
-            }
-            else if(MetadataRuleActivateValuesWrapper != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesWrapper>(null, MetadataRuleActivateValuesWrapper);
             }
         }
     }

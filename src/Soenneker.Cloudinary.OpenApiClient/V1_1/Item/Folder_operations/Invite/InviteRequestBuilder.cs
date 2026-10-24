@@ -16,7 +16,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite
     public partial class InviteRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Cloudinary.OpenApiClient.v1_1.item.folder_operations.invite.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The immutable identifier of the folder, returned by the Get root folders and Get subfolders endpoints.</param>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolderItemRequestBuilder"/></returns>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations.Invite.Item.WithFolderItemRequestBuilder this[string position]
         {

@@ -39,7 +39,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("source_type")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.ReferenceImage();
-            if("ManagedAssetReference".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("managed_asset".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ManagedAssetReference = new global::Soenneker.Cloudinary.OpenApiClient.Models.ManagedAssetReference();
             }

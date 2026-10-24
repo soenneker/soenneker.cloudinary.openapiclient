@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderations.Item.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\{asset-id}\moderations\{moderationKind}\{moderationStatus}
+    /// Builds and executes requests for operations under \v1_1\{cloudName}\resources\{resourceType}\moderations\{moderationKind}\{moderationStatus}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithModerationStatusItemRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderation
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithModerationStatusItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}/moderations/{moderationKind}/{moderationStatus}{?direction*,fields,max_results*,next_cursor*}", pathParameters)
+        public WithModerationStatusItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{resourceType}/moderations/{moderationKind}/{moderationStatus}{?direction*,fields,max_results*,next_cursor*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderation
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithModerationStatusItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{asset%2Did}/moderations/{moderationKind}/{moderationStatus}{?direction*,fields,max_results*,next_cursor*}", rawUrl)
+        public WithModerationStatusItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/{resourceType}/moderations/{moderationKind}/{moderationStatus}{?direction*,fields,max_results*,next_cursor*}", rawUrl)
         {
         }
         /// <summary>
