@@ -39,11 +39,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregate();
-            if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item> searchParametersAggregateOneOf1ItemValue)
+            if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item> searchParametersAggregateOneOf1ItemValue)
             {
                 result.SearchParametersAggregateOneOf1Item = searchParametersAggregateOneOf1ItemValue;
             }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf2Item>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf2Item> searchParametersAggregateOneOf2ItemValue)
+            else if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf2Item>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf2Item> searchParametersAggregateOneOf2ItemValue)
             {
                 result.SearchParametersAggregateOneOf2Item = searchParametersAggregateOneOf2ItemValue;
             }
