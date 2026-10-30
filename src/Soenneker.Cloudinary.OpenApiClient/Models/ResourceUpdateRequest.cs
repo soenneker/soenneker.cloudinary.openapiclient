@@ -12,137 +12,199 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ResourceUpdateRequest : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("access_control") is { } nullNodeAccessControl && nullNodeAccessControl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessControl = null;
+            if (parseNode.GetChildNode("asset_folder") is { } nullNodeAssetFolder && nullNodeAssetFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetFolder = null;
+            if (parseNode.GetChildNode("auto_tagging") is { } nullNodeAutoTagging && nullNodeAutoTagging.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoTagging = null;
+            if (parseNode.GetChildNode("background_removal") is { } nullNodeBackgroundRemoval && nullNodeBackgroundRemoval.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BackgroundRemoval = null;
+            if (parseNode.GetChildNode("categorization") is { } nullNodeCategorization && nullNodeCategorization.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Categorization = null;
+            if (parseNode.GetChildNode("clear_invalid") is { } nullNodeClearInvalid && nullNodeClearInvalid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ClearInvalid = null;
+            if (parseNode.GetChildNode("context") is { } nullNodeContext && nullNodeContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Context = null;
+            if (parseNode.GetChildNode("custom_coordinates") is { } nullNodeCustomCoordinates && nullNodeCustomCoordinates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomCoordinates = null;
+            if (parseNode.GetChildNode("detection") is { } nullNodeDetection && nullNodeDetection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Detection = null;
+            if (parseNode.GetChildNode("display_name") is { } nullNodeDisplayName && nullNodeDisplayName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DisplayName = null;
+            if (parseNode.GetChildNode("face_coordinates") is { } nullNodeFaceCoordinates && nullNodeFaceCoordinates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaceCoordinates = null;
+            if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
+            if (parseNode.GetChildNode("moderation_status") is { } nullNodeModerationStatus && nullNodeModerationStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModerationStatus = null;
+            if (parseNode.GetChildNode("ocr") is { } nullNodeOcr && nullNodeOcr.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ocr = null;
+            if (parseNode.GetChildNode("quality_override") is { } nullNodeQualityOverride && nullNodeQualityOverride.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QualityOverride = null;
+            if (parseNode.GetChildNode("raw_convert") is { } nullNodeRawConvert && nullNodeRawConvert.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RawConvert = null;
+            if (parseNode.GetChildNode("regions") is { } nullNodeRegions && nullNodeRegions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Regions = null;
+            if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("unique_display_name") is { } nullNodeUniqueDisplayName && nullNodeUniqueDisplayName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UniqueDisplayName = null;
+            if (parseNode.GetChildNode("visual_search") is { } nullNodeVisualSearch && nullNodeVisualSearch.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VisualSearch = null;
+        }
+
         /// <summary>Restricts access to the asset by specifying one or more access types.The asset is restricted unless at least one listed access type is valid.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? AccessControl { get => _explicitNullValueAccessControl; set { _explicitNullValueAccessControl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access_control"); else _explicitNullProperties?.Remove("access_control"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? _explicitNullValueAccessControl = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> AccessControl { get => _explicitNullValueAccessControl; set { _explicitNullValueAccessControl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access_control"); else _explicitNullProperties?.Remove("access_control"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> _explicitNullValueAccessControl = default!;
 #endif
         /// <summary>The folder where the asset should be placed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AssetFolder { get; set; }
+        public string? AssetFolder { get => _explicitNullValueAssetFolder; set { _explicitNullValueAssetFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("asset_folder"); else _explicitNullProperties?.Remove("asset_folder"); } }
+        private string? _explicitNullValueAssetFolder = default!;
 #nullable restore
 #else
-        public string AssetFolder { get; set; }
+        public string AssetFolder { get => _explicitNullValueAssetFolder; set { _explicitNullValueAssetFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("asset_folder"); else _explicitNullProperties?.Remove("asset_folder"); } }
+        private string _explicitNullValueAssetFolder = default!;
 #endif
         /// <summary>Confidence threshold for auto-tagging.</summary>
-        public double? AutoTagging { get; set; }
+        public double? AutoTagging { get => _explicitNullValueAutoTagging; set { _explicitNullValueAutoTagging = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auto_tagging"); else _explicitNullProperties?.Remove("auto_tagging"); } }
+        private double? _explicitNullValueAutoTagging = default!;
         /// <summary>The background removal provider to use for the resource. Optionally append a template suffix (e.g., cloudinary_ai:fine_edges).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BackgroundRemoval { get; set; }
+        public string? BackgroundRemoval { get => _explicitNullValueBackgroundRemoval; set { _explicitNullValueBackgroundRemoval = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("background_removal"); else _explicitNullProperties?.Remove("background_removal"); } }
+        private string? _explicitNullValueBackgroundRemoval = default!;
 #nullable restore
 #else
-        public string BackgroundRemoval { get; set; }
+        public string BackgroundRemoval { get => _explicitNullValueBackgroundRemoval; set { _explicitNullValueBackgroundRemoval = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("background_removal"); else _explicitNullProperties?.Remove("background_removal"); } }
+        private string _explicitNullValueBackgroundRemoval = default!;
 #endif
         /// <summary>The type of categorization to perform on the resource. Optionally append a language code suffix (e.g., google_tagging:fr).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Categorization { get; set; }
+        public string? Categorization { get => _explicitNullValueCategorization; set { _explicitNullValueCategorization = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categorization"); else _explicitNullProperties?.Remove("categorization"); } }
+        private string? _explicitNullValueCategorization = default!;
 #nullable restore
 #else
-        public string Categorization { get; set; }
+        public string Categorization { get => _explicitNullValueCategorization; set { _explicitNullValueCategorization = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categorization"); else _explicitNullProperties?.Remove("categorization"); } }
+        private string _explicitNullValueCategorization = default!;
 #endif
         /// <summary>Whether to clear invalid metadata fields. If false, invalid fields will be preserved. Default: false</summary>
-        public bool? ClearInvalid { get; set; }
+        public bool? ClearInvalid { get => _explicitNullValueClearInvalid; set { _explicitNullValueClearInvalid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clear_invalid"); else _explicitNullProperties?.Remove("clear_invalid"); } }
+        private bool? _explicitNullValueClearInvalid = default!;
         /// <summary>A pipe-separated list of key-value pairs of general textual context metadata to attach to the asset (e.g., &quot;alt=My image|caption=Nice photo&quot;). A literal = or | inside a value must be escaped with a prepending backslash, and a literal backslash must be doubled. A double quote must not be escaped.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Context { get; set; }
+        public string? Context { get => _explicitNullValueContext; set { _explicitNullValueContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("context"); else _explicitNullProperties?.Remove("context"); } }
+        private string? _explicitNullValueContext = default!;
 #nullable restore
 #else
-        public string Context { get; set; }
+        public string Context { get => _explicitNullValueContext; set { _explicitNullValueContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("context"); else _explicitNullProperties?.Remove("context"); } }
+        private string _explicitNullValueContext = default!;
 #endif
         /// <summary>Custom coordinates as comma-separated values, with multiple coordinates separated by pipes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CustomCoordinates { get; set; }
+        public string? CustomCoordinates { get => _explicitNullValueCustomCoordinates; set { _explicitNullValueCustomCoordinates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("custom_coordinates"); else _explicitNullProperties?.Remove("custom_coordinates"); } }
+        private string? _explicitNullValueCustomCoordinates = default!;
 #nullable restore
 #else
-        public string CustomCoordinates { get; set; }
+        public string CustomCoordinates { get => _explicitNullValueCustomCoordinates; set { _explicitNullValueCustomCoordinates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("custom_coordinates"); else _explicitNullProperties?.Remove("custom_coordinates"); } }
+        private string _explicitNullValueCustomCoordinates = default!;
 #endif
         /// <summary>The type of detection to perform on the resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Detection { get; set; }
+        public string? Detection { get => _explicitNullValueDetection; set { _explicitNullValueDetection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detection"); else _explicitNullProperties?.Remove("detection"); } }
+        private string? _explicitNullValueDetection = default!;
 #nullable restore
 #else
-        public string Detection { get; set; }
+        public string Detection { get => _explicitNullValueDetection; set { _explicitNullValueDetection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detection"); else _explicitNullProperties?.Remove("detection"); } }
+        private string _explicitNullValueDetection = default!;
 #endif
         /// <summary>The display name of the resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DisplayName { get; set; }
+        public string? DisplayName { get => _explicitNullValueDisplayName; set { _explicitNullValueDisplayName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("display_name"); else _explicitNullProperties?.Remove("display_name"); } }
+        private string? _explicitNullValueDisplayName = default!;
 #nullable restore
 #else
-        public string DisplayName { get; set; }
+        public string DisplayName { get => _explicitNullValueDisplayName; set { _explicitNullValueDisplayName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("display_name"); else _explicitNullProperties?.Remove("display_name"); } }
+        private string _explicitNullValueDisplayName = default!;
 #endif
         /// <summary>Face coordinates as comma-separated values, with multiple faces separated by pipes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FaceCoordinates { get; set; }
+        public string? FaceCoordinates { get => _explicitNullValueFaceCoordinates; set { _explicitNullValueFaceCoordinates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("face_coordinates"); else _explicitNullProperties?.Remove("face_coordinates"); } }
+        private string? _explicitNullValueFaceCoordinates = default!;
 #nullable restore
 #else
-        public string FaceCoordinates { get; set; }
+        public string FaceCoordinates { get => _explicitNullValueFaceCoordinates; set { _explicitNullValueFaceCoordinates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("face_coordinates"); else _explicitNullProperties?.Remove("face_coordinates"); } }
+        private string _explicitNullValueFaceCoordinates = default!;
 #endif
         /// <summary>A pipe-separated list or a map of custom metadata fields (by external_id) and the values to assign to each of them. The = &quot; and | characters can be supported as values when escaped with a prepended backslash (\). For a multi-select field, you can set a maximum of 3000 different metadata values on an asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? Metadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? _explicitNullValueMetadata = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam _explicitNullValueMetadata = default!;
 #endif
         /// <summary>The moderation status of the resource.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequestModerationStatus? ModerationStatus { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequestModerationStatus? ModerationStatus { get => _explicitNullValueModerationStatus; set { _explicitNullValueModerationStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moderation_status"); else _explicitNullProperties?.Remove("moderation_status"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequestModerationStatus? _explicitNullValueModerationStatus = default!;
         /// <summary>The type of OCR to perform on the resource. Set to adv_ocr, optionally with options (e.g., adv_ocr:document).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Ocr { get; set; }
+        public string? Ocr { get => _explicitNullValueOcr; set { _explicitNullValueOcr = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ocr"); else _explicitNullProperties?.Remove("ocr"); } }
+        private string? _explicitNullValueOcr = default!;
 #nullable restore
 #else
-        public string Ocr { get; set; }
+        public string Ocr { get => _explicitNullValueOcr; set { _explicitNullValueOcr = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ocr"); else _explicitNullProperties?.Remove("ocr"); } }
+        private string _explicitNullValueOcr = default!;
 #endif
         /// <summary>Quality override value that will override any automatic quality transformations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? QualityOverride { get; set; }
+        public string? QualityOverride { get => _explicitNullValueQualityOverride; set { _explicitNullValueQualityOverride = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("quality_override"); else _explicitNullProperties?.Remove("quality_override"); } }
+        private string? _explicitNullValueQualityOverride = default!;
 #nullable restore
 #else
-        public string QualityOverride { get; set; }
+        public string QualityOverride { get => _explicitNullValueQualityOverride; set { _explicitNullValueQualityOverride = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("quality_override"); else _explicitNullProperties?.Remove("quality_override"); } }
+        private string _explicitNullValueQualityOverride = default!;
 #endif
         /// <summary>The conversion to apply for raw files (e.g., aspose, google_speech, extract_text).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RawConvert { get; set; }
+        public string? RawConvert { get => _explicitNullValueRawConvert; set { _explicitNullValueRawConvert = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("raw_convert"); else _explicitNullProperties?.Remove("raw_convert"); } }
+        private string? _explicitNullValueRawConvert = default!;
 #nullable restore
 #else
-        public string RawConvert { get; set; }
+        public string RawConvert { get => _explicitNullValueRawConvert; set { _explicitNullValueRawConvert = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("raw_convert"); else _explicitNullProperties?.Remove("raw_convert"); } }
+        private string _explicitNullValueRawConvert = default!;
 #endif
         /// <summary>A JSON-encoded object of named groups of coordinate pairs representing regions. Each region name may contain only letters, numbers, or hyphens, and must have at least two coordinate pairs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Regions { get; set; }
+        public string? Regions { get => _explicitNullValueRegions; set { _explicitNullValueRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regions"); else _explicitNullProperties?.Remove("regions"); } }
+        private string? _explicitNullValueRegions = default!;
 #nullable restore
 #else
-        public string Regions { get; set; }
+        public string Regions { get => _explicitNullValueRegions; set { _explicitNullValueRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regions"); else _explicitNullProperties?.Remove("regions"); } }
+        private string _explicitNullValueRegions = default!;
 #endif
         /// <summary>A comma-separated list of tag names, or an array of tag names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam? Tags { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam? _explicitNullValueTags = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam Tags { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam _explicitNullValueTags = default!;
 #endif
         /// <summary>Whether to ensure the display name is unique across all resources. If false, the operation will fail if a resource with the same display name exists. Default: false</summary>
-        public bool? UniqueDisplayName { get; set; }
+        public bool? UniqueDisplayName { get => _explicitNullValueUniqueDisplayName; set { _explicitNullValueUniqueDisplayName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unique_display_name"); else _explicitNullProperties?.Remove("unique_display_name"); } }
+        private bool? _explicitNullValueUniqueDisplayName = default!;
         /// <summary>Whether to index the resource with visual search. If true, the resource will be indexed for visual search capabilities. Default: false</summary>
-        public bool? VisualSearch { get; set; }
+        public bool? VisualSearch { get => _explicitNullValueVisualSearch; set { _explicitNullValueVisualSearch = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("visual_search"); else _explicitNullProperties?.Remove("visual_search"); } }
+        private bool? _explicitNullValueVisualSearch = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest"/> and sets the default values.
         /// </summary>
@@ -159,7 +221,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceUpdateRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -217,7 +279,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("regions", Regions);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsParam>("tags", Tags);
             writer.WriteBoolValue("unique_display_name", UniqueDisplayName);
-            writer.WriteBoolValue("visual_search", VisualSearch);
+            writer.WriteBoolValue("visual_search", VisualSearch);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

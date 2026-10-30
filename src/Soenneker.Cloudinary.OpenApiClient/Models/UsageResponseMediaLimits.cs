@@ -12,19 +12,36 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UsageResponseMediaLimits : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("asset_max_total_px") is { } nullNodeAssetMaxTotalPx && nullNodeAssetMaxTotalPx.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetMaxTotalPx = null;
+            if (parseNode.GetChildNode("image_max_px") is { } nullNodeImageMaxPx && nullNodeImageMaxPx.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ImageMaxPx = null;
+            if (parseNode.GetChildNode("image_max_size_bytes") is { } nullNodeImageMaxSizeBytes && nullNodeImageMaxSizeBytes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ImageMaxSizeBytes = null;
+            if (parseNode.GetChildNode("raw_max_size_bytes") is { } nullNodeRawMaxSizeBytes && nullNodeRawMaxSizeBytes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RawMaxSizeBytes = null;
+            if (parseNode.GetChildNode("video_max_size_bytes") is { } nullNodeVideoMaxSizeBytes && nullNodeVideoMaxSizeBytes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoMaxSizeBytes = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Maximum total pixels for assets</summary>
-        public int? AssetMaxTotalPx { get; set; }
+        public int? AssetMaxTotalPx { get => _explicitNullValueAssetMaxTotalPx; set { _explicitNullValueAssetMaxTotalPx = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("asset_max_total_px"); else _explicitNullProperties?.Remove("asset_max_total_px"); } }
+        private int? _explicitNullValueAssetMaxTotalPx = default!;
         /// <summary>Maximum pixels for images</summary>
-        public int? ImageMaxPx { get; set; }
+        public int? ImageMaxPx { get => _explicitNullValueImageMaxPx; set { _explicitNullValueImageMaxPx = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("image_max_px"); else _explicitNullProperties?.Remove("image_max_px"); } }
+        private int? _explicitNullValueImageMaxPx = default!;
         /// <summary>Maximum size for images in bytes</summary>
-        public int? ImageMaxSizeBytes { get; set; }
+        public int? ImageMaxSizeBytes { get => _explicitNullValueImageMaxSizeBytes; set { _explicitNullValueImageMaxSizeBytes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("image_max_size_bytes"); else _explicitNullProperties?.Remove("image_max_size_bytes"); } }
+        private int? _explicitNullValueImageMaxSizeBytes = default!;
         /// <summary>Maximum size for raw files in bytes</summary>
-        public int? RawMaxSizeBytes { get; set; }
+        public int? RawMaxSizeBytes { get => _explicitNullValueRawMaxSizeBytes; set { _explicitNullValueRawMaxSizeBytes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("raw_max_size_bytes"); else _explicitNullProperties?.Remove("raw_max_size_bytes"); } }
+        private int? _explicitNullValueRawMaxSizeBytes = default!;
         /// <summary>Maximum size for videos in bytes</summary>
-        public int? VideoMaxSizeBytes { get; set; }
+        public int? VideoMaxSizeBytes { get => _explicitNullValueVideoMaxSizeBytes; set { _explicitNullValueVideoMaxSizeBytes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_max_size_bytes"); else _explicitNullProperties?.Remove("video_max_size_bytes"); } }
+        private int? _explicitNullValueVideoMaxSizeBytes = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits"/> and sets the default values.
         /// </summary>
@@ -40,7 +57,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,6 +86,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteIntValue("image_max_size_bytes", ImageMaxSizeBytes);
             writer.WriteIntValue("raw_max_size_bytes", RawMaxSizeBytes);
             writer.WriteIntValue("video_max_size_bytes", VideoMaxSizeBytes);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

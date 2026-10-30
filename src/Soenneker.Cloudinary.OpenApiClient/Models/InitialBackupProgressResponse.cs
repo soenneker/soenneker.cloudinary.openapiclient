@@ -11,19 +11,36 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class InitialBackupProgressResponse : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("completion_time") is { } nullNodeCompletionTime && nullNodeCompletionTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompletionTime = null;
+            if (parseNode.GetChildNode("processed_assets_count") is { } nullNodeProcessedAssetsCount && nullNodeProcessedAssetsCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProcessedAssetsCount = null;
+            if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
+            if (parseNode.GetChildNode("start_time") is { } nullNodeStartTime && nullNodeStartTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartTime = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date and time when the initial backup operation completed. Null while the operation is still running.</summary>
-        public DateTimeOffset? CompletionTime { get; set; }
+        public DateTimeOffset? CompletionTime { get => _explicitNullValueCompletionTime; set { _explicitNullValueCompletionTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("completion_time"); else _explicitNullProperties?.Remove("completion_time"); } }
+        private DateTimeOffset? _explicitNullValueCompletionTime = default!;
         /// <summary>The number of assets processed so far. Null when progress cannot be determined.</summary>
-        public int? ProcessedAssetsCount { get; set; }
+        public int? ProcessedAssetsCount { get => _explicitNullValueProcessedAssetsCount; set { _explicitNullValueProcessedAssetsCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("processed_assets_count"); else _explicitNullProperties?.Remove("processed_assets_count"); } }
+        private int? _explicitNullValueProcessedAssetsCount = default!;
         /// <summary>A reason code explaining why progress is unavailable. Present only when processed_assets_count is null.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponseReason? Reason { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponseReason? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponseReason? _explicitNullValueReason = default!;
         /// <summary>The date and time when the initial backup operation started.</summary>
-        public DateTimeOffset? StartTime { get; set; }
+        public DateTimeOffset? StartTime { get => _explicitNullValueStartTime; set { _explicitNullValueStartTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("start_time"); else _explicitNullProperties?.Remove("start_time"); } }
+        private DateTimeOffset? _explicitNullValueStartTime = default!;
         /// <summary>The current status of the initial backup operation.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupStatusEnum? Status { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupStatusEnum? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupStatusEnum? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponse"/> and sets the default values.
         /// </summary>
@@ -39,7 +56,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +85,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupProgressResponseReason>("reason", Reason);
             writer.WriteDateTimeOffsetValue("start_time", StartTime);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InitialBackupStatusEnum>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

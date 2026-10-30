@@ -11,18 +11,30 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class UpdateRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("allowed_for_strict") is { } nullNodeAllowedForStrict && nullNodeAllowedForStrict.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedForStrict = null;
+            if (parseNode.GetChildNode("unsafe_update") is { } nullNodeUnsafeUpdate && nullNodeUnsafeUpdate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UnsafeUpdate = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to allow this named transformation when strict transformations are enabled. Strict transformations prevent transformations from being dynamically applied to media assets.</summary>
-        public bool? AllowedForStrict { get; set; }
+        public bool? AllowedForStrict { get => _explicitNullValueAllowedForStrict; set { _explicitNullValueAllowedForStrict = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowed_for_strict"); else _explicitNullProperties?.Remove("allowed_for_strict"); } }
+        private bool? _explicitNullValueAllowedForStrict = default!;
         /// <summary>Required when modifying the transformation parameters of an existing named transformation. The new transformation definition for the named transformation.Because the changed definition can be unsafe for (significantly change) assets in production, the change is applied only to newly generated derived assets that reference this named transformation.To apply the change to existing derived assets using this named transformation, invalidate them so that they&apos;ll be regenerated with the new definition when next requested.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UnsafeUpdate { get; set; }
+        public string? UnsafeUpdate { get => _explicitNullValueUnsafeUpdate; set { _explicitNullValueUnsafeUpdate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unsafe_update"); else _explicitNullProperties?.Remove("unsafe_update"); } }
+        private string? _explicitNullValueUnsafeUpdate = default!;
 #nullable restore
 #else
-        public string UnsafeUpdate { get; set; }
+        public string UnsafeUpdate { get => _explicitNullValueUnsafeUpdate; set { _explicitNullValueUnsafeUpdate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unsafe_update"); else _explicitNullProperties?.Remove("unsafe_update"); } }
+        private string _explicitNullValueUnsafeUpdate = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UpdateRequest"/> and sets the default values.
@@ -39,7 +51,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.UpdateRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.UpdateRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.UpdateRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,6 +74,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allowed_for_strict", AllowedForStrict);
             writer.WriteStringValue("unsafe_update", UnsafeUpdate);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

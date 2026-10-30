@@ -36,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Image_to_image
         /// <summary>
         /// Edit, restyle or combine existing images with AI, guided by a textprompt: replace a background, add or remove objects, apply a style, makeon-brand variants, keep a character or product consistent across scenes,virtual try-on, or extend an image. Pass up to 4 reference images, eacha public HTTPS `url` or an `asset_id` from the user&apos;s Cloudinaryaccount, and refer to them in the prompt as `[1]`, `[2]`, …. For a localfile, upload it first and reference it by its `asset_id`. Leave out`model` and a strong default edit model is used; only edit-capablemodels are accepted.**Storage is optional.** Get the image at a temporary link withoutsaving anything to your account, or keep it in your Media Library.**What you get back.** Each image comes with its URL, size, format andthe model that made it, either in the response or, for longer jobs, froma background task you can check or be notified about. Each generationuses Image Generation credits.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageFromImagesSuccessResponse"/></returns>
         /// <param name="body">Parameters for an image-to-image (reference-guided) request. Both`prompt` (the edit instruction) and `reference_images` are required; allother fields fall back to the same defaults as `text_to_image`.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -50,11 +50,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Image_to_image
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ErrorResponse">When receiving a 502 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.ImageToImageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageFromImagesSuccessResponse?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.ImageToImageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.ImageToImageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageFromImagesSuccessResponse> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.ImageToImageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -69,8 +69,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Image_to_image
                 { "429", global::Soenneker.Cloudinary.OpenApiClient.Models.RateLimitedResponseResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Cloudinary.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "502", global::Soenneker.Cloudinary.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageFromImagesSuccessResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageFromImagesSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Edit, restyle or combine existing images with AI, guided by a textprompt: replace a background, add or remove objects, apply a style, makeon-brand variants, keep a character or product consistent across scenes,virtual try-on, or extend an image. Pass up to 4 reference images, eacha public HTTPS `url` or an `asset_id` from the user&apos;s Cloudinaryaccount, and refer to them in the prompt as `[1]`, `[2]`, …. For a localfile, upload it first and reference it by its `asset_id`. Leave out`model` and a strong default edit model is used; only edit-capablemodels are accepted.**Storage is optional.** Get the image at a temporary link withoutsaving anything to your account, or keep it in your Media Library.**What you get back.** Each image comes with its URL, size, format andthe model that made it, either in the response or, for longer jobs, froma background task you can check or be notified about. Each generationuses Image Generation credits.

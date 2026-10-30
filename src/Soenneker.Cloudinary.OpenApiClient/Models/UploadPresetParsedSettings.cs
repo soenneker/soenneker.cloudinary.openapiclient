@@ -12,326 +12,482 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UploadPresetParsedSettings : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("access_control") is { } nullNodeAccessControl && nullNodeAccessControl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessControl = null;
+            if (parseNode.GetChildNode("accessibility_analysis") is { } nullNodeAccessibilityAnalysis && nullNodeAccessibilityAnalysis.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessibilityAnalysis = null;
+            if (parseNode.GetChildNode("access_mode") is { } nullNodeAccessMode && nullNodeAccessMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessMode = null;
+            if (parseNode.GetChildNode("allowed_formats") is { } nullNodeAllowedFormats && nullNodeAllowedFormats.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedFormats = null;
+            if (parseNode.GetChildNode("asset_folder") is { } nullNodeAssetFolder && nullNodeAssetFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetFolder = null;
+            if (parseNode.GetChildNode("async") is { } nullNodeAsync && nullNodeAsync.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Async = null;
+            if (parseNode.GetChildNode("auto_chaptering") is { } nullNodeAutoChaptering && nullNodeAutoChaptering.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoChaptering = null;
+            if (parseNode.GetChildNode("auto_tagging") is { } nullNodeAutoTagging && nullNodeAutoTagging.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoTagging = null;
+            if (parseNode.GetChildNode("auto_transcription") is { } nullNodeAutoTranscription && nullNodeAutoTranscription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoTranscription = null;
+            if (parseNode.GetChildNode("background_removal") is { } nullNodeBackgroundRemoval && nullNodeBackgroundRemoval.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BackgroundRemoval = null;
+            if (parseNode.GetChildNode("backup") is { } nullNodeBackup && nullNodeBackup.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Backup = null;
+            if (parseNode.GetChildNode("callback") is { } nullNodeCallback && nullNodeCallback.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Callback = null;
+            if (parseNode.GetChildNode("categorization") is { } nullNodeCategorization && nullNodeCategorization.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Categorization = null;
+            if (parseNode.GetChildNode("cinemagraph_analysis") is { } nullNodeCinemagraphAnalysis && nullNodeCinemagraphAnalysis.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CinemagraphAnalysis = null;
+            if (parseNode.GetChildNode("clear_invalid") is { } nullNodeClearInvalid && nullNodeClearInvalid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ClearInvalid = null;
+            if (parseNode.GetChildNode("colors") is { } nullNodeColors && nullNodeColors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Colors = null;
+            if (parseNode.GetChildNode("context") is { } nullNodeContext && nullNodeContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Context = null;
+            if (parseNode.GetChildNode("custom_coordinates") is { } nullNodeCustomCoordinates && nullNodeCustomCoordinates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomCoordinates = null;
+            if (parseNode.GetChildNode("detection") is { } nullNodeDetection && nullNodeDetection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Detection = null;
+            if (parseNode.GetChildNode("discard_original_filename") is { } nullNodeDiscardOriginalFilename && nullNodeDiscardOriginalFilename.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DiscardOriginalFilename = null;
+            if (parseNode.GetChildNode("display_name") is { } nullNodeDisplayName && nullNodeDisplayName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DisplayName = null;
+            if (parseNode.GetChildNode("eager") is { } nullNodeEager && nullNodeEager.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Eager = null;
+            if (parseNode.GetChildNode("eager_async") is { } nullNodeEagerAsync && nullNodeEagerAsync.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EagerAsync = null;
+            if (parseNode.GetChildNode("eager_notification_url") is { } nullNodeEagerNotificationUrl && nullNodeEagerNotificationUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EagerNotificationUrl = null;
+            if (parseNode.GetChildNode("eval") is { } nullNodeEval && nullNodeEval.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Eval = null;
+            if (parseNode.GetChildNode("face_coordinates") is { } nullNodeFaceCoordinates && nullNodeFaceCoordinates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FaceCoordinates = null;
+            if (parseNode.GetChildNode("faces") is { } nullNodeFaces && nullNodeFaces.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Faces = null;
+            if (parseNode.GetChildNode("filename_override") is { } nullNodeFilenameOverride && nullNodeFilenameOverride.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilenameOverride = null;
+            if (parseNode.GetChildNode("folder") is { } nullNodeFolder && nullNodeFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Folder = null;
+            if (parseNode.GetChildNode("format") is { } nullNodeFormat && nullNodeFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Format = null;
+            if (parseNode.GetChildNode("headers") is { } nullNodeHeaders && nullNodeHeaders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Headers = null;
+            if (parseNode.GetChildNode("invalidate") is { } nullNodeInvalidate && nullNodeInvalidate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Invalidate = null;
+            if (parseNode.GetChildNode("media_metadata") is { } nullNodeMediaMetadata && nullNodeMediaMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MediaMetadata = null;
+            if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
+            if (parseNode.GetChildNode("moderation") is { } nullNodeModeration && nullNodeModeration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Moderation = null;
+            if (parseNode.GetChildNode("notification_url") is { } nullNodeNotificationUrl && nullNodeNotificationUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NotificationUrl = null;
+            if (parseNode.GetChildNode("ocr") is { } nullNodeOcr && nullNodeOcr.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ocr = null;
+            if (parseNode.GetChildNode("on_success") is { } nullNodeOnSuccess && nullNodeOnSuccess.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OnSuccess = null;
+            if (parseNode.GetChildNode("overwrite") is { } nullNodeOverwrite && nullNodeOverwrite.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Overwrite = null;
+            if (parseNode.GetChildNode("phash") is { } nullNodePhash && nullNodePhash.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Phash = null;
+            if (parseNode.GetChildNode("proxy") is { } nullNodeProxy && nullNodeProxy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Proxy = null;
+            if (parseNode.GetChildNode("public_id") is { } nullNodePublicId && nullNodePublicId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicId = null;
+            if (parseNode.GetChildNode("public_id_prefix") is { } nullNodePublicIdPrefix && nullNodePublicIdPrefix.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicIdPrefix = null;
+            if (parseNode.GetChildNode("quality_analysis") is { } nullNodeQualityAnalysis && nullNodeQualityAnalysis.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QualityAnalysis = null;
+            if (parseNode.GetChildNode("raw_convert") is { } nullNodeRawConvert && nullNodeRawConvert.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RawConvert = null;
+            if (parseNode.GetChildNode("regions") is { } nullNodeRegions && nullNodeRegions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Regions = null;
+            if (parseNode.GetChildNode("responsive_breakpoints") is { } nullNodeResponsiveBreakpoints && nullNodeResponsiveBreakpoints.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResponsiveBreakpoints = null;
+            if (parseNode.GetChildNode("return_delete_token") is { } nullNodeReturnDeleteToken && nullNodeReturnDeleteToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReturnDeleteToken = null;
+            if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("transformation") is { } nullNodeTransformation && nullNodeTransformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transformation = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("unique_display_name") is { } nullNodeUniqueDisplayName && nullNodeUniqueDisplayName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UniqueDisplayName = null;
+            if (parseNode.GetChildNode("unique_filename") is { } nullNodeUniqueFilename && nullNodeUniqueFilename.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UniqueFilename = null;
+            if (parseNode.GetChildNode("upload_preset") is { } nullNodeUploadPreset && nullNodeUploadPreset.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UploadPreset = null;
+            if (parseNode.GetChildNode("use_asset_folder_as_public_id_prefix") is { } nullNodeUseAssetFolderAsPublicIdPrefix && nullNodeUseAssetFolderAsPublicIdPrefix.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseAssetFolderAsPublicIdPrefix = null;
+            if (parseNode.GetChildNode("use_filename") is { } nullNodeUseFilename && nullNodeUseFilename.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseFilename = null;
+            if (parseNode.GetChildNode("use_filename_as_display_name") is { } nullNodeUseFilenameAsDisplayName && nullNodeUseFilenameAsDisplayName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UseFilenameAsDisplayName = null;
+            if (parseNode.GetChildNode("visual_search") is { } nullNodeVisualSearch && nullNodeVisualSearch.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VisualSearch = null;
+        }
+
         /// <summary>Restricts access to the asset by specifying one or more access types.The asset is restricted unless at least one listed access type is valid.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? AccessControl { get => _explicitNullValueAccessControl; set { _explicitNullValueAccessControl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access_control"); else _explicitNullProperties?.Remove("access_control"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>? _explicitNullValueAccessControl = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> AccessControl { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> AccessControl { get => _explicitNullValueAccessControl; set { _explicitNullValueAccessControl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access_control"); else _explicitNullProperties?.Remove("access_control"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem> _explicitNullValueAccessControl = default!;
 #endif
         /// <summary>Whether to return accessibility analysis values for the image.</summary>
-        public bool? AccessibilityAnalysis { get; set; }
+        public bool? AccessibilityAnalysis { get => _explicitNullValueAccessibilityAnalysis; set { _explicitNullValueAccessibilityAnalysis = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessibility_analysis"); else _explicitNullProperties?.Remove("accessibility_analysis"); } }
+        private bool? _explicitNullValueAccessibilityAnalysis = default!;
         /// <summary>Deprecated. Use access_control instead. Allows the asset to behave as if it&apos;s of the authenticated delivery type while still using the default &apos;upload&apos; type in delivery URLs. The asset can later be made public by changing its access_mode via the Admin API, without having to update any delivery URLs.</summary>
         [Obsolete("")]
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAccessMode? AccessMode { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAccessMode? AccessMode { get => _explicitNullValueAccessMode; set { _explicitNullValueAccessMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access_mode"); else _explicitNullProperties?.Remove("access_mode"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAccessMode? _explicitNullValueAccessMode = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Parsed list of allowed file formats.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AllowedFormats { get; set; }
+        public List<string>? AllowedFormats { get => _explicitNullValueAllowedFormats; set { _explicitNullValueAllowedFormats = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowed_formats"); else _explicitNullProperties?.Remove("allowed_formats"); } }
+        private List<string>? _explicitNullValueAllowedFormats = default!;
 #nullable restore
 #else
-        public List<string> AllowedFormats { get; set; }
+        public List<string> AllowedFormats { get => _explicitNullValueAllowedFormats; set { _explicitNullValueAllowedFormats = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowed_formats"); else _explicitNullProperties?.Remove("allowed_formats"); } }
+        private List<string> _explicitNullValueAllowedFormats = default!;
 #endif
         /// <summary>The asset folder to assign to the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AssetFolder { get; set; }
+        public string? AssetFolder { get => _explicitNullValueAssetFolder; set { _explicitNullValueAssetFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("asset_folder"); else _explicitNullProperties?.Remove("asset_folder"); } }
+        private string? _explicitNullValueAssetFolder = default!;
 #nullable restore
 #else
-        public string AssetFolder { get; set; }
+        public string AssetFolder { get => _explicitNullValueAssetFolder; set { _explicitNullValueAssetFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("asset_folder"); else _explicitNullProperties?.Remove("asset_folder"); } }
+        private string _explicitNullValueAssetFolder = default!;
 #endif
         /// <summary>When set to true, returns the uploaded asset&apos;s public_id immediately in the response, before the upload is completed (asynchronously). Default: false.</summary>
-        public bool? Async { get; set; }
+        public bool? Async { get => _explicitNullValueAsync; set { _explicitNullValueAsync = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("async"); else _explicitNullProperties?.Remove("async"); } }
+        private bool? _explicitNullValueAsync = default!;
         /// <summary>Whether to trigger automatic generation of video chapters. Chapters will be generated and saved as a .vtt file with -chapters appended to the public ID of the video. You can enable chapters as part of the Cloudinary Video Player. Relevant for videos only.</summary>
-        public bool? AutoChaptering { get; set; }
+        public bool? AutoChaptering { get => _explicitNullValueAutoChaptering; set { _explicitNullValueAutoChaptering = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auto_chaptering"); else _explicitNullProperties?.Remove("auto_chaptering"); } }
+        private bool? _explicitNullValueAutoChaptering = default!;
         /// <summary>Automatically assigns tags to an asset according to detected objects or categories with a confidence score higher than the specified value.Use together with the detection parameter for:- Cloudinary AI Content Analysis- Amazon Rekognition Celebrity DetectionUse together with the categorization parameter for:- Google Automatic Video Tagging- Google Auto Tagging- Imagga Auto Tagging- Amazon Rekognition Auto Tagging</summary>
-        public double? AutoTagging { get; set; }
+        public double? AutoTagging { get => _explicitNullValueAutoTagging; set { _explicitNullValueAutoTagging = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auto_tagging"); else _explicitNullProperties?.Remove("auto_tagging"); } }
+        private double? _explicitNullValueAutoTagging = default!;
         /// <summary>The auto_transcription property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription? AutoTranscription { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription? AutoTranscription { get => _explicitNullValueAutoTranscription; set { _explicitNullValueAutoTranscription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auto_transcription"); else _explicitNullProperties?.Remove("auto_transcription"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription? _explicitNullValueAutoTranscription = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription AutoTranscription { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription AutoTranscription { get => _explicitNullValueAutoTranscription; set { _explicitNullValueAutoTranscription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auto_transcription"); else _explicitNullProperties?.Remove("auto_transcription"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAutoTranscription _explicitNullValueAutoTranscription = default!;
 #endif
         /// <summary>Automatically remove the background of an image using an add-on.- Set to cloudinary_ai to use the deep-learning based Cloudinary AI Background Removal add-on.  Optionally append a template suffix (e.g., cloudinary_ai:fine_edges).- Note: this feature has been superseded by background removal on the fly.- Set to pixelz to use the human-powered Pixelz Remove-The-Background Editing add-on service.Relevant for images only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BackgroundRemoval { get; set; }
+        public string? BackgroundRemoval { get => _explicitNullValueBackgroundRemoval; set { _explicitNullValueBackgroundRemoval = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("background_removal"); else _explicitNullProperties?.Remove("background_removal"); } }
+        private string? _explicitNullValueBackgroundRemoval = default!;
 #nullable restore
 #else
-        public string BackgroundRemoval { get; set; }
+        public string BackgroundRemoval { get => _explicitNullValueBackgroundRemoval; set { _explicitNullValueBackgroundRemoval = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("background_removal"); else _explicitNullProperties?.Remove("background_removal"); } }
+        private string _explicitNullValueBackgroundRemoval = default!;
 #endif
         /// <summary>Whether to backup the uploaded asset. When set to true, backs up uploaded assets to a secondary storage bucket.</summary>
-        public bool? Backup { get; set; }
+        public bool? Backup { get => _explicitNullValueBackup; set { _explicitNullValueBackup = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("backup"); else _explicitNullProperties?.Remove("backup"); } }
+        private bool? _explicitNullValueBackup = default!;
         /// <summary>A URL to redirect to after the upload/explicit is completed instead of returning the upload response.Signed upload result parameters are added to the callback URL. This parameter is ignored for XHR (Ajax XMLHttpRequest) or JavaScript Fetch API upload requests.Note: This parameter is relevant for direct uploads from a form in the browser. It is automatically set if you perform direct upload from the browser using Cloudinary&apos;s SDKs and the jQuery plugin.</summary>
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Callback { get; set; }
+        public string? Callback { get => _explicitNullValueCallback; set { _explicitNullValueCallback = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callback"); else _explicitNullProperties?.Remove("callback"); } }
+        private string? _explicitNullValueCallback = default!;
 #nullable restore
 #else
-        public string Callback { get; set; }
+        public string Callback { get => _explicitNullValueCallback; set { _explicitNullValueCallback = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callback"); else _explicitNullProperties?.Remove("callback"); } }
+        private string _explicitNullValueCallback = default!;
 #endif
         /// <summary>A comma-separated list of the categorization add-ons to run on the asset.Set to google_tagging, google_video_tagging, imagga_tagging and/or aws_rek_taggingto automatically classify the scenes of the uploaded asset.Optionally append a language code suffix (e.g., google_tagging:fr).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Categorization { get; set; }
+        public string? Categorization { get => _explicitNullValueCategorization; set { _explicitNullValueCategorization = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categorization"); else _explicitNullProperties?.Remove("categorization"); } }
+        private string? _explicitNullValueCategorization = default!;
 #nullable restore
 #else
-        public string Categorization { get; set; }
+        public string Categorization { get => _explicitNullValueCategorization; set { _explicitNullValueCategorization = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categorization"); else _explicitNullProperties?.Remove("categorization"); } }
+        private string _explicitNullValueCategorization = default!;
 #endif
         /// <summary>Whether to return a cinemagraph analysis value for the media asset between 0 and 1, where 0 means the asset is not a cinemagraph and 1 means the asset is a cinemagraph. Relevant for animated images and video only. A static image will return 0.</summary>
-        public bool? CinemagraphAnalysis { get; set; }
+        public bool? CinemagraphAnalysis { get => _explicitNullValueCinemagraphAnalysis; set { _explicitNullValueCinemagraphAnalysis = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cinemagraph_analysis"); else _explicitNullProperties?.Remove("cinemagraph_analysis"); } }
+        private bool? _explicitNullValueCinemagraphAnalysis = default!;
         /// <summary>Whether to clear metadata field values that have become invalid due to a change in metadata rules. If false, the API returns an error if any existing metadata value is no longer valid. Default: false.</summary>
-        public bool? ClearInvalid { get; set; }
+        public bool? ClearInvalid { get => _explicitNullValueClearInvalid; set { _explicitNullValueClearInvalid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clear_invalid"); else _explicitNullProperties?.Remove("clear_invalid"); } }
+        private bool? _explicitNullValueClearInvalid = default!;
         /// <summary>Whether to retrieve predominant colors &amp; color histogram of the uploaded image. Note: If all returned colors are opaque, then 6-digit RGB hex values are returned. If one or more colors contain an alpha channel, then 8-digit RGBA hex quadruplet values are returned.</summary>
-        public bool? Colors { get; set; }
+        public bool? Colors { get => _explicitNullValueColors; set { _explicitNullValueColors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("colors"); else _explicitNullProperties?.Remove("colors"); } }
+        private bool? _explicitNullValueColors = default!;
         /// <summary>Parsed contextual metadata as key-value pairs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedContext? Context { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedContext? Context { get => _explicitNullValueContext; set { _explicitNullValueContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("context"); else _explicitNullProperties?.Remove("context"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedContext? _explicitNullValueContext = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedContext Context { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedContext Context { get => _explicitNullValueContext; set { _explicitNullValueContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("context"); else _explicitNullProperties?.Remove("context"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedContext _explicitNullValueContext = default!;
 #endif
         /// <summary>Parsed custom coordinate rectangles.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? CustomCoordinates { get; set; }
+        public UntypedNode? CustomCoordinates { get => _explicitNullValueCustomCoordinates; set { _explicitNullValueCustomCoordinates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("custom_coordinates"); else _explicitNullProperties?.Remove("custom_coordinates"); } }
+        private UntypedNode? _explicitNullValueCustomCoordinates = default!;
 #nullable restore
 #else
-        public UntypedNode CustomCoordinates { get; set; }
+        public UntypedNode CustomCoordinates { get => _explicitNullValueCustomCoordinates; set { _explicitNullValueCustomCoordinates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("custom_coordinates"); else _explicitNullProperties?.Remove("custom_coordinates"); } }
+        private UntypedNode _explicitNullValueCustomCoordinates = default!;
 #endif
         /// <summary>Invokes the relevant add-on to return a list of detected content.Set to:- &lt;content-aware model&gt;_[&lt;version&gt;] (e.g. coco_v2) to return a list of detected content using the Cloudinary AI Content Analysis add-on. Can be used together with the auto_tagging parameter to apply tags automatically.- captioning to analyze an image and suggest a caption based on the image&apos;s contents.- iqa to analyze the quality of an image.- watermark-detection to detect watermarks in an image.- adv_face to return a list of facial attributes using the Advanced Facial Attribute Detection add-on.- aws_rek_face to return a list of detected celebrities and facial attributes using the Amazon Rekognition Celebrity Detection add-on. Can be used together with the auto_tagging parameter to apply tags automatically.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Detection { get; set; }
+        public string? Detection { get => _explicitNullValueDetection; set { _explicitNullValueDetection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detection"); else _explicitNullProperties?.Remove("detection"); } }
+        private string? _explicitNullValueDetection = default!;
 #nullable restore
 #else
-        public string Detection { get; set; }
+        public string Detection { get => _explicitNullValueDetection; set { _explicitNullValueDetection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detection"); else _explicitNullProperties?.Remove("detection"); } }
+        private string _explicitNullValueDetection = default!;
 #endif
         /// <summary>Whether to discard the name of the original uploaded file. Relevant when delivering assets as attachments (setting the flag disposition:attachment in delivery URLs).</summary>
-        public bool? DiscardOriginalFilename { get; set; }
+        public bool? DiscardOriginalFilename { get => _explicitNullValueDiscardOriginalFilename; set { _explicitNullValueDiscardOriginalFilename = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("discard_original_filename"); else _explicitNullProperties?.Remove("discard_original_filename"); } }
+        private bool? _explicitNullValueDiscardOriginalFilename = default!;
         /// <summary>A display name for the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DisplayName { get; set; }
+        public string? DisplayName { get => _explicitNullValueDisplayName; set { _explicitNullValueDisplayName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("display_name"); else _explicitNullProperties?.Remove("display_name"); } }
+        private string? _explicitNullValueDisplayName = default!;
 #nullable restore
 #else
-        public string DisplayName { get; set; }
+        public string DisplayName { get => _explicitNullValueDisplayName; set { _explicitNullValueDisplayName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("display_name"); else _explicitNullProperties?.Remove("display_name"); } }
+        private string _explicitNullValueDisplayName = default!;
 #endif
         /// <summary>Parsed eager transformations. Each item is an array of transformation step objects.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Eager { get; set; }
+        public UntypedNode? Eager { get => _explicitNullValueEager; set { _explicitNullValueEager = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eager"); else _explicitNullProperties?.Remove("eager"); } }
+        private UntypedNode? _explicitNullValueEager = default!;
 #nullable restore
 #else
-        public UntypedNode Eager { get; set; }
+        public UntypedNode Eager { get => _explicitNullValueEager; set { _explicitNullValueEager = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eager"); else _explicitNullProperties?.Remove("eager"); } }
+        private UntypedNode _explicitNullValueEager = default!;
 #endif
         /// <summary>Whether to generate the eager transformations asynchronously in the background after the upload request is completed rather than before the upload is completed.</summary>
-        public bool? EagerAsync { get; set; }
+        public bool? EagerAsync { get => _explicitNullValueEagerAsync; set { _explicitNullValueEagerAsync = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eager_async"); else _explicitNullProperties?.Remove("eager_async"); } }
+        private bool? _explicitNullValueEagerAsync = default!;
         /// <summary>A URL to notify when eager transformations are completed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EagerNotificationUrl { get; set; }
+        public string? EagerNotificationUrl { get => _explicitNullValueEagerNotificationUrl; set { _explicitNullValueEagerNotificationUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eager_notification_url"); else _explicitNullProperties?.Remove("eager_notification_url"); } }
+        private string? _explicitNullValueEagerNotificationUrl = default!;
 #nullable restore
 #else
-        public string EagerNotificationUrl { get; set; }
+        public string EagerNotificationUrl { get => _explicitNullValueEagerNotificationUrl; set { _explicitNullValueEagerNotificationUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eager_notification_url"); else _explicitNullProperties?.Remove("eager_notification_url"); } }
+        private string _explicitNullValueEagerNotificationUrl = default!;
 #endif
         /// <summary>Allows you to modify upload parameters by specifying custom logic with JavaScript. This can be useful for conditionally adding tags, contextual metadata, structured metadata or eager transformations depending on specific criteria of the uploaded file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Eval { get; set; }
+        public string? Eval { get => _explicitNullValueEval; set { _explicitNullValueEval = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eval"); else _explicitNullProperties?.Remove("eval"); } }
+        private string? _explicitNullValueEval = default!;
 #nullable restore
 #else
-        public string Eval { get; set; }
+        public string Eval { get => _explicitNullValueEval; set { _explicitNullValueEval = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("eval"); else _explicitNullProperties?.Remove("eval"); } }
+        private string _explicitNullValueEval = default!;
 #endif
         /// <summary>Parsed face coordinate rectangles.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? FaceCoordinates { get; set; }
+        public UntypedNode? FaceCoordinates { get => _explicitNullValueFaceCoordinates; set { _explicitNullValueFaceCoordinates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("face_coordinates"); else _explicitNullProperties?.Remove("face_coordinates"); } }
+        private UntypedNode? _explicitNullValueFaceCoordinates = default!;
 #nullable restore
 #else
-        public UntypedNode FaceCoordinates { get; set; }
+        public UntypedNode FaceCoordinates { get => _explicitNullValueFaceCoordinates; set { _explicitNullValueFaceCoordinates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("face_coordinates"); else _explicitNullProperties?.Remove("face_coordinates"); } }
+        private UntypedNode _explicitNullValueFaceCoordinates = default!;
 #endif
         /// <summary>Whether to detect faces in the asset.</summary>
-        public bool? Faces { get; set; }
+        public bool? Faces { get => _explicitNullValueFaces; set { _explicitNullValueFaces = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("faces"); else _explicitNullProperties?.Remove("faces"); } }
+        private bool? _explicitNullValueFaces = default!;
         /// <summary>Overrides the originally uploaded asset&apos;s file name in downloads that use flags like fl_attachment or fl_force_original.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FilenameOverride { get; set; }
+        public string? FilenameOverride { get => _explicitNullValueFilenameOverride; set { _explicitNullValueFilenameOverride = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filename_override"); else _explicitNullProperties?.Remove("filename_override"); } }
+        private string? _explicitNullValueFilenameOverride = default!;
 #nullable restore
 #else
-        public string FilenameOverride { get; set; }
+        public string FilenameOverride { get => _explicitNullValueFilenameOverride; set { _explicitNullValueFilenameOverride = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filename_override"); else _explicitNullProperties?.Remove("filename_override"); } }
+        private string _explicitNullValueFilenameOverride = default!;
 #endif
         /// <summary>Folder name where the uploaded asset will be stored. This parameter applies when using the Admin API, or when specifying the upload preset for unsigned uploading with the Upload API.</summary>
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Folder { get; set; }
+        public string? Folder { get => _explicitNullValueFolder; set { _explicitNullValueFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folder"); else _explicitNullProperties?.Remove("folder"); } }
+        private string? _explicitNullValueFolder = default!;
 #nullable restore
 #else
-        public string Folder { get; set; }
+        public string Folder { get => _explicitNullValueFolder; set { _explicitNullValueFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folder"); else _explicitNullProperties?.Remove("folder"); } }
+        private string _explicitNullValueFolder = default!;
 #endif
         /// <summary>An optional format to convert the uploaded asset to before saving in the cloud.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Format { get; set; }
+        public string? Format { get => _explicitNullValueFormat; set { _explicitNullValueFormat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("format"); else _explicitNullProperties?.Remove("format"); } }
+        private string? _explicitNullValueFormat = default!;
 #nullable restore
 #else
-        public string Format { get; set; }
+        public string Format { get => _explicitNullValueFormat; set { _explicitNullValueFormat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("format"); else _explicitNullProperties?.Remove("format"); } }
+        private string _explicitNullValueFormat = default!;
 #endif
         /// <summary>Parsed custom HTTP headers as key-value pairs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettingsHeaders? Headers { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettingsHeaders? Headers { get => _explicitNullValueHeaders; set { _explicitNullValueHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("headers"); else _explicitNullProperties?.Remove("headers"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettingsHeaders? _explicitNullValueHeaders = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettingsHeaders Headers { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettingsHeaders Headers { get => _explicitNullValueHeaders; set { _explicitNullValueHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("headers"); else _explicitNullProperties?.Remove("headers"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettingsHeaders _explicitNullValueHeaders = default!;
 #endif
         /// <summary>Whether to invalidate CDN cache copies of a previously uploaded asset that shares the same public ID. Default: false.</summary>
-        public bool? Invalidate { get; set; }
+        public bool? Invalidate { get => _explicitNullValueInvalidate; set { _explicitNullValueInvalidate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidate"); else _explicitNullProperties?.Remove("invalidate"); } }
+        private bool? _explicitNullValueInvalidate = default!;
         /// <summary>Whether to return IPTC, XMP, and detailed Exif metadata of the uploaded asset in the response.Supported for images, video, and audio.- Returned metadata for images includes: PixelsPerUnitX, PixelsPerUnitY, PixelUnits, Colorspace, and DPI.- Returned metadata for audio and video includes: audio_codec, audio_bit_rate, audio_frequency, channels, channel_layout.- Additional metadata for video includes: pix_format, codec, level, profile, video_bit_rate, dar.</summary>
-        public bool? MediaMetadata { get; set; }
+        public bool? MediaMetadata { get => _explicitNullValueMediaMetadata; set { _explicitNullValueMediaMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("media_metadata"); else _explicitNullProperties?.Remove("media_metadata"); } }
+        private bool? _explicitNullValueMediaMetadata = default!;
         /// <summary>A pipe-separated list or a map of custom metadata fields (by external_id) and the values to assign to each of them. The = &quot; and | characters can be supported as values when escaped with a prepended backslash (\). For a multi-select field, you can set a maximum of 3000 different metadata values on an asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? Metadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? _explicitNullValueMetadata = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam _explicitNullValueMetadata = default!;
 #endif
         /// <summary>For all asset types, set to:- manual to add the uploaded asset to a list of pending assets that can be moderated using the Admin API or the Cloudinary Console.- perception_point to automatically moderate the uploaded asset using the Perception Point Malware Detection add-on.For images only, set to:- webpurify to automatically moderate the uploaded image using the WebPurify Image Moderation add-on.- aws_rek to automatically moderate the uploaded image using the Amazon Rekognition AI Moderation add-on.- duplicate:&lt;threshold&gt; to detect if the same or a similar image already exists using the Cloudinary Duplicate Image Detection add-on. Set threshold to a float greater than 0 and less than or equal to 1.0 to specify how similar an image needs to be in order to be considered a duplicate. Set threshold to 0 to add an image to the index of images that are searched when duplicate detection is invoked for another image.For videos only, set to:- aws_rek_video to automatically moderate the uploaded video using the Amazon Rekognition Video Moderation add-on.- google_video_moderation automatically moderate the uploaded video using the Google AI Video Moderation add-on.To request multiple moderations in a single API call:- Send the desired list of moderations as a pipe-separated string with manual moderation, if relevant, being last.Note: Rejected assets are automatically invalidated on the CDN within approximately ten minutes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Moderation { get; set; }
+        public string? Moderation { get => _explicitNullValueModeration; set { _explicitNullValueModeration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moderation"); else _explicitNullProperties?.Remove("moderation"); } }
+        private string? _explicitNullValueModeration = default!;
 #nullable restore
 #else
-        public string Moderation { get; set; }
+        public string Moderation { get => _explicitNullValueModeration; set { _explicitNullValueModeration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moderation"); else _explicitNullProperties?.Remove("moderation"); } }
+        private string _explicitNullValueModeration = default!;
 #endif
         /// <summary>A URL to notify when the asset is ready.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NotificationUrl { get; set; }
+        public string? NotificationUrl { get => _explicitNullValueNotificationUrl; set { _explicitNullValueNotificationUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notification_url"); else _explicitNullProperties?.Remove("notification_url"); } }
+        private string? _explicitNullValueNotificationUrl = default!;
 #nullable restore
 #else
-        public string NotificationUrl { get; set; }
+        public string NotificationUrl { get => _explicitNullValueNotificationUrl; set { _explicitNullValueNotificationUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notification_url"); else _explicitNullProperties?.Remove("notification_url"); } }
+        private string _explicitNullValueNotificationUrl = default!;
 #endif
         /// <summary>Set to adv_ocr to extract all text elements in an image as well as the bounding boxcoordinates of each detected element using the OCR text detection and extraction add-on.Optionally append options (e.g., adv_ocr:document).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Ocr { get; set; }
+        public string? Ocr { get => _explicitNullValueOcr; set { _explicitNullValueOcr = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ocr"); else _explicitNullProperties?.Remove("ocr"); } }
+        private string? _explicitNullValueOcr = default!;
 #nullable restore
 #else
-        public string Ocr { get; set; }
+        public string Ocr { get => _explicitNullValueOcr; set { _explicitNullValueOcr = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ocr"); else _explicitNullProperties?.Remove("ocr"); } }
+        private string _explicitNullValueOcr = default!;
 #endif
         /// <summary>Allows you to update an asset by specifying custom logic with JavaScript that is executed after the upload to Cloudinary is completed successfully. This can be useful for conditionally adding tags, contextual metadata, and structured metadata, depending on the results of using the detection parameter on upload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OnSuccess { get; set; }
+        public string? OnSuccess { get => _explicitNullValueOnSuccess; set { _explicitNullValueOnSuccess = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("on_success"); else _explicitNullProperties?.Remove("on_success"); } }
+        private string? _explicitNullValueOnSuccess = default!;
 #nullable restore
 #else
-        public string OnSuccess { get; set; }
+        public string OnSuccess { get => _explicitNullValueOnSuccess; set { _explicitNullValueOnSuccess = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("on_success"); else _explicitNullProperties?.Remove("on_success"); } }
+        private string _explicitNullValueOnSuccess = default!;
 #endif
         /// <summary>Whether to overwrite existing assets with the same public ID. When set to false, return immediately if an asset with the same public ID already exists. Default: true (when using unsigned upload, the default is false and cannot be changed to true).</summary>
-        public bool? Overwrite { get; set; }
+        public bool? Overwrite { get => _explicitNullValueOverwrite; set { _explicitNullValueOverwrite = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("overwrite"); else _explicitNullProperties?.Remove("overwrite"); } }
+        private bool? _explicitNullValueOverwrite = default!;
         /// <summary>Whether to return the perceptual hash (pHash) on the uploaded image for image similarity detection.</summary>
-        public bool? Phash { get; set; }
+        public bool? Phash { get => _explicitNullValuePhash; set { _explicitNullValuePhash = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phash"); else _explicitNullProperties?.Remove("phash"); } }
+        private bool? _explicitNullValuePhash = default!;
         /// <summary>A proxy to use for fetching remote URLs. The format should be http://hostname:port.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Proxy { get; set; }
+        public string? Proxy { get => _explicitNullValueProxy; set { _explicitNullValueProxy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proxy"); else _explicitNullProperties?.Remove("proxy"); } }
+        private string? _explicitNullValueProxy = default!;
 #nullable restore
 #else
-        public string Proxy { get; set; }
+        public string Proxy { get => _explicitNullValueProxy; set { _explicitNullValueProxy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proxy"); else _explicitNullProperties?.Remove("proxy"); } }
+        private string _explicitNullValueProxy = default!;
 #endif
         /// <summary>The identifier that is used for accessing the uploaded asset. If not specified, a unique ID is generated automatically.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PublicId { get; set; }
+        public string? PublicId { get => _explicitNullValuePublicId; set { _explicitNullValuePublicId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_id"); else _explicitNullProperties?.Remove("public_id"); } }
+        private string? _explicitNullValuePublicId = default!;
 #nullable restore
 #else
-        public string PublicId { get; set; }
+        public string PublicId { get => _explicitNullValuePublicId; set { _explicitNullValuePublicId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_id"); else _explicitNullProperties?.Remove("public_id"); } }
+        private string _explicitNullValuePublicId = default!;
 #endif
         /// <summary>A string or path that&apos;s automatically prepended to the public_id with a forward slash. The value can contain the same characters as the public_id including additional forward slashes. This prefix can be useful to provide context and improve the SEO of an asset&apos;s filename in the delivery URL, but the value does not impact the location where the asset is stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PublicIdPrefix { get; set; }
+        public string? PublicIdPrefix { get => _explicitNullValuePublicIdPrefix; set { _explicitNullValuePublicIdPrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_id_prefix"); else _explicitNullProperties?.Remove("public_id_prefix"); } }
+        private string? _explicitNullValuePublicIdPrefix = default!;
 #nullable restore
 #else
-        public string PublicIdPrefix { get; set; }
+        public string PublicIdPrefix { get => _explicitNullValuePublicIdPrefix; set { _explicitNullValuePublicIdPrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_id_prefix"); else _explicitNullProperties?.Remove("public_id_prefix"); } }
+        private string _explicitNullValuePublicIdPrefix = default!;
 #endif
         /// <summary>Whether to return a quality analysis value for the image between 0 and 1, where 0 means the image is blurry and out of focus and 1 means the image is sharp and in focus. Relevant for images only.</summary>
-        public bool? QualityAnalysis { get; set; }
+        public bool? QualityAnalysis { get => _explicitNullValueQualityAnalysis; set { _explicitNullValueQualityAnalysis = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("quality_analysis"); else _explicitNullProperties?.Remove("quality_analysis"); } }
+        private bool? _explicitNullValueQualityAnalysis = default!;
         /// <summary>Generates a related file based on the uploaded file.- Set to aspose to automatically create a PDF or other image format from a raw Office document using the Aspose Document Conversion add-on. (Asynchronous)- Set to google_speech to instruct the Google AI Video Transcription add-on to generate an automatic transcript raw file from an uploaded video. (Asynchronous)- Set to extract_text to extract all the text from a PDF file and store it in a raw JSON file with a public ID in the format: [pdf_public_id].extract_text.json. The full URL of the generated JSON file is included in the API response. Unlike the above raw_convert options, this option doesn&apos;t require registering for an add-on.(Synchronous)- Set to azure_video_indexer to generate AI-powered video insights from Microsoft Azure. (Asynchronous)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RawConvert { get; set; }
+        public string? RawConvert { get => _explicitNullValueRawConvert; set { _explicitNullValueRawConvert = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("raw_convert"); else _explicitNullProperties?.Remove("raw_convert"); } }
+        private string? _explicitNullValueRawConvert = default!;
 #nullable restore
 #else
-        public string RawConvert { get; set; }
+        public string RawConvert { get => _explicitNullValueRawConvert; set { _explicitNullValueRawConvert = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("raw_convert"); else _explicitNullProperties?.Remove("raw_convert"); } }
+        private string _explicitNullValueRawConvert = default!;
 #endif
         /// <summary>Named region coordinate groups for cropping with region gravity.Can be a JSON-encoded string or an object. Each region name may containonly letters, numbers, or hyphens, and must have at least two coordinate pairs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions? Regions { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions? Regions { get => _explicitNullValueRegions; set { _explicitNullValueRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regions"); else _explicitNullProperties?.Remove("regions"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions? _explicitNullValueRegions = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions Regions { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions Regions { get => _explicitNullValueRegions; set { _explicitNullValueRegions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("regions"); else _explicitNullProperties?.Remove("regions"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersRegions _explicitNullValueRegions = default!;
 #endif
         /// <summary>Settings to automatically generate breakpoints for responsive images.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints? ResponsiveBreakpoints { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints? ResponsiveBreakpoints { get => _explicitNullValueResponsiveBreakpoints; set { _explicitNullValueResponsiveBreakpoints = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responsive_breakpoints"); else _explicitNullProperties?.Remove("responsive_breakpoints"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints? _explicitNullValueResponsiveBreakpoints = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints ResponsiveBreakpoints { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints ResponsiveBreakpoints { get => _explicitNullValueResponsiveBreakpoints; set { _explicitNullValueResponsiveBreakpoints = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responsive_breakpoints"); else _explicitNullProperties?.Remove("responsive_breakpoints"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersResponsiveBreakpoints _explicitNullValueResponsiveBreakpoints = default!;
 #endif
         /// <summary>Whether to return a deletion token in the upload response. The token can be used to delete the uploaded asset within approximately 10 minutes using an unauthenticated API call.</summary>
-        public bool? ReturnDeleteToken { get; set; }
+        public bool? ReturnDeleteToken { get => _explicitNullValueReturnDeleteToken; set { _explicitNullValueReturnDeleteToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("return_delete_token"); else _explicitNullProperties?.Remove("return_delete_token"); } }
+        private bool? _explicitNullValueReturnDeleteToken = default!;
         /// <summary>Tag names assigned to the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Tags { get; set; }
+        public List<string>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<string>? _explicitNullValueTags = default!;
 #nullable restore
 #else
-        public List<string> Tags { get; set; }
+        public List<string> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private List<string> _explicitNullValueTags = default!;
 #endif
         /// <summary>Parsed incoming transformation steps.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty>? Transformation { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty>? Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty>? _explicitNullValueTransformation = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty> Transformation { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty> Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadSerializableParsedTransformationItemProperty> _explicitNullValueTransformation = default!;
 #endif
         /// <summary>The delivery type that defines if and how the uploaded asset is available for public delivery. By default, all uploaded assets are public (upload).</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType? Type { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UploadTypeParameterType? _explicitNullValueType = default!;
         /// <summary>Whether the display name should be unique.</summary>
-        public bool? UniqueDisplayName { get; set; }
+        public bool? UniqueDisplayName { get => _explicitNullValueUniqueDisplayName; set { _explicitNullValueUniqueDisplayName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unique_display_name"); else _explicitNullProperties?.Remove("unique_display_name"); } }
+        private bool? _explicitNullValueUniqueDisplayName = default!;
         /// <summary>When set to false and used together with use_filename, if an asset with the same file name already exists, no random characters are appended to the file name. Instead, the asset is overwritten. Default: true (random characters are added to the file name if needed).</summary>
-        public bool? UniqueFilename { get; set; }
+        public bool? UniqueFilename { get => _explicitNullValueUniqueFilename; set { _explicitNullValueUniqueFilename = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unique_filename"); else _explicitNullProperties?.Remove("unique_filename"); } }
+        private bool? _explicitNullValueUniqueFilename = default!;
         /// <summary>Name of an upload preset that you defined for your Cloudinary product environment. An upload preset consists of upload parameters centrally managed using the Admin API or from the Upload Presets page of the Console Settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UploadPreset { get; set; }
+        public string? UploadPreset { get => _explicitNullValueUploadPreset; set { _explicitNullValueUploadPreset = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("upload_preset"); else _explicitNullProperties?.Remove("upload_preset"); } }
+        private string? _explicitNullValueUploadPreset = default!;
 #nullable restore
 #else
-        public string UploadPreset { get; set; }
+        public string UploadPreset { get => _explicitNullValueUploadPreset; set { _explicitNullValueUploadPreset = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("upload_preset"); else _explicitNullProperties?.Remove("upload_preset"); } }
+        private string _explicitNullValueUploadPreset = default!;
 #endif
         /// <summary>Whether to add the asset_folder value as a prefix to the public_id value (prepended with a forward slash). This ensures that the public ID path will always match the initial asset folder, and can help to retain the behavior that previously existed in fixed folder mode. However, keep in mind that even when this option is used during upload, an asset with a certain public ID path can later be moved to a completely different asset folder hierarchy without impacting the public ID. This option only ensures path matching for the initial upload. Relevant only when public_id_prefix (or folder) has not been separately specified.</summary>
-        public bool? UseAssetFolderAsPublicIdPrefix { get; set; }
+        public bool? UseAssetFolderAsPublicIdPrefix { get => _explicitNullValueUseAssetFolderAsPublicIdPrefix; set { _explicitNullValueUseAssetFolderAsPublicIdPrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("use_asset_folder_as_public_id_prefix"); else _explicitNullProperties?.Remove("use_asset_folder_as_public_id_prefix"); } }
+        private bool? _explicitNullValueUseAssetFolderAsPublicIdPrefix = default!;
         /// <summary>Whether to use the original file name of the uploaded asset if available for the public ID. The file name is normalized and random characters are appended to ensure uniqueness if the file name already exists. Default: false.</summary>
-        public bool? UseFilename { get; set; }
+        public bool? UseFilename { get => _explicitNullValueUseFilename; set { _explicitNullValueUseFilename = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("use_filename"); else _explicitNullProperties?.Remove("use_filename"); } }
+        private bool? _explicitNullValueUseFilename = default!;
         /// <summary>Whether to automatically assign the original filename of the uploaded asset as the asset&apos;s display name. Relevant only if the display_name parameter isn&apos;t set.</summary>
-        public bool? UseFilenameAsDisplayName { get; set; }
+        public bool? UseFilenameAsDisplayName { get => _explicitNullValueUseFilenameAsDisplayName; set { _explicitNullValueUseFilenameAsDisplayName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("use_filename_as_display_name"); else _explicitNullProperties?.Remove("use_filename_as_display_name"); } }
+        private bool? _explicitNullValueUseFilenameAsDisplayName = default!;
         /// <summary>Whether to index the image for use with visual searches. Relevant for images only.</summary>
-        public bool? VisualSearch { get; set; }
+        public bool? VisualSearch { get => _explicitNullValueVisualSearch; set { _explicitNullValueVisualSearch = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("visual_search"); else _explicitNullProperties?.Remove("visual_search"); } }
+        private bool? _explicitNullValueVisualSearch = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettings"/> and sets the default values.
         /// </summary>
@@ -349,7 +505,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettings();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.UploadPresetParsedSettings(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -484,6 +640,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("use_filename", UseFilename);
             writer.WriteBoolValue("use_filename_as_display_name", UseFilenameAsDisplayName);
             writer.WriteBoolValue("visual_search", VisualSearch);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

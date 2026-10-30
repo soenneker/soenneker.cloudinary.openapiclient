@@ -11,74 +11,112 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateMetadataFieldRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("allow_dynamic_list_values") is { } nullNodeAllowDynamicListValues && nullNodeAllowDynamicListValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowDynamicListValues = null;
+            if (parseNode.GetChildNode("alphabetically_sorted") is { } nullNodeAlphabeticallySorted && nullNodeAlphabeticallySorted.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AlphabeticallySorted = null;
+            if (parseNode.GetChildNode("datasource") is { } nullNodeDatasource && nullNodeDatasource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Datasource = null;
+            if (parseNode.GetChildNode("default_disabled") is { } nullNodeDefaultDisabled && nullNodeDefaultDisabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultDisabled = null;
+            if (parseNode.GetChildNode("default_value") is { } nullNodeDefaultValue && nullNodeDefaultValue.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultValue = null;
+            if (parseNode.GetChildNode("external_id") is { } nullNodeExternalId && nullNodeExternalId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExternalId = null;
+            if (parseNode.GetChildNode("group") is { } nullNodeGroup && nullNodeGroup.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Group = null;
+            if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
+            if (parseNode.GetChildNode("mandatory") is { } nullNodeMandatory && nullNodeMandatory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mandatory = null;
+            if (parseNode.GetChildNode("restrictions") is { } nullNodeRestrictions && nullNodeRestrictions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Restrictions = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("validation") is { } nullNodeValidation && nullNodeValidation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Validation = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the metadata field allows adding new options to the datasource dynamically.</summary>
-        public bool? AllowDynamicListValues { get; set; }
+        public bool? AllowDynamicListValues { get => _explicitNullValueAllowDynamicListValues; set { _explicitNullValueAllowDynamicListValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allow_dynamic_list_values"); else _explicitNullProperties?.Remove("allow_dynamic_list_values"); } }
+        private bool? _explicitNullValueAllowDynamicListValues = default!;
         /// <summary>Whether datasource values are maintained in case-insensitive alphabetical order. When true, values are automatically sorted on insert and update. Default false.</summary>
-        public bool? AlphabeticallySorted { get; set; }
+        public bool? AlphabeticallySorted { get => _explicitNullValueAlphabeticallySorted; set { _explicitNullValueAlphabeticallySorted = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("alphabetically_sorted"); else _explicitNullProperties?.Remove("alphabetically_sorted"); } }
+        private bool? _explicitNullValueAlphabeticallySorted = default!;
         /// <summary>The datasource defined for the metadata field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource? Datasource { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource? Datasource { get => _explicitNullValueDatasource; set { _explicitNullValueDatasource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("datasource"); else _explicitNullProperties?.Remove("datasource"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource? _explicitNullValueDatasource = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource Datasource { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource Datasource { get => _explicitNullValueDatasource; set { _explicitNullValueDatasource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("datasource"); else _explicitNullProperties?.Remove("datasource"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource _explicitNullValueDatasource = default!;
 #endif
         /// <summary>Whether the field is disabled in the UI by default.</summary>
-        public bool? DefaultDisabled { get; set; }
+        public bool? DefaultDisabled { get => _explicitNullValueDefaultDisabled; set { _explicitNullValueDefaultDisabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("default_disabled"); else _explicitNullProperties?.Remove("default_disabled"); } }
+        private bool? _explicitNullValueDefaultDisabled = default!;
         /// <summary>The default value of the metadata field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest.CreateMetadataFieldRequest_default_value? DefaultValue { get; set; }
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? DefaultValue { get => _explicitNullValueDefaultValue; set { _explicitNullValueDefaultValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("default_value"); else _explicitNullProperties?.Remove("default_value"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueDefaultValue = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest.CreateMetadataFieldRequest_default_value DefaultValue { get; set; }
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode DefaultValue { get => _explicitNullValueDefaultValue; set { _explicitNullValueDefaultValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("default_value"); else _explicitNullProperties?.Remove("default_value"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode _explicitNullValueDefaultValue = default!;
 #endif
         /// <summary>The external ID of the metadata field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExternalId { get; set; }
+        public string? ExternalId { get => _explicitNullValueExternalId; set { _explicitNullValueExternalId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("external_id"); else _explicitNullProperties?.Remove("external_id"); } }
+        private string? _explicitNullValueExternalId = default!;
 #nullable restore
 #else
-        public string ExternalId { get; set; }
+        public string ExternalId { get => _explicitNullValueExternalId; set { _explicitNullValueExternalId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("external_id"); else _explicitNullProperties?.Remove("external_id"); } }
+        private string _explicitNullValueExternalId = default!;
 #endif
         /// <summary>The group used to organize this metadata field into a collapsible section in the UI. Defaults to &quot;default&quot;. Purely presentational — it does not affect rules, search, or value validation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Group { get; set; }
+        public string? Group { get => _explicitNullValueGroup; set { _explicitNullValueGroup = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("group"); else _explicitNullProperties?.Remove("group"); } }
+        private string? _explicitNullValueGroup = default!;
 #nullable restore
 #else
-        public string Group { get; set; }
+        public string Group { get => _explicitNullValueGroup; set { _explicitNullValueGroup = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("group"); else _explicitNullProperties?.Remove("group"); } }
+        private string _explicitNullValueGroup = default!;
 #endif
         /// <summary>The label of the metadata field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Label { get; set; }
+        public string? Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private string? _explicitNullValueLabel = default!;
 #nullable restore
 #else
-        public string Label { get; set; }
+        public string Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private string _explicitNullValueLabel = default!;
 #endif
         /// <summary>Whether the metadata field is mandatory.</summary>
-        public bool? Mandatory { get; set; }
+        public bool? Mandatory { get => _explicitNullValueMandatory; set { _explicitNullValueMandatory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mandatory"); else _explicitNullProperties?.Remove("mandatory"); } }
+        private bool? _explicitNullValueMandatory = default!;
         /// <summary>Controls UI visibility and editability of the field. All three keys are always returned; any omitted key on input defaults to false.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions? Restrictions { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions? Restrictions { get => _explicitNullValueRestrictions; set { _explicitNullValueRestrictions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restrictions"); else _explicitNullProperties?.Remove("restrictions"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions? _explicitNullValueRestrictions = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions Restrictions { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions Restrictions { get => _explicitNullValueRestrictions; set { _explicitNullValueRestrictions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restrictions"); else _explicitNullProperties?.Remove("restrictions"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions _explicitNullValueRestrictions = default!;
 #endif
         /// <summary>The type of the metadata field.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldType? Type { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldType? _explicitNullValueType = default!;
         /// <summary>The validation defined for the metadata field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequestValidation? Validation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequestValidation? Validation { get => _explicitNullValueValidation; set { _explicitNullValueValidation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validation"); else _explicitNullProperties?.Remove("validation"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequestValidation? _explicitNullValueValidation = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequestValidation Validation { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequestValidation Validation { get => _explicitNullValueValidation; set { _explicitNullValueValidation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validation"); else _explicitNullProperties?.Remove("validation"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequestValidation _explicitNullValueValidation = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest"/> and sets the default values.
@@ -95,7 +133,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -109,7 +147,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "alphabetically_sorted", n => { AlphabeticallySorted = n.GetBoolValue(); } },
                 { "datasource", n => { Datasource = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource.CreateFromDiscriminatorValue); } },
                 { "default_disabled", n => { DefaultDisabled = n.GetBoolValue(); } },
-                { "default_value", n => { DefaultValue = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest.CreateMetadataFieldRequest_default_value>(global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest.CreateMetadataFieldRequest_default_value.CreateFromDiscriminatorValue); } },
+                { "default_value", n => { DefaultValue = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
                 { "external_id", n => { ExternalId = n.GetStringValue(); } },
                 { "group", n => { Group = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
@@ -130,7 +168,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("alphabetically_sorted", AlphabeticallySorted);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldDatasource>("datasource", Datasource);
             writer.WriteBoolValue("default_disabled", DefaultDisabled);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest.CreateMetadataFieldRequest_default_value>("default_value", DefaultValue);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("default_value", DefaultValue);
             writer.WriteStringValue("external_id", ExternalId);
             writer.WriteStringValue("group", Group);
             writer.WriteStringValue("label", Label);
@@ -138,6 +176,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions>("restrictions", Restrictions);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldType>("type", Type);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequestValidation>("validation", Validation);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
         /// <summary>
@@ -171,13 +210,17 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
             public static global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest.CreateMetadataFieldRequest_default_value CreateFromDiscriminatorValue(IParseNode parseNode)
             {
+            // A null union input must not initialize an object branch.
+            if (global::System.Object.ReferenceEquals(parseNode, null)) throw new global::System.ArgumentNullException(nameof(parseNode));
+            if (parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) return new global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest.CreateMetadataFieldRequest_default_value();
+
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.CreateMetadataFieldRequest.CreateMetadataFieldRequest_default_value();
-                if(parseNode.GetIntValue() is int integerValue)
+                if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedInteger && parseNode.GetIntValue() is int integerValue)
                 {
                     result.Integer = integerValue;
                 }
-                else if(parseNode.GetStringValue() is string stringValue)
+                else if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString && parseNode.GetStringValue() is string stringValue)
                 {
                     result.String = stringValue;
                 }
@@ -204,6 +247,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             /// <param name="writer">Serialization writer to use to serialize this model</param>
             public virtual void Serialize(ISerializationWriter writer)
             {
+            // Empty composed wrappers serialize as JSON null.
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (CreateMetadataFieldRequestDefaultValueMember1 == null && Integer == null && String == null) { writer.WriteNullValue(null); return; }
+
                 if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
                 if(Integer != null)
                 {

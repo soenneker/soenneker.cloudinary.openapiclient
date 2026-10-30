@@ -11,24 +11,37 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class FolderRolesResponse : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("permitted_roles") is { } nullNodePermittedRoles && nullNodePermittedRoles.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PermittedRoles = null;
+            if (parseNode.GetChildNode("shared_with") is { } nullNodeSharedWith && nullNodeSharedWith.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedWith = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The roles the authenticated user can assign on this folder. Users can assign only roles at or below their own permission level for this folder. Returned only when `include_assignable_roles` is true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.PermittedRole>? PermittedRoles { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.PermittedRole>? PermittedRoles { get => _explicitNullValuePermittedRoles; set { _explicitNullValuePermittedRoles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("permitted_roles"); else _explicitNullProperties?.Remove("permitted_roles"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.PermittedRole>? _explicitNullValuePermittedRoles = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.PermittedRole> PermittedRoles { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.PermittedRole> PermittedRoles { get => _explicitNullValuePermittedRoles; set { _explicitNullValuePermittedRoles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("permitted_roles"); else _explicitNullProperties?.Remove("permitted_roles"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.PermittedRole> _explicitNullValuePermittedRoles = default!;
 #endif
         /// <summary>An array of principals (users, groups, or API keys) with their role assignments on this folder, including roles inherited from ancestor folders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRoleAssignment>? SharedWith { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRoleAssignment>? SharedWith { get => _explicitNullValueSharedWith; set { _explicitNullValueSharedWith = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shared_with"); else _explicitNullProperties?.Remove("shared_with"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRoleAssignment>? _explicitNullValueSharedWith = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRoleAssignment> SharedWith { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRoleAssignment> SharedWith { get => _explicitNullValueSharedWith; set { _explicitNullValueSharedWith = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shared_with"); else _explicitNullProperties?.Remove("shared_with"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRoleAssignment> _explicitNullValueSharedWith = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRolesResponse"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRolesResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRolesResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRolesResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.PermittedRole>("permitted_roles", PermittedRoles);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.FolderRoleAssignment>("shared_with", SharedWith);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

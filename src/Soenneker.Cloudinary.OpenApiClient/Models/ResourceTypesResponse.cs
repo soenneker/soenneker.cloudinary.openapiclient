@@ -11,16 +11,26 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ResourceTypesResponse : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("resource_types") is { } nullNodeResourceTypes && nullNodeResourceTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourceTypes = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The list of available resource types.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?>? ResourceTypes { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?>? ResourceTypes { get => _explicitNullValueResourceTypes; set { _explicitNullValueResourceTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource_types"); else _explicitNullProperties?.Remove("resource_types"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?>? _explicitNullValueResourceTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?> ResourceTypes { get; set; }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?> ResourceTypes { get => _explicitNullValueResourceTypes; set { _explicitNullValueResourceTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource_types"); else _explicitNullProperties?.Remove("resource_types"); } }
+        private List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?> _explicitNullValueResourceTypes = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse"/> and sets the default values.
@@ -37,7 +47,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,6 +68,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem>("resource_types", ResourceTypes);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

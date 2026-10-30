@@ -12,48 +12,75 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DeleteResourceByPublicIdsRequest : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("all") is { } nullNodeAll && nullNodeAll.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) All = null;
+            if (parseNode.GetChildNode("invalidate") is { } nullNodeInvalidate && nullNodeInvalidate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Invalidate = null;
+            if (parseNode.GetChildNode("keep_original") is { } nullNodeKeepOriginal && nullNodeKeepOriginal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KeepOriginal = null;
+            if (parseNode.GetChildNode("next_cursor") is { } nullNodeNextCursor && nullNodeNextCursor.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NextCursor = null;
+            if (parseNode.GetChildNode("prefix") is { } nullNodePrefix && nullNodePrefix.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Prefix = null;
+            if (parseNode.GetChildNode("public_ids") is { } nullNodePublicIds && nullNodePublicIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicIds = null;
+            if (parseNode.GetChildNode("resource_type") is { } nullNodeResourceType && nullNodeResourceType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourceType = null;
+            if (parseNode.GetChildNode("transformations") is { } nullNodeTransformations && nullNodeTransformations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transformations = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Delete all assets (of the relevant resource_type and type), including derived assets (up to a maximum of 1000 original resources).</summary>
-        public bool? All { get; set; }
+        public bool? All { get => _explicitNullValueAll; set { _explicitNullValueAll = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("all"); else _explicitNullProperties?.Remove("all"); } }
+        private bool? _explicitNullValueAll = default!;
         /// <summary>Whether to also invalidate the copies of the resource on the CDN. It usually takes between a few seconds and a few minutes for the invalidation to fully propagate through the CDN. Default: false.</summary>
-        public bool? Invalidate { get; set; }
+        public bool? Invalidate { get => _explicitNullValueInvalidate; set { _explicitNullValueInvalidate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidate"); else _explicitNullProperties?.Remove("invalidate"); } }
+        private bool? _explicitNullValueInvalidate = default!;
         /// <summary>Whether to delete only the derived assets. Default: false.</summary>
-        public bool? KeepOriginal { get; set; }
+        public bool? KeepOriginal { get => _explicitNullValueKeepOriginal; set { _explicitNullValueKeepOriginal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keep_original"); else _explicitNullProperties?.Remove("keep_original"); } }
+        private bool? _explicitNullValueKeepOriginal = default!;
         /// <summary>(Only when deleting by prefix or all) When a deletion request has more than 1000 resources to delete, the response includes the partial boolean parameter set to true, as well as a next_cursor value. You can then specify this returned next_cursor value as a parameter of the following deletion request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NextCursor { get; set; }
+        public string? NextCursor { get => _explicitNullValueNextCursor; set { _explicitNullValueNextCursor = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("next_cursor"); else _explicitNullProperties?.Remove("next_cursor"); } }
+        private string? _explicitNullValueNextCursor = default!;
 #nullable restore
 #else
-        public string NextCursor { get; set; }
+        public string NextCursor { get => _explicitNullValueNextCursor; set { _explicitNullValueNextCursor = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("next_cursor"); else _explicitNullProperties?.Remove("next_cursor"); } }
+        private string _explicitNullValueNextCursor = default!;
 #endif
         /// <summary>Delete all assets, including derived assets, where the public ID starts with the specified prefix (up to a maximum of 1000 original resources).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Prefix { get; set; }
+        public string? Prefix { get => _explicitNullValuePrefix; set { _explicitNullValuePrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prefix"); else _explicitNullProperties?.Remove("prefix"); } }
+        private string? _explicitNullValuePrefix = default!;
 #nullable restore
 #else
-        public string Prefix { get; set; }
+        public string Prefix { get => _explicitNullValuePrefix; set { _explicitNullValuePrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prefix"); else _explicitNullProperties?.Remove("prefix"); } }
+        private string _explicitNullValuePrefix = default!;
 #endif
         /// <summary>A list of public IDs of the resources to delete.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PublicIds { get; set; }
+        public List<string>? PublicIds { get => _explicitNullValuePublicIds; set { _explicitNullValuePublicIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_ids"); else _explicitNullProperties?.Remove("public_ids"); } }
+        private List<string>? _explicitNullValuePublicIds = default!;
 #nullable restore
 #else
-        public List<string> PublicIds { get; set; }
+        public List<string> PublicIds { get => _explicitNullValuePublicIds; set { _explicitNullValuePublicIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_ids"); else _explicitNullProperties?.Remove("public_ids"); } }
+        private List<string> _explicitNullValuePublicIds = default!;
 #endif
         /// <summary>The type of resource.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType? ResourceType { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType? ResourceType { get => _explicitNullValueResourceType; set { _explicitNullValueResourceType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource_type"); else _explicitNullProperties?.Remove("resource_type"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType? _explicitNullValueResourceType = default!;
         /// <summary>Only the derived assets matching this hash of transformation parameters will be deleted. You can include multiple transformations separated by a pipe character (|).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Transformations { get; set; }
+        public string? Transformations { get => _explicitNullValueTransformations; set { _explicitNullValueTransformations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformations"); else _explicitNullProperties?.Remove("transformations"); } }
+        private string? _explicitNullValueTransformations = default!;
 #nullable restore
 #else
-        public string Transformations { get; set; }
+        public string Transformations { get => _explicitNullValueTransformations; set { _explicitNullValueTransformations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformations"); else _explicitNullProperties?.Remove("transformations"); } }
+        private string _explicitNullValueTransformations = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest"/> and sets the default values.
@@ -72,7 +99,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -107,6 +134,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("public_ids", PublicIds);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteResourceByPublicIdsRequestResourceType>("resource_type", ResourceType);
             writer.WriteStringValue("transformations", Transformations);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,24 +12,37 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PublicIdsResponse : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("public_ids") is { } nullNodePublicIds && nullNodePublicIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicIds = null;
+            if (parseNode.GetChildNode("unauthorized") is { } nullNodeUnauthorized && nullNodeUnauthorized.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Unauthorized = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The public IDs the operation was actually applied to. Shorter than the requested list when assets were missing, unauthorized, or beyond the 1000-asset limit.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PublicIds { get; set; }
+        public List<string>? PublicIds { get => _explicitNullValuePublicIds; set { _explicitNullValuePublicIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_ids"); else _explicitNullProperties?.Remove("public_ids"); } }
+        private List<string>? _explicitNullValuePublicIds = default!;
 #nullable restore
 #else
-        public List<string> PublicIds { get; set; }
+        public List<string> PublicIds { get => _explicitNullValuePublicIds; set { _explicitNullValuePublicIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_ids"); else _explicitNullProperties?.Remove("public_ids"); } }
+        private List<string> _explicitNullValuePublicIds = default!;
 #endif
         /// <summary>The public IDs the caller lacks update permission for. Present only when at least one requested asset was unauthorized.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Unauthorized { get; set; }
+        public List<string>? Unauthorized { get => _explicitNullValueUnauthorized; set { _explicitNullValueUnauthorized = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized"); else _explicitNullProperties?.Remove("unauthorized"); } }
+        private List<string>? _explicitNullValueUnauthorized = default!;
 #nullable restore
 #else
-        public List<string> Unauthorized { get; set; }
+        public List<string> Unauthorized { get => _explicitNullValueUnauthorized; set { _explicitNullValueUnauthorized = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized"); else _explicitNullProperties?.Remove("unauthorized"); } }
+        private List<string> _explicitNullValueUnauthorized = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.PublicIdsResponse"/> and sets the default values.
@@ -46,7 +59,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.PublicIdsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.PublicIdsResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.PublicIdsResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,6 +82,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("public_ids", PublicIds);
             writer.WriteCollectionOfPrimitiveValues<string>("unauthorized", Unauthorized);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

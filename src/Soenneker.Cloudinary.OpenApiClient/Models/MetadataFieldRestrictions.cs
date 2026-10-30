@@ -12,15 +12,28 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MetadataFieldRestrictions : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("excluded_from_search") is { } nullNodeExcludedFromSearch && nullNodeExcludedFromSearch.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExcludedFromSearch = null;
+            if (parseNode.GetChildNode("hidden_ui") is { } nullNodeHiddenUi && nullNodeHiddenUi.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HiddenUi = null;
+            if (parseNode.GetChildNode("readonly_ui") is { } nullNodeReadonlyUi && nullNodeReadonlyUi.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReadonlyUi = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the field is excluded from UI search by default.</summary>
-        public bool? ExcludedFromSearch { get; set; }
+        public bool? ExcludedFromSearch { get => _explicitNullValueExcludedFromSearch; set { _explicitNullValueExcludedFromSearch = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("excluded_from_search"); else _explicitNullProperties?.Remove("excluded_from_search"); } }
+        private bool? _explicitNullValueExcludedFromSearch = default!;
         /// <summary>Whether the field is hidden in the UI by default.</summary>
-        public bool? HiddenUi { get; set; }
+        public bool? HiddenUi { get => _explicitNullValueHiddenUi; set { _explicitNullValueHiddenUi = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hidden_ui"); else _explicitNullProperties?.Remove("hidden_ui"); } }
+        private bool? _explicitNullValueHiddenUi = default!;
         /// <summary>Whether the field is read-only in the UI. When true, the field can only be updated via the API.</summary>
-        public bool? ReadonlyUi { get; set; }
+        public bool? ReadonlyUi { get => _explicitNullValueReadonlyUi; set { _explicitNullValueReadonlyUi = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("readonly_ui"); else _explicitNullProperties?.Remove("readonly_ui"); } }
+        private bool? _explicitNullValueReadonlyUi = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions"/> and sets the default values.
         /// </summary>
@@ -36,7 +49,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions();
+            // Preserve a nullable root response.
+            if (parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) return null!;
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataFieldRestrictions(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,6 +76,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("excluded_from_search", ExcludedFromSearch);
             writer.WriteBoolValue("hidden_ui", HiddenUi);
             writer.WriteBoolValue("readonly_ui", ReadonlyUi);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

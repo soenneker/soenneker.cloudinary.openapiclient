@@ -12,82 +12,123 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class UsageResponse : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("bandwidth") is { } nullNodeBandwidth && nullNodeBandwidth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Bandwidth = null;
+            if (parseNode.GetChildNode("date_requested") is { } nullNodeDateRequested && nullNodeDateRequested.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DateRequested = null;
+            if (parseNode.GetChildNode("derived_resources") is { } nullNodeDerivedResources && nullNodeDerivedResources.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DerivedResources = null;
+            if (parseNode.GetChildNode("impressions") is { } nullNodeImpressions && nullNodeImpressions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Impressions = null;
+            if (parseNode.GetChildNode("last_updated") is { } nullNodeLastUpdated && nullNodeLastUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastUpdated = null;
+            if (parseNode.GetChildNode("media_limits") is { } nullNodeMediaLimits && nullNodeMediaLimits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MediaLimits = null;
+            if (parseNode.GetChildNode("objects") is { } nullNodeObjects && nullNodeObjects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Objects = null;
+            if (parseNode.GetChildNode("plan") is { } nullNodePlan && nullNodePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Plan = null;
+            if (parseNode.GetChildNode("requests") is { } nullNodeRequests && nullNodeRequests.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Requests = null;
+            if (parseNode.GetChildNode("resources") is { } nullNodeResources && nullNodeResources.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resources = null;
+            if (parseNode.GetChildNode("seconds_delivered") is { } nullNodeSecondsDelivered && nullNodeSecondsDelivered.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SecondsDelivered = null;
+            if (parseNode.GetChildNode("storage") is { } nullNodeStorage && nullNodeStorage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Storage = null;
+            if (parseNode.GetChildNode("transformations") is { } nullNodeTransformations && nullNodeTransformations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transformations = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The bandwidth property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseBandwidth? Bandwidth { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseBandwidth? Bandwidth { get => _explicitNullValueBandwidth; set { _explicitNullValueBandwidth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bandwidth"); else _explicitNullProperties?.Remove("bandwidth"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseBandwidth? _explicitNullValueBandwidth = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseBandwidth Bandwidth { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseBandwidth Bandwidth { get => _explicitNullValueBandwidth; set { _explicitNullValueBandwidth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bandwidth"); else _explicitNullProperties?.Remove("bandwidth"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseBandwidth _explicitNullValueBandwidth = default!;
 #endif
         /// <summary>The date for which usage was requested</summary>
-        public DateTimeOffset? DateRequested { get; set; }
+        public DateTimeOffset? DateRequested { get => _explicitNullValueDateRequested; set { _explicitNullValueDateRequested = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("date_requested"); else _explicitNullProperties?.Remove("date_requested"); } }
+        private DateTimeOffset? _explicitNullValueDateRequested = default!;
         /// <summary>Number of derived resources</summary>
-        public int? DerivedResources { get; set; }
+        public int? DerivedResources { get => _explicitNullValueDerivedResources; set { _explicitNullValueDerivedResources = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("derived_resources"); else _explicitNullProperties?.Remove("derived_resources"); } }
+        private int? _explicitNullValueDerivedResources = default!;
         /// <summary>The impressions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseImpressions? Impressions { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseImpressions? Impressions { get => _explicitNullValueImpressions; set { _explicitNullValueImpressions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("impressions"); else _explicitNullProperties?.Remove("impressions"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseImpressions? _explicitNullValueImpressions = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseImpressions Impressions { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseImpressions Impressions { get => _explicitNullValueImpressions; set { _explicitNullValueImpressions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("impressions"); else _explicitNullProperties?.Remove("impressions"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseImpressions _explicitNullValueImpressions = default!;
 #endif
         /// <summary>When the usage data was last updated</summary>
-        public Date? LastUpdated { get; set; }
+        public Date? LastUpdated { get => _explicitNullValueLastUpdated; set { _explicitNullValueLastUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("last_updated"); else _explicitNullProperties?.Remove("last_updated"); } }
+        private Date? _explicitNullValueLastUpdated = default!;
         /// <summary>Upload size and pixel limits</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits? MediaLimits { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits? MediaLimits { get => _explicitNullValueMediaLimits; set { _explicitNullValueMediaLimits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("media_limits"); else _explicitNullProperties?.Remove("media_limits"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits? _explicitNullValueMediaLimits = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits MediaLimits { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits MediaLimits { get => _explicitNullValueMediaLimits; set { _explicitNullValueMediaLimits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("media_limits"); else _explicitNullProperties?.Remove("media_limits"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseMediaLimits _explicitNullValueMediaLimits = default!;
 #endif
         /// <summary>The objects property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseObjects? Objects { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseObjects? Objects { get => _explicitNullValueObjects; set { _explicitNullValueObjects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("objects"); else _explicitNullProperties?.Remove("objects"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseObjects? _explicitNullValueObjects = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseObjects Objects { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseObjects Objects { get => _explicitNullValueObjects; set { _explicitNullValueObjects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("objects"); else _explicitNullProperties?.Remove("objects"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseObjects _explicitNullValueObjects = default!;
 #endif
         /// <summary>The current plan name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Plan { get; set; }
+        public string? Plan { get => _explicitNullValuePlan; set { _explicitNullValuePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("plan"); else _explicitNullProperties?.Remove("plan"); } }
+        private string? _explicitNullValuePlan = default!;
 #nullable restore
 #else
-        public string Plan { get; set; }
+        public string Plan { get => _explicitNullValuePlan; set { _explicitNullValuePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("plan"); else _explicitNullProperties?.Remove("plan"); } }
+        private string _explicitNullValuePlan = default!;
 #endif
         /// <summary>Number of requests made</summary>
-        public int? Requests { get; set; }
+        public int? Requests { get => _explicitNullValueRequests; set { _explicitNullValueRequests = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requests"); else _explicitNullProperties?.Remove("requests"); } }
+        private int? _explicitNullValueRequests = default!;
         /// <summary>Number of resources stored</summary>
-        public int? Resources { get; set; }
+        public int? Resources { get => _explicitNullValueResources; set { _explicitNullValueResources = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources"); else _explicitNullProperties?.Remove("resources"); } }
+        private int? _explicitNullValueResources = default!;
         /// <summary>The seconds_delivered property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseSecondsDelivered? SecondsDelivered { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseSecondsDelivered? SecondsDelivered { get => _explicitNullValueSecondsDelivered; set { _explicitNullValueSecondsDelivered = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("seconds_delivered"); else _explicitNullProperties?.Remove("seconds_delivered"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseSecondsDelivered? _explicitNullValueSecondsDelivered = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseSecondsDelivered SecondsDelivered { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseSecondsDelivered SecondsDelivered { get => _explicitNullValueSecondsDelivered; set { _explicitNullValueSecondsDelivered = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("seconds_delivered"); else _explicitNullProperties?.Remove("seconds_delivered"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseSecondsDelivered _explicitNullValueSecondsDelivered = default!;
 #endif
         /// <summary>The storage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseStorage? Storage { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseStorage? Storage { get => _explicitNullValueStorage; set { _explicitNullValueStorage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("storage"); else _explicitNullProperties?.Remove("storage"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseStorage? _explicitNullValueStorage = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseStorage Storage { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseStorage Storage { get => _explicitNullValueStorage; set { _explicitNullValueStorage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("storage"); else _explicitNullProperties?.Remove("storage"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseStorage _explicitNullValueStorage = default!;
 #endif
         /// <summary>The transformations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseTransformations? Transformations { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseTransformations? Transformations { get => _explicitNullValueTransformations; set { _explicitNullValueTransformations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformations"); else _explicitNullProperties?.Remove("transformations"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseTransformations? _explicitNullValueTransformations = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseTransformations Transformations { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseTransformations Transformations { get => _explicitNullValueTransformations; set { _explicitNullValueTransformations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformations"); else _explicitNullProperties?.Remove("transformations"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseTransformations _explicitNullValueTransformations = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponse"/> and sets the default values.
@@ -104,7 +145,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -149,6 +190,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseSecondsDelivered>("seconds_delivered", SecondsDelivered);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseStorage>("storage", Storage);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UsageResponseTransformations>("transformations", Transformations);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

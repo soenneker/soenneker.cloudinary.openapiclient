@@ -12,11 +12,22 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ModelByFamily : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("family") is { } nullNodeFamily && nullNodeFamily.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Family = null;
+            if (parseNode.GetChildNode("tier") is { } nullNodeTier && nullNodeTier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tier = null;
+        }
+
         /// <summary>Model family:* `flux`: Photorealistic images (FLUX.2 Klein 9B / FLUX.2 Pro).* `recraft`: Vector and illustration (Recraft V3 / Recraft V4).* `gpt-image`: Campaign and marketing images (GPT Image 1 Mini / GPT  Image 2).* `nano-banana`: General purpose generation (Nano Banana 1 / Nano  Banana 2).* `ideogram`: Realism, text rendering, and artistic generation  (Ideogram V4).</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyFamily? Family { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyFamily? Family { get => _explicitNullValueFamily; set { _explicitNullValueFamily = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("family"); else _explicitNullProperties?.Remove("family"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyFamily? _explicitNullValueFamily = default!;
         /// <summary>Quality tier within the family. Defaults to `standard` when omitted.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyTier? Tier { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyTier? Tier { get => _explicitNullValueTier; set { _explicitNullValueTier = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tier"); else _explicitNullProperties?.Remove("tier"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyTier? _explicitNullValueTier = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -25,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,7 +58,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyFamily>("family", Family);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyTier>("tier", Tier);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamilyTier>("tier", Tier);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

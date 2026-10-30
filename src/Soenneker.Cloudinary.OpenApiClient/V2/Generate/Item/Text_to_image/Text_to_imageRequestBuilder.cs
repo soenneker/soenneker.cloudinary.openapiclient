@@ -36,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image
         /// <summary>
         /// Create any image from a text description with AI: photos, illustrations,logos, icons, product shots, banners, ads, social posts, concept art,mockups, and images with readable text. One call gives you the bestimage models — Nano Banana, GPT Image, FLUX, Ideogram, Recraft and more.Leave out `model` and a strong default is used.**Storage is optional.** Get the image at a temporary link withoutsaving anything to your account, or keep it in your Media Library, readyto deliver, transform and optimize.**What you get back.** Each image comes with its URL, size, format andthe model that made it, either in the response or, for longer jobs, froma background task you can check or be notified about. Each generationuses Image Generation credits.To edit, restyle or combine existing images, use image-to-image(`generate-image-from-images`) instead.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageSuccessResponse"/></returns>
         /// <param name="body">Parameters for an image-generation request. Only `prompt` is required;all other fields fall back to documented defaults.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -48,11 +48,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ErrorResponse">When receiving a 502 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageSuccessResponse?> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageSuccessResponse> PostAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -65,8 +65,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2.Generate.Item.Text_to_image
                 { "429", global::Soenneker.Cloudinary.OpenApiClient.Models.RateLimitedResponseResponse.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Cloudinary.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "502", global::Soenneker.Cloudinary.OpenApiClient.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageResult.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageSuccessResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateImageSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create any image from a text description with AI: photos, illustrations,logos, icons, product shots, banners, ads, social posts, concept art,mockups, and images with readable text. One call gives you the bestimage models — Nano Banana, GPT Image, FLUX, Ideogram, Recraft and more.Leave out `model` and a strong default is used.**Storage is optional.** Get the image at a temporary link withoutsaving anything to your account, or keep it in your Media Library, readyto deliver, transform and optimize.**What you get back.** Each image comes with its URL, size, format andthe model that made it, either in the response or, for longer jobs, froma background task you can check or be notified about. Each generationuses Image Generation credits.To edit, restyle or combine existing images, use image-to-image(`generate-image-from-images`) instead.

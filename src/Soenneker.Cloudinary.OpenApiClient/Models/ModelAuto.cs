@@ -12,11 +12,22 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ModelAuto : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
+            if (parseNode.GetChildNode("preference") is { } nullNodePreference && nullNodePreference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Preference = null;
+        }
+
         /// <summary>The only valid value; selects automatic model selection.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AutoMode? Mode { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AutoMode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.AutoMode? _explicitNullValueMode = default!;
         /// <summary>What the choice optimizes for:* `balanced` (default): quality and cost weighted equally.* `quality`: quality only; cost isn&apos;t weighed.* `economy`: cost first, quality second.* `balanced_fast`, `quality_fast`, `economy_fast`: as above, but  also favor faster generation, and never pick a model that  typically takes longer than 30 seconds.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAutoPreference? Preference { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAutoPreference? Preference { get => _explicitNullValuePreference; set { _explicitNullValuePreference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preference"); else _explicitNullProperties?.Remove("preference"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAutoPreference? _explicitNullValuePreference = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -25,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,7 +58,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AutoMode>("mode", Mode);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAutoPreference>("preference", Preference);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAutoPreference>("preference", Preference);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

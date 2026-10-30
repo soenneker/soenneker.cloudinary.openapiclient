@@ -12,11 +12,22 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DeclarativeImageSize : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("aspect_ratio") is { } nullNodeAspectRatio && nullNodeAspectRatio.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AspectRatio = null;
+            if (parseNode.GetChildNode("resolution") is { } nullNodeResolution && nullNodeResolution.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resolution = null;
+        }
+
         /// <summary>Output aspect ratio, width-to-height. Limited to the core ratiosevery model supports natively.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeAspectRatio? AspectRatio { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeAspectRatio? AspectRatio { get => _explicitNullValueAspectRatio; set { _explicitNullValueAspectRatio = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("aspect_ratio"); else _explicitNullProperties?.Remove("aspect_ratio"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeAspectRatio? _explicitNullValueAspectRatio = default!;
         /// <summary>Output resolution tier, measured on the longest edge. Defaults to`1K` when omitted.* `0.5K`: ~512 px* `1K`: ~1024 px* `2K`: ~2048 px* `4K`: ~4096 px</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeResolution? Resolution { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeResolution? Resolution { get => _explicitNullValueResolution; set { _explicitNullValueResolution = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resolution"); else _explicitNullProperties?.Remove("resolution"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeResolution? _explicitNullValueResolution = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -25,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSize CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSize();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSize(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,7 +58,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeAspectRatio>("aspect_ratio", AspectRatio);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeResolution>("resolution", Resolution);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeclarativeImageSizeResolution>("resolution", Resolution);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

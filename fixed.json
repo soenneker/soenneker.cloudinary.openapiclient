@@ -542,16 +542,28 @@
             "content": {
               "image/*": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadAsset200MediaResponseSchema2"
                 }
               },
               "video/*": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadAsset200MediaResponseSchema3"
                 }
               },
               "application/octet-stream": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadAsset200OctetStreamResponseSchema"
                 }
               }
@@ -1311,12 +1323,17 @@
             "content": {
               "application/octet-stream": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/GenerateArchive200OctetStreamResponseSchema"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerateArchiveResponse"
+                  "type": "string",
+                  "format": "binary"
                 },
                 "example": {
                   "asset_id": "3cd9f196fe3ee1882c0f66223bc568f9",
@@ -1337,6 +1354,9 @@
                   "display_name": "koetjd3qrme0cfcfnjet.zip",
                   "resource_count": 6,
                   "file_count": 6
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/GenerateArchiveResponse"
                 }
               }
             }
@@ -1434,21 +1454,37 @@
             "content": {
               "application/octet-stream": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadBackupAsset200OctetStreamResponseSchema"
                 }
               },
               "image/*": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadBackupAsset200MediaResponseSchema2"
                 }
               },
               "video/*": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadBackupAsset200MediaResponseSchema3"
                 }
               },
               "text/plain": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadBackupAsset200PlainResponseSchema"
                 }
               }
@@ -1726,16 +1762,28 @@
             "content": {
               "image/*": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadAssetByAssetId200MediaResponseSchema2"
                 }
               },
               "video/*": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadAssetByAssetId200MediaResponseSchema3"
                 }
               },
               "application/octet-stream": {
                 "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DownloadAssetByAssetId200OctetStreamResponseSchema"
                 }
               }
@@ -6699,6 +6747,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/DeleteBackupVersionsSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DeleteBackupVersionsResponse"
                 }
               }
@@ -6709,6 +6760,9 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/DeleteBackupVersionsSuccessResponse"
+                },
+                "x-client-original-success-schema": {
                   "$ref": "#/components/schemas/DeleteBackupVersionsPartialResponse"
                 }
               }
@@ -10193,7 +10247,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerateImageResult"
+                  "$ref": "#/components/schemas/GenerateImageSuccessResponse"
                 },
                 "examples": {
                   "Success": {
@@ -10202,13 +10256,38 @@
                   "SuccessManagedAsset": {
                     "$ref": "#/components/examples/GenerateImageManagedAssetSuccessExample"
                   }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/GenerateImageResult"
                 }
               }
             }
           },
           "202": {
             "description": "Generation accepted.",
-            "$ref": "#/components/responses/GenerationAcceptedResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSuccessResponse"
+                },
+                "examples": {
+                  "Accepted": {
+                    "summary": "Background generation accepted",
+                    "description": "The generation runs in the background; check the task for its result.",
+                    "value": {
+                      "data": {
+                        "task_id": "053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb",
+                        "status": "pending"
+                      },
+                      "request_id": "17c3b70c5096df0e77e838323abb7029"
+                    }
+                  }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request.",
@@ -10305,19 +10384,44 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerateImageResult"
+                  "$ref": "#/components/schemas/GenerateImageFromImagesSuccessResponse"
                 },
                 "examples": {
                   "Success": {
                     "$ref": "#/components/examples/ImageToImageSuccessExample"
                   }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/GenerateImageResult"
                 }
               }
             }
           },
           "202": {
             "description": "Generation accepted.",
-            "$ref": "#/components/responses/GenerationAcceptedResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageFromImagesSuccessResponse"
+                },
+                "examples": {
+                  "Accepted": {
+                    "summary": "Background generation accepted",
+                    "description": "The generation runs in the background; check the task for its result.",
+                    "value": {
+                      "data": {
+                        "task_id": "053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb",
+                        "status": "pending"
+                      },
+                      "request_id": "17c3b70c5096df0e77e838323abb7029"
+                    }
+                  }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request.",
@@ -19371,9 +19475,6 @@
             "url": "https://res.cloudinary.com/demo/image/upload/docs/shoes.jpg"
           }
         ],
-        "required": [
-          "source_type"
-        ],
         "oneOf": [
           {
             "$ref": "#/components/schemas/ManagedAssetReference"
@@ -19382,13 +19483,8 @@
             "$ref": "#/components/schemas/UrlReference"
           }
         ],
-        "properties": {
-          "source_type": {
-            "type": "string"
-          }
-        },
         "description": "A single reference image, in **one** of two mutually exclusive forms\ndetermined by \u0060source_type\u0060:\n  * \u0060ManagedAssetReference\u0060: a managed asset in the caller\u0027s product\n    environment, by \u0060asset_id\u0060 (read permission is checked).\n  * \u0060UrlReference\u0060: an external image by HTTPS \u0060url\u0060.\n",
-        "discriminator": {
+        "x-client-original-discriminator": {
           "propertyName": "source_type",
           "mapping": {
             "managed_asset": "#/components/schemas/ManagedAssetReference",
@@ -19619,9 +19715,6 @@
             "target_type": "temporary"
           }
         ],
-        "required": [
-          "target_type"
-        ],
         "oneOf": [
           {
             "$ref": "#/components/schemas/ManagedAssetTarget"
@@ -19630,13 +19723,8 @@
             "$ref": "#/components/schemas/TemporaryTarget"
           }
         ],
-        "properties": {
-          "target_type": {
-            "type": "string"
-          }
-        },
         "description": "Where the generated image goes, determined by \u0060target_type\u0060. Use\n\u0060temporary\u0060 when the user only wants the image: a short-lived URL,\nnothing saved to their account. Omit it, or use \u0060managed_asset\u0060, to\nstore the image permanently in their Media Library. If the caller lacks\nupload permission, the image is returned as \u0060temporary\u0060 instead, with a\n\u0060warning\u0060 notice.\n",
-        "discriminator": {
+        "x-client-original-discriminator": {
           "propertyName": "target_type",
           "mapping": {
             "managed_asset": "#/components/schemas/ManagedAssetTarget",
@@ -19703,9 +19791,6 @@
             "expires_at": "2026-06-25T12:50:26Z"
           }
         ],
-        "required": [
-          "storage_type"
-        ],
         "oneOf": [
           {
             "$ref": "#/components/schemas/ManagedAssetStorage"
@@ -19714,13 +19799,8 @@
             "$ref": "#/components/schemas/TemporaryStorage"
           }
         ],
-        "properties": {
-          "storage_type": {
-            "type": "string"
-          }
-        },
         "description": "Where the generated asset is actually stored, determined by\n\u0060storage_type\u0060. Usually matches the request \u0060target\u0060; a \u0060managed_asset\u0060\nrequest falls back to \u0060temporary\u0060 when the caller lacks upload\npermission. \u0060secure_url\u0060 is always present.\n",
-        "discriminator": {
+        "x-client-original-discriminator": {
           "propertyName": "storage_type",
           "mapping": {
             "managed_asset": "#/components/schemas/ManagedAssetStorage",
@@ -25313,6 +25393,36 @@
             ]
           ]
         }
+      },
+      "DeleteBackupVersionsSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/DeleteBackupVersionsResponse"
+          },
+          {
+            "$ref": "#/components/schemas/DeleteBackupVersionsPartialResponse"
+          }
+        ]
+      },
+      "GenerateImageSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/GenerateImageResult"
+          },
+          {
+            "$ref": "#/components/schemas/TaskResponse"
+          }
+        ]
+      },
+      "GenerateImageFromImagesSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/GenerateImageResult"
+          },
+          {
+            "$ref": "#/components/schemas/TaskResponse"
+          }
+        ]
       }
     },
     "responses": {

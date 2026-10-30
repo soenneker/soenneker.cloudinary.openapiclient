@@ -11,40 +11,59 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class InfoDerivativesItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("secure_url") is { } nullNodeSecureUrl && nullNodeSecureUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SecureUrl = null;
+            if (parseNode.GetChildNode("transformation") is { } nullNodeTransformation && nullNodeTransformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transformation = null;
+            if (parseNode.GetChildNode("transformation_signature") is { } nullNodeTransformationSignature && nullNodeTransformationSignature.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TransformationSignature = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique identifier of the derived resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string _explicitNullValueId = default!;
 #endif
         /// <summary>The secure URL for accessing the derived resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SecureUrl { get; set; }
+        public string? SecureUrl { get => _explicitNullValueSecureUrl; set { _explicitNullValueSecureUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("secure_url"); else _explicitNullProperties?.Remove("secure_url"); } }
+        private string? _explicitNullValueSecureUrl = default!;
 #nullable restore
 #else
-        public string SecureUrl { get; set; }
+        public string SecureUrl { get => _explicitNullValueSecureUrl; set { _explicitNullValueSecureUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("secure_url"); else _explicitNullProperties?.Remove("secure_url"); } }
+        private string _explicitNullValueSecureUrl = default!;
 #endif
         /// <summary>The transformation string that was applied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Transformation { get; set; }
+        public string? Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
+        private string? _explicitNullValueTransformation = default!;
 #nullable restore
 #else
-        public string Transformation { get; set; }
+        public string Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
+        private string _explicitNullValueTransformation = default!;
 #endif
         /// <summary>The unique signature of the transformation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TransformationSignature { get; set; }
+        public string? TransformationSignature { get => _explicitNullValueTransformationSignature; set { _explicitNullValueTransformationSignature = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation_signature"); else _explicitNullProperties?.Remove("transformation_signature"); } }
+        private string? _explicitNullValueTransformationSignature = default!;
 #nullable restore
 #else
-        public string TransformationSignature { get; set; }
+        public string TransformationSignature { get => _explicitNullValueTransformationSignature; set { _explicitNullValueTransformationSignature = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation_signature"); else _explicitNullProperties?.Remove("transformation_signature"); } }
+        private string _explicitNullValueTransformationSignature = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivativesItem"/> and sets the default values.
@@ -61,7 +80,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivativesItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivativesItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivativesItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,6 +107,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("secure_url", SecureUrl);
             writer.WriteStringValue("transformation", Transformation);
             writer.WriteStringValue("transformation_signature", TransformationSignature);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,7 +12,12 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ModelSelection : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,17 +54,26 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelSelection();
             if("ModelAuto".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ModelAuto = new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto();
+                
             }
             else if("ModelByFamily".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ModelByFamily = new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily();
+                
             }
             else if("ModelById".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.ModelById = new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelById();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("family") != null && (parseNode.GetChildNode("family")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("flux".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "recraft".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "nano-banana".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "ideogram".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal))) && (parseNode.GetChildNode("tier") == null || (parseNode.GetChildNode("tier")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString optionalTag2 && ("standard".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal) || "premium".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal))))))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("id") != null && (parseNode.GetChildNode("id")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("nano-banana-1".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "nano-banana-2".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "nano-banana-2-lite".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "flux-2-klein-9b".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "flux-2-pro".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "flux-2-flash".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "flux-3".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "recraft-v3".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "recraft-v4".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image-1-mini".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image-2".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image-2.5-flare".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image-2.5-sunburst".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "muse-image".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "mai-image-2.5".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "mai-image-2.5-pro".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "seedream-5-pro".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "grok-imagine-image".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "recraft-v4.1-utility".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "recraft-v4.1-utility-pro".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "seedream-5-lite".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "grok-imagine-image-2.0-low".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "qwen-image-3".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "ideogram-v4-base".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "ideogram-v4-turbo".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "nano-banana-1-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "nano-banana-2-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "nano-banana-2-lite-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "flux-2-klein-9b-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "flux-2-pro-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "flux-2-flash-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "flux-3-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "recraft-v3-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image-1-mini-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image-2-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image-2.5-flare-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "gpt-image-2.5-sunburst-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "muse-image-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "mai-image-2.5-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "mai-image-2.5-pro-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "seedream-5-pro-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "grok-imagine-image-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "seedream-5-lite-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "grok-imagine-image-2.0-low-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal) || "qwen-image-3-edit".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch2 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("mode") != null && (parseNode.GetChildNode("mode")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("auto".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal))) && (parseNode.GetChildNode("preference") == null || (parseNode.GetChildNode("preference")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString optionalTag2 && ("balanced".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal) || "quality".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal) || "economy".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal) || "balanced_fast".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal) || "quality_fast".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal) || "economy_fast".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal))))))();
+            if (result.ModelAuto == null && result.ModelByFamily == null && result.ModelById == null && matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2) result.ModelByFamily = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily(), parseNode);
+            if (result.ModelAuto == null && result.ModelByFamily == null && result.ModelById == null && matchesUnionBranch1 && !matchesUnionBranch0 && !matchesUnionBranch2) result.ModelById = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelById(), parseNode);
+            if (result.ModelAuto == null && result.ModelByFamily == null && result.ModelById == null && matchesUnionBranch2 && !matchesUnionBranch0 && !matchesUnionBranch1) result.ModelAuto = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto(), parseNode);
+            if (result.ModelAuto == null && result.ModelByFamily == null && result.ModelById == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -87,17 +101,26 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (ModelAuto == null && ModelByFamily == null && ModelById == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (ModelAuto != null && ModelByFamily == null && ModelById == null) { if (ModelAuto is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ModelAuto); return; }
+            if (ModelByFamily != null && ModelAuto == null && ModelById == null) { if (ModelByFamily is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ModelByFamily); return; }
+            if (ModelById != null && ModelAuto == null && ModelByFamily == null) { if (ModelById is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, ModelById); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(ModelAuto != null)
             {
+                if (ModelAuto is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelAuto>(null, ModelAuto);
             }
             else if(ModelByFamily != null)
             {
+                if (ModelByFamily is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelByFamily>(null, ModelByFamily);
             }
             else if(ModelById != null)
             {
+                if (ModelById is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.ModelById>(null, ModelById);
             }
         }

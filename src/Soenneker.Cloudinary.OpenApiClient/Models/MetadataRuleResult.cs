@@ -12,34 +12,55 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MetadataRuleResult : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("activate_values") is { } nullNodeActivateValues && nullNodeActivateValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivateValues = null;
+            if (parseNode.GetChildNode("apply_value") is { } nullNodeApplyValue && nullNodeApplyValue.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApplyValue = null;
+            if (parseNode.GetChildNode("disable") is { } nullNodeDisable && nullNodeDisable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Disable = null;
+            if (parseNode.GetChildNode("enable") is { } nullNodeEnable && nullNodeEnable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Enable = null;
+            if (parseNode.GetChildNode("hide") is { } nullNodeHide && nullNodeHide.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hide = null;
+            if (parseNode.GetChildNode("set_mandatory") is { } nullNodeSetMandatory && nullNodeSetMandatory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SetMandatory = null;
+        }
+
         /// <summary>Restricts which datasource option ids are active. Either the string &quot;all&quot; (activate every option) or an object listing the external ids to activate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues? ActivateValues { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues? ActivateValues { get => _explicitNullValueActivateValues; set { _explicitNullValueActivateValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activate_values"); else _explicitNullProperties?.Remove("activate_values"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues? _explicitNullValueActivateValues = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues ActivateValues { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues ActivateValues { get => _explicitNullValueActivateValues; set { _explicitNullValueActivateValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activate_values"); else _explicitNullProperties?.Remove("activate_values"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues _explicitNullValueActivateValues = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Applies a specific value to the metadata field when the rule condition is met.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue? ApplyValue { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue? ApplyValue { get => _explicitNullValueApplyValue; set { _explicitNullValueApplyValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apply_value"); else _explicitNullProperties?.Remove("apply_value"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue? _explicitNullValueApplyValue = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue ApplyValue { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue ApplyValue { get => _explicitNullValueApplyValue; set { _explicitNullValueApplyValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apply_value"); else _explicitNullProperties?.Remove("apply_value"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue _explicitNullValueApplyValue = default!;
 #endif
         /// <summary>When true, disables the field in the UI (sets default_disabled). Preferred over the legacy enable action.</summary>
-        public bool? Disable { get; set; }
+        public bool? Disable { get => _explicitNullValueDisable; set { _explicitNullValueDisable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("disable"); else _explicitNullProperties?.Remove("disable"); } }
+        private bool? _explicitNullValueDisable = default!;
         /// <summary>When true, enables the field in the UI (clears default_disabled). Deprecated — prefer using disable with value false instead.</summary>
         [Obsolete("")]
-        public bool? Enable { get; set; }
+        public bool? Enable { get => _explicitNullValueEnable; set { _explicitNullValueEnable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enable"); else _explicitNullProperties?.Remove("enable"); } }
+        private bool? _explicitNullValueEnable = default!;
         /// <summary>When true, hides the field in the UI (sets hidden_ui).</summary>
-        public bool? Hide { get; set; }
+        public bool? Hide { get => _explicitNullValueHide; set { _explicitNullValueHide = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hide"); else _explicitNullProperties?.Remove("hide"); } }
+        private bool? _explicitNullValueHide = default!;
         /// <summary>When true, makes the field mandatory; when false, makes it optional.</summary>
-        public bool? SetMandatory { get; set; }
+        public bool? SetMandatory { get => _explicitNullValueSetMandatory; set { _explicitNullValueSetMandatory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("set_mandatory"); else _explicitNullProperties?.Remove("set_mandatory"); } }
+        private bool? _explicitNullValueSetMandatory = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResult"/> and sets the default values.
         /// </summary>
@@ -55,7 +76,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResult();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResult(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,6 +107,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteBoolValue("enable", Enable);
             writer.WriteBoolValue("hide", Hide);
             writer.WriteBoolValue("set_mandatory", SetMandatory);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

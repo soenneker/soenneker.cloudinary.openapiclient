@@ -150,6 +150,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ListResourceTypes401Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

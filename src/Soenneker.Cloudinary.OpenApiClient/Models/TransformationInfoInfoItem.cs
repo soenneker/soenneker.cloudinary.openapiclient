@@ -11,40 +11,59 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class TransformationInfoInfoItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("crop") is { } nullNodeCrop && nullNodeCrop.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Crop = null;
+            if (parseNode.GetChildNode("gravity") is { } nullNodeGravity && nullNodeGravity.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Gravity = null;
+            if (parseNode.GetChildNode("height") is { } nullNodeHeight && nullNodeHeight.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Height = null;
+            if (parseNode.GetChildNode("width") is { } nullNodeWidth && nullNodeWidth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Width = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The crop property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Crop { get; set; }
+        public string? Crop { get => _explicitNullValueCrop; set { _explicitNullValueCrop = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("crop"); else _explicitNullProperties?.Remove("crop"); } }
+        private string? _explicitNullValueCrop = default!;
 #nullable restore
 #else
-        public string Crop { get; set; }
+        public string Crop { get => _explicitNullValueCrop; set { _explicitNullValueCrop = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("crop"); else _explicitNullProperties?.Remove("crop"); } }
+        private string _explicitNullValueCrop = default!;
 #endif
         /// <summary>The gravity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Gravity { get; set; }
+        public string? Gravity { get => _explicitNullValueGravity; set { _explicitNullValueGravity = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gravity"); else _explicitNullProperties?.Remove("gravity"); } }
+        private string? _explicitNullValueGravity = default!;
 #nullable restore
 #else
-        public string Gravity { get; set; }
+        public string Gravity { get => _explicitNullValueGravity; set { _explicitNullValueGravity = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gravity"); else _explicitNullProperties?.Remove("gravity"); } }
+        private string _explicitNullValueGravity = default!;
 #endif
         /// <summary>Height - integer pixels or string variable reference (e.g., &quot;$h&quot;)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemHeight? Height { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemHeight? Height { get => _explicitNullValueHeight; set { _explicitNullValueHeight = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("height"); else _explicitNullProperties?.Remove("height"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemHeight? _explicitNullValueHeight = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemHeight Height { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemHeight Height { get => _explicitNullValueHeight; set { _explicitNullValueHeight = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("height"); else _explicitNullProperties?.Remove("height"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemHeight _explicitNullValueHeight = default!;
 #endif
         /// <summary>Width - integer pixels or string variable reference (e.g., &quot;$w&quot;)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemWidth? Width { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemWidth? Width { get => _explicitNullValueWidth; set { _explicitNullValueWidth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("width"); else _explicitNullProperties?.Remove("width"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemWidth? _explicitNullValueWidth = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemWidth Width { get; set; }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemWidth Width { get => _explicitNullValueWidth; set { _explicitNullValueWidth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("width"); else _explicitNullProperties?.Remove("width"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemWidth _explicitNullValueWidth = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem"/> and sets the default values.
@@ -61,7 +80,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,6 +107,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("gravity", Gravity);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemHeight>("height", Height);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoInfoItemWidth>("width", Width);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

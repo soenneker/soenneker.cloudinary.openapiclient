@@ -12,28 +12,45 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class InvalidateByUrlsResponse : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("cdn_invalidated") is { } nullNodeCdnInvalidated && nullNodeCdnInvalidated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CdnInvalidated = null;
+            if (parseNode.GetChildNode("took") is { } nullNodeTook && nullNodeTook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Took = null;
+            if (parseNode.GetChildNode("unauthorized_urls") is { } nullNodeUnauthorizedUrls && nullNodeUnauthorizedUrls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UnauthorizedUrls = null;
+            if (parseNode.GetChildNode("urls") is { } nullNodeUrls && nullNodeUrls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Urls = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the assets were invalidated directly on the CDN.</summary>
-        public bool? CdnInvalidated { get; set; }
+        public bool? CdnInvalidated { get => _explicitNullValueCdnInvalidated; set { _explicitNullValueCdnInvalidated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cdn_invalidated"); else _explicitNullProperties?.Remove("cdn_invalidated"); } }
+        private bool? _explicitNullValueCdnInvalidated = default!;
         /// <summary>The time the invalidation took, in seconds.</summary>
-        public double? Took { get; set; }
+        public double? Took { get => _explicitNullValueTook; set { _explicitNullValueTook = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("took"); else _explicitNullProperties?.Remove("took"); } }
+        private double? _explicitNullValueTook = default!;
         /// <summary>The delivery URLs that were skipped because the caller lacked update permission.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? UnauthorizedUrls { get; set; }
+        public List<string>? UnauthorizedUrls { get => _explicitNullValueUnauthorizedUrls; set { _explicitNullValueUnauthorizedUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized_urls"); else _explicitNullProperties?.Remove("unauthorized_urls"); } }
+        private List<string>? _explicitNullValueUnauthorizedUrls = default!;
 #nullable restore
 #else
-        public List<string> UnauthorizedUrls { get; set; }
+        public List<string> UnauthorizedUrls { get => _explicitNullValueUnauthorizedUrls; set { _explicitNullValueUnauthorizedUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized_urls"); else _explicitNullProperties?.Remove("unauthorized_urls"); } }
+        private List<string> _explicitNullValueUnauthorizedUrls = default!;
 #endif
         /// <summary>The delivery URLs that were invalidated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Urls { get; set; }
+        public List<string>? Urls { get => _explicitNullValueUrls; set { _explicitNullValueUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("urls"); else _explicitNullProperties?.Remove("urls"); } }
+        private List<string>? _explicitNullValueUrls = default!;
 #nullable restore
 #else
-        public List<string> Urls { get; set; }
+        public List<string> Urls { get => _explicitNullValueUrls; set { _explicitNullValueUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("urls"); else _explicitNullProperties?.Remove("urls"); } }
+        private List<string> _explicitNullValueUrls = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.InvalidateByUrlsResponse"/> and sets the default values.
@@ -50,7 +67,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public static global::Soenneker.Cloudinary.OpenApiClient.Models.InvalidateByUrlsResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Cloudinary.OpenApiClient.Models.InvalidateByUrlsResponse();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.InvalidateByUrlsResponse(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,6 +94,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteDoubleValue("took", Took);
             writer.WriteCollectionOfPrimitiveValues<string>("unauthorized_urls", UnauthorizedUrls);
             writer.WriteCollectionOfPrimitiveValues<string>("urls", Urls);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

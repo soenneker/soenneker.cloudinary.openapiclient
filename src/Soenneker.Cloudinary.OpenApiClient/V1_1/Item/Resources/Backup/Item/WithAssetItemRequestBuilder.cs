@@ -36,7 +36,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item
         /// <summary>
         /// Deletes specific backed up versions of an asset identified by asset ID.This operation is irreversible and deleted versions cannot be recovered.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -45,11 +45,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsResponse?> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse?> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsResponse> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -59,8 +59,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item
                 { "400", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes specific backed up versions of an asset identified by asset ID.This operation is irreversible and deleted versions cannot be recovered.
