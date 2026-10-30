@@ -18,39 +18,43 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("clear_invalid") is { } nullNodeClearInvalid && nullNodeClearInvalid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ClearInvalid = null;
-            if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
-            if (parseNode.GetChildNode("public_ids") is { } nullNodePublicIds && nullNodePublicIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicIds = null;
-            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("clear_invalid") is null) { _explicitNullValueClearInvalid = default!; _explicitNullProperties?.Remove("clear_invalid"); }
+            else if (parseNode.GetChildNode("clear_invalid") is { } nullNodeClearInvalid && nullNodeClearInvalid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ClearInvalid = null;
+            if (parseNode.GetChildNode("metadata") is null) { _explicitNullValueMetadata = default!; _explicitNullProperties?.Remove("metadata"); }
+            else if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
+            if (parseNode.GetChildNode("public_ids") is null) { _explicitNullValuePublicIds = default!; _explicitNullProperties?.Remove("public_ids"); }
+            else if (parseNode.GetChildNode("public_ids") is { } nullNodePublicIds && nullNodePublicIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicIds = null;
+            if (parseNode.GetChildNode("type") is null) { _explicitNullValueType = default!; _explicitNullProperties?.Remove("type"); }
+            else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to clear a value already stored on the asset that is no longer valid — for example because its datasource entry was deleted — instead of failing the update for that asset. Applies only to fields governed by an active conditional metadata rule; an invalid value sent in this request is always rejected. Default is false.</summary>
-        public bool? ClearInvalid { get => _explicitNullValueClearInvalid; set { _explicitNullValueClearInvalid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clear_invalid"); else _explicitNullProperties?.Remove("clear_invalid"); } }
+        public bool? ClearInvalid { get => _explicitNullValueClearInvalid; set { _explicitNullValueClearInvalid = value; AdditionalData?.Remove("clear_invalid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clear_invalid"); else _explicitNullProperties?.Remove("clear_invalid"); } }
         private bool? _explicitNullValueClearInvalid = default!;
         /// <summary>A pipe-separated list or a map of custom metadata fields (by external_id) and the values to assign to each of them. The = &quot; and | characters can be supported as values when escaped with a prepended backslash (\). For a multi-select field, you can set a maximum of 3000 different metadata values on an asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; AdditionalData?.Remove("metadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam? _explicitNullValueMetadata = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; AdditionalData?.Remove("metadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam _explicitNullValueMetadata = default!;
 #endif
         /// <summary>The public IDs of the assets to apply the operation to. At most 1000 are processed per request; any beyond the first 1000 are ignored rather than rejected. Public IDs that do not exist, or that the caller lacks update permission for, are skipped rather than failing the request, so the returned `public_ids` may be shorter than the requested list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PublicIds { get => _explicitNullValuePublicIds; set { _explicitNullValuePublicIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_ids"); else _explicitNullProperties?.Remove("public_ids"); } }
+        public List<string>? PublicIds { get => _explicitNullValuePublicIds; set { _explicitNullValuePublicIds = value; AdditionalData?.Remove("public_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_ids"); else _explicitNullProperties?.Remove("public_ids"); } }
         private List<string>? _explicitNullValuePublicIds = default!;
 #nullable restore
 #else
-        public List<string> PublicIds { get => _explicitNullValuePublicIds; set { _explicitNullValuePublicIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_ids"); else _explicitNullProperties?.Remove("public_ids"); } }
+        public List<string> PublicIds { get => _explicitNullValuePublicIds; set { _explicitNullValuePublicIds = value; AdditionalData?.Remove("public_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public_ids"); else _explicitNullProperties?.Remove("public_ids"); } }
         private List<string> _explicitNullValuePublicIds = default!;
 #endif
         /// <summary>The delivery type of the assets to operate on. Defaults to `upload`.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType? _explicitNullValueType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataUpdateRequest"/> and sets the default values.
@@ -80,7 +84,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "clear_invalid", n => { ClearInvalid = n.GetBoolValue(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam>(global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam.CreateFromDiscriminatorValue); } },
                 { "public_ids", n => { PublicIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType>(); } },
+                { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.AssetMetadataCommonParametersType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
             };
         }
         /// <summary>

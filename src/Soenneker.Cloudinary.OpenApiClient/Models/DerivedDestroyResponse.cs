@@ -18,9 +18,12 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("deleted") is { } nullNodeDeleted && nullNodeDeleted.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Deleted = null;
-            if (parseNode.GetChildNode("invalidation") is { } nullNodeInvalidation && nullNodeInvalidation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Invalidation = null;
-            if (parseNode.GetChildNode("unauthorized") is { } nullNodeUnauthorized && nullNodeUnauthorized.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Unauthorized = null;
+            if (parseNode.GetChildNode("deleted") is null) { _explicitNullValueDeleted = default!; _explicitNullProperties?.Remove("deleted"); }
+            else if (parseNode.GetChildNode("deleted") is { } nullNodeDeleted && nullNodeDeleted.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Deleted = null;
+            if (parseNode.GetChildNode("invalidation") is null) { _explicitNullValueInvalidation = default!; _explicitNullProperties?.Remove("invalidation"); }
+            else if (parseNode.GetChildNode("invalidation") is { } nullNodeInvalidation && nullNodeInvalidation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Invalidation = null;
+            if (parseNode.GetChildNode("unauthorized") is null) { _explicitNullValueUnauthorized = default!; _explicitNullProperties?.Remove("unauthorized"); }
+            else if (parseNode.GetChildNode("unauthorized") is { } nullNodeUnauthorized && nullNodeUnauthorized.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Unauthorized = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,31 +31,31 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Map of derived resource IDs to deletion status</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty? Deleted { get => _explicitNullValueDeleted; set { _explicitNullValueDeleted = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deleted"); else _explicitNullProperties?.Remove("deleted"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty? Deleted { get => _explicitNullValueDeleted; set { _explicitNullValueDeleted = value; AdditionalData?.Remove("deleted"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deleted"); else _explicitNullProperties?.Remove("deleted"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty? _explicitNullValueDeleted = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty Deleted { get => _explicitNullValueDeleted; set { _explicitNullValueDeleted = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deleted"); else _explicitNullProperties?.Remove("deleted"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty Deleted { get => _explicitNullValueDeleted; set { _explicitNullValueDeleted = value; AdditionalData?.Remove("deleted"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deleted"); else _explicitNullProperties?.Remove("deleted"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseDeletedProperty _explicitNullValueDeleted = default!;
 #endif
         /// <summary>The invalidation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation? Invalidation { get => _explicitNullValueInvalidation; set { _explicitNullValueInvalidation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidation"); else _explicitNullProperties?.Remove("invalidation"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation? Invalidation { get => _explicitNullValueInvalidation; set { _explicitNullValueInvalidation = value; AdditionalData?.Remove("invalidation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidation"); else _explicitNullProperties?.Remove("invalidation"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation? _explicitNullValueInvalidation = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation Invalidation { get => _explicitNullValueInvalidation; set { _explicitNullValueInvalidation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidation"); else _explicitNullProperties?.Remove("invalidation"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation Invalidation { get => _explicitNullValueInvalidation; set { _explicitNullValueInvalidation = value; AdditionalData?.Remove("invalidation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidation"); else _explicitNullProperties?.Remove("invalidation"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyResponseInvalidation _explicitNullValueInvalidation = default!;
 #endif
         /// <summary>Array of derived resource IDs that were not authorized to be deleted</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Unauthorized { get => _explicitNullValueUnauthorized; set { _explicitNullValueUnauthorized = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized"); else _explicitNullProperties?.Remove("unauthorized"); } }
+        public List<string>? Unauthorized { get => _explicitNullValueUnauthorized; set { _explicitNullValueUnauthorized = value; AdditionalData?.Remove("unauthorized"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized"); else _explicitNullProperties?.Remove("unauthorized"); } }
         private List<string>? _explicitNullValueUnauthorized = default!;
 #nullable restore
 #else
-        public List<string> Unauthorized { get => _explicitNullValueUnauthorized; set { _explicitNullValueUnauthorized = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized"); else _explicitNullProperties?.Remove("unauthorized"); } }
+        public List<string> Unauthorized { get => _explicitNullValueUnauthorized; set { _explicitNullValueUnauthorized = value; AdditionalData?.Remove("unauthorized"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized"); else _explicitNullProperties?.Remove("unauthorized"); } }
         private List<string> _explicitNullValueUnauthorized = default!;
 #endif
         /// <summary>

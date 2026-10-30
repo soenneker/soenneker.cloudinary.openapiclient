@@ -48,9 +48,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             }
             
             var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
-            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("external_ids") != null && (parseNode.GetChildNode("mode") == null || (parseNode.GetChildNode("mode")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString optionalTag1 && ("override".Equals(optionalTag1.GetValue(), global::System.StringComparison.Ordinal) || "append".Equals(optionalTag1.GetValue(), global::System.StringComparison.Ordinal))))))();
-            if (result.MetadataRuleActivateValuesOneOf1 == null && result.MetadataRuleActivateValuesOneOf2 == null && matchesUnionBranch0) result.MetadataRuleActivateValuesOneOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2(), parseNode);
-            if (result.MetadataRuleActivateValuesOneOf1 == null && result.MetadataRuleActivateValuesOneOf2 == null && unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject) result.MetadataRuleActivateValuesOneOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2(), parseNode);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => ((unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject)) && (unionPayload is not global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject shapeObject0 || (shapeObject0.GetValue() is var shapeMembers1 && (shapeMembers1.ContainsKey("external_ids") && (!shapeMembers1.ContainsKey("external_ids") || ((((shapeMembers1["external_ids"] == null || shapeMembers1["external_ids"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull)) || (shapeMembers1["external_ids"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray)))) && (!shapeMembers1.ContainsKey("mode") || (((shapeMembers1["mode"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString)) && ((shapeMembers1["mode"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString literal4 && "override".Equals(literal4.GetValue(), global::System.StringComparison.Ordinal)) || (shapeMembers1["mode"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString literal5 && "append".Equals(literal5.GetValue(), global::System.StringComparison.Ordinal))))))))))();
+            int matchingUnionBranches = 0;
+            if (matchesUnionBranch0) matchingUnionBranches++;
+            bool noSelectedUnionBranch = result.MetadataRuleActivateValuesOneOf1 == null && result.MetadataRuleActivateValuesOneOf2 == null;
+            if (noSelectedUnionBranch && matchesUnionBranch0 && matchingUnionBranches == 1) result.MetadataRuleActivateValuesOneOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2(), parseNode);
             if (result.MetadataRuleActivateValuesOneOf1 == null && result.MetadataRuleActivateValuesOneOf2 == null) result.UnrecognizedValue = unionPayload;
 return result;
         }
@@ -60,6 +62,8 @@ return result;
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
+            if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawFields) { var fields = new global::System.Collections.Generic.Dictionary<string, global::System.Action<IParseNode>>(); foreach (var entry in rawFields.GetValue()) fields[entry.Key] = _ => { }; return fields; }
+
             if(MetadataRuleActivateValuesOneOf2 != null)
             {
                 return MetadataRuleActivateValuesOneOf2.GetFieldDeserializers();
@@ -74,7 +78,10 @@ return result;
         {
             if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
             if (MetadataRuleActivateValuesOneOf1 == null && MetadataRuleActivateValuesOneOf2 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
-            if (MetadataRuleActivateValuesOneOf2 != null && MetadataRuleActivateValuesOneOf1 == null) { if (MetadataRuleActivateValuesOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, MetadataRuleActivateValuesOneOf2); return; }
+            int selectedUnionBranches = 0;
+            if (MetadataRuleActivateValuesOneOf1 != null) selectedUnionBranches++;
+            if (MetadataRuleActivateValuesOneOf2 != null) selectedUnionBranches++;
+            if (MetadataRuleActivateValuesOneOf2 != null && selectedUnionBranches == 1) { if (MetadataRuleActivateValuesOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, MetadataRuleActivateValuesOneOf2); return; }
 
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(MetadataRuleActivateValuesOneOf1 != null)

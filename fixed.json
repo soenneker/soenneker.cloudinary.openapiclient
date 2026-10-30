@@ -165,7 +165,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UploadNoResourceType200Response"
+                  "$ref": "#/components/schemas/Upload200Response"
                 }
               }
             }
@@ -10247,7 +10247,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerateImageSuccessResponse"
+                  "$ref": "#/components/schemas/GenerateImageFromImagesSuccessResponse"
                 },
                 "examples": {
                   "Success": {
@@ -10268,7 +10268,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerateImageSuccessResponse"
+                  "$ref": "#/components/schemas/GenerateImageFromImagesSuccessResponse"
                 },
                 "examples": {
                   "Accepted": {

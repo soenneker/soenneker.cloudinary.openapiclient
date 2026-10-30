@@ -17,39 +17,45 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("bytes_step") is { } nullNodeBytesStep && nullNodeBytesStep.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BytesStep = null;
-            if (parseNode.GetChildNode("create_derived") is { } nullNodeCreateDerived && nullNodeCreateDerived.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateDerived = null;
-            if (parseNode.GetChildNode("max_images") is { } nullNodeMaxImages && nullNodeMaxImages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxImages = null;
-            if (parseNode.GetChildNode("max_width") is { } nullNodeMaxWidth && nullNodeMaxWidth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxWidth = null;
-            if (parseNode.GetChildNode("min_width") is { } nullNodeMinWidth && nullNodeMinWidth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinWidth = null;
-            if (parseNode.GetChildNode("transformation") is { } nullNodeTransformation && nullNodeTransformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transformation = null;
+            if (parseNode.GetChildNode("bytes_step") is null) { _explicitNullValueBytesStep = default!; _explicitNullProperties?.Remove("bytes_step"); }
+            else if (parseNode.GetChildNode("bytes_step") is { } nullNodeBytesStep && nullNodeBytesStep.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BytesStep = null;
+            if (parseNode.GetChildNode("create_derived") is null) { _explicitNullValueCreateDerived = default!; _explicitNullProperties?.Remove("create_derived"); }
+            else if (parseNode.GetChildNode("create_derived") is { } nullNodeCreateDerived && nullNodeCreateDerived.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateDerived = null;
+            if (parseNode.GetChildNode("max_images") is null) { _explicitNullValueMaxImages = default!; _explicitNullProperties?.Remove("max_images"); }
+            else if (parseNode.GetChildNode("max_images") is { } nullNodeMaxImages && nullNodeMaxImages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxImages = null;
+            if (parseNode.GetChildNode("max_width") is null) { _explicitNullValueMaxWidth = default!; _explicitNullProperties?.Remove("max_width"); }
+            else if (parseNode.GetChildNode("max_width") is { } nullNodeMaxWidth && nullNodeMaxWidth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxWidth = null;
+            if (parseNode.GetChildNode("min_width") is null) { _explicitNullValueMinWidth = default!; _explicitNullProperties?.Remove("min_width"); }
+            else if (parseNode.GetChildNode("min_width") is { } nullNodeMinWidth && nullNodeMinWidth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinWidth = null;
+            if (parseNode.GetChildNode("transformation") is null) { _explicitNullValueTransformation = default!; _explicitNullProperties?.Remove("transformation"); }
+            else if (parseNode.GetChildNode("transformation") is { } nullNodeTransformation && nullNodeTransformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transformation = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The minimum byte size difference between consecutive breakpoint images.</summary>
-        public int? BytesStep { get => _explicitNullValueBytesStep; set { _explicitNullValueBytesStep = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bytes_step"); else _explicitNullProperties?.Remove("bytes_step"); } }
+        public int? BytesStep { get => _explicitNullValueBytesStep; set { _explicitNullValueBytesStep = value; AdditionalData?.Remove("bytes_step"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bytes_step"); else _explicitNullProperties?.Remove("bytes_step"); } }
         private int? _explicitNullValueBytesStep = default!;
         /// <summary>Whether to generate and store the derived images. Default is true.</summary>
-        public bool? CreateDerived { get => _explicitNullValueCreateDerived; set { _explicitNullValueCreateDerived = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("create_derived"); else _explicitNullProperties?.Remove("create_derived"); } }
+        public bool? CreateDerived { get => _explicitNullValueCreateDerived; set { _explicitNullValueCreateDerived = value; AdditionalData?.Remove("create_derived"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("create_derived"); else _explicitNullProperties?.Remove("create_derived"); } }
         private bool? _explicitNullValueCreateDerived = default!;
         /// <summary>The maximum number of breakpoint images to generate.</summary>
-        public int? MaxImages { get => _explicitNullValueMaxImages; set { _explicitNullValueMaxImages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("max_images"); else _explicitNullProperties?.Remove("max_images"); } }
+        public int? MaxImages { get => _explicitNullValueMaxImages; set { _explicitNullValueMaxImages = value; AdditionalData?.Remove("max_images"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("max_images"); else _explicitNullProperties?.Remove("max_images"); } }
         private int? _explicitNullValueMaxImages = default!;
         /// <summary>The maximum width for responsive breakpoint images.</summary>
-        public int? MaxWidth { get => _explicitNullValueMaxWidth; set { _explicitNullValueMaxWidth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("max_width"); else _explicitNullProperties?.Remove("max_width"); } }
+        public int? MaxWidth { get => _explicitNullValueMaxWidth; set { _explicitNullValueMaxWidth = value; AdditionalData?.Remove("max_width"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("max_width"); else _explicitNullProperties?.Remove("max_width"); } }
         private int? _explicitNullValueMaxWidth = default!;
         /// <summary>The minimum width for responsive breakpoint images.</summary>
-        public int? MinWidth { get => _explicitNullValueMinWidth; set { _explicitNullValueMinWidth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("min_width"); else _explicitNullProperties?.Remove("min_width"); } }
+        public int? MinWidth { get => _explicitNullValueMinWidth; set { _explicitNullValueMinWidth = value; AdditionalData?.Remove("min_width"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("min_width"); else _explicitNullProperties?.Remove("min_width"); } }
         private int? _explicitNullValueMinWidth = default!;
         /// <summary>A transformation string to apply before generating breakpoints.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
+        public string? Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; AdditionalData?.Remove("transformation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
         private string? _explicitNullValueTransformation = default!;
 #nullable restore
 #else
-        public string Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
+        public string Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; AdditionalData?.Remove("transformation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
         private string _explicitNullValueTransformation = default!;
 #endif
         /// <summary>

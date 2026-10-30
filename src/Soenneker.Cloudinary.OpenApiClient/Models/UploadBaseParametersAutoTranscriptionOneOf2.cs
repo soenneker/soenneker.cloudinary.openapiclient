@@ -18,7 +18,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("translate") is { } nullNodeTranslate && nullNodeTranslate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Translate = null;
+            if (parseNode.GetChildNode("translate") is null) { _explicitNullValueTranslate = default!; _explicitNullProperties?.Remove("translate"); }
+            else if (parseNode.GetChildNode("translate") is { } nullNodeTranslate && nullNodeTranslate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Translate = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Array of target language codes for transcription translation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Translate { get => _explicitNullValueTranslate; set { _explicitNullValueTranslate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("translate"); else _explicitNullProperties?.Remove("translate"); } }
+        public List<string>? Translate { get => _explicitNullValueTranslate; set { _explicitNullValueTranslate = value; AdditionalData?.Remove("translate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("translate"); else _explicitNullProperties?.Remove("translate"); } }
         private List<string>? _explicitNullValueTranslate = default!;
 #nullable restore
 #else
-        public List<string> Translate { get => _explicitNullValueTranslate; set { _explicitNullValueTranslate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("translate"); else _explicitNullProperties?.Remove("translate"); } }
+        public List<string> Translate { get => _explicitNullValueTranslate; set { _explicitNullValueTranslate = value; AdditionalData?.Remove("translate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("translate"); else _explicitNullProperties?.Remove("translate"); } }
         private List<string> _explicitNullValueTranslate = default!;
 #endif
         /// <summary>

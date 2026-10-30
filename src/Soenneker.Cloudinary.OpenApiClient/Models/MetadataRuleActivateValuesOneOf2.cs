@@ -17,8 +17,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("external_ids") is { } nullNodeExternalIds && nullNodeExternalIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExternalIds = null;
-            if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
+            if (parseNode.GetChildNode("external_ids") is null) { _explicitNullValueExternalIds = default!; _explicitNullProperties?.Remove("external_ids"); }
+            else if (parseNode.GetChildNode("external_ids") is { } nullNodeExternalIds && nullNodeExternalIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExternalIds = null;
+            if (parseNode.GetChildNode("mode") is null) { _explicitNullValueMode = default!; _explicitNullProperties?.Remove("mode"); }
+            else if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The datasource external ids to activate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ExternalIds { get => _explicitNullValueExternalIds; set { _explicitNullValueExternalIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("external_ids"); else _explicitNullProperties?.Remove("external_ids"); } }
+        public List<string>? ExternalIds { get => _explicitNullValueExternalIds; set { _explicitNullValueExternalIds = value; AdditionalData?.Remove("external_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("external_ids"); else _explicitNullProperties?.Remove("external_ids"); } }
         private List<string>? _explicitNullValueExternalIds = default!;
 #nullable restore
 #else
-        public List<string> ExternalIds { get => _explicitNullValueExternalIds; set { _explicitNullValueExternalIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("external_ids"); else _explicitNullProperties?.Remove("external_ids"); } }
+        public List<string> ExternalIds { get => _explicitNullValueExternalIds; set { _explicitNullValueExternalIds = value; AdditionalData?.Remove("external_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("external_ids"); else _explicitNullProperties?.Remove("external_ids"); } }
         private List<string> _explicitNullValueExternalIds = default!;
 #endif
         /// <summary>Whether to override the current active set or append to it. Defaults to append.</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2Mode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2Mode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; AdditionalData?.Remove("mode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2Mode? _explicitNullValueMode = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2"/> and sets the default values.
@@ -62,7 +64,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "external_ids", n => { ExternalIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2Mode>(); } },
+                { "mode", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValuesOneOf2Mode>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMode = default; _explicitNullProperties?.Remove("mode"); AdditionalData["mode"] = unknown; } else { Mode = parsed; AdditionalData.Remove("mode"); } } },
             };
         }
         /// <summary>

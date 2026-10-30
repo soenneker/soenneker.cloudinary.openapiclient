@@ -18,8 +18,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("ranges") is { } nullNodeRanges && nullNodeRanges.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ranges = null;
-            if (parseNode.GetChildNode("values") is { } nullNodeValues && nullNodeValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Values = null;
+            if (parseNode.GetChildNode("ranges") is null) { _explicitNullValueRanges = default!; _explicitNullProperties?.Remove("ranges"); }
+            else if (parseNode.GetChildNode("ranges") is { } nullNodeRanges && nullNodeRanges.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ranges = null;
+            if (parseNode.GetChildNode("values") is null) { _explicitNullValueValues = default!; _explicitNullProperties?.Remove("values"); }
+            else if (parseNode.GetChildNode("values") is { } nullNodeValues && nullNodeValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Values = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,21 +29,21 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Array of range-based aggregation results when using range aggregation (e.g., bytes, width, height, etc.)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem>? Ranges { get => _explicitNullValueRanges; set { _explicitNullValueRanges = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ranges"); else _explicitNullProperties?.Remove("ranges"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem>? Ranges { get => _explicitNullValueRanges; set { _explicitNullValueRanges = value; AdditionalData?.Remove("ranges"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ranges"); else _explicitNullProperties?.Remove("ranges"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem>? _explicitNullValueRanges = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem> Ranges { get => _explicitNullValueRanges; set { _explicitNullValueRanges = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ranges"); else _explicitNullProperties?.Remove("ranges"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem> Ranges { get => _explicitNullValueRanges; set { _explicitNullValueRanges = value; AdditionalData?.Remove("ranges"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ranges"); else _explicitNullProperties?.Remove("ranges"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsRangesItem> _explicitNullValueRanges = default!;
 #endif
         /// <summary>Array of aggregation values when using simple aggregation (e.g., by format, resource_type, etc.)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem>? Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem>? Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; AdditionalData?.Remove("values"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem>? _explicitNullValueValues = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem> Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem> Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; AdditionalData?.Remove("values"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregationsValuesItem> _explicitNullValueValues = default!;
 #endif
         /// <summary>

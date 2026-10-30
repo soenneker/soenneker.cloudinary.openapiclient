@@ -17,7 +17,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("transformation") is { } nullNodeTransformation && nullNodeTransformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transformation = null;
+            if (parseNode.GetChildNode("transformation") is null) { _explicitNullValueTransformation = default!; _explicitNullProperties?.Remove("transformation"); }
+            else if (parseNode.GetChildNode("transformation") is { } nullNodeTransformation && nullNodeTransformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transformation = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The transformation parameters for this representation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItemTransformationItemProperty>? Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItemTransformationItemProperty>? Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; AdditionalData?.Remove("transformation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItemTransformationItemProperty>? _explicitNullValueTransformation = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItemTransformationItemProperty> Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItemTransformationItemProperty> Transformation { get => _explicitNullValueTransformation; set { _explicitNullValueTransformation = value; AdditionalData?.Remove("transformation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transformation"); else _explicitNullProperties?.Remove("transformation"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.StreamingProfileRepresentationsItemTransformationItemProperty> _explicitNullValueTransformation = default!;
 #endif
         /// <summary>

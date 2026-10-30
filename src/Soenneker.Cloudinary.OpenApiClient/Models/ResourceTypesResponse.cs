@@ -17,7 +17,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("resource_types") is { } nullNodeResourceTypes && nullNodeResourceTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourceTypes = null;
+            if (parseNode.GetChildNode("resource_types") is null) { _explicitNullValueResourceTypes = default!; _explicitNullProperties?.Remove("resource_types"); }
+            else if (parseNode.GetChildNode("resource_types") is { } nullNodeResourceTypes && nullNodeResourceTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourceTypes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The list of available resource types.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?>? ResourceTypes { get => _explicitNullValueResourceTypes; set { _explicitNullValueResourceTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource_types"); else _explicitNullProperties?.Remove("resource_types"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?>? ResourceTypes { get => _explicitNullValueResourceTypes; set { _explicitNullValueResourceTypes = value; AdditionalData?.Remove("resource_types"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource_types"); else _explicitNullProperties?.Remove("resource_types"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?>? _explicitNullValueResourceTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?> ResourceTypes { get => _explicitNullValueResourceTypes; set { _explicitNullValueResourceTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource_types"); else _explicitNullProperties?.Remove("resource_types"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?> ResourceTypes { get => _explicitNullValueResourceTypes; set { _explicitNullValueResourceTypes = value; AdditionalData?.Remove("resource_types"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resource_types"); else _explicitNullProperties?.Remove("resource_types"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.ResourceTypesResponseResourceTypesItem?> _explicitNullValueResourceTypes = default!;
 #endif
         /// <summary>

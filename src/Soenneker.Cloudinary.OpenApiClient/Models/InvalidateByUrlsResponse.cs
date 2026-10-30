@@ -18,38 +18,42 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("cdn_invalidated") is { } nullNodeCdnInvalidated && nullNodeCdnInvalidated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CdnInvalidated = null;
-            if (parseNode.GetChildNode("took") is { } nullNodeTook && nullNodeTook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Took = null;
-            if (parseNode.GetChildNode("unauthorized_urls") is { } nullNodeUnauthorizedUrls && nullNodeUnauthorizedUrls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UnauthorizedUrls = null;
-            if (parseNode.GetChildNode("urls") is { } nullNodeUrls && nullNodeUrls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Urls = null;
+            if (parseNode.GetChildNode("cdn_invalidated") is null) { _explicitNullValueCdnInvalidated = default!; _explicitNullProperties?.Remove("cdn_invalidated"); }
+            else if (parseNode.GetChildNode("cdn_invalidated") is { } nullNodeCdnInvalidated && nullNodeCdnInvalidated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CdnInvalidated = null;
+            if (parseNode.GetChildNode("took") is null) { _explicitNullValueTook = default!; _explicitNullProperties?.Remove("took"); }
+            else if (parseNode.GetChildNode("took") is { } nullNodeTook && nullNodeTook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Took = null;
+            if (parseNode.GetChildNode("unauthorized_urls") is null) { _explicitNullValueUnauthorizedUrls = default!; _explicitNullProperties?.Remove("unauthorized_urls"); }
+            else if (parseNode.GetChildNode("unauthorized_urls") is { } nullNodeUnauthorizedUrls && nullNodeUnauthorizedUrls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UnauthorizedUrls = null;
+            if (parseNode.GetChildNode("urls") is null) { _explicitNullValueUrls = default!; _explicitNullProperties?.Remove("urls"); }
+            else if (parseNode.GetChildNode("urls") is { } nullNodeUrls && nullNodeUrls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Urls = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the assets were invalidated directly on the CDN.</summary>
-        public bool? CdnInvalidated { get => _explicitNullValueCdnInvalidated; set { _explicitNullValueCdnInvalidated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cdn_invalidated"); else _explicitNullProperties?.Remove("cdn_invalidated"); } }
+        public bool? CdnInvalidated { get => _explicitNullValueCdnInvalidated; set { _explicitNullValueCdnInvalidated = value; AdditionalData?.Remove("cdn_invalidated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("cdn_invalidated"); else _explicitNullProperties?.Remove("cdn_invalidated"); } }
         private bool? _explicitNullValueCdnInvalidated = default!;
         /// <summary>The time the invalidation took, in seconds.</summary>
-        public double? Took { get => _explicitNullValueTook; set { _explicitNullValueTook = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("took"); else _explicitNullProperties?.Remove("took"); } }
+        public double? Took { get => _explicitNullValueTook; set { _explicitNullValueTook = value; AdditionalData?.Remove("took"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("took"); else _explicitNullProperties?.Remove("took"); } }
         private double? _explicitNullValueTook = default!;
         /// <summary>The delivery URLs that were skipped because the caller lacked update permission.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? UnauthorizedUrls { get => _explicitNullValueUnauthorizedUrls; set { _explicitNullValueUnauthorizedUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized_urls"); else _explicitNullProperties?.Remove("unauthorized_urls"); } }
+        public List<string>? UnauthorizedUrls { get => _explicitNullValueUnauthorizedUrls; set { _explicitNullValueUnauthorizedUrls = value; AdditionalData?.Remove("unauthorized_urls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized_urls"); else _explicitNullProperties?.Remove("unauthorized_urls"); } }
         private List<string>? _explicitNullValueUnauthorizedUrls = default!;
 #nullable restore
 #else
-        public List<string> UnauthorizedUrls { get => _explicitNullValueUnauthorizedUrls; set { _explicitNullValueUnauthorizedUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized_urls"); else _explicitNullProperties?.Remove("unauthorized_urls"); } }
+        public List<string> UnauthorizedUrls { get => _explicitNullValueUnauthorizedUrls; set { _explicitNullValueUnauthorizedUrls = value; AdditionalData?.Remove("unauthorized_urls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unauthorized_urls"); else _explicitNullProperties?.Remove("unauthorized_urls"); } }
         private List<string> _explicitNullValueUnauthorizedUrls = default!;
 #endif
         /// <summary>The delivery URLs that were invalidated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Urls { get => _explicitNullValueUrls; set { _explicitNullValueUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("urls"); else _explicitNullProperties?.Remove("urls"); } }
+        public List<string>? Urls { get => _explicitNullValueUrls; set { _explicitNullValueUrls = value; AdditionalData?.Remove("urls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("urls"); else _explicitNullProperties?.Remove("urls"); } }
         private List<string>? _explicitNullValueUrls = default!;
 #nullable restore
 #else
-        public List<string> Urls { get => _explicitNullValueUrls; set { _explicitNullValueUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("urls"); else _explicitNullProperties?.Remove("urls"); } }
+        public List<string> Urls { get => _explicitNullValueUrls; set { _explicitNullValueUrls = value; AdditionalData?.Remove("urls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("urls"); else _explicitNullProperties?.Remove("urls"); } }
         private List<string> _explicitNullValueUrls = default!;
 #endif
         /// <summary>

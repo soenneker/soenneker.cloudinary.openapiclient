@@ -18,7 +18,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("assets_to_relate") is { } nullNodeAssetsToRelate && nullNodeAssetsToRelate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetsToRelate = null;
+            if (parseNode.GetChildNode("assets_to_relate") is null) { _explicitNullValueAssetsToRelate = default!; _explicitNullProperties?.Remove("assets_to_relate"); }
+            else if (parseNode.GetChildNode("assets_to_relate") is { } nullNodeAssetsToRelate && nullNodeAssetsToRelate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetsToRelate = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Relates the asset to all the other assets specified in this array of up to 10 assets, specified as resource_type/type/public_id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AssetsToRelate { get => _explicitNullValueAssetsToRelate; set { _explicitNullValueAssetsToRelate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assets_to_relate"); else _explicitNullProperties?.Remove("assets_to_relate"); } }
+        public List<string>? AssetsToRelate { get => _explicitNullValueAssetsToRelate; set { _explicitNullValueAssetsToRelate = value; AdditionalData?.Remove("assets_to_relate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assets_to_relate"); else _explicitNullProperties?.Remove("assets_to_relate"); } }
         private List<string>? _explicitNullValueAssetsToRelate = default!;
 #nullable restore
 #else
-        public List<string> AssetsToRelate { get => _explicitNullValueAssetsToRelate; set { _explicitNullValueAssetsToRelate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assets_to_relate"); else _explicitNullProperties?.Remove("assets_to_relate"); } }
+        public List<string> AssetsToRelate { get => _explicitNullValueAssetsToRelate; set { _explicitNullValueAssetsToRelate = value; AdditionalData?.Remove("assets_to_relate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assets_to_relate"); else _explicitNullProperties?.Remove("assets_to_relate"); } }
         private List<string> _explicitNullValueAssetsToRelate = default!;
 #endif
         /// <summary>

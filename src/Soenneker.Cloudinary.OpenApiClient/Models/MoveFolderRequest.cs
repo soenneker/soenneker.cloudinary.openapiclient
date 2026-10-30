@@ -18,7 +18,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("to_folder") is { } nullNodeToFolder && nullNodeToFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ToFolder = null;
+            if (parseNode.GetChildNode("to_folder") is null) { _explicitNullValueToFolder = default!; _explicitNullProperties?.Remove("to_folder"); }
+            else if (parseNode.GetChildNode("to_folder") is { } nullNodeToFolder && nullNodeToFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ToFolder = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The new path for the folder.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ToFolder { get => _explicitNullValueToFolder; set { _explicitNullValueToFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to_folder"); else _explicitNullProperties?.Remove("to_folder"); } }
+        public string? ToFolder { get => _explicitNullValueToFolder; set { _explicitNullValueToFolder = value; AdditionalData?.Remove("to_folder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to_folder"); else _explicitNullProperties?.Remove("to_folder"); } }
         private string? _explicitNullValueToFolder = default!;
 #nullable restore
 #else
-        public string ToFolder { get => _explicitNullValueToFolder; set { _explicitNullValueToFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to_folder"); else _explicitNullProperties?.Remove("to_folder"); } }
+        public string ToFolder { get => _explicitNullValueToFolder; set { _explicitNullValueToFolder = value; AdditionalData?.Remove("to_folder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to_folder"); else _explicitNullProperties?.Remove("to_folder"); } }
         private string _explicitNullValueToFolder = default!;
 #endif
         /// <summary>

@@ -17,7 +17,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("version_ids") is { } nullNodeVersionIds && nullNodeVersionIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VersionIds = null;
+            if (parseNode.GetChildNode("version_ids") is null) { _explicitNullValueVersionIds = default!; _explicitNullProperties?.Remove("version_ids"); }
+            else if (parseNode.GetChildNode("version_ids") is { } nullNodeVersionIds && nullNodeVersionIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VersionIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The list of version IDs to delete from backup.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? VersionIds { get => _explicitNullValueVersionIds; set { _explicitNullValueVersionIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version_ids"); else _explicitNullProperties?.Remove("version_ids"); } }
+        public List<string>? VersionIds { get => _explicitNullValueVersionIds; set { _explicitNullValueVersionIds = value; AdditionalData?.Remove("version_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version_ids"); else _explicitNullProperties?.Remove("version_ids"); } }
         private List<string>? _explicitNullValueVersionIds = default!;
 #nullable restore
 #else
-        public List<string> VersionIds { get => _explicitNullValueVersionIds; set { _explicitNullValueVersionIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version_ids"); else _explicitNullProperties?.Remove("version_ids"); } }
+        public List<string> VersionIds { get => _explicitNullValueVersionIds; set { _explicitNullValueVersionIds = value; AdditionalData?.Remove("version_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version_ids"); else _explicitNullProperties?.Remove("version_ids"); } }
         private List<string> _explicitNullValueVersionIds = default!;
 #endif
         /// <summary>

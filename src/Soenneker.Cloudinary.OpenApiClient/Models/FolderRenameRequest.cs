@@ -18,42 +18,47 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("max_derived") is { } nullNodeMaxDerived && nullNodeMaxDerived.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxDerived = null;
-            if (parseNode.GetChildNode("path") is { } nullNodePath && nullNodePath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Path = null;
-            if (parseNode.GetChildNode("resources_limit") is { } nullNodeResourcesLimit && nullNodeResourcesLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourcesLimit = null;
-            if (parseNode.GetChildNode("resources_size_limit") is { } nullNodeResourcesSizeLimit && nullNodeResourcesSizeLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourcesSizeLimit = null;
-            if (parseNode.GetChildNode("to_path") is { } nullNodeToPath && nullNodeToPath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ToPath = null;
+            if (parseNode.GetChildNode("max_derived") is null) { _explicitNullValueMaxDerived = default!; _explicitNullProperties?.Remove("max_derived"); }
+            else if (parseNode.GetChildNode("max_derived") is { } nullNodeMaxDerived && nullNodeMaxDerived.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxDerived = null;
+            if (parseNode.GetChildNode("path") is null) { _explicitNullValuePath = default!; _explicitNullProperties?.Remove("path"); }
+            else if (parseNode.GetChildNode("path") is { } nullNodePath && nullNodePath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Path = null;
+            if (parseNode.GetChildNode("resources_limit") is null) { _explicitNullValueResourcesLimit = default!; _explicitNullProperties?.Remove("resources_limit"); }
+            else if (parseNode.GetChildNode("resources_limit") is { } nullNodeResourcesLimit && nullNodeResourcesLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourcesLimit = null;
+            if (parseNode.GetChildNode("resources_size_limit") is null) { _explicitNullValueResourcesSizeLimit = default!; _explicitNullProperties?.Remove("resources_size_limit"); }
+            else if (parseNode.GetChildNode("resources_size_limit") is { } nullNodeResourcesSizeLimit && nullNodeResourcesSizeLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourcesSizeLimit = null;
+            if (parseNode.GetChildNode("to_path") is null) { _explicitNullValueToPath = default!; _explicitNullProperties?.Remove("to_path"); }
+            else if (parseNode.GetChildNode("to_path") is { } nullNodeToPath && nullNodeToPath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ToPath = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The maximum number of derived assets that may be moved by the rename.</summary>
-        public int? MaxDerived { get => _explicitNullValueMaxDerived; set { _explicitNullValueMaxDerived = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("max_derived"); else _explicitNullProperties?.Remove("max_derived"); } }
+        public int? MaxDerived { get => _explicitNullValueMaxDerived; set { _explicitNullValueMaxDerived = value; AdditionalData?.Remove("max_derived"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("max_derived"); else _explicitNullProperties?.Remove("max_derived"); } }
         private int? _explicitNullValueMaxDerived = default!;
         /// <summary>The full path of the folder to rename or move.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
+        public string? Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; AdditionalData?.Remove("path"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
         private string? _explicitNullValuePath = default!;
 #nullable restore
 #else
-        public string Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
+        public string Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; AdditionalData?.Remove("path"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
         private string _explicitNullValuePath = default!;
 #endif
         /// <summary>The maximum number of assets that may be moved by the rename. Assets beyond this limit cause the rename to be rejected.</summary>
-        public int? ResourcesLimit { get => _explicitNullValueResourcesLimit; set { _explicitNullValueResourcesLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources_limit"); else _explicitNullProperties?.Remove("resources_limit"); } }
+        public int? ResourcesLimit { get => _explicitNullValueResourcesLimit; set { _explicitNullValueResourcesLimit = value; AdditionalData?.Remove("resources_limit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources_limit"); else _explicitNullProperties?.Remove("resources_limit"); } }
         private int? _explicitNullValueResourcesLimit = default!;
         /// <summary>The maximum total size, in bytes, of the assets that may be moved by the rename.</summary>
-        public long? ResourcesSizeLimit { get => _explicitNullValueResourcesSizeLimit; set { _explicitNullValueResourcesSizeLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources_size_limit"); else _explicitNullProperties?.Remove("resources_size_limit"); } }
+        public long? ResourcesSizeLimit { get => _explicitNullValueResourcesSizeLimit; set { _explicitNullValueResourcesSizeLimit = value; AdditionalData?.Remove("resources_size_limit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources_size_limit"); else _explicitNullProperties?.Remove("resources_size_limit"); } }
         private long? _explicitNullValueResourcesSizeLimit = default!;
         /// <summary>The new full path for the folder.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ToPath { get => _explicitNullValueToPath; set { _explicitNullValueToPath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to_path"); else _explicitNullProperties?.Remove("to_path"); } }
+        public string? ToPath { get => _explicitNullValueToPath; set { _explicitNullValueToPath = value; AdditionalData?.Remove("to_path"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to_path"); else _explicitNullProperties?.Remove("to_path"); } }
         private string? _explicitNullValueToPath = default!;
 #nullable restore
 #else
-        public string ToPath { get => _explicitNullValueToPath; set { _explicitNullValueToPath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to_path"); else _explicitNullProperties?.Remove("to_path"); } }
+        public string ToPath { get => _explicitNullValueToPath; set { _explicitNullValueToPath = value; AdditionalData?.Remove("to_path"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to_path"); else _explicitNullProperties?.Remove("to_path"); } }
         private string _explicitNullValueToPath = default!;
 #endif
         /// <summary>

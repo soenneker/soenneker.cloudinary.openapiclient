@@ -18,7 +18,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("Person") is { } nullNodePerson && nullNodePerson.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Person = null;
+            if (parseNode.GetChildNode("Person") is null) { _explicitNullValuePerson = default!; _explicitNullProperties?.Remove("Person"); }
+            else if (parseNode.GetChildNode("Person") is { } nullNodePerson && nullNodePerson.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Person = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The items to inspect for a type and the actions to check against them.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleInspectionGroup? Person { get => _explicitNullValuePerson; set { _explicitNullValuePerson = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Person"); else _explicitNullProperties?.Remove("Person"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleInspectionGroup? Person { get => _explicitNullValuePerson; set { _explicitNullValuePerson = value; AdditionalData?.Remove("Person"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Person"); else _explicitNullProperties?.Remove("Person"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleInspectionGroup? _explicitNullValuePerson = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleInspectionGroup Person { get => _explicitNullValuePerson; set { _explicitNullValuePerson = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Person"); else _explicitNullProperties?.Remove("Person"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleInspectionGroup Person { get => _explicitNullValuePerson; set { _explicitNullValuePerson = value; AdditionalData?.Remove("Person"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Person"); else _explicitNullProperties?.Remove("Person"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.PeopleInspectionGroup _explicitNullValuePerson = default!;
 #endif
         /// <summary>

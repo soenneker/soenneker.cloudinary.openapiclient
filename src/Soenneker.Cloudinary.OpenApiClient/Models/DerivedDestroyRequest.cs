@@ -18,8 +18,10 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("derived_resource_ids") is { } nullNodeDerivedResourceIds && nullNodeDerivedResourceIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DerivedResourceIds = null;
-            if (parseNode.GetChildNode("invalidate") is { } nullNodeInvalidate && nullNodeInvalidate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Invalidate = null;
+            if (parseNode.GetChildNode("derived_resource_ids") is null) { _explicitNullValueDerivedResourceIds = default!; _explicitNullProperties?.Remove("derived_resource_ids"); }
+            else if (parseNode.GetChildNode("derived_resource_ids") is { } nullNodeDerivedResourceIds && nullNodeDerivedResourceIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DerivedResourceIds = null;
+            if (parseNode.GetChildNode("invalidate") is null) { _explicitNullValueInvalidate = default!; _explicitNullProperties?.Remove("invalidate"); }
+            else if (parseNode.GetChildNode("invalidate") is { } nullNodeInvalidate && nullNodeInvalidate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Invalidate = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,15 +29,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Array of derived resource IDs to delete specific derived resources</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? DerivedResourceIds { get => _explicitNullValueDerivedResourceIds; set { _explicitNullValueDerivedResourceIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("derived_resource_ids"); else _explicitNullProperties?.Remove("derived_resource_ids"); } }
+        public List<string>? DerivedResourceIds { get => _explicitNullValueDerivedResourceIds; set { _explicitNullValueDerivedResourceIds = value; AdditionalData?.Remove("derived_resource_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("derived_resource_ids"); else _explicitNullProperties?.Remove("derived_resource_ids"); } }
         private List<string>? _explicitNullValueDerivedResourceIds = default!;
 #nullable restore
 #else
-        public List<string> DerivedResourceIds { get => _explicitNullValueDerivedResourceIds; set { _explicitNullValueDerivedResourceIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("derived_resource_ids"); else _explicitNullProperties?.Remove("derived_resource_ids"); } }
+        public List<string> DerivedResourceIds { get => _explicitNullValueDerivedResourceIds; set { _explicitNullValueDerivedResourceIds = value; AdditionalData?.Remove("derived_resource_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("derived_resource_ids"); else _explicitNullProperties?.Remove("derived_resource_ids"); } }
         private List<string> _explicitNullValueDerivedResourceIds = default!;
 #endif
         /// <summary>Whether to invalidate the CDN cache for the deleted resources</summary>
-        public bool? Invalidate { get => _explicitNullValueInvalidate; set { _explicitNullValueInvalidate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidate"); else _explicitNullProperties?.Remove("invalidate"); } }
+        public bool? Invalidate { get => _explicitNullValueInvalidate; set { _explicitNullValueInvalidate = value; AdditionalData?.Remove("invalidate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidate"); else _explicitNullProperties?.Remove("invalidate"); } }
         private bool? _explicitNullValueInvalidate = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DerivedDestroyRequest"/> and sets the default values.

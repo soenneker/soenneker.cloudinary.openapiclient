@@ -17,87 +17,96 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("video_duration") is { } nullNodeVideoDuration && nullNodeVideoDuration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoDuration = null;
-            if (parseNode.GetChildNode("video_extension") is { } nullNodeVideoExtension && nullNodeVideoExtension.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoExtension = null;
-            if (parseNode.GetChildNode("video_public_id") is { } nullNodeVideoPublicId && nullNodeVideoPublicId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoPublicId = null;
-            if (parseNode.GetChildNode("video_transformation") is { } nullNodeVideoTransformation && nullNodeVideoTransformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoTransformation = null;
-            if (parseNode.GetChildNode("view_ended_at") is { } nullNodeViewEndedAt && nullNodeViewEndedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewEndedAt = null;
-            if (parseNode.GetChildNode("viewer_application_name") is { } nullNodeViewerApplicationName && nullNodeViewerApplicationName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewerApplicationName = null;
-            if (parseNode.GetChildNode("viewer_location_country_code") is { } nullNodeViewerLocationCountryCode && nullNodeViewerLocationCountryCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewerLocationCountryCode = null;
-            if (parseNode.GetChildNode("viewer_os_identifier") is { } nullNodeViewerOsIdentifier && nullNodeViewerOsIdentifier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewerOsIdentifier = null;
-            if (parseNode.GetChildNode("view_watch_time") is { } nullNodeViewWatchTime && nullNodeViewWatchTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewWatchTime = null;
+            if (parseNode.GetChildNode("video_duration") is null) { _explicitNullValueVideoDuration = default!; _explicitNullProperties?.Remove("video_duration"); }
+            else if (parseNode.GetChildNode("video_duration") is { } nullNodeVideoDuration && nullNodeVideoDuration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoDuration = null;
+            if (parseNode.GetChildNode("video_extension") is null) { _explicitNullValueVideoExtension = default!; _explicitNullProperties?.Remove("video_extension"); }
+            else if (parseNode.GetChildNode("video_extension") is { } nullNodeVideoExtension && nullNodeVideoExtension.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoExtension = null;
+            if (parseNode.GetChildNode("video_public_id") is null) { _explicitNullValueVideoPublicId = default!; _explicitNullProperties?.Remove("video_public_id"); }
+            else if (parseNode.GetChildNode("video_public_id") is { } nullNodeVideoPublicId && nullNodeVideoPublicId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoPublicId = null;
+            if (parseNode.GetChildNode("video_transformation") is null) { _explicitNullValueVideoTransformation = default!; _explicitNullProperties?.Remove("video_transformation"); }
+            else if (parseNode.GetChildNode("video_transformation") is { } nullNodeVideoTransformation && nullNodeVideoTransformation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VideoTransformation = null;
+            if (parseNode.GetChildNode("view_ended_at") is null) { _explicitNullValueViewEndedAt = default!; _explicitNullProperties?.Remove("view_ended_at"); }
+            else if (parseNode.GetChildNode("view_ended_at") is { } nullNodeViewEndedAt && nullNodeViewEndedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewEndedAt = null;
+            if (parseNode.GetChildNode("viewer_application_name") is null) { _explicitNullValueViewerApplicationName = default!; _explicitNullProperties?.Remove("viewer_application_name"); }
+            else if (parseNode.GetChildNode("viewer_application_name") is { } nullNodeViewerApplicationName && nullNodeViewerApplicationName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewerApplicationName = null;
+            if (parseNode.GetChildNode("viewer_location_country_code") is null) { _explicitNullValueViewerLocationCountryCode = default!; _explicitNullProperties?.Remove("viewer_location_country_code"); }
+            else if (parseNode.GetChildNode("viewer_location_country_code") is { } nullNodeViewerLocationCountryCode && nullNodeViewerLocationCountryCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewerLocationCountryCode = null;
+            if (parseNode.GetChildNode("viewer_os_identifier") is null) { _explicitNullValueViewerOsIdentifier = default!; _explicitNullProperties?.Remove("viewer_os_identifier"); }
+            else if (parseNode.GetChildNode("viewer_os_identifier") is { } nullNodeViewerOsIdentifier && nullNodeViewerOsIdentifier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewerOsIdentifier = null;
+            if (parseNode.GetChildNode("view_watch_time") is null) { _explicitNullValueViewWatchTime = default!; _explicitNullProperties?.Remove("view_watch_time"); }
+            else if (parseNode.GetChildNode("view_watch_time") is { } nullNodeViewWatchTime && nullNodeViewWatchTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ViewWatchTime = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The duration in seconds of the video.</summary>
-        public double? VideoDuration { get => _explicitNullValueVideoDuration; set { _explicitNullValueVideoDuration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_duration"); else _explicitNullProperties?.Remove("video_duration"); } }
+        public double? VideoDuration { get => _explicitNullValueVideoDuration; set { _explicitNullValueVideoDuration = value; AdditionalData?.Remove("video_duration"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_duration"); else _explicitNullProperties?.Remove("video_duration"); } }
         private double? _explicitNullValueVideoDuration = default!;
         /// <summary>The file extension of the video.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VideoExtension { get => _explicitNullValueVideoExtension; set { _explicitNullValueVideoExtension = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_extension"); else _explicitNullProperties?.Remove("video_extension"); } }
+        public string? VideoExtension { get => _explicitNullValueVideoExtension; set { _explicitNullValueVideoExtension = value; AdditionalData?.Remove("video_extension"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_extension"); else _explicitNullProperties?.Remove("video_extension"); } }
         private string? _explicitNullValueVideoExtension = default!;
 #nullable restore
 #else
-        public string VideoExtension { get => _explicitNullValueVideoExtension; set { _explicitNullValueVideoExtension = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_extension"); else _explicitNullProperties?.Remove("video_extension"); } }
+        public string VideoExtension { get => _explicitNullValueVideoExtension; set { _explicitNullValueVideoExtension = value; AdditionalData?.Remove("video_extension"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_extension"); else _explicitNullProperties?.Remove("video_extension"); } }
         private string _explicitNullValueVideoExtension = default!;
 #endif
         /// <summary>The full public ID of the video.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VideoPublicId { get => _explicitNullValueVideoPublicId; set { _explicitNullValueVideoPublicId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_public_id"); else _explicitNullProperties?.Remove("video_public_id"); } }
+        public string? VideoPublicId { get => _explicitNullValueVideoPublicId; set { _explicitNullValueVideoPublicId = value; AdditionalData?.Remove("video_public_id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_public_id"); else _explicitNullProperties?.Remove("video_public_id"); } }
         private string? _explicitNullValueVideoPublicId = default!;
 #nullable restore
 #else
-        public string VideoPublicId { get => _explicitNullValueVideoPublicId; set { _explicitNullValueVideoPublicId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_public_id"); else _explicitNullProperties?.Remove("video_public_id"); } }
+        public string VideoPublicId { get => _explicitNullValueVideoPublicId; set { _explicitNullValueVideoPublicId = value; AdditionalData?.Remove("video_public_id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_public_id"); else _explicitNullProperties?.Remove("video_public_id"); } }
         private string _explicitNullValueVideoPublicId = default!;
 #endif
         /// <summary>The transformation applied to the video.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VideoTransformation { get => _explicitNullValueVideoTransformation; set { _explicitNullValueVideoTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_transformation"); else _explicitNullProperties?.Remove("video_transformation"); } }
+        public string? VideoTransformation { get => _explicitNullValueVideoTransformation; set { _explicitNullValueVideoTransformation = value; AdditionalData?.Remove("video_transformation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_transformation"); else _explicitNullProperties?.Remove("video_transformation"); } }
         private string? _explicitNullValueVideoTransformation = default!;
 #nullable restore
 #else
-        public string VideoTransformation { get => _explicitNullValueVideoTransformation; set { _explicitNullValueVideoTransformation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_transformation"); else _explicitNullProperties?.Remove("video_transformation"); } }
+        public string VideoTransformation { get => _explicitNullValueVideoTransformation; set { _explicitNullValueVideoTransformation = value; AdditionalData?.Remove("video_transformation"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("video_transformation"); else _explicitNullProperties?.Remove("video_transformation"); } }
         private string _explicitNullValueVideoTransformation = default!;
 #endif
         /// <summary>The date when the video view ended.</summary>
-        public DateTimeOffset? ViewEndedAt { get => _explicitNullValueViewEndedAt; set { _explicitNullValueViewEndedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("view_ended_at"); else _explicitNullProperties?.Remove("view_ended_at"); } }
+        public DateTimeOffset? ViewEndedAt { get => _explicitNullValueViewEndedAt; set { _explicitNullValueViewEndedAt = value; AdditionalData?.Remove("view_ended_at"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("view_ended_at"); else _explicitNullProperties?.Remove("view_ended_at"); } }
         private DateTimeOffset? _explicitNullValueViewEndedAt = default!;
         /// <summary>The application used to view the video.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ViewerApplicationName { get => _explicitNullValueViewerApplicationName; set { _explicitNullValueViewerApplicationName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_application_name"); else _explicitNullProperties?.Remove("viewer_application_name"); } }
+        public string? ViewerApplicationName { get => _explicitNullValueViewerApplicationName; set { _explicitNullValueViewerApplicationName = value; AdditionalData?.Remove("viewer_application_name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_application_name"); else _explicitNullProperties?.Remove("viewer_application_name"); } }
         private string? _explicitNullValueViewerApplicationName = default!;
 #nullable restore
 #else
-        public string ViewerApplicationName { get => _explicitNullValueViewerApplicationName; set { _explicitNullValueViewerApplicationName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_application_name"); else _explicitNullProperties?.Remove("viewer_application_name"); } }
+        public string ViewerApplicationName { get => _explicitNullValueViewerApplicationName; set { _explicitNullValueViewerApplicationName = value; AdditionalData?.Remove("viewer_application_name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_application_name"); else _explicitNullProperties?.Remove("viewer_application_name"); } }
         private string _explicitNullValueViewerApplicationName = default!;
 #endif
         /// <summary>The 2-digit ISO country code of the viewer location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ViewerLocationCountryCode { get => _explicitNullValueViewerLocationCountryCode; set { _explicitNullValueViewerLocationCountryCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_location_country_code"); else _explicitNullProperties?.Remove("viewer_location_country_code"); } }
+        public string? ViewerLocationCountryCode { get => _explicitNullValueViewerLocationCountryCode; set { _explicitNullValueViewerLocationCountryCode = value; AdditionalData?.Remove("viewer_location_country_code"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_location_country_code"); else _explicitNullProperties?.Remove("viewer_location_country_code"); } }
         private string? _explicitNullValueViewerLocationCountryCode = default!;
 #nullable restore
 #else
-        public string ViewerLocationCountryCode { get => _explicitNullValueViewerLocationCountryCode; set { _explicitNullValueViewerLocationCountryCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_location_country_code"); else _explicitNullProperties?.Remove("viewer_location_country_code"); } }
+        public string ViewerLocationCountryCode { get => _explicitNullValueViewerLocationCountryCode; set { _explicitNullValueViewerLocationCountryCode = value; AdditionalData?.Remove("viewer_location_country_code"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_location_country_code"); else _explicitNullProperties?.Remove("viewer_location_country_code"); } }
         private string _explicitNullValueViewerLocationCountryCode = default!;
 #endif
         /// <summary>The full identifier for the viewer&apos;s operating system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ViewerOsIdentifier { get => _explicitNullValueViewerOsIdentifier; set { _explicitNullValueViewerOsIdentifier = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_os_identifier"); else _explicitNullProperties?.Remove("viewer_os_identifier"); } }
+        public string? ViewerOsIdentifier { get => _explicitNullValueViewerOsIdentifier; set { _explicitNullValueViewerOsIdentifier = value; AdditionalData?.Remove("viewer_os_identifier"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_os_identifier"); else _explicitNullProperties?.Remove("viewer_os_identifier"); } }
         private string? _explicitNullValueViewerOsIdentifier = default!;
 #nullable restore
 #else
-        public string ViewerOsIdentifier { get => _explicitNullValueViewerOsIdentifier; set { _explicitNullValueViewerOsIdentifier = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_os_identifier"); else _explicitNullProperties?.Remove("viewer_os_identifier"); } }
+        public string ViewerOsIdentifier { get => _explicitNullValueViewerOsIdentifier; set { _explicitNullValueViewerOsIdentifier = value; AdditionalData?.Remove("viewer_os_identifier"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("viewer_os_identifier"); else _explicitNullProperties?.Remove("viewer_os_identifier"); } }
         private string _explicitNullValueViewerOsIdentifier = default!;
 #endif
         /// <summary>The length of time the video was viewed.</summary>
-        public double? ViewWatchTime { get => _explicitNullValueViewWatchTime; set { _explicitNullValueViewWatchTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("view_watch_time"); else _explicitNullProperties?.Remove("view_watch_time"); } }
+        public double? ViewWatchTime { get => _explicitNullValueViewWatchTime; set { _explicitNullValueViewWatchTime = value; AdditionalData?.Remove("view_watch_time"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("view_watch_time"); else _explicitNullProperties?.Remove("view_watch_time"); } }
         private double? _explicitNullValueViewWatchTime = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.VideoView"/> and sets the default values.

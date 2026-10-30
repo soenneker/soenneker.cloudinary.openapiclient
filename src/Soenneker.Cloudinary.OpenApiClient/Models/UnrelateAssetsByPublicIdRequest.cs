@@ -18,7 +18,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("assets_to_unrelate") is { } nullNodeAssetsToUnrelate && nullNodeAssetsToUnrelate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetsToUnrelate = null;
+            if (parseNode.GetChildNode("assets_to_unrelate") is null) { _explicitNullValueAssetsToUnrelate = default!; _explicitNullProperties?.Remove("assets_to_unrelate"); }
+            else if (parseNode.GetChildNode("assets_to_unrelate") is { } nullNodeAssetsToUnrelate && nullNodeAssetsToUnrelate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetsToUnrelate = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Unrelates the asset from all the assets specified in this array of assets, specified as resource_type/type/public_id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AssetsToUnrelate { get => _explicitNullValueAssetsToUnrelate; set { _explicitNullValueAssetsToUnrelate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assets_to_unrelate"); else _explicitNullProperties?.Remove("assets_to_unrelate"); } }
+        public List<string>? AssetsToUnrelate { get => _explicitNullValueAssetsToUnrelate; set { _explicitNullValueAssetsToUnrelate = value; AdditionalData?.Remove("assets_to_unrelate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assets_to_unrelate"); else _explicitNullProperties?.Remove("assets_to_unrelate"); } }
         private List<string>? _explicitNullValueAssetsToUnrelate = default!;
 #nullable restore
 #else
-        public List<string> AssetsToUnrelate { get => _explicitNullValueAssetsToUnrelate; set { _explicitNullValueAssetsToUnrelate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assets_to_unrelate"); else _explicitNullProperties?.Remove("assets_to_unrelate"); } }
+        public List<string> AssetsToUnrelate { get => _explicitNullValueAssetsToUnrelate; set { _explicitNullValueAssetsToUnrelate = value; AdditionalData?.Remove("assets_to_unrelate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("assets_to_unrelate"); else _explicitNullProperties?.Remove("assets_to_unrelate"); } }
         private List<string> _explicitNullValueAssetsToUnrelate = default!;
 #endif
         /// <summary>

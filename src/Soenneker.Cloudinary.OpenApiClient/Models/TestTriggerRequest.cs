@@ -17,7 +17,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("sample_data") is { } nullNodeSampleData && nullNodeSampleData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SampleData = null;
+            if (parseNode.GetChildNode("sample_data") is null) { _explicitNullValueSampleData = default!; _explicitNullProperties?.Remove("sample_data"); }
+            else if (parseNode.GetChildNode("sample_data") is { } nullNodeSampleData && nullNodeSampleData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SampleData = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Sample notification data to evaluate the filter against.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty? SampleData { get => _explicitNullValueSampleData; set { _explicitNullValueSampleData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sample_data"); else _explicitNullProperties?.Remove("sample_data"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty? SampleData { get => _explicitNullValueSampleData; set { _explicitNullValueSampleData = value; AdditionalData?.Remove("sample_data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sample_data"); else _explicitNullProperties?.Remove("sample_data"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty? _explicitNullValueSampleData = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty SampleData { get => _explicitNullValueSampleData; set { _explicitNullValueSampleData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sample_data"); else _explicitNullProperties?.Remove("sample_data"); } }
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty SampleData { get => _explicitNullValueSampleData; set { _explicitNullValueSampleData = value; AdditionalData?.Remove("sample_data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sample_data"); else _explicitNullProperties?.Remove("sample_data"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.TestTriggerRequestSampleDataProperty _explicitNullValueSampleData = default!;
 #endif
         /// <summary>

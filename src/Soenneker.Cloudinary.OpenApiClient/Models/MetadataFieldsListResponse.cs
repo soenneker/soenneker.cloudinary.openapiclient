@@ -17,7 +17,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("metadata_fields") is { } nullNodeMetadataFields && nullNodeMetadataFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MetadataFields = null;
+            if (parseNode.GetChildNode("metadata_fields") is null) { _explicitNullValueMetadataFields = default!; _explicitNullProperties?.Remove("metadata_fields"); }
+            else if (parseNode.GetChildNode("metadata_fields") is { } nullNodeMetadataFields && nullNodeMetadataFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MetadataFields = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The metadata_fields property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField>? MetadataFields { get => _explicitNullValueMetadataFields; set { _explicitNullValueMetadataFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata_fields"); else _explicitNullProperties?.Remove("metadata_fields"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField>? MetadataFields { get => _explicitNullValueMetadataFields; set { _explicitNullValueMetadataFields = value; AdditionalData?.Remove("metadata_fields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata_fields"); else _explicitNullProperties?.Remove("metadata_fields"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField>? _explicitNullValueMetadataFields = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField> MetadataFields { get => _explicitNullValueMetadataFields; set { _explicitNullValueMetadataFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata_fields"); else _explicitNullProperties?.Remove("metadata_fields"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField> MetadataFields { get => _explicitNullValueMetadataFields; set { _explicitNullValueMetadataFields = value; AdditionalData?.Remove("metadata_fields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata_fields"); else _explicitNullProperties?.Remove("metadata_fields"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataField> _explicitNullValueMetadataFields = default!;
 #endif
         /// <summary>

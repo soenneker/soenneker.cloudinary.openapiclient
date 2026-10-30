@@ -17,7 +17,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("metadata_rules") is { } nullNodeMetadataRules && nullNodeMetadataRules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MetadataRules = null;
+            if (parseNode.GetChildNode("metadata_rules") is null) { _explicitNullValueMetadataRules = default!; _explicitNullProperties?.Remove("metadata_rules"); }
+            else if (parseNode.GetChildNode("metadata_rules") is { } nullNodeMetadataRules && nullNodeMetadataRules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MetadataRules = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The metadata_rules property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse>? MetadataRules { get => _explicitNullValueMetadataRules; set { _explicitNullValueMetadataRules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata_rules"); else _explicitNullProperties?.Remove("metadata_rules"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse>? MetadataRules { get => _explicitNullValueMetadataRules; set { _explicitNullValueMetadataRules = value; AdditionalData?.Remove("metadata_rules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata_rules"); else _explicitNullProperties?.Remove("metadata_rules"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse>? _explicitNullValueMetadataRules = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse> MetadataRules { get => _explicitNullValueMetadataRules; set { _explicitNullValueMetadataRules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata_rules"); else _explicitNullProperties?.Remove("metadata_rules"); } }
+        public List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse> MetadataRules { get => _explicitNullValueMetadataRules; set { _explicitNullValueMetadataRules = value; AdditionalData?.Remove("metadata_rules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata_rules"); else _explicitNullProperties?.Remove("metadata_rules"); } }
         private List<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleResponse> _explicitNullValueMetadataRules = default!;
 #endif
         /// <summary>
