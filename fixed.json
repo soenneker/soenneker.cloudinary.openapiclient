@@ -1321,19 +1321,9 @@
           "200": {
             "description": "Archive successfully generated or downloaded",
             "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                },
-                "x-client-original-success-schema": {
-                  "$ref": "#/components/schemas/GenerateArchive200OctetStreamResponseSchema"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "format": "binary"
+                  "$ref": "#/components/schemas/GenerateArchiveResponse"
                 },
                 "example": {
                   "asset_id": "3cd9f196fe3ee1882c0f66223bc568f9",
@@ -1354,9 +1344,13 @@
                   "display_name": "koetjd3qrme0cfcfnjet.zip",
                   "resource_count": 6,
                   "file_count": 6
-                },
-                "x-client-original-success-schema": {
-                  "$ref": "#/components/schemas/GenerateArchiveResponse"
+                }
+              }
+            },
+            "x-client-original-non-json-content": {
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateArchive200OctetStreamResponseSchema"
                 }
               }
             }
@@ -4789,6 +4783,17 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "Trigger created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerInfo"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-speakeasy-mcp": {

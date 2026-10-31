@@ -61,6 +61,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             {
                 { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf2ItemType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
                 { "ranges", n => { Ranges = n.GetCollectionOfObjectValues<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue)?.AsList(); } },
+
             };
         }
         /// <summary>
