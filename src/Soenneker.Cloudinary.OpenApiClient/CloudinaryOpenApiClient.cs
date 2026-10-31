@@ -36,9 +36,6 @@ namespace Soenneker.Cloudinary.OpenApiClient
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         public CloudinaryOpenApiClient(IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}", new Dictionary<string, object>())
         {
-            // Preserve declared operation service roots.
-            if (string.IsNullOrEmpty(RequestAdapter.BaseUrl)) RequestAdapter.BaseUrl = "https://api.cloudinary.com";
-            PathParameters["baseurl"] = RequestAdapter.BaseUrl;
             ApiClientBuilder.RegisterDefaultSerializer<JsonSerializationWriterFactory>();
             ApiClientBuilder.RegisterDefaultSerializer<TextSerializationWriterFactory>();
             ApiClientBuilder.RegisterDefaultSerializer<FormSerializationWriterFactory>();

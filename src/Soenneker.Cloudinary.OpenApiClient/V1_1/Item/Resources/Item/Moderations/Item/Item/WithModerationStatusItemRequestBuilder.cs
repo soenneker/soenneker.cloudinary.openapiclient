@@ -74,7 +74,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderation
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Item.Moderations.Item.Item.WithModerationStatusItemRequestBuilder.WithModerationStatusItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://api.cloudinary.com", "/v1_1/{cloudName}/resources/{resourceType}/moderations/{moderationKind}/{moderationStatus}", PathParameters.ContainsKey("request-raw-url")), PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
