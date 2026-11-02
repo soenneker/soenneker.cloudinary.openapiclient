@@ -11,7 +11,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// The fields to aggregate results by. Simple aggregation by field name.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class SearchParametersAggregateOneOf1Item : IAdditionalDataHolder, IParsable
+    public partial class SearchParametersAggregateMember1 : IAdditionalDataHolder, IParsable
     , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
         // Track explicitly assigned nulls separately from absent properties.
         private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
@@ -23,21 +23,21 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateMember1"/> and sets the default values.
         /// </summary>
-        public SearchParametersAggregateOneOf1Item()
+        public SearchParametersAggregateMember1()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateMember1"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateMember1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateOneOf1Item(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.SearchParametersAggregateMember1(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model

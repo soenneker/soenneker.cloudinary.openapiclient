@@ -105,8 +105,15 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessibilityAnalysisProperty _explicitNullValueAccessibilityAnalysis = default!;
 #endif
         /// <summary>The access mode of the asset. Null when not explicitly set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode? AccessMode { get => _explicitNullValueAccessMode; set { _explicitNullValueAccessMode = value; AdditionalData?.Remove("access_mode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access_mode"); else _explicitNullProperties?.Remove("access_mode"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode? _explicitNullValueAccessMode = default!;
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode AccessMode { get => _explicitNullValueAccessMode; set { _explicitNullValueAccessMode = value; AdditionalData?.Remove("access_mode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access_mode"); else _explicitNullProperties?.Remove("access_mode"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode _explicitNullValueAccessMode = default!;
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The aspect ratio of the asset (width/height). Null for non-visual assets (e.g. raw, audio).</summary>
@@ -341,7 +348,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "access_mode", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAccessMode = default; _explicitNullProperties?.Remove("access_mode"); AdditionalData["access_mode"] = unknown; } else { AccessMode = parsed; AdditionalData.Remove("access_mode"); } } },
+                { "access_mode", n => { AccessMode = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode.CreateFromDiscriminatorValue); } },
                 { "accessibility_analysis", n => { AccessibilityAnalysis = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessibilityAnalysisProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessibilityAnalysisProperty.CreateFromDiscriminatorValue); } },
                 { "aspect_ratio", n => { AspectRatio = n.GetFloatValue(); } },
                 { "asset_folder", n => { AssetFolder = n.GetStringValue(); } },
@@ -383,7 +390,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>("access_control", AccessControl);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessibilityAnalysisProperty>("accessibility_analysis", AccessibilityAnalysis);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode>("access_mode", AccessMode);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode>("access_mode", AccessMode);
             writer.WriteFloatValue("aspect_ratio", AspectRatio);
             writer.WriteStringValue("asset_folder", AssetFolder);
             writer.WriteStringValue("asset_id", AssetId);
