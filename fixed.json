@@ -12,7 +12,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.7.8"
+    "version": "0.7.9"
   },
   "servers": [
     {
@@ -10576,6 +10576,1076 @@
           }
         }
       ]
+    },
+    "/v2/asset_management/{cloudName}/collections": {
+      "get": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "List collections",
+        "description": "Returns the collections the caller may read, most-recently-updated first by default (\u0060updated_at desc\u0060). Results are paginated: pass the returned \u0060next_cursor\u0060 back to fetch the next page.\n",
+        "operationId": "ListCollections",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Case-insensitive filter on the collection name. Returns collections with a word in their name that starts with this text (for example, \u0060sum\u0060 matches \u0022Summer Campaign\u0022).",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "summer"
+              }
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Sort expression: \u0060\u003Cfield\u003E \u003Cdirection\u003E\u0060, optionally comma-separated for a multi-key sort (e.g. \u0060name asc, created_at desc\u0060). \u0060field\u0060 is one of \u0060name\u0060, \u0060created_at\u0060, or \u0060updated_at\u0060, the same field names the response uses, and \u0060direction\u0060 is \u0060asc\u0060 or \u0060desc\u0060. Defaults to \u0060updated_at desc\u0060.\n",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "name asc"
+              }
+            }
+          },
+          {
+            "name": "max_results",
+            "in": "query",
+            "description": "Maximum number of collections to return (1-100, default 20).",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "default": {
+                "value": 20
+              }
+            }
+          },
+          {
+            "name": "next_cursor",
+            "in": "query",
+            "description": "Opaque cursor from a previous response\u0027s \u0060next_cursor\u0060 to fetch the next page.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Collections listed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractListCollectionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "$ref": "#/components/responses/CollectionsBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-collections",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Collections",
+          "readOnlyHint": true,
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "post": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Create a collection",
+        "description": "Creates a collection under the given product environment and makes the caller the owner.",
+        "operationId": "CreateCollection",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractCreateCollectionRequestPayload"
+              },
+              "examples": {
+                "default": {
+                  "value": {
+                    "name": "Summer campaign images",
+                    "type": "dynamic",
+                    "configuration": {
+                      "expression": "tags = \u0022summer-campaign\u0022 AND resource_type:image"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Collection created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractCreateCollectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "$ref": "#/components/responses/CollectionsBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          },
+          "200": {
+            "description": "Collection created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractCreateCollectionResponse"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "create-collection",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Create Collection"
+        },
+        "x-logical-service": "Collections"
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your Cloudinary product environment.",
+          "required": true,
+          "schema": {
+            "examples": [
+              "demo"
+            ],
+            "type": "string",
+            "description": "Cloud name of the product environment."
+          },
+          "examples": {
+            "default": {
+              "value": "demo"
+            }
+          }
+        }
+      ]
+    },
+    "/v2/asset_management/{cloudName}/collections/{collectionId}": {
+      "get": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Get a collection",
+        "description": "Returns a single collection by its external ID.",
+        "operationId": "GetCollection",
+        "responses": {
+          "200": {
+            "description": "Collection retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractGetCollectionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-collection",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Get Collection",
+          "readOnlyHint": true,
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "put": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Update a collection",
+        "description": "Updates a collection\u0027s name, description, and (for dynamic collections) configuration. Only the fields you include in the request are changed. The caller must be allowed to update the collection. A collection\u0027s type (manual/dynamic) is fixed at creation and can\u0027t be changed.\n",
+        "operationId": "UpdateCollection",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractUpdateCollectionRequestPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Collection updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractUpdateCollectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "$ref": "#/components/responses/CollectionsBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "update-collection",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Update Collection",
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "delete": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Delete a collection",
+        "description": "Deletes a collection. The caller must be allowed to update the collection; the underlying assets are not modified or deleted.\n",
+        "operationId": "DeleteCollection",
+        "responses": {
+          "200": {
+            "description": "Collection deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractDeleteCollectionResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "message": "Collection deleted successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-collection",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Delete Collection",
+          "destructiveHint": true,
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your Cloudinary product environment.",
+          "required": true,
+          "schema": {
+            "examples": [
+              "demo"
+            ],
+            "type": "string",
+            "description": "Cloud name of the product environment."
+          },
+          "examples": {
+            "default": {
+              "value": "demo"
+            }
+          }
+        },
+        {
+          "name": "collectionId",
+          "in": "path",
+          "description": "External ID of the collection to retrieve, update, or delete.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "examples": {
+            "default": {
+              "value": "col_8f3a2b1c9d4e"
+            }
+          }
+        }
+      ]
+    },
+    "/v2/asset_management/{cloudName}/collections/{collectionId}/assets": {
+      "get": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "List a collection\u0027s assets",
+        "description": "Returns the assets in a collection, newest first by default. For a \u0060manual\u0060 collection, these are the assets that have been added to it; for a \u0060dynamic\u0060 collection, they\u0027re the assets currently matching its filter expression. Only assets the caller has permission to view are included. Results are paginated: pass the returned \u0060next_cursor\u0060 back to fetch the next page.\n",
+        "operationId": "ListCollectionAssets",
+        "parameters": [
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Sort expression: \u0060\u003Cfield\u003E \u003Cdirection\u003E\u0060, optionally comma-separated for a multi-key sort (e.g. \u0060bytes desc, created_at asc\u0060). \u0060field\u0060 is one of \u0060created_at\u0060, \u0060uploaded_at\u0060, \u0060public_id\u0060, \u0060display_name\u0060, or \u0060bytes\u0060, and \u0060direction\u0060 is \u0060asc\u0060 or \u0060desc\u0060. Defaults to \u0060created_at desc\u0060. When paging with \u0060next_cursor\u0060, send the same \u0060sort_by\u0060 on every page; a cursor is only valid for the sort it was issued with.\n",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "bytes desc"
+              }
+            }
+          },
+          {
+            "name": "max_results",
+            "in": "query",
+            "description": "Maximum number of assets to return (1-100, default 20).",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "default": {
+                "value": 20
+              }
+            }
+          },
+          {
+            "name": "next_cursor",
+            "in": "query",
+            "description": "Opaque cursor from a previous response\u0027s \u0060next_cursor\u0060 to fetch the next page. Send it with the same \u0060sort_by\u0060 (and \u0060max_results\u0060) as the request that returned it.\n",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assets listed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractListCollectionAssetsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "$ref": "#/components/responses/CollectionsBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-collection-assets",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Collection Assets",
+          "readOnlyHint": true,
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "post": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Add assets to a collection",
+        "description": "Adds assets to an existing collection. The caller must be allowed to update the collection and view the assets.\n",
+        "operationId": "AddCollectionAssets",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCollectionAssetsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Assets added successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractAddCollectionAssetsResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "data": {
+                        "id": "col_8f3a2b1c9d4e",
+                        "name": "Summer Campaign Assets",
+                        "creator_type": "user",
+                        "creator_id": "usr_4a1b2c3d5e6f",
+                        "created_at": "2026-03-14T10:15:00Z",
+                        "updated_at": "2026-03-15T09:30:00Z",
+                        "description": "Approved photography for the summer campaign launch.",
+                        "type": "manual"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "$ref": "#/components/responses/CollectionsBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "add-collection-assets",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Add Collection Assets"
+        },
+        "x-logical-service": "Collections"
+      },
+      "delete": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Remove assets from a collection",
+        "description": "Removes the specified assets from an existing collection. The caller must be allowed to update the collection. Assets that are not in the collection are ignored, and the underlying assets are not modified or deleted.\n",
+        "operationId": "RemoveCollectionAssets",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveCollectionAssetsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Assets removed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractRemoveCollectionAssetsResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "data": {
+                        "id": "col_8f3a2b1c9d4e",
+                        "name": "Summer Campaign Assets",
+                        "creator_type": "user",
+                        "creator_id": "usr_4a1b2c3d5e6f",
+                        "created_at": "2026-03-14T10:15:00Z",
+                        "updated_at": "2026-03-15T09:30:00Z",
+                        "description": "Approved photography for the summer campaign launch.",
+                        "type": "manual"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "$ref": "#/components/responses/CollectionsBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "remove-collection-assets",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Remove Collection Assets",
+          "destructiveHint": true,
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your Cloudinary product environment.",
+          "required": true,
+          "schema": {
+            "examples": [
+              "demo"
+            ],
+            "type": "string",
+            "description": "Cloud name of the product environment."
+          },
+          "examples": {
+            "default": {
+              "value": "demo"
+            }
+          }
+        },
+        {
+          "name": "collectionId",
+          "in": "path",
+          "description": "External ID of the collection whose assets to list, add, or remove.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "examples": {
+            "default": {
+              "value": "col_8f3a2b1c9d4e"
+            }
+          }
+        }
+      ]
+    },
+    "/v2/asset_management/{cloudName}/collections/{collectionId}/public_pages": {
+      "post": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Publish a collection",
+        "description": "Creates a shareable public page for the collection and returns its URL.",
+        "operationId": "CreateCollectionPublicPage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractCreatePublicPageRequestPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Public page created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractCreatePublicPageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "$ref": "#/components/responses/CollectionsBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          },
+          "200": {
+            "description": "Public page created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractCreatePublicPageResponse"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "publish-collection",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Publish Collection"
+        },
+        "x-logical-service": "Collections"
+      },
+      "get": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "List a collection\u0027s public pages",
+        "description": "Returns the public pages (shareable links) that have been created for the collection.",
+        "operationId": "ListCollectionPublicPages",
+        "responses": {
+          "200": {
+            "description": "Public pages listed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractListCollectionPublicPagesResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "pub_2c4d6e8f0a1b",
+                          "url": "https://collection.cloudinary.com/your-cloud-name/pub_2c4d6e8f0a1b",
+                          "name": "Summer Campaign Preview",
+                          "available_from": "2026-03-20T00:00:00Z",
+                          "expires_at": "2026-04-20T00:00:00Z",
+                          "show_download_original_option": true,
+                          "download_transformations": [
+                            {
+                              "name": "thumbnail_400",
+                              "transformation": "c_thumb,w_400,g_face",
+                              "types": [
+                                "image"
+                              ]
+                            }
+                          ],
+                          "protection_mode": "none",
+                          "allowed_emails": [],
+                          "allowed_domains": [],
+                          "allow_any": false,
+                          "custom_layout_url": null
+                        },
+                        {
+                          "id": "pub_5e7f9a1b3c2d",
+                          "url": "https://collection.cloudinary.com/your-cloud-name/pub_5e7f9a1b3c2d",
+                          "name": "Summer Campaign Press Kit",
+                          "available_from": "2026-04-01T00:00:00Z",
+                          "expires_at": "2026-06-30T00:00:00Z",
+                          "show_download_original_option": false,
+                          "download_transformations": [],
+                          "protection_mode": "email_otp",
+                          "allowed_emails": [
+                            "alice@example.com"
+                          ],
+                          "allowed_domains": [
+                            "example.com"
+                          ],
+                          "allow_any": false,
+                          "custom_layout_url": null
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-collection-public-pages",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "List Collection Public Pages",
+          "readOnlyHint": true,
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your Cloudinary product environment.",
+          "required": true,
+          "schema": {
+            "examples": [
+              "demo"
+            ],
+            "type": "string",
+            "description": "Cloud name of the product environment."
+          },
+          "examples": {
+            "default": {
+              "value": "demo"
+            }
+          }
+        },
+        {
+          "name": "collectionId",
+          "in": "path",
+          "description": "External ID of the collection to create or list public pages for.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "examples": {
+            "default": {
+              "value": "col_8f3a2b1c9d4e"
+            }
+          }
+        }
+      ]
+    },
+    "/v2/asset_management/{cloudName}/collections/{collectionId}/public_pages/{publicPageId}": {
+      "get": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Get a public page",
+        "description": "Returns a single public page of a collection by its external ID.",
+        "operationId": "GetCollectionPublicPage",
+        "responses": {
+          "200": {
+            "description": "Public page retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractGetCollectionPublicPageResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-collection-public-page",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Get Collection Public Page",
+          "readOnlyHint": true,
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "put": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Update a public page",
+        "description": "Updates the settings of a collection\u0027s public page and returns the updated page. Protecting a page (\u0060protection_mode: email_otp\u0060) requires the secured-sharing feature on your plan; otherwise the request fails with 403. Invalid protection settings fail with 400 and error code \u0060invalid_protection_settings\u0060, listing every problem found.\n",
+        "operationId": "UpdateCollectionPublicPage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractUpdatePublicPageRequestPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Public page updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractUpdatePublicPageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "$ref": "#/components/responses/CollectionsBadRequestResponse"
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "update-collection-public-page",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Update Collection Public Page",
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "delete": {
+        "tags": [
+          "Collections"
+        ],
+        "summary": "Unpublish a collection\u0027s public page",
+        "description": "Deletes a collection\u0027s public page so it\u0027s no longer shareable. The collection and its assets aren\u0027t changed or deleted.\n",
+        "operationId": "DeleteCollectionPublicPage",
+        "responses": {
+          "200": {
+            "description": "Public page deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractDeletePublicPageResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "message": "Public page deleted successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "$ref": "#/components/responses/CollectionsUnauthorizedResponse"
+          },
+          "403": {
+            "description": "Forbidden.",
+            "$ref": "#/components/responses/CollectionsForbiddenResponse"
+          },
+          "404": {
+            "description": "Not found.",
+            "$ref": "#/components/responses/CollectionsNotFoundResponse"
+          },
+          "500": {
+            "description": "Internal server error.",
+            "$ref": "#/components/responses/CollectionsInternalServerErrorResponse"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "unpublish-collection-public-page",
+          "scopes": [
+            "librarian"
+          ],
+          "title": "Unpublish Collection Public Page",
+          "destructiveHint": true,
+          "idempotentHint": true
+        },
+        "x-logical-service": "Collections"
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your Cloudinary product environment.",
+          "required": true,
+          "schema": {
+            "examples": [
+              "demo"
+            ],
+            "type": "string",
+            "description": "Cloud name of the product environment."
+          },
+          "examples": {
+            "default": {
+              "value": "demo"
+            }
+          }
+        },
+        {
+          "name": "collectionId",
+          "in": "path",
+          "description": "External ID of the collection the public page belongs to.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "examples": {
+            "default": {
+              "value": "col_8f3a2b1c9d4e"
+            }
+          }
+        },
+        {
+          "name": "publicPageId",
+          "in": "path",
+          "description": "External ID of the public page.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "examples": {
+            "default": {
+              "value": "pub_2c4d6e8f0a1b"
+            }
+          }
+        }
+      ]
     }
   },
   "components": {
@@ -19041,6 +20111,872 @@
           ]
         }
       },
+      "ContractCreateCollectionRequestPayload": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "examples": [
+              "Summer Campaign Assets"
+            ],
+            "type": "string",
+            "description": "Name of the collection."
+          },
+          "description": {
+            "examples": [
+              "Approved photography for the summer campaign launch."
+            ],
+            "type": "string",
+            "description": "Optional description of the collection."
+          },
+          "type": {
+            "$ref": "#/components/schemas/ContractCreateCollectionRequestPayloadType"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/EntityCollectionConfiguration"
+          }
+        }
+      },
+      "EntityCollectionConfiguration": {
+        "type": "object",
+        "properties": {
+          "expression": {
+            "examples": [
+              "tags = \u0022summer-campaign\u0022 AND resource_type:image"
+            ],
+            "type": "string",
+            "description": "The [search expression](search_expressions) that defines which assets are included in a dynamic collection. Cloudinary evaluates the expression against your product environment\u0027s assets, so the collection\u0027s contents update as assets begin or stop matching the criteria. In the Media Library, a collection whose expression was set through the API shows it as a single **Expression** filter; any filters added to the collection there are combined with it using AND.\n"
+          }
+        },
+        "description": "Configuration for a \u0060dynamic\u0060 collection. Required when creating a \u0060dynamic\u0060 collection, and not allowed for a \u0060manual\u0060 collection.\n"
+      },
+      "EntityCollection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "examples": [
+              "col_8f3a2b1c9d4e"
+            ],
+            "type": "string",
+            "description": "The external ID of the collection."
+          },
+          "name": {
+            "examples": [
+              "Summer Campaign Assets"
+            ],
+            "type": "string",
+            "description": "Name of the collection."
+          },
+          "creator_type": {
+            "$ref": "#/components/schemas/EntityCollectionCreatorType"
+          },
+          "creator_id": {
+            "examples": [
+              "usr_4a1b2c3d5e6f"
+            ],
+            "type": "string",
+            "description": "Who created the collection. When \u0060creator_type\u0060 is \u0060user\u0060, this is the external ID of the Console user; Enterprise customers can get more details about the user with the [Get user](provisioning_api#tag/users/GET/users/{user_id}) endpoint of the Provisioning API. When \u0060creator_type\u0060 is \u0060api\u0060, this is the API key used to create the collection."
+          },
+          "created_at": {
+            "examples": [
+              "2026-03-14T10:15:00Z"
+            ],
+            "type": "string",
+            "description": "When the collection was created.",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "examples": [
+              "2026-03-15T09:30:00Z"
+            ],
+            "type": "string",
+            "description": "When the collection was last modified.",
+            "format": "date-time"
+          },
+          "description": {
+            "examples": [
+              "Approved photography for the summer campaign launch."
+            ],
+            "type": "string",
+            "description": "Optional description of the collection."
+          },
+          "type": {
+            "$ref": "#/components/schemas/EntityCollectionType"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/EntityCollectionConfiguration"
+          },
+          "asset_count": {
+            "examples": [
+              12
+            ],
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Number of assets in the collection. Returned by the \u0060Get a collection\u0060 and \u0060List collections\u0060 endpoints. Omitted from the responses of the endpoints that create, update, or change the assets of a collection.\n"
+          },
+          "cover_asset_url": {
+            "examples": [
+              "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Delivery URL of an automatically selected cover asset for the collection. Returned by the \u0060Get a collection\u0060 and \u0060List collections\u0060 endpoints. Omitted from the responses of the endpoints that create, update, or change the assets of a collection.\n"
+          }
+        },
+        "description": "A collection resource."
+      },
+      "ContractCreateCollectionResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityCollection"
+          }
+        },
+        "description": "Response returned by the **Create a collection** endpoint."
+      },
+      "ContractGetCollectionResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityCollection"
+          }
+        },
+        "description": "Response returned by the **Get a collection** endpoint."
+      },
+      "ContractUpdateCollectionRequestPayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "examples": [
+              "Summer Campaign Assets 2026"
+            ],
+            "type": "string",
+            "description": "New name for the collection. Omit to leave the current name unchanged."
+          },
+          "description": {
+            "examples": [
+              "Approved photography for the 2026 summer campaign launch."
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "New description for the collection. Send \u0060null\u0060 or an empty string to clear it. Omit to leave the current description unchanged."
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/EntityCollectionConfiguration"
+          }
+        },
+        "description": "The collection attributes to update. Only the fields you include are changed. A collection\u0027s type is set when the collection is created and can\u0027t be changed.\n"
+      },
+      "ContractUpdateCollectionResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityCollection"
+          }
+        },
+        "description": "Response returned by the **Update a collection** endpoint."
+      },
+      "ContractListCollectionsResponse": {
+        "required": [
+          "data",
+          "total_count"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityCollection"
+            },
+            "description": "The page of collections."
+          },
+          "next_cursor": {
+            "examples": [
+              "eyJsYXN0X21vZGlmaWVkX2F0IjoxNzQwNTg0MzAwfQ"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Opaque cursor for the next page. Omitted when there are no further pages."
+          },
+          "total_count": {
+            "examples": [
+              42
+            ],
+            "type": "integer",
+            "description": "Total number of collections matching the query across all pages."
+          }
+        },
+        "description": "Response returned by the **List collections** endpoint. \u0060data\u0060 and \u0060total_count\u0060 are always present, so a search that matches nothing returns \u0060{\u0022data\u0022: [], \u0022total_count\u0022: 0}\u0060 rather than an empty object. \u0060next_cursor\u0060 follows the usual cursor convention and is omitted once there are no further pages.\n"
+      },
+      "EntityCollectionAsset": {
+        "required": [
+          "asset_id",
+          "public_id",
+          "display_name",
+          "resource_type",
+          "type",
+          "format",
+          "bytes",
+          "width",
+          "height",
+          "secure_url",
+          "created_at"
+        ],
+        "type": "object",
+        "properties": {
+          "asset_id": {
+            "examples": [
+              "3515c6000a548515f1134043f9785c2f"
+            ],
+            "type": "string",
+            "description": "The immutable ID of the asset. This is the value the **Add assets to a collection** and **Remove assets from a collection** endpoints accept.\n"
+          },
+          "public_id": {
+            "examples": [
+              "summer/beach-hero"
+            ],
+            "type": "string",
+            "description": "The public ID of the asset."
+          },
+          "display_name": {
+            "examples": [
+              "beach-hero"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The asset\u0027s display name, or null when it has none."
+          },
+          "resource_type": {
+            "examples": [
+              "image"
+            ],
+            "type": "string",
+            "description": "The resource type of the asset (\u0060image\u0060, \u0060video\u0060, or \u0060raw\u0060)."
+          },
+          "type": {
+            "examples": [
+              "upload"
+            ],
+            "type": "string",
+            "description": "The delivery type of the asset, e.g. \u0060upload\u0060, \u0060private\u0060, or \u0060authenticated\u0060."
+          },
+          "format": {
+            "examples": [
+              "jpg"
+            ],
+            "type": "string",
+            "description": "The asset\u0027s file format. Empty for raw assets without an extension."
+          },
+          "bytes": {
+            "examples": [
+              482113
+            ],
+            "type": "integer",
+            "description": "The asset\u0027s size in bytes.",
+            "format": "int64"
+          },
+          "width": {
+            "examples": [
+              1920
+            ],
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Width in pixels, or null for assets without dimensions (e.g. raw files)."
+          },
+          "height": {
+            "examples": [
+              1080
+            ],
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Height in pixels, or null for assets without dimensions (e.g. raw files)."
+          },
+          "secure_url": {
+            "examples": [
+              "https://res.cloudinary.com/demo/image/upload/v1720000000/summer/beach-hero.jpg"
+            ],
+            "type": "string",
+            "description": "The HTTPS delivery URL of the asset."
+          },
+          "created_at": {
+            "examples": [
+              "2026-03-14T10:15:00Z"
+            ],
+            "type": "string",
+            "description": "When the asset was created.",
+            "format": "date-time"
+          }
+        },
+        "description": "An asset in a collection. Every field is always present in a response: an unset value (\u0060display_name\u0060, or \u0060width\u0060 / \u0060height\u0060 for assets without dimensions) is returned as \u0060null\u0060 rather than being omitted, the same as on the public page entity.\n"
+      },
+      "ContractListCollectionAssetsResponse": {
+        "required": [
+          "data",
+          "total_count"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityCollectionAsset"
+            },
+            "description": "The page of assets."
+          },
+          "next_cursor": {
+            "examples": [
+              "8edbc61040178db60b0973ca9494bf3a"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Opaque cursor for the next page. Omitted when there are no further pages."
+          },
+          "total_count": {
+            "examples": [
+              12
+            ],
+            "type": "integer",
+            "description": "Total number of assets in the collection that the caller may view."
+          }
+        },
+        "description": "Response returned by the **List a collection\u0027s assets** endpoint. \u0060data\u0060 and \u0060total_count\u0060 are always present, so a collection with no assets returns \u0060{\u0022data\u0022: [], \u0022total_count\u0022: 0}\u0060. \u0060next_cursor\u0060 follows the usual cursor convention and is omitted once there are no further pages.\n"
+      },
+      "ContractAddCollectionAssetsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityCollection"
+          }
+        },
+        "description": "Response returned by the **Add assets to a collection** endpoint."
+      },
+      "ContractRemoveCollectionAssetsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityCollection"
+          }
+        },
+        "description": "Response returned by the **Remove assets from a collection** endpoint."
+      },
+      "ContractDeleteCollectionResponse": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "examples": [
+              "Collection deleted successfully."
+            ],
+            "type": "string",
+            "description": "Confirmation that the collection was deleted."
+          }
+        },
+        "description": "Response returned by the **Delete a collection** endpoint."
+      },
+      "ContractCreatePublicPageRequestPayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "examples": [
+              "Summer Campaign Preview"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Optional display name for the public page."
+          },
+          "available_from": {
+            "examples": [
+              "2026-03-20T00:00:00Z"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When the page becomes active. If omitted or null, the page is active immediately.",
+            "format": "date-time"
+          },
+          "expires_at": {
+            "examples": [
+              "2026-04-20T00:00:00Z"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When the page expires. If omitted or null, the page never expires.",
+            "format": "date-time"
+          },
+          "show_download_original_option": {
+            "examples": [
+              true
+            ],
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether viewers can download the original asset. Omit to use the account default set by an administrator in the [Media Library Preferences](dam_admin_media_library_options#download_options_for_external_sharing).\n"
+          },
+          "download_transformations": {
+            "examples": [
+              [
+                {
+                  "name": "thumbnail_400"
+                },
+                {
+                  "name": "trimmed_preview",
+                  "types": [
+                    "video"
+                  ]
+                }
+              ]
+            ],
+            "maxItems": 200,
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EntityDownloadTransformationInput"
+            },
+            "description": "Named transformations that viewers of the public page can apply when downloading assets, referenced by name (see the Admin API\u0027s [Get transformations](admin_api#get_transformations) endpoint to list the named transformations in your product environment). By default, each name must already be set as a transformation template; set \u0060create_download_transformations\u0060 to \u0060true\u0060 to set any listed name that isn\u0027t one yet automatically. Omit or pass null to leave the page without download transformations. At most 200 entries.\n"
+          },
+          "create_download_transformations": {
+            "examples": [
+              true
+            ],
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "When \u0060true\u0060, any name in \u0060download_transformations\u0060 that isn\u0027t yet set as a transformation template is set as one automatically. It then appears in the Console\u0027s templates list and counts toward your product environment\u0027s template limit. When \u0060false\u0060 or omitted, the request instead fails with \u0060download_transformation_not_available\u0060 if any listed name isn\u0027t yet set as a transformation template, and nothing is changed.\n",
+            "default": false
+          }
+        },
+        "description": "Settings for the public page. Every field is optional; omitted fields use their documented default.\n"
+      },
+      "EntityDownloadTransformationInput": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "examples": [
+              "thumbnail_400"
+            ],
+            "type": "string",
+            "description": "Name of an existing named transformation in this product environment."
+          },
+          "types": {
+            "examples": [
+              [
+                "video"
+              ]
+            ],
+            "minItems": 1,
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EntityDownloadTransformationInputTypesItem"
+            },
+            "description": "Asset types the transformation is offered for. Restrict this to the types the transformation actually produces correct results for (for example, a duration/trim transformation only makes sense for video), to avoid download errors for the other type. This is a property of the transformation template itself, shared by every public page in the product environment, not just this one: it can only be set the first time any public page offers this name for download. Omit \u0060types\u0060 on that first request to make it available for both \u0060image\u0060 and \u0060video\u0060. If the name is already available for download (set by an earlier request on this or another public page), omit \u0060types\u0060 to keep its existing setting, or send its exact current list; sending a different list fails with \u0060download_transformation_types_conflict\u0060. An empty list is rejected.\n"
+          }
+        },
+        "description": "A named transformation to offer for download on a public page."
+      },
+      "EntityDownloadTransformation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "examples": [
+              "thumbnail_400"
+            ],
+            "type": "string",
+            "description": "Name of the transformation template."
+          },
+          "transformation": {
+            "examples": [
+              "c_thumb,w_400,g_face"
+            ],
+            "type": "string",
+            "description": "The transformation definition behind the name."
+          },
+          "types": {
+            "examples": [
+              [
+                "image"
+              ]
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityDownloadTransformationTypesItem"
+            },
+            "description": "Asset types the transformation is offered for."
+          }
+        },
+        "description": "A transformation template offered for download on a public page."
+      },
+      "EntityPublicPage": {
+        "required": [
+          "id",
+          "url",
+          "name",
+          "available_from",
+          "expires_at",
+          "show_download_original_option",
+          "download_transformations",
+          "protection_mode",
+          "allowed_emails",
+          "allowed_domains",
+          "allow_any",
+          "custom_layout_url"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "examples": [
+              "pub_2c4d6e8f0a1b"
+            ],
+            "type": "string",
+            "description": "External ID of the public page."
+          },
+          "url": {
+            "examples": [
+              "https://collection.cloudinary.com/your-cloud-name/pub_2c4d6e8f0a1b"
+            ],
+            "type": "string",
+            "description": "The shareable URL of the public page, in the form \u0060https://collection.cloudinary.com/\u003Ccloud_name\u003E/\u003Cpublic_page_id\u003E\u0060. It doesn\u0027t include the collection ID.\n"
+          },
+          "name": {
+            "examples": [
+              "Summer Campaign Preview"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Display name of the public page. May be null."
+          },
+          "available_from": {
+            "examples": [
+              "2026-03-20T00:00:00Z"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When the page becomes active. Null if the page is active immediately.",
+            "format": "date-time"
+          },
+          "expires_at": {
+            "examples": [
+              "2026-04-20T00:00:00Z"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When the page expires. Null if the page never expires.",
+            "format": "date-time"
+          },
+          "show_download_original_option": {
+            "examples": [
+              true
+            ],
+            "type": "boolean",
+            "description": "Whether the option to download the original asset is shown."
+          },
+          "download_transformations": {
+            "examples": [
+              [
+                {
+                  "name": "thumbnail_400",
+                  "transformation": "c_thumb,w_400,g_face",
+                  "types": [
+                    "image"
+                  ]
+                }
+              ]
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityDownloadTransformation"
+            },
+            "description": "Transformation templates that viewers of the public page can apply when downloading assets. Empty when the page offers none.\n"
+          },
+          "protection_mode": {
+            "$ref": "#/components/schemas/EntityPublicPageProtectionMode"
+          },
+          "allowed_emails": {
+            "examples": [
+              [
+                "alice@example.com",
+                "bob@example.com"
+              ]
+            ],
+            "type": "array",
+            "items": {
+              "type": "string",
+              "x-client-original-format": "email"
+            },
+            "description": "Email addresses allowed to access the page when it is protected, stored lowercased. Empty when the page is unprotected.\n"
+          },
+          "allowed_domains": {
+            "examples": [
+              [
+                "example.com"
+              ]
+            ],
+            "type": "array",
+            "items": {
+              "pattern": "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)\u002B[a-z]{2,}$",
+              "type": "string"
+            },
+            "description": "Email domains allowed to access the page when it is protected, stored lowercased and without a leading \u0060@\u0060. Empty when the page is unprotected.\n"
+          },
+          "allow_any": {
+            "examples": [
+              false
+            ],
+            "type": "boolean",
+            "description": "Whether any email address is allowed to access the page when it is protected."
+          },
+          "custom_layout_url": {
+            "examples": [
+              "https://res.cloudinary.com/demo/raw/upload/layouts/summer-page.html"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "URL of a custom HTML page in your product environment that replaces the public page\u0027s default design. Null when the page uses the default design. Only applied while the custom collection layout feature is on your plan.\n"
+          }
+        },
+        "description": "A public page (shareable link) for a collection. Every field is always present in a response: an unset value is returned as \u0060null\u0060 (or \u0060false\u0060 / \u0060[]\u0060) rather than being omitted, so a read-modify-write round-trip never has to guess what an absent field meant.\n"
+      },
+      "ContractCreatePublicPageResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityPublicPage"
+          }
+        },
+        "description": "Response returned by the **Publish a collection** endpoint."
+      },
+      "ContractListCollectionPublicPagesResponse": {
+        "required": [
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityPublicPage"
+            }
+          }
+        },
+        "description": "Response returned by the **List a collection\u0027s public pages** endpoint. \u0060data\u0060 is always present; a collection with no public pages returns \u0060{\u0022data\u0022: []}\u0060.\n"
+      },
+      "ContractGetCollectionPublicPageResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityPublicPage"
+          }
+        },
+        "description": "Response returned by the **Get a public page** endpoint."
+      },
+      "ContractUpdatePublicPageRequestPayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "examples": [
+              "Summer Campaign Preview"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "New display name for the public page. Omit to leave the current value unchanged."
+          },
+          "available_from": {
+            "examples": [
+              "2026-03-20T00:00:00Z"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "New activation time for the page. Omit to leave the current value unchanged.",
+            "format": "date-time"
+          },
+          "expires_at": {
+            "examples": [
+              "2026-04-20T00:00:00Z"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "New expiry time for the page. Omit to leave the current value unchanged.",
+            "format": "date-time"
+          },
+          "show_download_original_option": {
+            "examples": [
+              true
+            ],
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether viewers may download the original asset. Omit to leave the current value unchanged.\n"
+          },
+          "download_transformations": {
+            "examples": [
+              [
+                {
+                  "name": "thumbnail_400"
+                },
+                {
+                  "name": "trimmed_preview",
+                  "types": [
+                    "video"
+                  ]
+                }
+              ]
+            ],
+            "maxItems": 200,
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EntityDownloadTransformationInput"
+            },
+            "description": "Named transformations that viewers of the public page can apply when downloading assets, referenced by name (see the Admin API\u0027s [Get transformations](admin_api#get_transformations) endpoint to list the named transformations in your product environment). The list replaces the page\u0027s current download transformations; pass an empty list to remove them all. Omit to leave the current value unchanged. At most 200 entries.\n"
+          },
+          "create_download_transformations": {
+            "examples": [
+              true
+            ],
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "When \u0060true\u0060, any name in \u0060download_transformations\u0060 that isn\u0027t yet set as a transformation template is set as one automatically. It then appears in the Console\u0027s templates list and counts toward your product environment\u0027s template limit. When \u0060false\u0060 or omitted, the request instead fails with \u0060download_transformation_not_available\u0060 if any listed name isn\u0027t yet set as a transformation template, and nothing is changed.\n",
+            "default": false
+          },
+          "protection_mode": {
+            "$ref": "#/components/schemas/ContractUpdatePublicPageRequestPayloadProtectionMode"
+          },
+          "allowed_emails": {
+            "examples": [
+              [
+                "alice@example.com",
+                "bob@example.com"
+              ]
+            ],
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "x-client-original-format": "email"
+            },
+            "description": "Email addresses allowed to access the page when it is protected. The list replaces the current one; send an empty array to clear it (the page must still satisfy the \u0060allow_any\u0060 rule). Together with \u0060allowed_domains\u0060, at most 500 entries. Omit to leave the current value unchanged.\n"
+          },
+          "allowed_domains": {
+            "examples": [
+              [
+                "example.com"
+              ]
+            ],
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "pattern": "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)\u002B[a-z]{2,}$",
+              "type": "string"
+            },
+            "description": "Email domains allowed to access the page when it is protected, as bare lowercase domains such as \u0060example.com\u0060. The list replaces the current one; send an empty array to clear it (the page must still satisfy the \u0060allow_any\u0060 rule). Together with \u0060allowed_emails\u0060, at most 500 entries. Omit to leave the current value unchanged.\n"
+          },
+          "allow_any": {
+            "examples": [
+              false
+            ],
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether any email address is allowed to access the page when it is protected. After the update, an \u0060email_otp\u0060 page needs \u0060allow_any: true\u0060 or at least one entry in \u0060allowed_emails\u0060 or \u0060allowed_domains\u0060; otherwise the request fails with 400 \u0060invalid_protection_settings\u0060. Omit to leave the current value unchanged.\n"
+          },
+          "custom_layout_url": {
+            "examples": [
+              "https://res.cloudinary.com/demo/raw/upload/layouts/summer.html"
+            ],
+            "maxLength": 2048,
+            "pattern": "^(|https://[A-Za-z0-9.-]\u002B\\.cloudinary\\.com/.*)$",
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "URL of a custom HTML page in your product environment to use in place of the public page\u0027s default design. It must be an \u0060https\u0060 URL on a \u0060cloudinary.com\u0060 host that belongs to this product environment, at most 2048 bytes. Setting it requires the custom collection layout feature on your plan; otherwise the request fails with 403. Pass an empty string to return to the default design. Omit to leave the current value unchanged.\n"
+          }
+        },
+        "description": "Partial-update payload. Only the fields you include are forwarded and changed; any field you omit is left unchanged. Sending null does not clear a value.\n"
+      },
+      "ContractUpdatePublicPageResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityPublicPage"
+          }
+        },
+        "description": "Response returned by the **Update a public page** endpoint."
+      },
+      "ContractDeletePublicPageResponse": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "examples": [
+              "Public page deleted successfully."
+            ],
+            "type": "string",
+            "description": "Confirmation that the public page was deleted."
+          }
+        },
+        "description": "Response returned by the **Unpublish a collection\u0027s public page** endpoint."
+      },
       "RateLimitedResponseResponse": {
         "title": "RateLimitedResponse",
         "required": [
@@ -19082,6 +21018,66 @@
           }
         },
         "description": "Error returned when the account is out of Image Generation credits, with the current quota."
+      },
+      "CollectionsBadRequestResponseResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "examples": [
+              "Bad Request. Please check your request for errors."
+            ],
+            "type": "string",
+            "description": "Human-readable description of the error."
+          }
+        }
+      },
+      "CollectionsUnauthorizedResponseResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "examples": [
+              "Invalid credentials"
+            ],
+            "type": "string",
+            "description": "Human-readable description of the error."
+          }
+        }
+      },
+      "CollectionsForbiddenResponseResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "examples": [
+              "Forbidden."
+            ],
+            "type": "string",
+            "description": "Human-readable description of the error."
+          }
+        }
+      },
+      "CollectionsNotFoundResponseResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "examples": [
+              "Not found."
+            ],
+            "type": "string",
+            "description": "Human-readable description of the error."
+          }
+        }
+      },
+      "CollectionsInternalServerErrorResponseResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "examples": [
+              "Internal server error. Please try again later."
+            ],
+            "type": "string",
+            "description": "Human-readable description of the error."
+          }
+        }
       },
       "AccessControlItemStart": {
         "oneOf": [
@@ -20862,6 +22858,26 @@
         "type": "object",
         "description": "The upload parameters resulting from evaluating the eval expression."
       },
+      "AddCollectionAssetsRequest": {
+        "type": "array",
+        "items": {
+          "examples": [
+            "ast_1a2b3c4d5e6f"
+          ],
+          "type": "string"
+        },
+        "description": "A list of \u0060asset_id\u0060 values of the assets to add to the collection."
+      },
+      "RemoveCollectionAssetsRequest": {
+        "type": "array",
+        "items": {
+          "examples": [
+            "ast_1a2b3c4d5e6f"
+          ],
+          "type": "string"
+        },
+        "description": "A list of \u0060asset_id\u0060 values of the assets to remove from the collection."
+      },
       "ContextFullResponseAdditionalPropertiesProperty": {
         "type": "object",
         "additionalProperties": {
@@ -22436,6 +24452,176 @@
           ]
         }
       },
+      "ContractCreateCollectionRequestPayloadType": {
+        "examples": [
+          "dynamic"
+        ],
+        "enum": [
+          "manual",
+          "dynamic"
+        ],
+        "type": "string",
+        "description": "Type of the collection. \u0060manual\u0060 holds an explicit asset list and starts empty until you add assets with the **Add assets to a collection** endpoint; \u0060dynamic\u0060 is defined by a saved filter expression and is populated automatically.\n",
+        "x-ms-enum": {
+          "name": "ContractCreateCollectionRequestPayloadType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "manual",
+              "name": "Manual"
+            },
+            {
+              "value": "dynamic",
+              "name": "Dynamic"
+            }
+          ]
+        }
+      },
+      "EntityCollectionCreatorType": {
+        "examples": [
+          "user"
+        ],
+        "enum": [
+          "user",
+          "api"
+        ],
+        "type": "string",
+        "description": "Indicates whether the collection was created by a Console user or through the API.",
+        "x-ms-enum": {
+          "name": "EntityCollectionCreatorType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "api",
+              "name": "Api"
+            }
+          ]
+        }
+      },
+      "EntityCollectionType": {
+        "examples": [
+          "dynamic"
+        ],
+        "enum": [
+          "manual",
+          "dynamic"
+        ],
+        "type": "string",
+        "description": "The type of collection. \u0060manual\u0060 holds an explicit asset list and starts empty until you add assets with the **Add assets to a collection** endpoint; \u0060dynamic\u0060 is defined by a saved filter expression and is populated automatically.",
+        "x-ms-enum": {
+          "name": "EntityCollectionType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "manual",
+              "name": "Manual"
+            },
+            {
+              "value": "dynamic",
+              "name": "Dynamic"
+            }
+          ]
+        }
+      },
+      "EntityDownloadTransformationInputTypesItem": {
+        "enum": [
+          "image",
+          "video"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "EntityDownloadTransformationInputTypesItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "image",
+              "name": "Image"
+            },
+            {
+              "value": "video",
+              "name": "Video"
+            }
+          ]
+        }
+      },
+      "EntityDownloadTransformationTypesItem": {
+        "enum": [
+          "image",
+          "video"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "EntityDownloadTransformationTypesItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "image",
+              "name": "Image"
+            },
+            {
+              "value": "video",
+              "name": "Video"
+            }
+          ]
+        }
+      },
+      "EntityPublicPageProtectionMode": {
+        "examples": [
+          "email_otp"
+        ],
+        "enum": [
+          "none",
+          "email_otp"
+        ],
+        "type": "string",
+        "description": "Secured-sharing protection mode of the public page. \u0060none\u0060 means the page is unprotected; \u0060email_otp\u0060 means viewers must verify an allowed email address with a one-time passcode before accessing the page.\n",
+        "x-ms-enum": {
+          "name": "EntityPublicPageProtectionMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "email_otp",
+              "name": "EmailOtp"
+            }
+          ]
+        }
+      },
+      "ContractUpdatePublicPageRequestPayloadProtectionMode": {
+        "examples": [
+          "email_otp"
+        ],
+        "enum": [
+          "none",
+          "email_otp"
+        ],
+        "type": [
+          "null",
+          "string"
+        ],
+        "description": "Secured-sharing protection mode. \u0060none\u0060 removes protection and clears the allowed emails, domains and \u0060allow_any\u0060. \u0060email_otp\u0060 protects the page so viewers must verify an allowed email address with a one-time passcode; a protected page needs at least one allowed email or domain, or \u0060allow_any: true\u0060. Omit to leave the current mode unchanged: on a protected page the allowlist fields below then update its allowlist, but on an unprotected page they are ignored, so send \u0060email_otp\u0060 to protect it.\n",
+        "x-ms-enum": {
+          "name": "ContractUpdatePublicPageRequestPayloadProtectionMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "email_otp",
+              "name": "EmailOtp"
+            }
+          ]
+        }
+      },
       "MetadataRuleActivateValuesOneOf2Mode": {
         "enum": [
           "override",
@@ -23299,6 +25485,56 @@
                   "request_id": "17c3b70c5096df0e77e838323abb7029"
                 }
               }
+            }
+          }
+        }
+      },
+      "CollectionsBadRequestResponse": {
+        "description": "Bad request.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsBadRequestResponseResponse"
+            }
+          }
+        }
+      },
+      "CollectionsUnauthorizedResponse": {
+        "description": "Unauthorized.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsUnauthorizedResponseResponse"
+            }
+          }
+        }
+      },
+      "CollectionsForbiddenResponse": {
+        "description": "Forbidden.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsForbiddenResponseResponse"
+            }
+          }
+        }
+      },
+      "CollectionsNotFoundResponse": {
+        "description": "Not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsNotFoundResponseResponse"
+            }
+          }
+        }
+      },
+      "CollectionsInternalServerErrorResponse": {
+        "description": "Internal server error.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CollectionsInternalServerErrorResponseResponse"
             }
           }
         }
@@ -24875,6 +27111,10 @@
     {
       "name": "Tasks",
       "description": "Query the status of async generation tasks."
+    },
+    {
+      "name": "Collections",
+      "description": "Create and manage collections of assets, and publish shareable public pages for them."
     }
   ],
   "x-speakeasy-globals": {
@@ -26403,6 +28643,26 @@
       },
       "description": "Tips and guidance attached to the response to help you get the most\nout of the generation. Each entry is plain text you can show to a\nuser or act on as-is. Omitted when there is nothing to add.\n",
       "x-experimental": true
+    },
+    "ContractAddCollectionAssetsRequestPayload": {
+      "type": "array",
+      "items": {
+        "examples": [
+          "ast_1a2b3c4d5e6f"
+        ],
+        "type": "string"
+      },
+      "description": "A list of \u0060asset_id\u0060 values of the assets to add to the collection."
+    },
+    "ContractRemoveCollectionAssetsRequestPayload": {
+      "type": "array",
+      "items": {
+        "examples": [
+          "ast_1a2b3c4d5e6f"
+        ],
+        "type": "string"
+      },
+      "description": "A list of \u0060asset_id\u0060 values of the assets to remove from the collection."
     },
     "BinaryUploadRequestAllOf4": {
       "type": "object",
