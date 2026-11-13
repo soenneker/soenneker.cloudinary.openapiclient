@@ -12,7 +12,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.7.9"
+    "version": "0.7.10"
   },
   "servers": [
     {
@@ -10577,6 +10577,723 @@
         }
       ]
     },
+    "/v2/video/{cloudName}/image_to_video/generate": {
+      "post": {
+        "tags": [
+          "Video Generate"
+        ],
+        "summary": "Create a video generation job",
+        "description": "Submits an image and prompt for video generation and returns a job you can poll for the result.",
+        "operationId": "CreateVideoGenerateJob",
+        "requestBody": {
+          "description": "A JSON object with the source image, prompt, and generation options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageToVideoGeneratePayload"
+              },
+              "examples": {
+                "default": {
+                  "value": {
+                    "prompt": "A serene beach at sunset with gentle waves rolling in",
+                    "image_asset_id": "0a1b2c3d4e5f60718293a4b5c6d7e8f9",
+                    "aspect_ratio": "16:9",
+                    "resolution": "1080p",
+                    "duration": 8,
+                    "generate_audio": true,
+                    "folder": "campaigns/spring",
+                    "negative_prompt": [
+                      "watermark",
+                      "flickering"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Video generation job created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToVideoGenerateWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": {
+                        "job_id": "550e8400e29b41d4a716446655440000",
+                        "status": "pending"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - validation or safety error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Video generation job created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToVideoGenerateWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": {
+                        "job_id": "550e8400e29b41d4a716446655440000",
+                        "status": "pending"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "generate-video-from-image",
+          "title": "Generate Video from Image"
+        },
+        "x-cld-use-for-readme": true
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your product environment.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "my_cloud"
+        }
+      ]
+    },
+    "/v2/video/{cloudName}/image_to_video/generate/{jobId}": {
+      "get": {
+        "tags": [
+          "Video Generate"
+        ],
+        "summary": "Poll a video generation job",
+        "description": "Returns the current status of a generation job. When the status is \u0060completed\u0060, the response includes the generated video\u0027s asset details and delivery URL.",
+        "operationId": "GetVideoGenerateJobStatus",
+        "responses": {
+          "200": {
+            "description": "Job status (pending, completed, or failed)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToVideoGenerateWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": {
+                        "job_id": "550e8400e29b41d4a716446655440000",
+                        "status": "completed",
+                        "asset_id": "9f8e7d6c5b4a30291807a6b5c4d3e2f1",
+                        "public_id": "image-to-video/i2v_550e8400e29b41d4a716446655440000",
+                        "resource_type": "video",
+                        "delivery_type": "upload",
+                        "url": "https://res.cloudinary.com/demo/video/upload/v1/image-to-video/i2v_550e8400e29b41d4a716446655440000.mp4"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Authorization error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-video-generation-job",
+          "title": "Get Video Generation Job"
+        }
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your product environment.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "my_cloud"
+        },
+        {
+          "name": "jobId",
+          "in": "path",
+          "description": "The video generation job ID returned from the create endpoint.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/v2/video/{cloudName}/image_to_video/prompts": {
+      "get": {
+        "tags": [
+          "Image To Video Prompts"
+        ],
+        "summary": "Get a list of image to video prompts",
+        "description": "Returns all saved image-to-video prompts for your product environment.",
+        "operationId": "GetImageToVideoPrompts",
+        "responses": {
+          "200": {
+            "description": "A list of image to video prompts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToVideoPromptsWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": [
+                        {
+                          "id": "c4a8e2f1d3b74a6e9f0b5d2c8e1a7f39",
+                          "display_name": "Beach sunset",
+                          "prompt": "A serene beach at sunset with gentle waves rolling in",
+                          "created_at": 1781000000000,
+                          "updated_at": 1781000000000
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "list-image-to-video-prompts",
+          "title": "List Image-to-Video Prompts"
+        }
+      },
+      "post": {
+        "tags": [
+          "Image To Video Prompts"
+        ],
+        "summary": "Create an image to video prompt",
+        "description": "Saves a reusable prompt with a display name so you can apply it to future generations.",
+        "operationId": "CreateImageToVideoPrompt",
+        "requestBody": {
+          "description": "A JSON object with the prompt text and its display name.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageToVideoPromptCreatePayload"
+              },
+              "examples": {
+                "default": {
+                  "value": {
+                    "display_name": "Beach sunset",
+                    "prompt": "A serene beach at sunset with gentle waves rolling in"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created image to video prompt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToVideoPromptWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": {
+                        "id": "c4a8e2f1d3b74a6e9f0b5d2c8e1a7f39",
+                        "display_name": "Beach sunset",
+                        "prompt": "A serene beach at sunset with gentle waves rolling in",
+                        "created_at": 1781000000000,
+                        "updated_at": 1781000000000
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Created image to video prompt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToVideoPromptWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": {
+                        "id": "c4a8e2f1d3b74a6e9f0b5d2c8e1a7f39",
+                        "display_name": "Beach sunset",
+                        "prompt": "A serene beach at sunset with gentle waves rolling in",
+                        "created_at": 1781000000000,
+                        "updated_at": 1781000000000
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "create-image-to-video-prompt",
+          "title": "Create Image-to-Video Prompt"
+        }
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your product environment.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "my_cloud"
+        }
+      ]
+    },
+    "/v2/video/{cloudName}/image_to_video/prompts/{promptId}": {
+      "get": {
+        "tags": [
+          "Image To Video Prompts"
+        ],
+        "summary": "Get an image to video prompt",
+        "description": "Returns a single saved prompt by its ID.",
+        "operationId": "GetImageToVideoPrompt",
+        "parameters": [
+          {
+            "name": "promptId",
+            "in": "path",
+            "description": "The ID of the image-to-video prompt.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An image to video prompt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToVideoPromptWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": {
+                        "id": "c4a8e2f1d3b74a6e9f0b5d2c8e1a7f39",
+                        "display_name": "Beach sunset",
+                        "prompt": "A serene beach at sunset with gentle waves rolling in",
+                        "created_at": 1781000000000,
+                        "updated_at": 1781000000000
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "get-image-to-video-prompt",
+          "title": "Get Image-to-Video Prompt"
+        }
+      },
+      "patch": {
+        "tags": [
+          "Image To Video Prompts"
+        ],
+        "summary": "Update an image to video prompt",
+        "description": "Updates the display name and/or prompt text of a saved prompt.",
+        "operationId": "UpdateImageToVideoPrompt",
+        "parameters": [
+          {
+            "name": "promptId",
+            "in": "path",
+            "description": "The ID of the image-to-video prompt.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A JSON object with the fields to update (display name and/or prompt text).",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageToVideoPromptUpdatePayload"
+              },
+              "examples": {
+                "default": {
+                  "value": {
+                    "display_name": "Beach sunset (golden hour)",
+                    "prompt": "A serene beach during golden hour with gentle waves"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Updated image to video prompt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageToVideoPromptWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": {
+                        "id": "c4a8e2f1d3b74a6e9f0b5d2c8e1a7f39",
+                        "display_name": "Beach sunset (golden hour)",
+                        "prompt": "A serene beach during golden hour with gentle waves",
+                        "created_at": 1781000000000,
+                        "updated_at": 1781009999000
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "update-image-to-video-prompt",
+          "title": "Update Image-to-Video Prompt",
+          "idempotentHint": true
+        }
+      },
+      "delete": {
+        "tags": [
+          "Image To Video Prompts"
+        ],
+        "summary": "Delete an image to video prompt",
+        "description": "Permanently deletes a saved prompt by its ID.",
+        "operationId": "DeleteImageToVideoPrompt",
+        "parameters": [
+          {
+            "name": "promptId",
+            "in": "path",
+            "description": "The ID of the image-to-video prompt.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageWrappedResponse"
+                },
+                "examples": {
+                  "default": {
+                    "value": {
+                      "request_id": "6ec0bd7f11c043da975e2a8ad9ebae0b",
+                      "data": {
+                        "message": "Prompt deleted"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorWrappedResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-speakeasy-mcp": {
+          "name": "delete-image-to-video-prompt",
+          "title": "Delete Image-to-Video Prompt",
+          "idempotentHint": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your product environment.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "my_cloud"
+        }
+      ]
+    },
     "/v2/asset_management/{cloudName}/collections": {
       "get": {
         "tags": [
@@ -20111,6 +20828,279 @@
           ]
         }
       },
+      "MessageWrappedResponse": {
+        "required": [
+          "request_id",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "examples": [
+              "6ec0bd7f11c043da975e2a8ad9ebae0b"
+            ],
+            "type": "string",
+            "description": "A unique id for the request, useful when contacting support."
+          },
+          "data": {
+            "description": "An object carrying a human-readable message.",
+            "$ref": "#/components/schemas/MessageWrappedResponseData"
+          }
+        },
+        "description": "A response envelope wrapping a simple message."
+      },
+      "MessageWrappedResponseData": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A human-readable message."
+          }
+        },
+        "description": "An object carrying a human-readable message."
+      },
+      "ErrorWrappedResponse": {
+        "required": [
+          "request_id",
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "examples": [
+              "6ec0bd7f11c043da975e2a8ad9ebae0b"
+            ],
+            "type": "string",
+            "description": "A unique id for the request, useful when contacting support."
+          },
+          "error": {
+            "description": "An object carrying a human-readable message.",
+            "$ref": "#/components/schemas/MessageWrappedResponseData"
+          }
+        },
+        "description": "A response envelope returned when a request fails."
+      },
+      "ImageToVideoGeneratePayload": {
+        "required": [
+          "prompt",
+          "image_asset_id"
+        ],
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Video description prompt."
+          },
+          "image_asset_id": {
+            "type": "string",
+            "description": "Cloudinary asset ID of the input image for image-to-video generation."
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/ImageToVideoGeneratePayloadAspectRatio"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ImageToVideoGeneratePayloadResolution"
+          },
+          "duration": {
+            "$ref": "#/components/schemas/ImageToVideoGeneratePayloadDuration"
+          },
+          "generate_audio": {
+            "type": "boolean",
+            "description": "Whether to generate audio. Enabling audio consumes twice as many credits.",
+            "default": false
+          },
+          "enhance_prompt": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Whether to let Cloudinary automatically enhance the prompt.",
+            "default": true
+          },
+          "last_frame_image_asset_id": {
+            "type": "string",
+            "description": "Cloudinary asset ID of the last frame image."
+          },
+          "reference_image_asset_ids": {
+            "maxItems": 2,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Cloudinary asset IDs of reference images."
+          },
+          "folder": {
+            "type": "string",
+            "description": "Path of the folder to save the generated video to, for example \u0060campaigns/spring\u0060. If the folder doesn\u0027t exist, it\u0027s created.",
+            "default": "image-to-video"
+          },
+          "negative_prompt": {
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "Elements the video should avoid, for example \u0060watermark\u0060 or \u0060flickering\u0060. Items must not be blank. If omitted, a default list of common artifacts is applied. Send an empty array to apply none."
+          }
+        }
+      },
+      "ImageToVideoGenerateResponse": {
+        "required": [
+          "job_id",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "examples": [
+              "550e8400e29b41d4a716446655440000"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ImageToVideoGenerateResponseStatus"
+          },
+          "asset_id": {
+            "type": "string",
+            "description": "Cloudinary asset ID of the generated video (present when completed)."
+          },
+          "public_id": {
+            "type": "string",
+            "description": "Cloudinary public ID of the generated video (present when completed)."
+          },
+          "resource_type": {
+            "type": "string",
+            "description": "Cloudinary resource type of the generated video (present when completed)."
+          },
+          "delivery_type": {
+            "type": "string",
+            "description": "Cloudinary delivery type of the generated video (present when completed)."
+          },
+          "url": {
+            "type": "string",
+            "description": "HTTPS URL of the generated video (present when completed)."
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message when generation has failed."
+          }
+        }
+      },
+      "ImageToVideoGenerateWrappedResponse": {
+        "required": [
+          "request_id",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "examples": [
+              "6ec0bd7f11c043da975e2a8ad9ebae0b"
+            ],
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ImageToVideoGenerateResponse"
+          }
+        }
+      },
+      "ImageToVideoPromptResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ImageToVideoPromptWrappedResponse": {
+        "required": [
+          "request_id",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ImageToVideoPromptResponse"
+          }
+        }
+      },
+      "ImageToVideoPromptsWrappedResponse": {
+        "required": [
+          "request_id",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageToVideoPromptResponse"
+            }
+          }
+        }
+      },
+      "ImageToVideoPromptCreatePayload": {
+        "required": [
+          "display_name",
+          "prompt"
+        ],
+        "type": "object",
+        "properties": {
+          "display_name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "A human-readable name for the prompt."
+          },
+          "prompt": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "The prompt text describing the motion or scene to generate."
+          }
+        }
+      },
+      "ImageToVideoPromptUpdatePayload": {
+        "type": "object",
+        "properties": {
+          "display_name": {
+            "maxLength": 255,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "A human-readable name for the prompt."
+          },
+          "prompt": {
+            "maxLength": 1000,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The prompt text describing the motion or scene to generate."
+          }
+        }
+      },
       "ContractCreateCollectionRequestPayload": {
         "required": [
           "name"
@@ -24452,6 +25442,94 @@
           ]
         }
       },
+      "ImageToVideoGeneratePayloadAspectRatio": {
+        "enum": [
+          "auto",
+          "16:9",
+          "9:16"
+        ],
+        "type": "string",
+        "description": "Video aspect ratio. \u0060auto\u0060 resolves based on image dimensions (defaults to landscape). \u006016:9\u0060 = landscape, \u00609:16\u0060 = portrait.",
+        "x-ms-enum": {
+          "name": "ImageToVideoGeneratePayloadAspectRatio",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "auto",
+              "name": "Auto"
+            },
+            {
+              "value": "16:9",
+              "name": "Value16Colon9"
+            },
+            {
+              "value": "9:16",
+              "name": "Value9Colon16"
+            }
+          ]
+        }
+      },
+      "ImageToVideoGeneratePayloadResolution": {
+        "enum": [
+          "720p",
+          "1080p"
+        ],
+        "type": "string",
+        "description": "Video resolution. \u00601080p\u0060 is only supported with a duration of 8 seconds.",
+        "x-ms-enum": {
+          "name": "ImageToVideoGeneratePayloadResolution",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "720p",
+              "name": "Value720P"
+            },
+            {
+              "value": "1080p",
+              "name": "Value1080P"
+            }
+          ]
+        }
+      },
+      "ImageToVideoGeneratePayloadDuration": {
+        "enum": [
+          4,
+          6,
+          8
+        ],
+        "type": "integer",
+        "description": "Video duration in seconds.",
+        "default": 8
+      },
+      "ImageToVideoGenerateResponseStatus": {
+        "examples": [
+          "pending"
+        ],
+        "enum": [
+          "pending",
+          "completed",
+          "failed"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "ImageToVideoGenerateResponseStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "pending",
+              "name": "Pending"
+            },
+            {
+              "value": "completed",
+              "name": "Completed"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
       "ContractCreateCollectionRequestPayloadType": {
         "examples": [
           "dynamic"
@@ -27111,6 +28189,14 @@
     {
       "name": "Tasks",
       "description": "Query the status of async generation tasks."
+    },
+    {
+      "name": "Video Generate",
+      "description": "Generate a video from an image and poll the generation job."
+    },
+    {
+      "name": "Image To Video Prompts",
+      "description": "Manage reusable image-to-video prompts."
     },
     {
       "name": "Collections",

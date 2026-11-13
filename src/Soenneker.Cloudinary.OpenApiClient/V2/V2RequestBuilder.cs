@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.V2.Asset_management;
 using Soenneker.Cloudinary.OpenApiClient.V2.Generate;
+using Soenneker.Cloudinary.OpenApiClient.V2.Video;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V2
         public global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.GenerateRequestBuilder Generate
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V2.Generate.GenerateRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The video property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V2.Video.VideoRequestBuilder Video
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V2.Video.VideoRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.V2.V2RequestBuilder"/> and sets the default values.
