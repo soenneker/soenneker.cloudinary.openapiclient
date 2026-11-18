@@ -79,7 +79,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "clear_invalid", n => { ClearInvalid = n.GetBoolValue(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam>(global::Soenneker.Cloudinary.OpenApiClient.Models.StructuredMetadataParam.CreateFromDiscriminatorValue); } },

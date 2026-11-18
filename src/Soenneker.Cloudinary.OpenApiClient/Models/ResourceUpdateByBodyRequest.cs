@@ -161,7 +161,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(12)
             {
                 { "admin_context", n => { AdminContext = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AdminContextOperation>(global::Soenneker.Cloudinary.OpenApiClient.Models.AdminContextOperation.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "asset_folder", n => { AssetFolder = n.GetStringValue(); } },

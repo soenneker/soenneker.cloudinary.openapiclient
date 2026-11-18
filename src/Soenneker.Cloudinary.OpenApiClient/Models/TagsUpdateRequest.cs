@@ -79,7 +79,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "command", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TagsUpdateRequestCommand>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCommand = default; _explicitNullProperties?.Remove("command"); AdditionalData["command"] = unknown; } else { Command = parsed; AdditionalData.Remove("command"); } } },
                 { "public_ids", n => { PublicIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },

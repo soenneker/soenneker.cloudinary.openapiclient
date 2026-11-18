@@ -107,7 +107,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(7)
             {
                 { "allowed_for_strict", n => { AllowedForStrict = n.GetBoolValue(); } },
                 { "derived", n => { Derived = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoDerivedItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.TransformationInfoDerivedItem.CreateFromDiscriminatorValue)?.AsList(); } },

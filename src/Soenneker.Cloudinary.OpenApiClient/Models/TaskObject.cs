@@ -86,7 +86,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "limits", n => { Limits = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.Limits>(global::Soenneker.Cloudinary.OpenApiClient.Models.Limits.CreateFromDiscriminatorValue); } },
                 { "result", n => { Result = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TaskResult>(global::Soenneker.Cloudinary.OpenApiClient.Models.TaskResult.CreateFromDiscriminatorValue); } },

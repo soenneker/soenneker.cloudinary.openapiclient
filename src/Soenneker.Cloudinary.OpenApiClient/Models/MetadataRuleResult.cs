@@ -90,7 +90,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(6)
             {
                 { "activate_values", n => { ActivateValues = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleActivateValues.CreateFromDiscriminatorValue); } },
                 { "apply_value", n => { ApplyValue = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue>(global::Soenneker.Cloudinary.OpenApiClient.Models.MetadataRuleApplyValue.CreateFromDiscriminatorValue); } },

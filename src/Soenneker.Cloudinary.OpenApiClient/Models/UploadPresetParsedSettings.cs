@@ -571,7 +571,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(58)
             {
                 { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "access_mode", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UploadBaseParametersAccessMode>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAccessMode = default; _explicitNullProperties?.Remove("access_mode"); AdditionalData["access_mode"] = unknown; } else { AccessMode = parsed; AdditionalData.Remove("access_mode"); } } },

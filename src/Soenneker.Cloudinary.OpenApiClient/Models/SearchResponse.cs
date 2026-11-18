@@ -91,7 +91,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(5)
             {
                 { "aggregations", n => { Aggregations = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseAggregations.CreateFromDiscriminatorValue); } },
                 { "next_cursor", n => { NextCursor = n.GetStringValue(); } },
