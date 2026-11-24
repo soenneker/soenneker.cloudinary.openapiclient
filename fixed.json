@@ -12,7 +12,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.7.10"
+    "version": "0.7.11"
   },
   "servers": [
     {
@@ -4630,6 +4630,273 @@
         }
       ]
     },
+    "/v1_1/{cloudName}/media_sources": {
+      "get": {
+        "tags": [
+          "media_sources"
+        ],
+        "summary": "Get media sources",
+        "description": "Returns the media sources defined for your product environment.\n",
+        "operationId": "ListMediaSources",
+        "responses": {
+          "200": {
+            "description": "Media sources retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListMediaSources200Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error - invalid API key or secret.",
+            "$ref": "#/components/responses/unauthorized"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "list-media-sources",
+          "scopes": [
+            "builder"
+          ],
+          "title": "List Media Sources",
+          "readOnlyHint": true,
+          "idempotentHint": true
+        }
+      },
+      "post": {
+        "tags": [
+          "media_sources"
+        ],
+        "summary": "Create a media source",
+        "description": "Creates a media source that an upload mapping can reference, with a template of \u0060{\u0022media_source\u0022:\u0022\u003Cid\u003E\u0022}\u0060.\n",
+        "operationId": "CreateMediaSource",
+        "requestBody": {
+          "description": "The media source to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MediaSourceCreateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Media source created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaSource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request is invalid, for example a required config option is missing or has an invalid value.",
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "description": "Authentication error - invalid API key or secret.",
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "description": "The API key or user isn\u0027t permitted to perform this action.\n",
+            "$ref": "#/components/responses/forbidden"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "create-media-source",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Create Media Source"
+        }
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your product environment.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "my_cloud"
+        }
+      ]
+    },
+    "/v1_1/{cloudName}/media_sources/{id}": {
+      "get": {
+        "tags": [
+          "media_sources"
+        ],
+        "summary": "Get a media source",
+        "description": "Returns the details of a single media source.",
+        "operationId": "GetMediaSource",
+        "responses": {
+          "200": {
+            "description": "Media source retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaSource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error - invalid API key or secret.",
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "description": "The API key or user isn\u0027t permitted to perform this action.\n",
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "description": "The media source doesn\u0027t exist in your product environment.",
+            "$ref": "#/components/responses/not_found"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "get-media-source",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Get Media Source",
+          "readOnlyHint": true,
+          "idempotentHint": true
+        }
+      },
+      "put": {
+        "tags": [
+          "media_sources"
+        ],
+        "summary": "Update a media source",
+        "description": "Updates a media source. Omitting \u0060config\u0060 keeps it. A \u0060config\u0060 you send replaces the stored one, so send every\noption, and send \u0060encrypted\u0060 as a key, secret or service account key to keep the stored one. To change\n\u0060uri_type\u0060, send a \u0060config\u0060 of the new type.\n",
+        "operationId": "UpdateMediaSource",
+        "requestBody": {
+          "description": "The media source fields to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MediaSourceUpdateInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Media source updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaSource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request is invalid, for example a required config option is missing or has an invalid value.",
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "description": "Authentication error - invalid API key or secret.",
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "description": "The API key or user isn\u0027t permitted to perform this action.\n",
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "description": "The media source doesn\u0027t exist in your product environment.",
+            "$ref": "#/components/responses/not_found"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "update-media-source",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Update Media Source",
+          "idempotentHint": true
+        }
+      },
+      "delete": {
+        "tags": [
+          "media_sources"
+        ],
+        "summary": "Delete a media source",
+        "description": "Deletes a media source. A media source that a delivery profile uses can\u0027t be deleted.",
+        "operationId": "DeleteMediaSource",
+        "responses": {
+          "200": {
+            "description": "Media source deleted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaSourceDeleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request is invalid, for example a required config option is missing or has an invalid value.",
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "description": "Authentication error - invalid API key or secret.",
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "description": "The API key or user isn\u0027t permitted to perform this action.\n",
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "description": "The media source doesn\u0027t exist in your product environment.",
+            "$ref": "#/components/responses/not_found"
+          }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "delete-media-source",
+          "scopes": [
+            "builder"
+          ],
+          "title": "Delete Media Source",
+          "destructiveHint": true,
+          "idempotentHint": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your product environment.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "my_cloud"
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "description": "The ID of the media source.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "4a4b9a5c1e0c2b8e7f6d5c4b3a2f1e0d"
+        }
+      ]
+    },
     "/v1_1/{cloudName}/triggers": {
       "get": {
         "tags": [
@@ -5947,7 +6214,6 @@
             "in": "query",
             "description": "List of external IDs for identifying the assets to retrieve. Either external_ids or asset_ids must be provided.",
             "required": true,
-            "explode": false,
             "schema": {
               "type": "array",
               "items": {
@@ -6699,7 +6965,7 @@
           "backups"
         ],
         "summary": "Delete backed up versions",
-        "description": "Deletes specific backed up versions of an asset identified by asset ID.\nThis operation is irreversible and deleted versions cannot be recovered.\n",
+        "description": "Deletes specific backed up versions of an asset identified by asset ID (\u0060version_ids\u0060 in the body), or every backed up version of the asset (\u0060all=true\u0060).\nWith \u0060all=true\u0060 one call removes up to 100 versions; an asset with more versions is rejected with a 400 asking for \u0060async=true\u0060, which removes them in the background.\nThis operation is irreversible and deleted versions cannot be recovered.\n",
         "operationId": "DeleteBackupVersions",
         "parameters": [
           {
@@ -6723,35 +6989,52 @@
               "description": "A 32-character hexadecimal asset ID."
             },
             "example": "f4e6579cf84dd9cf5683b21f5b30c7d9"
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "description": "Set to \u0060true\u0060 to delete every backed up version of the asset. Cannot be combined with \u0060version_ids\u0060.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "async",
+            "in": "query",
+            "description": "With \u0060all=true\u0060, set to \u0060true\u0060 to delete the versions in the background; the response is \u0060{\u0022status\u0022:\u0022pending\u0022}\u0060 and completion is confirmed by listing the asset\u0027s versions later. Only valid together with \u0060all=true\u0060.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
           }
         ],
         "requestBody": {
-          "description": "The asset IDs and version IDs to delete.",
+          "description": "The version IDs to delete. Required unless \u0060all=true\u0060 is passed.",
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/DeleteBackupVersionsRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
-            "description": "Backup versions successfully deleted",
+            "description": "Backup versions successfully deleted, or, with \u0060async=true\u0060, the deletion was accepted and runs in the background.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DeleteBackupVersionsSuccessResponse"
                 },
                 "x-client-original-success-schema": {
-                  "$ref": "#/components/schemas/DeleteBackupVersionsResponse"
+                  "$ref": "#/components/schemas/DeleteBackupVersions200Response"
                 }
               }
             }
           },
           "207": {
-            "description": "Multi-status - some versions deleted successfully, others failed",
+            "description": "Multi-status - some versions deleted successfully, others failed.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6764,7 +7047,7 @@
             }
           },
           "400": {
-            "description": "Bad request - Invalid parameters or values",
+            "description": "Bad request - Invalid parameters or values. Also returned when \u0060all=true\u0060 is combined with \u0060version_ids\u0060, when \u0060async=true\u0060 is passed without \u0060all=true\u0060, when \u0060all=true\u0060 is requested for an asset that has no backed up versions, and when the asset has more versions than one synchronous call removes (\u0060Asset has more than 100 backup versions; repeat the call with async=true to delete them in the background\u0060).\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -9318,7 +9601,7 @@
           "search"
         ],
         "summary": "Provides a powerful query interface to filter and retrieve assets and their details",
-        "description": "Returns a list of resources matching the specified search criteria.\n\nUses a Lucene-like query language to filter assets by descriptive attributes (\u0060public_id\u0060, \u0060asset_id\u0060, \u0060filename\u0060, \u0060display_name\u0060, \u0060folder\u0060 / \u0060asset_folder\u0060, \u0060tags\u0060, \u0060context.\u003Ckey\u003E\u0060), file details (\u0060resource_type\u0060, \u0060type\u0060, \u0060format\u0060, \u0060bytes\u0060, \u0060width\u0060, \u0060height\u0060, \u0060duration\u0060, \u0060pages\u0060, \u0060aspect_ratio\u0060, \u0060transparent\u0060, \u0060grayscale\u0060), lifecycle dates (\u0060uploaded_at\u0060, \u0060created_at\u0060, \u0060taken_at\u0060, \u0060updated_at\u0060, \u0060last_updated.\u003Ckind\u003E\u0060), moderation and lifecycle state (\u0060status\u0060, \u0060moderation_status\u0060, \u0060moderation_kind\u0060), embedded data (\u0060image_metadata.*\u0060), structured metadata (\u0060metadata.\u003Cexternal_id\u003E\u0060), and analysis fields (\u0060face_count\u0060, \u0060colors\u0060, \u0060quality_score\u0060, \u0060illustration_score\u0060, \u0060accessibility_analysis.*\u0060). Supports sorting, aggregate counts, and complex boolean expressions.\n\nExamples: \u0060tags:shirt AND uploaded_at\u003E1d\u0060, \u0060resource_type:image AND bytes\u003E1000000\u0060, \u0060folder:products OR context.category:electronics\u0060. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and field reference.\n",
+        "description": "Returns a list of resources matching the specified search criteria.\n\nUses a Lucene-like query language to filter assets by descriptive attributes (\u0060public_id\u0060, \u0060asset_id\u0060, \u0060filename\u0060, \u0060display_name\u0060, \u0060folder\u0060 / \u0060asset_folder\u0060, \u0060tags\u0060, \u0060context.\u003Ckey\u003E\u0060), file details (\u0060resource_type\u0060, \u0060type\u0060, \u0060format\u0060, \u0060bytes\u0060, \u0060width\u0060, \u0060height\u0060, \u0060duration\u0060, \u0060pages\u0060, \u0060aspect_ratio\u0060, \u0060transparent\u0060, \u0060grayscale\u0060), provenance flags (\u0060has_c2pa\u0060 and \u0060hdr\u0060, matched as \u0060true\u0060 or \u0060false\u0060, and \u0060ai_generated\u0060, which additionally has an undeclared state that matches neither value), lifecycle dates (\u0060uploaded_at\u0060, \u0060created_at\u0060, \u0060taken_at\u0060, \u0060updated_at\u0060, \u0060last_updated.\u003Ckind\u003E\u0060), moderation and lifecycle state (\u0060status\u0060, \u0060moderation_status\u0060, \u0060moderation_kind\u0060), embedded data (\u0060image_metadata.*\u0060), structured metadata (\u0060metadata.\u003Cexternal_id\u003E\u0060), and analysis fields (\u0060face_count\u0060, \u0060colors\u0060, \u0060quality_score\u0060, \u0060illustration_score\u0060, \u0060accessibility_analysis.*\u0060). Supports sorting, aggregate counts, and complex boolean expressions.\n\nExamples: \u0060tags:shirt AND uploaded_at\u003E1d\u0060, \u0060resource_type:image AND bytes\u003E1000000\u0060, \u0060folder:products OR context.category:electronics\u0060. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and field reference.\n",
         "operationId": "SearchAssets",
         "requestBody": {
           "description": "The search query parameters.",
@@ -9874,6 +10157,105 @@
             "type": "string"
           },
           "example": "my_cloud"
+        }
+      ]
+    },
+    "/v1_1/{cloudName}/people/by_asset/{assetId}": {
+      "get": {
+        "tags": [
+          "people"
+        ],
+        "summary": "List the people recognized in an asset",
+        "description": "Returns the recognized people found in an image, one entry per person, each with the face crop\nin that image. A person is listed once, using their most confident face in the image, then the largest one.\nThe list is empty if the asset is not an image, is not active, or has not been analyzed yet.\nPeople you are not permitted to read are left out, and a thumbnail is returned only if you can read\nthe asset it comes from.\nPeople Search must be enabled for this product environment.\n",
+        "operationId": "ListPeopleByAsset",
+        "responses": {
+          "200": {
+            "description": "People retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeopleByAssetResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": {
+                    "message": "Invalid credentials"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Feature not enabled, or no permission to read the asset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": {
+                    "message": "People Search is not enabled for this customer"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Asset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": {
+                    "message": "Can\u0027t find asset with id 2262b0b5eb88f1fd7724e29b0e57d730"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-speakeasy-mcp": {
+          "disabled": true,
+          "name": "list-people-by-asset",
+          "scopes": [
+            "admin"
+          ],
+          "title": "List People by Asset",
+          "readOnlyHint": true,
+          "idempotentHint": true
+        }
+      },
+      "parameters": [
+        {
+          "name": "cloudName",
+          "in": "path",
+          "description": "The cloud name of your product environment.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "my_cloud"
+        },
+        {
+          "name": "assetId",
+          "in": "path",
+          "description": "The external ID of the asset.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example": "2262b0b5eb88f1fd7724e29b0e57d730"
         }
       ]
     },
@@ -12567,6 +12949,10 @@
             "type": "boolean",
             "description": "Whether to return accessibility analysis values for the image."
           },
+          "ai_generated": {
+            "type": "boolean",
+            "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+          },
           "asset_folder": {
             "type": "string",
             "description": "The asset folder to assign to the asset."
@@ -12658,7 +13044,7 @@
           },
           "eager_notification_url": {
             "type": "string",
-            "description": "A URL to notify when eager transformations are completed.",
+            "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "eval": {
@@ -12707,7 +13093,7 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "A URL to notify when the asset is ready.",
+            "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "ocr": {
@@ -12827,6 +13213,12 @@
           },
           "type": {
             "$ref": "#/components/schemas/UploadTypeParameterType"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           },
           "file": {
             "type": "string",
@@ -12861,6 +13253,10 @@
             "type": "boolean",
             "description": "Whether to return accessibility analysis values for the image."
           },
+          "ai_generated": {
+            "type": "boolean",
+            "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+          },
           "asset_folder": {
             "type": "string",
             "description": "The asset folder to assign to the asset."
@@ -12952,7 +13348,7 @@
           },
           "eager_notification_url": {
             "type": "string",
-            "description": "A URL to notify when eager transformations are completed.",
+            "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "eval": {
@@ -13001,7 +13397,7 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "A URL to notify when the asset is ready.",
+            "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "ocr": {
@@ -13121,6 +13517,12 @@
           },
           "type": {
             "$ref": "#/components/schemas/UploadTypeParameterType"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           },
           "file": {
             "pattern": "^https?:\\/\\/|^s3:\\/\\/|^gcs:\\/\\/|^ftp:\\/\\/|^(data:[^;]*;base64,)|^file:\\/\\/",
@@ -13547,8 +13949,14 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "URL to notify when the operation is complete.",
+            "description": "URL to notify when the operation is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
             "x-client-original-format": "uri"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           }
         },
         "description": "The rename request parameters."
@@ -13716,8 +14124,14 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "URL to receive a notification when the operation is complete.",
+            "description": "URL to receive a notification when the operation is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
             "x-client-original-format": "uri"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           }
         }
       },
@@ -13766,8 +14180,14 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "The webhook URL to notify when the operation is complete.",
+            "description": "The URL to notify when the operation is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
             "x-client-original-format": "uri"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           },
           "type": {
             "$ref": "#/components/schemas/ManagedDeliveryType"
@@ -13914,6 +14334,10 @@
             "type": "boolean",
             "description": "Whether to return accessibility analysis values for the image."
           },
+          "ai_generated": {
+            "type": "boolean",
+            "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+          },
           "asset_folder": {
             "type": "string",
             "description": "The asset folder to assign to the asset."
@@ -14005,7 +14429,7 @@
           },
           "eager_notification_url": {
             "type": "string",
-            "description": "A URL to notify when eager transformations are completed.",
+            "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "eval": {
@@ -14054,7 +14478,7 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "A URL to notify when the asset is ready.",
+            "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "ocr": {
@@ -14172,11 +14596,17 @@
             "description": "Custom coordinates as comma-separated values, with multiple coordinates separated by pipes.",
             "example": "10,20,150,130"
           },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
+          },
           "type": {
             "$ref": "#/components/schemas/ExplicitDeliveryType"
           },
           "quality_override": {
-            "$ref": "#/components/schemas/ExplicitRequestAllOf4QualityOverride"
+            "$ref": "#/components/schemas/ExplicitRequestAllOf5QualityOverride"
           }
         }
       },
@@ -14440,8 +14870,14 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "(\u0022create\u0022 mode only), specifies the URL to notify when the archive generation is complete.",
+            "description": "(\u0022create\u0022 mode only), specifies the URL to notify when the archive generation is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
             "x-client-original-format": "uri"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           },
           "target_tags": {
             "type": "array",
@@ -14619,8 +15055,14 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "URL to receive completion notification.",
+            "description": "URL to receive completion notification. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
             "x-client-original-format": "uri"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           },
           "callback": {
             "type": "string",
@@ -14838,6 +15280,10 @@
             "type": "boolean",
             "description": "Whether to return accessibility analysis values for the image."
           },
+          "ai_generated": {
+            "type": "boolean",
+            "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+          },
           "asset_folder": {
             "type": "string",
             "description": "The asset folder to assign to the asset."
@@ -14929,7 +15375,7 @@
           },
           "eager_notification_url": {
             "type": "string",
-            "description": "A URL to notify when eager transformations are completed.",
+            "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "eval": {
@@ -14978,7 +15424,7 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "A URL to notify when the asset is ready.",
+            "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "ocr": {
@@ -15095,6 +15541,12 @@
             "type": "string",
             "description": "Custom coordinates as comma-separated values, with multiple coordinates separated by pipes.",
             "example": "10,20,150,130"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           },
           "urls": {
             "maxItems": 256,
@@ -15347,6 +15799,10 @@
             "type": "boolean",
             "description": "Whether to return accessibility analysis values for the image."
           },
+          "ai_generated": {
+            "type": "boolean",
+            "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+          },
           "asset_folder": {
             "type": "string",
             "description": "The asset folder to assign to the asset."
@@ -15438,7 +15894,7 @@
           },
           "eager_notification_url": {
             "type": "string",
-            "description": "A URL to notify when eager transformations are completed.",
+            "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "eval": {
@@ -15487,7 +15943,7 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "A URL to notify when the asset is ready.",
+            "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "ocr": {
@@ -15658,6 +16114,10 @@
             "type": "boolean",
             "description": "Whether to return accessibility analysis values for the image."
           },
+          "ai_generated": {
+            "type": "boolean",
+            "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+          },
           "asset_folder": {
             "type": "string",
             "description": "The asset folder to assign to the asset."
@@ -15749,7 +16209,7 @@
           },
           "eager_notification_url": {
             "type": "string",
-            "description": "A URL to notify when eager transformations are completed.",
+            "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "eval": {
@@ -15798,7 +16258,7 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "A URL to notify when the asset is ready.",
+            "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
             "x-client-original-format": "uri"
           },
           "ocr": {
@@ -16604,6 +17064,451 @@
           }
         }
       },
+      "MediaSource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the media source."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The name of the media source."
+          },
+          "uri_type": {
+            "type": "string",
+            "description": "The type of the media source."
+          },
+          "config": {
+            "$ref": "#/components/schemas/MediaSourceConfigProperty2"
+          }
+        },
+        "description": "A media source."
+      },
+      "S3Config": {
+        "required": [
+          "s3_bucket_name",
+          "s3_uri_template"
+        ],
+        "type": "object",
+        "properties": {
+          "s3_bucket_name": {
+            "type": "string",
+            "description": "The name of the S3 bucket.",
+            "example": "my-bucket"
+          },
+          "s3_bucket_folder": {
+            "type": "string",
+            "description": "A folder in the bucket to read objects from.",
+            "example": "images"
+          },
+          "s3_uri_template": {
+            "type": "string",
+            "description": "A template for the object path in the bucket, where \u0060{{fwd_key}}\u0060 is the requested path.",
+            "example": "{{fwd_key}}"
+          },
+          "s3_access_key": {
+            "type": "string",
+            "description": "The access key ID of an AWS user that can read the bucket. Required with \u0060s3_secret_key\u0060. Stored encrypted\nand returned as \u0060encrypted\u0060.\n",
+            "writeOnly": true,
+            "example": "AKIAIOSFODNN7EXAMPLE"
+          },
+          "s3_secret_key": {
+            "type": "string",
+            "description": "The secret access key of the AWS user. Required with \u0060s3_access_key\u0060. Stored encrypted and returned as\n\u0060encrypted\u0060.\n",
+            "writeOnly": true
+          },
+          "s3_bucket_region": {
+            "type": "string",
+            "description": "The region of the bucket. Detected from the bucket when omitted.",
+            "example": "us-east-1"
+          },
+          "s3_endpoint": {
+            "type": "string",
+            "description": "The hostname of an S3-compatible storage service to read from instead of Amazon S3.",
+            "example": "us-east-1.linodeobjects.com"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The S3 bucket to read from. Without an access key, Cloudinary must already be allowed to access the bucket for\nyour product environment.\n"
+      },
+      "GsConfig": {
+        "required": [
+          "gs_bucket_name",
+          "gs_uri_template"
+        ],
+        "type": "object",
+        "properties": {
+          "gs_bucket_name": {
+            "type": "string",
+            "description": "The name of the Google Cloud Storage bucket.",
+            "example": "my-bucket"
+          },
+          "gs_bucket_folder": {
+            "type": "string",
+            "description": "A folder in the bucket to read objects from.",
+            "example": "images"
+          },
+          "gs_uri_template": {
+            "type": "string",
+            "description": "A template for the object path in the bucket, where \u0060{{fwd_key}}\u0060 is the requested path.",
+            "example": "{{fwd_key}}"
+          },
+          "gs_service_account_key": {
+            "type": "string",
+            "description": "The JSON key file of a service account that can read the bucket, as a string. Stored encrypted and returned\nas \u0060encrypted\u0060.\n",
+            "writeOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The Google Cloud Storage bucket to read from. Without a service account key, Cloudinary must already be allowed\nto access the bucket for your product environment.\n"
+      },
+      "AzureConfig": {
+        "required": [
+          "azure_account_name",
+          "azure_container_name",
+          "azure_key"
+        ],
+        "type": "object",
+        "properties": {
+          "azure_account_name": {
+            "type": "string",
+            "description": "The name of the storage account, as in \u0060https://\u003Caccount\u003E.blob.core.windows.net\u0060.",
+            "example": "mystorageaccount"
+          },
+          "azure_container_name": {
+            "type": "string",
+            "description": "The name of the container.",
+            "example": "media"
+          },
+          "azure_key": {
+            "type": "string",
+            "description": "An access key of the storage account, base64-encoded as Azure shows it. Stored encrypted and returned as\n\u0060encrypted\u0060.\n",
+            "writeOnly": true,
+            "example": "c2VjcmV0LWtleS1iYXNlNjQtZW5jb2RlZA=="
+          },
+          "azure_folder": {
+            "type": "string",
+            "description": "A folder in the container to read blobs from.",
+            "example": "images"
+          },
+          "azure_uri_template": {
+            "type": "string",
+            "description": "A template for the blob path in the container, where \u0060{{fwd_key}}\u0060 is the requested path. Default: {{fwd_key}}.",
+            "example": "{{fwd_key}}"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The Azure Blob Storage container to read from."
+      },
+      "WebConfig": {
+        "required": [
+          "web_uri_base",
+          "web_uri_template"
+        ],
+        "type": "object",
+        "properties": {
+          "web_uri_base": {
+            "type": "string",
+            "description": "The base URL of the web server, starting with \u0060http://\u0060 or \u0060https://\u0060.",
+            "example": "https://example.com/images"
+          },
+          "web_uri_template": {
+            "type": "string",
+            "description": "A template for the file path under the base URL, where \u0060{{fwd_key}}\u0060 is the requested path.",
+            "example": "{{fwd_key}}"
+          },
+          "web_headers": {
+            "$ref": "#/components/schemas/WebConfigWebHeadersProperty"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The web server to read from. Files are read from the base URL, a \u0060/\u0060 and the rendered template."
+      },
+      "HttpConfig": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "The \u0060http\u0060 type takes no options. The requested path is the full URL of the file to read."
+      },
+      "CloudinaryConfig": {
+        "required": [
+          "cld_cloud_name"
+        ],
+        "type": "object",
+        "properties": {
+          "cld_cloud_name": {
+            "type": "string",
+            "description": "The cloud name of an active product environment in your account, in the same region, that stores assets.\n",
+            "example": "my-other-cloud"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The product environment to read from. The requested path is the public ID of an uploaded asset there.\n"
+      },
+      "BynderConfig": {
+        "required": [
+          "bynder_domain",
+          "bynder_client_id",
+          "bynder_client_secret"
+        ],
+        "type": "object",
+        "properties": {
+          "bynder_domain": {
+            "type": "string",
+            "description": "The domain of the Bynder portal.",
+            "example": "mycompany.bynder.com"
+          },
+          "bynder_client_id": {
+            "type": "string",
+            "description": "The client ID of a Bynder OAuth app with the client credentials grant and the \u0060asset:read\u0060 scope. Stored\nencrypted and returned as \u0060encrypted\u0060.\n",
+            "writeOnly": true,
+            "example": "46aa1ed5-8627-4d3d-a2f6-355abc173a5c"
+          },
+          "bynder_client_secret": {
+            "type": "string",
+            "description": "The client secret of the Bynder OAuth app. Stored encrypted and returned as \u0060encrypted\u0060.",
+            "writeOnly": true,
+            "example": "59753407-40f3-472c-b043-a27f27f0970c"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The Bynder portal to read from. The requested path is the ID of a Bynder asset."
+      },
+      "SupabaseConfig": {
+        "required": [
+          "supabase_project_ref",
+          "supabase_bucket_name"
+        ],
+        "type": "object",
+        "properties": {
+          "supabase_project_ref": {
+            "pattern": "^[a-z0-9]\u002B$",
+            "type": "string",
+            "description": "The reference ID of the Supabase project, as in \u0060https://\u003Cref\u003E.supabase.co\u0060.",
+            "example": "abcdefghijklmnopqrst"
+          },
+          "supabase_bucket_name": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+            "type": "string",
+            "description": "The name of the Supabase Storage bucket.",
+            "example": "media"
+          },
+          "supabase_folder": {
+            "type": "string",
+            "description": "A folder in the bucket to read objects from.",
+            "example": "images"
+          },
+          "supabase_uri_template": {
+            "type": "string",
+            "description": "A template for the object path in the bucket, where \u0060{{fwd_key}}\u0060 is the requested path. Default: {{fwd_key}}.",
+            "example": "{{fwd_key}}"
+          },
+          "supabase_access_key": {
+            "type": "string",
+            "description": "The S3 access key ID of the Supabase project. Required with \u0060supabase_secret_key\u0060 and \u0060supabase_region\u0060\nfor a private bucket. Stored encrypted and returned as \u0060encrypted\u0060.\n",
+            "writeOnly": true,
+            "example": "7c5cf426a9a7f431bf37bfdb61c52b2c"
+          },
+          "supabase_secret_key": {
+            "type": "string",
+            "description": "The S3 secret access key of the Supabase project. Required with \u0060supabase_access_key\u0060 and \u0060supabase_region\u0060\nfor a private bucket. Stored encrypted and returned as \u0060encrypted\u0060.\n",
+            "writeOnly": true
+          },
+          "supabase_region": {
+            "pattern": "^[a-z0-9-]\u002B$",
+            "type": "string",
+            "description": "The region of the Supabase project. Required with \u0060supabase_access_key\u0060 and \u0060supabase_secret_key\u0060.",
+            "example": "us-west-2"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The Supabase Storage bucket to read from. Without an access key, the bucket must be public and objects are read\nfrom its public URL. With an access key, secret key and region, objects are read through the project\u0027s\nS3-compatible endpoint, so the bucket can be private.\n"
+      },
+      "MediaSourceCreateInput": {
+        "description": "The media source to create. \u0060uri_type\u0060 selects the options \u0060config\u0060 takes.",
+        "discriminator": {
+          "propertyName": "uri_type",
+          "mapping": {
+            "s3": "#/components/schemas/MediaSourceCreateInputS3MediaSourceCreateInput",
+            "gs": "#/components/schemas/MediaSourceCreateInputGsMediaSourceCreateInput",
+            "azure": "#/components/schemas/MediaSourceCreateInputAzureMediaSourceCreateInput",
+            "web": "#/components/schemas/MediaSourceCreateInputWebMediaSourceCreateInput",
+            "http": "#/components/schemas/MediaSourceCreateInputHttpMediaSourceCreateInput",
+            "cloudinary": "#/components/schemas/MediaSourceCreateInputCloudinaryMediaSourceCreateInput",
+            "bynder": "#/components/schemas/MediaSourceCreateInputBynderMediaSourceCreateInput",
+            "supabase": "#/components/schemas/MediaSourceCreateInputSupabaseMediaSourceCreateInput"
+          }
+        },
+        "x-client-original-tagged-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/S3MediaSourceCreateInput"
+            },
+            {
+              "$ref": "#/components/schemas/GsMediaSourceCreateInput"
+            },
+            {
+              "$ref": "#/components/schemas/AzureMediaSourceCreateInput"
+            },
+            {
+              "$ref": "#/components/schemas/WebMediaSourceCreateInput"
+            },
+            {
+              "$ref": "#/components/schemas/HttpMediaSourceCreateInput"
+            },
+            {
+              "$ref": "#/components/schemas/CloudinaryMediaSourceCreateInput"
+            },
+            {
+              "$ref": "#/components/schemas/BynderMediaSourceCreateInput"
+            },
+            {
+              "$ref": "#/components/schemas/SupabaseMediaSourceCreateInput"
+            }
+          ],
+          "description": "The media source to create. \u0060uri_type\u0060 selects the options \u0060config\u0060 takes.",
+          "discriminator": {
+            "propertyName": "uri_type",
+            "mapping": {
+              "s3": "#/components/schemas/S3MediaSourceCreateInput",
+              "gs": "#/components/schemas/GsMediaSourceCreateInput",
+              "azure": "#/components/schemas/AzureMediaSourceCreateInput",
+              "web": "#/components/schemas/WebMediaSourceCreateInput",
+              "http": "#/components/schemas/HttpMediaSourceCreateInput",
+              "cloudinary": "#/components/schemas/CloudinaryMediaSourceCreateInput",
+              "bynder": "#/components/schemas/BynderMediaSourceCreateInput",
+              "supabase": "#/components/schemas/SupabaseMediaSourceCreateInput"
+            }
+          }
+        },
+        "type": "object",
+        "properties": {
+          "uri_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "uri_type"
+        ]
+      },
+      "MediaSourceUriType": {
+        "enum": [
+          "s3",
+          "gs",
+          "azure",
+          "web",
+          "http",
+          "cloudinary",
+          "bynder",
+          "supabase"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "s3",
+        "x-enum-descriptions": [
+          "Reads objects from an Amazon S3 bucket, or a bucket of an S3-compatible service.",
+          "Reads objects from a Google Cloud Storage bucket.",
+          "Reads blobs from an Azure Blob Storage container.",
+          "Reads files from a web server, under a base URL.",
+          "Reads files from the full URL given as the requested path.",
+          "Reads original assets from another product environment in your account.",
+          "Reads assets from a Bynder portal.",
+          "Reads objects from a Supabase Storage bucket."
+        ],
+        "x-ms-enum": {
+          "name": "MediaSourceUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "s3",
+              "name": "S3"
+            },
+            {
+              "value": "gs",
+              "name": "Gs"
+            },
+            {
+              "value": "azure",
+              "name": "Azure"
+            },
+            {
+              "value": "web",
+              "name": "Web"
+            },
+            {
+              "value": "http",
+              "name": "Http"
+            },
+            {
+              "value": "cloudinary",
+              "name": "Cloudinary"
+            },
+            {
+              "value": "bynder",
+              "name": "Bynder"
+            },
+            {
+              "value": "supabase",
+              "name": "Supabase"
+            }
+          ]
+        }
+      },
+      "MediaSourceConfig": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/S3Config"
+          },
+          {
+            "$ref": "#/components/schemas/GsConfig"
+          },
+          {
+            "$ref": "#/components/schemas/AzureConfig"
+          },
+          {
+            "$ref": "#/components/schemas/WebConfig"
+          },
+          {
+            "$ref": "#/components/schemas/HttpConfig"
+          },
+          {
+            "$ref": "#/components/schemas/CloudinaryConfig"
+          },
+          {
+            "$ref": "#/components/schemas/BynderConfig"
+          },
+          {
+            "$ref": "#/components/schemas/SupabaseConfig"
+          }
+        ],
+        "description": "The options of the media source, for its \u0060uri_type\u0060."
+      },
+      "MediaSourceUpdateInput": {
+        "type": "object",
+        "properties": {
+          "display_name": {
+            "type": "string",
+            "description": "A unique name for the media source in your product environment.",
+            "example": "my-media-source"
+          },
+          "uri_type": {
+            "$ref": "#/components/schemas/MediaSourceUriType"
+          },
+          "config": {
+            "$ref": "#/components/schemas/MediaSourceConfig"
+          }
+        }
+      },
+      "MediaSourceDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The result of the operation.",
+            "example": "ok"
+          }
+        }
+      },
       "EventType": {
         "enum": [
           "all",
@@ -16756,27 +17661,6 @@
           ]
         }
       },
-      "UriType": {
-        "enum": [
-          "webhook",
-          "flow"
-        ],
-        "type": "string",
-        "x-ms-enum": {
-          "name": "UriType",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "webhook",
-              "name": "Webhook"
-            },
-            {
-              "value": "flow",
-              "name": "Flow"
-            }
-          ]
-        }
-      },
       "TriggerInfo": {
         "required": [
           "uri",
@@ -16793,7 +17677,7 @@
             "example": "7fabb2ff3d687d05b63134cf8fa006ba16"
           },
           "uri_type": {
-            "$ref": "#/components/schemas/UriType"
+            "$ref": "#/components/schemas/TriggerInfoUriType"
           },
           "uri": {
             "type": "string",
@@ -16846,9 +17730,11 @@
         "properties": {
           "uri": {
             "type": "string",
-            "description": "The URL that will receive the notification response.",
-            "example": "https://trigger.site/124",
-            "x-client-original-format": "uri"
+            "description": "The destination that will receive the notification response. An \u0027https://\u0027 URL for a webhook trigger, or a \u0027poll://\u003Cchannel\u003E\u0027 / \u0027poll://*\u0027 address for a poll trigger.",
+            "example": "https://trigger.site/124"
+          },
+          "uri_type": {
+            "$ref": "#/components/schemas/CreateTriggerRequestUriType"
           },
           "event_type": {
             "$ref": "#/components/schemas/EventType"
@@ -17080,6 +17966,12 @@
           "last_updated": {
             "$ref": "#/components/schemas/InfoLastUpdated"
           },
+          "created_by": {
+            "$ref": "#/components/schemas/InfoCreatedBy"
+          },
+          "uploaded_by": {
+            "$ref": "#/components/schemas/InfoUploadedBy"
+          },
           "next_cursor": {
             "type": "string",
             "description": "Cursor for paginating derived assets."
@@ -17191,9 +18083,15 @@
           },
           "notification_url": {
             "type": "string",
-            "description": "The URL that will receive notification when restore is complete.",
+            "description": "The URL that will receive notification when restore is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
             "example": "https://example.com/webhook",
             "x-client-original-format": "uri"
+          },
+          "batch_id": {
+            "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+            "type": "string",
+            "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+            "example": "orders/2026-07/import-42"
           }
         }
       },
@@ -17397,9 +18295,6 @@
         }
       },
       "DeleteBackupVersionsRequest": {
-        "required": [
-          "version_ids"
-        ],
         "type": "object",
         "properties": {
           "version_ids": {
@@ -17407,7 +18302,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The list of version IDs to delete from backup.",
+            "description": "The list of version IDs to delete from backup. Omit it and pass the \u0060all=true\u0060 query parameter to delete every backed up version of the asset.",
             "example": [
               "5552aa57e67445552a3cdc1110a0115",
               "383e22a57167445552a3cdc16f0a0c85"
@@ -17437,6 +18332,24 @@
             "description": "The list of version IDs that were successfully deleted."
           }
         }
+      },
+      "DeleteBackupVersionsPendingResponse": {
+        "required": [
+          "status",
+          "asset_id"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PendingStatus"
+          },
+          "asset_id": {
+            "pattern": "^[0-9a-f]{32}$",
+            "type": "string",
+            "description": "A 32-character hexadecimal asset ID."
+          }
+        },
+        "description": "Returned for \u0060all=true\u0026async=true\u0060; the versions are deleted in the background."
       },
       "BackupVersionFailure": {
         "type": "object",
@@ -18921,6 +19834,12 @@
           "last_updated": {
             "$ref": "#/components/schemas/InfoLastUpdated"
           },
+          "created_by": {
+            "$ref": "#/components/schemas/InfoCreatedBy"
+          },
+          "uploaded_by": {
+            "$ref": "#/components/schemas/InfoUploadedBy"
+          },
           "next_cursor": {
             "type": "string",
             "description": "Cursor for paginating derived assets."
@@ -19385,7 +20304,7 @@
         "properties": {
           "asset_id": {
             "type": "string",
-            "description": "The external ID of the asset used for the thumbnail.",
+            "description": "The external ID of the asset the image is taken from.",
             "example": "2262b0b5eb88f1fd7724e29b0e57d730"
           },
           "bounding_box": {
@@ -19405,7 +20324,7 @@
           },
           "url": {
             "type": "string",
-            "description": "The secure URL of the thumbnail asset.",
+            "description": "The secure URL of the asset the image is taken from.",
             "example": "https://res.cloudinary.com/demo/image/upload/v1234567890/sample.jpg",
             "x-client-original-format": "uri"
           },
@@ -19430,7 +20349,7 @@
             "example": 1234567890
           }
         },
-        "description": "The thumbnail image for a person."
+        "description": "An image of a person\u0027s face, taken from an asset."
       },
       "PersonDetails": {
         "type": "object",
@@ -19479,6 +20398,60 @@
           "next_cursor": {
             "type": "string",
             "description": "The cursor to use for the next page of results."
+          }
+        }
+      },
+      "PersonOnAsset": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the person.",
+            "example": "a1b2c3d4e5f6"
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the person, or null if not named.",
+            "example": "Jane Doe"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PersonStatus"
+          },
+          "thumbnail": {
+            "$ref": "#/components/schemas/Thumbnail"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The date and time when the person was first detected.",
+            "format": "date-time",
+            "example": "2025-01-15T10:30:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The date and time when the person was last updated.",
+            "format": "date-time",
+            "example": "2025-01-20T14:45:00Z"
+          },
+          "face": {
+            "$ref": "#/components/schemas/PersonOnAssetAllOf2Face"
+          }
+        },
+        "description": "A recognized person, with their face in the requested asset."
+      },
+      "PeopleByAssetResponse": {
+        "type": "object",
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "description": "The external ID of the asset.",
+            "example": "2262b0b5eb88f1fd7724e29b0e57d730"
+          },
+          "people": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonOnAsset"
+            },
+            "description": "The recognized people found in the asset."
           }
         }
       },
@@ -22409,6 +23382,72 @@
           }
         }
       },
+      "TriggerInfoUriType": {
+        "enum": [
+          "webhook",
+          "flow",
+          "poll"
+        ],
+        "type": "string",
+        "description": "The delivery transport for the notification trigger.",
+        "example": "webhook",
+        "x-enum-descriptions": [
+          "Delivers the notification as an HTTP POST to the destination URL.",
+          "Dispatches the notification to a Cloudinary flow.",
+          "Buffers the notification for retrieval via long-poll or WebSocket instead of an outbound HTTP request. The uri takes the form \u0027poll://\u003Cchannel\u003E\u0027 for a named channel or \u0027poll://*\u0027 for an anonymous destination correlated by batch_id."
+        ],
+        "x-ms-enum": {
+          "name": "TriggerInfoUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "webhook",
+              "name": "Webhook"
+            },
+            {
+              "value": "flow",
+              "name": "Flow"
+            },
+            {
+              "value": "poll",
+              "name": "Poll"
+            }
+          ]
+        }
+      },
+      "CreateTriggerRequestUriType": {
+        "enum": [
+          "webhook",
+          "flow",
+          "poll"
+        ],
+        "type": "string",
+        "description": "The delivery transport for the notification trigger.",
+        "example": "webhook",
+        "x-enum-descriptions": [
+          "Delivers the notification as an HTTP POST to the destination URL.",
+          "Dispatches the notification to a Cloudinary flow.",
+          "Buffers the notification for retrieval via long-poll or WebSocket instead of an outbound HTTP request. The uri takes the form \u0027poll://\u003Cchannel\u003E\u0027 for a named channel or \u0027poll://*\u0027 for an anonymous destination correlated by batch_id."
+        ],
+        "x-ms-enum": {
+          "name": "CreateTriggerRequestUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "webhook",
+              "name": "Webhook"
+            },
+            {
+              "value": "flow",
+              "name": "Flow"
+            },
+            {
+              "value": "poll",
+              "name": "Poll"
+            }
+          ]
+        }
+      },
       "InfoTags": {
         "type": [
           "null",
@@ -22451,6 +23490,48 @@
             "end": "2024-06-30T23:59:59Z"
           }
         ]
+      },
+      "InfoCreatedBy": {
+        "type": "object",
+        "properties": {
+          "access_key": {
+            "type": "string",
+            "description": "The API key used for the upload. Returned only when no console user was recorded.",
+            "example": "149945967172831"
+          },
+          "custom_id": {
+            "type": "string",
+            "description": "The email address of the console user who performed the upload, as it was at upload time. The stored value never changes, even if the user later changes their email, so it may not match the user\u0027s current address.",
+            "example": "matthew@example.com"
+          },
+          "external_id": {
+            "type": "string",
+            "description": "The identifier of the console user who performed the upload. It identifies the actual user behind the operation and stays the same even if their email changes; use it to look the user up.",
+            "example": "0b8cd452de3ce172a6aec7af0a90db"
+          }
+        },
+        "description": "Who created the asset: the console user when known, otherwise the API key that signed the upload. Omitted when no contributor was recorded; never null."
+      },
+      "InfoUploadedBy": {
+        "type": "object",
+        "properties": {
+          "access_key": {
+            "type": "string",
+            "description": "The API key used for the upload. Returned only when no console user was recorded.",
+            "example": "149945967172831"
+          },
+          "custom_id": {
+            "type": "string",
+            "description": "The email address of the console user who performed the upload, as it was at upload time. The stored value never changes, even if the user later changes their email, so it may not match the user\u0027s current address.",
+            "example": "matthew@example.com"
+          },
+          "external_id": {
+            "type": "string",
+            "description": "The identifier of the console user who performed the upload. It identifies the actual user behind the operation and stays the same even if their email changes; use it to look the user up.",
+            "example": "0b8cd452de3ce172a6aec7af0a90db"
+          }
+        },
+        "description": "Who performed the most recent upload of the asset: the console user when known, otherwise the API key that signed the upload. Equal to created_by unless the asset was overwritten. Omitted when no contributor was recorded; never null."
       },
       "InfoFaces": {
         "type": [
@@ -22714,6 +23795,92 @@
         "description": "The access control settings for the asset.",
         "example": null
       },
+      "SearchResponseResourcesItemCreatedBy": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "access_key": {
+            "type": "string",
+            "description": "The API key used for the upload. Returned only when no console user was recorded.",
+            "example": "149945967172831"
+          },
+          "custom_id": {
+            "type": "string",
+            "description": "The email address of the console user who performed the upload, as it was at upload time. The stored value never changes, even if the user later changes their email, so it may not match the user\u0027s current address.",
+            "example": "matthew@example.com"
+          },
+          "external_id": {
+            "type": "string",
+            "description": "The identifier of the console user who performed the upload. It identifies the actual user behind the operation and stays the same even if their email changes; use it to look the user up.",
+            "example": "0b8cd452de3ce172a6aec7af0a90db"
+          }
+        },
+        "description": "Who created the asset, as one identity (see contributor). Null when no contributor was recorded.",
+        "x-client-original-nullable-union": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/Contributor"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Who created the asset, as one identity (see contributor). Null when no contributor was recorded."
+        }
+      },
+      "SearchResponseResourcesItemUploadedBy": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "access_key": {
+            "type": "string",
+            "description": "The API key used for the upload. Returned only when no console user was recorded.",
+            "example": "149945967172831"
+          },
+          "custom_id": {
+            "type": "string",
+            "description": "The email address of the console user who performed the upload, as it was at upload time. The stored value never changes, even if the user later changes their email, so it may not match the user\u0027s current address.",
+            "example": "matthew@example.com"
+          },
+          "external_id": {
+            "type": "string",
+            "description": "The identifier of the console user who performed the upload. It identifies the actual user behind the operation and stays the same even if their email changes; use it to look the user up.",
+            "example": "0b8cd452de3ce172a6aec7af0a90db"
+          }
+        },
+        "description": "Who uploaded the asset, as one identity (see contributor). Null when no contributor was recorded.",
+        "x-client-original-nullable-union": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/Contributor"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Who uploaded the asset, as one identity (see contributor). Null when no contributor was recorded."
+        }
+      },
+      "SearchResponseResourcesItemProvenance": {
+        "type": "object",
+        "properties": {
+          "has_c2pa": {
+            "type": "boolean",
+            "description": "Whether the asset carries a C2PA content credentials manifest. False when no manifest was found.",
+            "example": false
+          },
+          "ai_generated": {
+            "type": "boolean",
+            "description": "Whether the asset is AI-generated, either declared on upload or read from its C2PA manifest. Omitted when unknown, which is not the same as false.",
+            "example": true
+          }
+        },
+        "description": "Provenance indications for the asset. Note: the provenance object is returned in searches including a with_field parameter specifying provenance."
+      },
       "SearchResponseResourcesItemContext": {
         "type": "object",
         "additionalProperties": {
@@ -22922,7 +24089,7 @@
           ]
         }
       },
-      "ExplicitRequestAllOf4QualityOverride": {
+      "ExplicitRequestAllOf5QualityOverride": {
         "oneOf": [
           {
             "type": "string"
@@ -22968,6 +24135,72 @@
           "error": {
             "$ref": "#/components/schemas/RestoreResponseAdditionalPropertiesOneOf2Error"
           }
+        }
+      },
+      "PersonOnAssetAllOf2Face": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "description": "The external ID of the asset the image is taken from.",
+            "example": "2262b0b5eb88f1fd7724e29b0e57d730"
+          },
+          "bounding_box": {
+            "maxItems": 4,
+            "minItems": 4,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "The bounding box coordinates [x, y, width, height] of the face in the asset.",
+            "example": [
+              10,
+              20,
+              100,
+              150
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "The secure URL of the asset the image is taken from.",
+            "example": "https://res.cloudinary.com/demo/image/upload/v1234567890/sample.jpg",
+            "x-client-original-format": "uri"
+          },
+          "resource_type": {
+            "type": "string",
+            "description": "The resource type of the asset.",
+            "example": "image"
+          },
+          "type": {
+            "type": "string",
+            "description": "The kind/type of the asset.",
+            "example": "upload"
+          },
+          "public_id": {
+            "type": "string",
+            "description": "The public ID of the asset.",
+            "example": "sample"
+          },
+          "version": {
+            "type": "integer",
+            "description": "The version number of the asset.",
+            "example": 1234567890
+          }
+        },
+        "description": "The person\u0027s face in the requested asset, or null if no face image is available.",
+        "x-client-original-nullable-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/Thumbnail"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The person\u0027s face in the requested asset, or null if no face image is available."
         }
       },
       "UploadResponseEagerItem": {
@@ -23516,6 +24749,9 @@
           "uploaded_by": {
             "$ref": "#/components/schemas/SearchResponseResourcesItemUploadedBy"
           },
+          "provenance": {
+            "$ref": "#/components/schemas/SearchResponseResourcesItemProvenance"
+          },
           "context": {
             "$ref": "#/components/schemas/SearchResponseResourcesItemContext"
           },
@@ -23526,7 +24762,7 @@
             "$ref": "#/components/schemas/SearchResponseResourcesItemImageMetadataProperty"
           },
           "image_analysis": {
-            "$ref": "#/components/schemas/SearchResponseResourcesItemImageAnalysisProperty"
+            "$ref": "#/components/schemas/SearchResponseResourcesItemImageAnalysis"
           },
           "metadata": {
             "$ref": "#/components/schemas/SearchResponseResourcesItemMetadataProperty"
@@ -23599,33 +24835,19 @@
           }
         }
       },
-      "SearchResponseResourcesItemCreatedBy": {
+      "SearchResponseResourcesItemImageAnalysis": {
         "type": [
           "null",
           "object"
         ],
         "properties": {
-          "access_key": {
-            "type": "string",
-            "description": "The access key of the user who created the asset.",
-            "example": "614335564976464"
+          "hdr": {
+            "type": "boolean",
+            "description": "Whether the stored asset is in high dynamic range. False when no HDR was detected.",
+            "example": false
           }
         },
-        "description": "Information about who created the asset."
-      },
-      "SearchResponseResourcesItemUploadedBy": {
-        "type": [
-          "null",
-          "object"
-        ],
-        "properties": {
-          "access_key": {
-            "type": "string",
-            "description": "The access key of the user who uploaded the asset.",
-            "example": "614335564976464"
-          }
-        },
-        "description": "Information about who uploaded the asset."
+        "description": "Results of image analysis."
       },
       "SearchResponseAggregationsValuesItem": {
         "type": "object",
@@ -23814,6 +25036,16 @@
           }
         }
       },
+      "DeleteBackupVersions200Response": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/DeleteBackupVersionsResponse"
+          },
+          {
+            "$ref": "#/components/schemas/DeleteBackupVersionsPendingResponse"
+          }
+        ]
+      },
       "Upload302HtmlResponseSchema": {
         "type": "string",
         "description": "HTML redirect response",
@@ -23833,6 +25065,12 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/DatasourceSearchResult"
+        }
+      },
+      "ListMediaSources200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MediaSource"
         }
       },
       "RestoreResourcesByAssetIDs200Response": {
@@ -23939,6 +25177,20 @@
       "MetadataRuleUpdateCondition": {
         "type": "object",
         "description": "The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema."
+      },
+      "MediaSourceConfigProperty2": {
+        "type": "object",
+        "description": "The options of the media source, for its \u0060uri_type\u0060. Keys, secrets and service account keys are returned as \u0060encrypted\u0060."
+      },
+      "WebConfigWebHeadersProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "HTTP headers to send with each request, by name. Values can include \u0060{{fwd_key}}\u0060.",
+        "example": {
+          "Authorization": "Bearer my-token"
+        }
       },
       "TestTriggerRequestSampleDataProperty": {
         "type": "object",
@@ -24061,13 +25313,6 @@
           "object"
         ],
         "description": "Technical metadata extracted from the image."
-      },
-      "SearchResponseResourcesItemImageAnalysisProperty": {
-        "type": [
-          "null",
-          "object"
-        ],
-        "description": "Results of image analysis."
       },
       "SearchResponseResourcesItemMetadataProperty": {
         "type": [
@@ -24548,6 +25793,150 @@
           ]
         }
       },
+      "S3UriType": {
+        "enum": [
+          "s3"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "s3",
+        "x-ms-enum": {
+          "name": "S3UriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "s3",
+              "name": "S3"
+            }
+          ]
+        }
+      },
+      "GsUriType": {
+        "enum": [
+          "gs"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "gs",
+        "x-ms-enum": {
+          "name": "GsUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "gs",
+              "name": "Gs"
+            }
+          ]
+        }
+      },
+      "AzureUriType": {
+        "enum": [
+          "azure"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "azure",
+        "x-ms-enum": {
+          "name": "AzureUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "azure",
+              "name": "Azure"
+            }
+          ]
+        }
+      },
+      "WebUriType": {
+        "enum": [
+          "web"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "web",
+        "x-ms-enum": {
+          "name": "WebUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "web",
+              "name": "Web"
+            }
+          ]
+        }
+      },
+      "HttpUriType": {
+        "enum": [
+          "http"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "http",
+        "x-ms-enum": {
+          "name": "HttpUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "http",
+              "name": "Http"
+            }
+          ]
+        }
+      },
+      "CloudinaryUriType": {
+        "enum": [
+          "cloudinary"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "cloudinary",
+        "x-ms-enum": {
+          "name": "CloudinaryUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "cloudinary",
+              "name": "Cloudinary"
+            }
+          ]
+        }
+      },
+      "BynderUriType": {
+        "enum": [
+          "bynder"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "bynder",
+        "x-ms-enum": {
+          "name": "BynderUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "bynder",
+              "name": "Bynder"
+            }
+          ]
+        }
+      },
+      "SupabaseUriType": {
+        "enum": [
+          "supabase"
+        ],
+        "type": "string",
+        "description": "The type of the media source.",
+        "example": "supabase",
+        "x-ms-enum": {
+          "name": "SupabaseUriType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "supabase",
+              "name": "Supabase"
+            }
+          ]
+        }
+      },
       "ResourceTypesResponseResourceTypesItem": {
         "enum": [
           "image",
@@ -24712,17 +26101,19 @@
           "image_analysis",
           "metadata",
           "quality_analysis",
-          "accessibility_analysis"
+          "accessibility_analysis",
+          "provenance"
         ],
         "type": "string",
         "x-enum-descriptions": [
           "Includes the \u0060context\u0060 key-value pairs attached to each asset.",
           "Includes the list of \u0060tags\u0060 attached to each asset.",
           "Includes embedded metadata extracted from the asset file (EXIF, IPTC, XMP under \u0060image_metadata\u0060). Tier 2 feature.",
-          "Includes analysis results such as \u0060colors\u0060, \u0060face_count\u0060, \u0060illustration_score\u0060, and \u0060grayscale\u0060 under \u0060image_analysis\u0060. Tier 2 feature.",
+          "Includes analysis results such as \u0060colors\u0060, \u0060face_count\u0060, \u0060illustration_score\u0060, \u0060grayscale\u0060, and \u0060hdr\u0060 under \u0060image_analysis\u0060. Tier 2 feature.",
           "Includes values of structured metadata fields under \u0060metadata\u0060. Tier 2 feature.",
           "Includes \u0060quality_analysis.*\u0060 scores for assets analyzed at upload time.",
-          "Includes \u0060accessibility_analysis.*\u0060 scores for assets analyzed at upload time."
+          "Includes \u0060accessibility_analysis.*\u0060 scores for assets analyzed at upload time.",
+          "Includes the provenance indications \u0060has_c2pa\u0060 and \u0060ai_generated\u0060 under \u0060provenance\u0060."
         ],
         "x-ms-enum": {
           "name": "SearchParametersWithFieldItem",
@@ -24755,6 +26146,10 @@
             {
               "value": "accessibility_analysis",
               "name": "AccessibilityAnalysis"
+            },
+            {
+              "value": "provenance",
+              "name": "Provenance"
             }
           ]
         }
@@ -26353,7 +27748,7 @@
       "DeleteBackupVersionsSuccessResponse": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/DeleteBackupVersionsResponse"
+            "$ref": "#/components/schemas/DeleteBackupVersions200Response"
           },
           {
             "$ref": "#/components/schemas/DeleteBackupVersionsPartialResponse"
@@ -26369,9 +27764,272 @@
             "$ref": "#/components/schemas/TaskResponse"
           }
         ]
+      },
+      "MediaSourceCreateInputS3MediaSourceCreateInput": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MediaSourceCreateInput"
+          },
+          {
+            "required": [
+              "display_name",
+              "uri_type",
+              "config"
+            ],
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "A unique name for the media source in your product environment.",
+                "example": "my-media-source"
+              },
+              "uri_type": {
+                "$ref": "#/components/schemas/S3UriType"
+              },
+              "config": {
+                "$ref": "#/components/schemas/S3Config"
+              }
+            }
+          }
+        ]
+      },
+      "MediaSourceCreateInputGsMediaSourceCreateInput": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MediaSourceCreateInput"
+          },
+          {
+            "required": [
+              "display_name",
+              "uri_type",
+              "config"
+            ],
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "A unique name for the media source in your product environment.",
+                "example": "my-media-source"
+              },
+              "uri_type": {
+                "$ref": "#/components/schemas/GsUriType"
+              },
+              "config": {
+                "$ref": "#/components/schemas/GsConfig"
+              }
+            }
+          }
+        ]
+      },
+      "MediaSourceCreateInputAzureMediaSourceCreateInput": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MediaSourceCreateInput"
+          },
+          {
+            "required": [
+              "display_name",
+              "uri_type",
+              "config"
+            ],
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "A unique name for the media source in your product environment.",
+                "example": "my-media-source"
+              },
+              "uri_type": {
+                "$ref": "#/components/schemas/AzureUriType"
+              },
+              "config": {
+                "$ref": "#/components/schemas/AzureConfig"
+              }
+            }
+          }
+        ]
+      },
+      "MediaSourceCreateInputWebMediaSourceCreateInput": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MediaSourceCreateInput"
+          },
+          {
+            "required": [
+              "display_name",
+              "uri_type",
+              "config"
+            ],
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "A unique name for the media source in your product environment.",
+                "example": "my-media-source"
+              },
+              "uri_type": {
+                "$ref": "#/components/schemas/WebUriType"
+              },
+              "config": {
+                "$ref": "#/components/schemas/WebConfig"
+              }
+            }
+          }
+        ]
+      },
+      "MediaSourceCreateInputHttpMediaSourceCreateInput": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MediaSourceCreateInput"
+          },
+          {
+            "required": [
+              "display_name",
+              "uri_type"
+            ],
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "A unique name for the media source in your product environment.",
+                "example": "my-media-source"
+              },
+              "uri_type": {
+                "$ref": "#/components/schemas/HttpUriType"
+              },
+              "config": {
+                "$ref": "#/components/schemas/HttpConfig"
+              }
+            }
+          }
+        ]
+      },
+      "MediaSourceCreateInputCloudinaryMediaSourceCreateInput": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MediaSourceCreateInput"
+          },
+          {
+            "required": [
+              "display_name",
+              "uri_type",
+              "config"
+            ],
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "A unique name for the media source in your product environment.",
+                "example": "my-media-source"
+              },
+              "uri_type": {
+                "$ref": "#/components/schemas/CloudinaryUriType"
+              },
+              "config": {
+                "$ref": "#/components/schemas/CloudinaryConfig"
+              }
+            }
+          }
+        ]
+      },
+      "MediaSourceCreateInputBynderMediaSourceCreateInput": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MediaSourceCreateInput"
+          },
+          {
+            "required": [
+              "display_name",
+              "uri_type",
+              "config"
+            ],
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "A unique name for the media source in your product environment.",
+                "example": "my-media-source"
+              },
+              "uri_type": {
+                "$ref": "#/components/schemas/BynderUriType"
+              },
+              "config": {
+                "$ref": "#/components/schemas/BynderConfig"
+              }
+            }
+          }
+        ]
+      },
+      "MediaSourceCreateInputSupabaseMediaSourceCreateInput": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MediaSourceCreateInput"
+          },
+          {
+            "required": [
+              "display_name",
+              "uri_type",
+              "config"
+            ],
+            "type": "object",
+            "properties": {
+              "display_name": {
+                "type": "string",
+                "description": "A unique name for the media source in your product environment.",
+                "example": "my-media-source"
+              },
+              "uri_type": {
+                "$ref": "#/components/schemas/SupabaseUriType"
+              },
+              "config": {
+                "$ref": "#/components/schemas/SupabaseConfig"
+              }
+            }
+          }
+        ]
       }
     },
     "responses": {
+      "unauthorized": {
+        "description": "Authentication error - invalid API key or secret.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "bad_request": {
+        "description": "The request is invalid, for example a required config option is missing or has an invalid value.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "forbidden": {
+        "description": "The API key or user isn\u0027t permitted to perform this action.\n",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "not_found": {
+        "description": "The media source doesn\u0027t exist in your product environment.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
       "GenerationAcceptedResponse": {
         "description": "Generation accepted.",
         "content": {
@@ -26769,6 +28427,16 @@
           "$ref": "#/components/schemas/DirectionEnum"
         }
       },
+      "media_source_id": {
+        "name": "id",
+        "in": "path",
+        "description": "The ID of the media source.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "4a4b9a5c1e0c2b8e7f6d5c4b3a2f1e0d"
+      },
       "delivery_type_all_query": {
         "name": "type",
         "in": "query",
@@ -26789,7 +28457,6 @@
         "name": "public_ids",
         "in": "query",
         "description": "An array of public IDs to return.",
-        "explode": false,
         "schema": {
           "maxItems": 100,
           "type": "array",
@@ -27020,7 +28687,6 @@
         "in": "query",
         "description": "List of asset IDs to retrieve (max 100).",
         "required": true,
-        "explode": false,
         "schema": {
           "maxItems": 100,
           "type": "array",
@@ -27467,6 +29133,14 @@
             "public_id_updated_at": "2022-12-11T05:41:21Z",
             "tags_updated_at": "2022-12-14T06:09:21Z",
             "updated_at": "2022-12-14T06:09:21Z"
+          },
+          "created_by": {
+            "custom_id": "matthew@example.com",
+            "external_id": "0b8cd452de3ce172a6aec7af0a90db"
+          },
+          "uploaded_by": {
+            "custom_id": "matthew@example.com",
+            "external_id": "0b8cd452de3ce172a6aec7af0a90db"
           },
           "next_cursor": "041a39fc10971b9eabd4993470f6bfaf",
           "derived": [
@@ -28119,6 +29793,10 @@
       "description": "Enables you to manage upload mappings"
     },
     {
+      "name": "media_sources",
+      "description": "Enables you to manage media sources that upload mappings can read from."
+    },
+    {
       "name": "assets",
       "description": "Enables you to manage all the resources (assets) stored in your product environment."
     },
@@ -28368,6 +30046,10 @@
           "type": "boolean",
           "description": "Whether to return accessibility analysis values for the image."
         },
+        "ai_generated": {
+          "type": "boolean",
+          "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+        },
         "asset_folder": {
           "type": "string",
           "description": "The asset folder to assign to the asset."
@@ -28459,7 +30141,7 @@
         },
         "eager_notification_url": {
           "type": "string",
-          "description": "A URL to notify when eager transformations are completed.",
+          "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
           "x-client-original-format": "uri"
         },
         "eval": {
@@ -28508,7 +30190,7 @@
         },
         "notification_url": {
           "type": "string",
-          "description": "A URL to notify when the asset is ready.",
+          "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
           "x-client-original-format": "uri"
         },
         "ocr": {
@@ -28647,6 +30329,10 @@
           "type": "boolean",
           "description": "Whether to return accessibility analysis values for the image."
         },
+        "ai_generated": {
+          "type": "boolean",
+          "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+        },
         "asset_folder": {
           "type": "string",
           "description": "The asset folder to assign to the asset."
@@ -28738,7 +30424,7 @@
         },
         "eager_notification_url": {
           "type": "string",
-          "description": "A URL to notify when eager transformations are completed.",
+          "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
           "x-client-original-format": "uri"
         },
         "eval": {
@@ -28787,7 +30473,7 @@
         },
         "notification_url": {
           "type": "string",
-          "description": "A URL to notify when the asset is ready.",
+          "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
           "x-client-original-format": "uri"
         },
         "ocr": {
@@ -28940,6 +30626,10 @@
           "type": "boolean",
           "description": "Whether to return accessibility analysis values for the image."
         },
+        "ai_generated": {
+          "type": "boolean",
+          "description": "Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.\nNote that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back\nto false, including by uploading over the same public ID.\n"
+        },
         "asset_folder": {
           "type": "string",
           "description": "The asset folder to assign to the asset."
@@ -29031,7 +30721,7 @@
         },
         "eager_notification_url": {
           "type": "string",
-          "description": "A URL to notify when eager transformations are completed.",
+          "description": "A URL to notify when eager transformations are completed. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
           "x-client-original-format": "uri"
         },
         "eval": {
@@ -29080,7 +30770,7 @@
         },
         "notification_url": {
           "type": "string",
-          "description": "A URL to notify when the asset is ready.",
+          "description": "A URL to notify when the asset is ready. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060.",
           "x-client-original-format": "uri"
         },
         "ocr": {
@@ -29210,6 +30900,23 @@
         "upload_preset": {
           "type": "string",
           "description": "(Required for unsigned uploading / optional for signed uploading)\nName of an upload preset that you defined for your Cloudinary product environment. An upload preset consists of upload parameters centrally managed using the Admin API or from the Upload Presets page of the Console Settings. An upload preset may be marked as unsigned, which allows unsigned uploading directly from the browser and restricts the optional parameters to: public_id, folder, tags, context, face_coordinates, regions and custom_coordinates.\n"
+        }
+      }
+    },
+    "BatchIdParam": {
+      "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+      "type": "string",
+      "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+      "example": "orders/2026-07/import-42"
+    },
+    "NotificationBatchParameter": {
+      "type": "object",
+      "properties": {
+        "batch_id": {
+          "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+          "type": "string",
+          "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+          "example": "orders/2026-07/import-42"
         }
       }
     },
@@ -29522,6 +31229,216 @@
         "position": 1
       }
     },
+    "MediaSourceList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MediaSource"
+      }
+    },
+    "MediaSourceDisplayName": {
+      "type": "string",
+      "description": "A unique name for the media source in your product environment.",
+      "example": "my-media-source"
+    },
+    "S3MediaSourceCreateInput": {
+      "required": [
+        "display_name",
+        "uri_type",
+        "config"
+      ],
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "A unique name for the media source in your product environment.",
+          "example": "my-media-source"
+        },
+        "uri_type": {
+          "$ref": "#/components/schemas/S3UriType"
+        },
+        "config": {
+          "$ref": "#/components/schemas/S3Config"
+        }
+      }
+    },
+    "GsMediaSourceCreateInput": {
+      "required": [
+        "display_name",
+        "uri_type",
+        "config"
+      ],
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "A unique name for the media source in your product environment.",
+          "example": "my-media-source"
+        },
+        "uri_type": {
+          "$ref": "#/components/schemas/GsUriType"
+        },
+        "config": {
+          "$ref": "#/components/schemas/GsConfig"
+        }
+      }
+    },
+    "AzureMediaSourceCreateInput": {
+      "required": [
+        "display_name",
+        "uri_type",
+        "config"
+      ],
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "A unique name for the media source in your product environment.",
+          "example": "my-media-source"
+        },
+        "uri_type": {
+          "$ref": "#/components/schemas/AzureUriType"
+        },
+        "config": {
+          "$ref": "#/components/schemas/AzureConfig"
+        }
+      }
+    },
+    "WebMediaSourceCreateInput": {
+      "required": [
+        "display_name",
+        "uri_type",
+        "config"
+      ],
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "A unique name for the media source in your product environment.",
+          "example": "my-media-source"
+        },
+        "uri_type": {
+          "$ref": "#/components/schemas/WebUriType"
+        },
+        "config": {
+          "$ref": "#/components/schemas/WebConfig"
+        }
+      }
+    },
+    "HttpMediaSourceCreateInput": {
+      "required": [
+        "display_name",
+        "uri_type"
+      ],
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "A unique name for the media source in your product environment.",
+          "example": "my-media-source"
+        },
+        "uri_type": {
+          "$ref": "#/components/schemas/HttpUriType"
+        },
+        "config": {
+          "$ref": "#/components/schemas/HttpConfig"
+        }
+      }
+    },
+    "CloudinaryMediaSourceCreateInput": {
+      "required": [
+        "display_name",
+        "uri_type",
+        "config"
+      ],
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "A unique name for the media source in your product environment.",
+          "example": "my-media-source"
+        },
+        "uri_type": {
+          "$ref": "#/components/schemas/CloudinaryUriType"
+        },
+        "config": {
+          "$ref": "#/components/schemas/CloudinaryConfig"
+        }
+      }
+    },
+    "BynderMediaSourceCreateInput": {
+      "required": [
+        "display_name",
+        "uri_type",
+        "config"
+      ],
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "A unique name for the media source in your product environment.",
+          "example": "my-media-source"
+        },
+        "uri_type": {
+          "$ref": "#/components/schemas/BynderUriType"
+        },
+        "config": {
+          "$ref": "#/components/schemas/BynderConfig"
+        }
+      }
+    },
+    "SupabaseMediaSourceCreateInput": {
+      "required": [
+        "display_name",
+        "uri_type",
+        "config"
+      ],
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "description": "A unique name for the media source in your product environment.",
+          "example": "my-media-source"
+        },
+        "uri_type": {
+          "$ref": "#/components/schemas/SupabaseUriType"
+        },
+        "config": {
+          "$ref": "#/components/schemas/SupabaseConfig"
+        }
+      }
+    },
+    "UriType": {
+      "enum": [
+        "webhook",
+        "flow",
+        "poll"
+      ],
+      "type": "string",
+      "description": "The delivery transport for the notification trigger.",
+      "x-enum-descriptions": [
+        "Delivers the notification as an HTTP POST to the destination URL.",
+        "Dispatches the notification to a Cloudinary flow.",
+        "Buffers the notification for retrieval via long-poll or WebSocket instead of an outbound HTTP request. The uri takes the form \u0027poll://\u003Cchannel\u003E\u0027 for a named channel or \u0027poll://*\u0027 for an anonymous destination correlated by batch_id."
+      ],
+      "x-ms-enum": {
+        "name": "UriType",
+        "modelAsString": false,
+        "values": [
+          {
+            "value": "webhook",
+            "name": "Webhook"
+          },
+          {
+            "value": "flow",
+            "name": "Flow"
+          },
+          {
+            "value": "poll",
+            "name": "Poll"
+          }
+        ]
+      }
+    },
     "ResourceFieldsEnum": {
       "enum": [
         "public_id",
@@ -29664,6 +31581,27 @@
         ]
       }
     },
+    "Contributor": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "The API key used for the upload. Returned only when no console user was recorded.",
+          "example": "149945967172831"
+        },
+        "custom_id": {
+          "type": "string",
+          "description": "The email address of the console user who performed the upload, as it was at upload time. The stored value never changes, even if the user later changes their email, so it may not match the user\u0027s current address.",
+          "example": "matthew@example.com"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "The identifier of the console user who performed the upload. It identifies the actual user behind the operation and stays the same even if their email changes; use it to look the user up.",
+          "example": "0b8cd452de3ce172a6aec7af0a90db"
+        }
+      },
+      "description": "The identity behind the upload. Either the console user who performed it (custom_id and external_id)\nor, when no console user was involved, the API key that signed the upload (access_key). The\nget-resource and Search responses return one or the other, never both. When no contributor was\nrecorded (for example assets created before creator tracking) the Search API returns the field as\nnull and the get-resource response omits it.\n"
+    },
     "RestoreResponse": {
       "type": "object",
       "additionalProperties": {
@@ -29697,6 +31635,25 @@
     "EvalResponse": {
       "type": "object",
       "description": "The upload parameters resulting from evaluating the eval expression."
+    },
+    "ProvenanceResponse": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": {
+        "has_c2pa": {
+          "type": "boolean",
+          "description": "Whether the asset carries a C2PA content credentials manifest. False when no manifest was found.",
+          "example": false
+        },
+        "ai_generated": {
+          "type": "boolean",
+          "description": "Whether the asset is AI-generated, either declared on upload or read from its C2PA manifest. Omitted when unknown, which is not the same as false.",
+          "example": true
+        }
+      },
+      "description": "Provenance indications derived from the asset at upload. Returned in searches including a with_field parameter specifying provenance. A key is present only when there is an answer for it."
     },
     "Async": {
       "examples": [
@@ -29750,7 +31707,7 @@
       },
       "description": "A list of \u0060asset_id\u0060 values of the assets to remove from the collection."
     },
-    "BinaryUploadRequestAllOf4": {
+    "BinaryUploadRequestAllOf5": {
       "type": "object",
       "properties": {
         "file": {
@@ -29760,7 +31717,7 @@
         }
       }
     },
-    "UploadRequestAllOf4": {
+    "UploadRequestAllOf5": {
       "type": "object",
       "properties": {
         "file": {
@@ -29813,8 +31770,14 @@
         },
         "notification_url": {
           "type": "string",
-          "description": "URL to notify when the operation is complete.",
+          "description": "URL to notify when the operation is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
           "x-client-original-format": "uri"
+        },
+        "batch_id": {
+          "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+          "type": "string",
+          "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+          "example": "orders/2026-07/import-42"
         }
       }
     },
@@ -29838,8 +31801,14 @@
         },
         "notification_url": {
           "type": "string",
-          "description": "URL to receive a notification when the operation is complete.",
+          "description": "URL to receive a notification when the operation is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
           "x-client-original-format": "uri"
+        },
+        "batch_id": {
+          "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+          "type": "string",
+          "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+          "example": "orders/2026-07/import-42"
         }
       }
     },
@@ -29864,15 +31833,21 @@
         },
         "notification_url": {
           "type": "string",
-          "description": "The webhook URL to notify when the operation is complete.",
+          "description": "The URL to notify when the operation is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
           "x-client-original-format": "uri"
+        },
+        "batch_id": {
+          "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+          "type": "string",
+          "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+          "example": "orders/2026-07/import-42"
         },
         "type": {
           "$ref": "#/components/schemas/ManagedDeliveryType"
         }
       }
     },
-    "ExplicitRequestAllOf3": {
+    "ExplicitRequestAllOf4": {
       "required": [
         "public_id"
       ],
@@ -29887,7 +31862,7 @@
         }
       }
     },
-    "ExplicitRequestAllOf4": {
+    "ExplicitRequestAllOf5": {
       "type": "object",
       "properties": {
         "overwrite": {
@@ -29895,7 +31870,7 @@
           "description": "When applying eager for already existing video transformations, this setting indicates whether to force the existing derived video resources to be regenerated. Default for videos: false.\nNote: When specifying existing eager transformations for images, corresponding derived images are always regenerated.\n"
         },
         "quality_override": {
-          "$ref": "#/components/schemas/ExplicitRequestAllOf4QualityOverride"
+          "$ref": "#/components/schemas/ExplicitRequestAllOf5QualityOverride"
         }
       }
     },
@@ -30037,8 +32012,14 @@
         },
         "notification_url": {
           "type": "string",
-          "description": "(\u0022create\u0022 mode only), specifies the URL to notify when the archive generation is complete.",
+          "description": "(\u0022create\u0022 mode only), specifies the URL to notify when the archive generation is complete. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
           "x-client-original-format": "uri"
+        },
+        "batch_id": {
+          "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+          "type": "string",
+          "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+          "example": "orders/2026-07/import-42"
         },
         "target_tags": {
           "type": "array",
@@ -30093,8 +32074,14 @@
         },
         "notification_url": {
           "type": "string",
-          "description": "URL to receive completion notification.",
+          "description": "URL to receive completion notification. Use a webhook URL, or a \u0060poll://\u003Cchannel\u003E\u0060 or \u0060poll://*\u0060 address to hold the notification for retrieval with the Notifications API. Retrieve a \u0060poll://*\u0060 notification by \u0060batch_id\u0060 (see the \u0060batch_id\u0060 parameter).",
           "x-client-original-format": "uri"
+        },
+        "batch_id": {
+          "pattern": "^[A-Za-z0-9_\\-./:]{1,128}$",
+          "type": "string",
+          "description": "The identifier that correlates related notifications so they can be retrieved together from a \u0060poll://*\u0060 notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the \u0060batch_id\u0060 that an asynchronous response returns, or, for a synchronous request, by the \u0060X-Request-Id\u0060 response header.",
+          "example": "orders/2026-07/import-42"
         },
         "callback": {
           "type": "string",
@@ -30103,7 +32090,7 @@
         }
       }
     },
-    "ConcatRequestAllOf3": {
+    "ConcatRequestAllOf4": {
       "required": [
         "urls"
       ],
@@ -30188,6 +32175,14 @@
             "$ref": "#/components/schemas/Folder"
           },
           "description": "The ancestor folders of this folder, ordered from root to parent."
+        }
+      }
+    },
+    "PersonOnAssetAllOf2": {
+      "type": "object",
+      "properties": {
+        "face": {
+          "$ref": "#/components/schemas/PersonOnAssetAllOf2Face"
         }
       }
     },
@@ -30284,6 +32279,20 @@
       "type": "object",
       "description": "The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema."
     },
+    "MediaSourceConfigProperty": {
+      "type": "object",
+      "description": "The options of the media source, for its \u0060uri_type\u0060. Keys, secrets and service account keys are returned as \u0060encrypted\u0060."
+    },
+    "WebConfigWebHeaders": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "HTTP headers to send with each request, by name. Values can include \u0060{{fwd_key}}\u0060.",
+      "example": {
+        "Authorization": "Bearer my-token"
+      }
+    },
     "TestTriggerRequestSampleData": {
       "type": "object",
       "description": "Sample notification data to evaluate the filter against.",
@@ -30368,13 +32377,6 @@
         "object"
       ],
       "description": "Technical metadata extracted from the image."
-    },
-    "SearchResponseResourcesItemImageAnalysis": {
-      "type": [
-        "null",
-        "object"
-      ],
-      "description": "Results of image analysis."
     },
     "SearchResponseResourcesItemMetadata": {
       "type": [

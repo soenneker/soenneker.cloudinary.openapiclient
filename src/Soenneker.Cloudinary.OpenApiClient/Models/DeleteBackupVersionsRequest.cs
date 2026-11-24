@@ -23,7 +23,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The list of version IDs to delete from backup.</summary>
+        /// <summary>The list of version IDs to delete from backup. Omit it and pass the `all=true` query parameter to delete every backed up version of the asset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? VersionIds { get => _explicitNullValueVersionIds; set { _explicitNullValueVersionIds = value; AdditionalData?.Remove("version_ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version_ids"); else _explicitNullProperties?.Remove("version_ids"); } }

@@ -74,9 +74,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         public string Uri { get => _explicitNullValueUri; set { _explicitNullValueUri = value; AdditionalData?.Remove("uri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uri"); else _explicitNullProperties?.Remove("uri"); } }
         private string _explicitNullValueUri = default!;
 #endif
-        /// <summary>The uri_type property</summary>
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.UriType? UriType { get => _explicitNullValueUriType; set { _explicitNullValueUriType = value; AdditionalData?.Remove("uri_type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uri_type"); else _explicitNullProperties?.Remove("uri_type"); } }
-        private global::Soenneker.Cloudinary.OpenApiClient.Models.UriType? _explicitNullValueUriType = default!;
+        /// <summary>The delivery transport for the notification trigger.</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.TriggerInfoUriType? UriType { get => _explicitNullValueUriType; set { _explicitNullValueUriType = value; AdditionalData?.Remove("uri_type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uri_type"); else _explicitNullProperties?.Remove("uri_type"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.TriggerInfoUriType? _explicitNullValueUriType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.TriggerInfo"/> and sets the default values.
         /// </summary>
@@ -108,7 +108,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "product_environment_id", n => { ProductEnvironmentId = n.GetStringValue(); } },
                 { "updated_at", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "uri", n => { Uri = n.GetStringValue(); } },
-                { "uri_type", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UriType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueUriType = default; _explicitNullProperties?.Remove("uri_type"); AdditionalData["uri_type"] = unknown; } else { UriType = parsed; AdditionalData.Remove("uri_type"); } } },
+                { "uri_type", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TriggerInfoUriType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueUriType = default; _explicitNullProperties?.Remove("uri_type"); AdditionalData["uri_type"] = unknown; } else { UriType = parsed; AdditionalData.Remove("uri_type"); } } },
             };
         }
         /// <summary>
@@ -124,7 +124,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("product_environment_id", ProductEnvironmentId);
             writer.WriteDateTimeOffsetValue("updated_at", UpdatedAt);
             writer.WriteStringValue("uri", Uri);
-            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.UriType>("uri_type", UriType);
+            writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.TriggerInfoUriType>("uri_type", UriType);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

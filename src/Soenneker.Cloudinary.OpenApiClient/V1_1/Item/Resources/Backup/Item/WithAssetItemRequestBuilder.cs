@@ -22,7 +22,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithAssetItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/backup/{assetId}", pathParameters)
+        public WithAssetItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/backup/{assetId}{?all*,async*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithAssetItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/backup/{assetId}", rawUrl)
+        public WithAssetItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v1_1/{cloudName}/resources/backup/{assetId}{?all*,async*}", rawUrl)
         {
         }
         /// <summary>
-        /// Deletes specific backed up versions of an asset identified by asset ID.This operation is irreversible and deleted versions cannot be recovered.
+        /// Deletes specific backed up versions of an asset identified by asset ID (`version_ids` in the body), or every backed up version of the asset (`all=true`).With `all=true` one call removes up to 100 versions; an asset with more versions is rejected with a 400 asking for `async=true`, which removes them in the background.This operation is irreversible and deleted versions cannot be recovered.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -45,11 +45,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item
         /// <exception cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ApiError">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse?> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse?> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item.WithAssetItemRequestBuilder.WithAssetItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse> DeleteAsync(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item.WithAssetItemRequestBuilder.WithAssetItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -65,18 +65,18 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse>(requestInfo, global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes specific backed up versions of an asset identified by asset ID.This operation is irreversible and deleted versions cannot be recovered.
+        /// Deletes specific backed up versions of an asset identified by asset ID (`version_ids` in the body), or every backed up version of the asset (`all=true`).With `all=true` one call removes up to 100 versions; an asset with more versions is rejected with a 400 asking for `async=true`, which removes them in the background.This operation is irreversible and deleted versions cannot be recovered.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item.WithAssetItemRequestBuilder.WithAssetItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Cloudinary.OpenApiClient.Models.DeleteBackupVersionsRequest body, Action<RequestConfiguration<global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item.WithAssetItemRequestBuilder.WithAssetItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -94,6 +94,19 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item.WithAssetItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Resources.Backup.Item.WithAssetItemRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Deletes specific backed up versions of an asset identified by asset ID (`version_ids` in the body), or every backed up version of the asset (`all=true`).With `all=true` one call removes up to 100 versions; an asset with more versions is rejected with a 400 asking for `async=true`, which removes them in the background.This operation is irreversible and deleted versions cannot be recovered.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithAssetItemRequestBuilderDeleteQueryParameters 
+        {
+            /// <summary>Set to `true` to delete every backed up version of the asset. Cannot be combined with `version_ids`.</summary>
+            [QueryParameter("all")]
+            public bool? All { get; set; }
+            /// <summary>With `all=true`, set to `true` to delete the versions in the background; the response is `{&quot;status&quot;:&quot;pending&quot;}` and completion is confirmed by listing the asset&apos;s versions later. Only valid together with `all=true`.</summary>
+            [QueryParameter("async")]
+            public bool? Async { get; set; }
         }
     }
 }

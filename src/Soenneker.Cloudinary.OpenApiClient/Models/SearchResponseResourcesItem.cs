@@ -58,6 +58,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             else if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
             if (parseNode.GetChildNode("pixels") is null) { _explicitNullValuePixels = default!; _explicitNullProperties?.Remove("pixels"); }
             else if (parseNode.GetChildNode("pixels") is { } nullNodePixels && nullNodePixels.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pixels = null;
+            if (parseNode.GetChildNode("provenance") is null) { _explicitNullValueProvenance = default!; _explicitNullProperties?.Remove("provenance"); }
+            else if (parseNode.GetChildNode("provenance") is { } nullNodeProvenance && nullNodeProvenance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provenance = null;
             if (parseNode.GetChildNode("public_id") is null) { _explicitNullValuePublicId = default!; _explicitNullProperties?.Remove("public_id"); }
             else if (parseNode.GetChildNode("public_id") is { } nullNodePublicId && nullNodePublicId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicId = null;
             if (parseNode.GetChildNode("quality_analysis") is null) { _explicitNullValueQualityAnalysis = default!; _explicitNullProperties?.Remove("quality_analysis"); }
@@ -158,7 +160,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The timestamp when the asset was created.</summary>
         public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; AdditionalData?.Remove("created_at"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created_at"); else _explicitNullProperties?.Remove("created_at"); } }
         private DateTimeOffset? _explicitNullValueCreatedAt = default!;
-        /// <summary>Information about who created the asset.</summary>
+        /// <summary>Who created the asset, as one identity (see contributor). Null when no contributor was recorded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemCreatedBy? CreatedBy { get => _explicitNullValueCreatedBy; set { _explicitNullValueCreatedBy = value; AdditionalData?.Remove("created_by"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created_by"); else _explicitNullProperties?.Remove("created_by"); } }
@@ -214,12 +216,12 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Results of image analysis.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty? ImageAnalysis { get => _explicitNullValueImageAnalysis; set { _explicitNullValueImageAnalysis = value; AdditionalData?.Remove("image_analysis"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("image_analysis"); else _explicitNullProperties?.Remove("image_analysis"); } }
-        private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty? _explicitNullValueImageAnalysis = default!;
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysis? ImageAnalysis { get => _explicitNullValueImageAnalysis; set { _explicitNullValueImageAnalysis = value; AdditionalData?.Remove("image_analysis"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("image_analysis"); else _explicitNullProperties?.Remove("image_analysis"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysis? _explicitNullValueImageAnalysis = default!;
 #nullable restore
 #else
-        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty ImageAnalysis { get => _explicitNullValueImageAnalysis; set { _explicitNullValueImageAnalysis = value; AdditionalData?.Remove("image_analysis"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("image_analysis"); else _explicitNullProperties?.Remove("image_analysis"); } }
-        private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty _explicitNullValueImageAnalysis = default!;
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysis ImageAnalysis { get => _explicitNullValueImageAnalysis; set { _explicitNullValueImageAnalysis = value; AdditionalData?.Remove("image_analysis"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("image_analysis"); else _explicitNullProperties?.Remove("image_analysis"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysis _explicitNullValueImageAnalysis = default!;
 #endif
         /// <summary>Technical metadata extracted from the image.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -244,6 +246,16 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The total number of pixels in the asset. Null for non-visual assets (e.g. raw, audio).</summary>
         public int? Pixels { get => _explicitNullValuePixels; set { _explicitNullValuePixels = value; AdditionalData?.Remove("pixels"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pixels"); else _explicitNullProperties?.Remove("pixels"); } }
         private int? _explicitNullValuePixels = default!;
+        /// <summary>Provenance indications for the asset. Note: the provenance object is returned in searches including a with_field parameter specifying provenance.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemProvenance? Provenance { get => _explicitNullValueProvenance; set { _explicitNullValueProvenance = value; AdditionalData?.Remove("provenance"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provenance"); else _explicitNullProperties?.Remove("provenance"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemProvenance? _explicitNullValueProvenance = default!;
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemProvenance Provenance { get => _explicitNullValueProvenance; set { _explicitNullValueProvenance = value; AdditionalData?.Remove("provenance"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provenance"); else _explicitNullProperties?.Remove("provenance"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemProvenance _explicitNullValueProvenance = default!;
+#endif
         /// <summary>The public identifier that is used to build the URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -296,7 +308,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The timestamp when the asset was uploaded.</summary>
         public DateTimeOffset? UploadedAt { get => _explicitNullValueUploadedAt; set { _explicitNullValueUploadedAt = value; AdditionalData?.Remove("uploaded_at"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uploaded_at"); else _explicitNullProperties?.Remove("uploaded_at"); } }
         private DateTimeOffset? _explicitNullValueUploadedAt = default!;
-        /// <summary>Information about who uploaded the asset.</summary>
+        /// <summary>Who uploaded the asset, as one identity (see contributor). Null when no contributor was recorded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemUploadedBy? UploadedBy { get => _explicitNullValueUploadedBy; set { _explicitNullValueUploadedBy = value; AdditionalData?.Remove("uploaded_by"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uploaded_by"); else _explicitNullProperties?.Remove("uploaded_by"); } }
@@ -345,7 +357,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(32)
+            return new Dictionary<string, Action<IParseNode>>(33)
             {
                 { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "access_mode", n => { AccessMode = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemAccessMode.CreateFromDiscriminatorValue); } },
@@ -363,10 +375,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "filename", n => { Filename = n.GetStringValue(); } },
                 { "format", n => { Format = n.GetStringValue(); } },
                 { "height", n => { Height = n.GetIntValue(); } },
-                { "image_analysis", n => { ImageAnalysis = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty.CreateFromDiscriminatorValue); } },
+                { "image_analysis", n => { ImageAnalysis = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysis>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysis.CreateFromDiscriminatorValue); } },
                 { "image_metadata", n => { ImageMetadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageMetadataProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageMetadataProperty.CreateFromDiscriminatorValue); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemMetadataProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemMetadataProperty.CreateFromDiscriminatorValue); } },
                 { "pixels", n => { Pixels = n.GetIntValue(); } },
+                { "provenance", n => { Provenance = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemProvenance>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemProvenance.CreateFromDiscriminatorValue); } },
                 { "public_id", n => { PublicId = n.GetStringValue(); } },
                 { "quality_analysis", n => { QualityAnalysis = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemQualityAnalysisProperty>(global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemQualityAnalysisProperty.CreateFromDiscriminatorValue); } },
                 { "resource_type", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemResourceType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueResourceType = default; _explicitNullProperties?.Remove("resource_type"); AdditionalData["resource_type"] = unknown; } else { ResourceType = parsed; AdditionalData.Remove("resource_type"); } } },
@@ -404,10 +417,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("filename", Filename);
             writer.WriteStringValue("format", Format);
             writer.WriteIntValue("height", Height);
-            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty>("image_analysis", ImageAnalysis);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysis>("image_analysis", ImageAnalysis);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageMetadataProperty>("image_metadata", ImageMetadata);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemMetadataProperty>("metadata", Metadata);
             writer.WriteIntValue("pixels", Pixels);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemProvenance>("provenance", Provenance);
             writer.WriteStringValue("public_id", PublicId);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemQualityAnalysisProperty>("quality_analysis", QualityAnalysis);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemResourceType>("resource_type", ResourceType);

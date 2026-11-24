@@ -26,6 +26,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             else if (parseNode.GetChildNode("asset_folders") is { } nullNodeAssetFolders && nullNodeAssetFolders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssetFolders = null;
             if (parseNode.GetChildNode("async") is null) { _explicitNullValueAsync = default!; _explicitNullProperties?.Remove("async"); }
             else if (parseNode.GetChildNode("async") is { } nullNodeAsync && nullNodeAsync.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Async = null;
+            if (parseNode.GetChildNode("batch_id") is null) { _explicitNullValueBatchId = default!; _explicitNullProperties?.Remove("batch_id"); }
+            else if (parseNode.GetChildNode("batch_id") is { } nullNodeBatchId && nullNodeBatchId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BatchId = null;
             if (parseNode.GetChildNode("expires_at") is null) { _explicitNullValueExpiresAt = default!; _explicitNullProperties?.Remove("expires_at"); }
             else if (parseNode.GetChildNode("expires_at") is { } nullNodeExpiresAt && nullNodeExpiresAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpiresAt = null;
             if (parseNode.GetChildNode("flatten_folders") is null) { _explicitNullValueFlattenFolders = default!; _explicitNullProperties?.Remove("flatten_folders"); }
@@ -100,6 +102,16 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>(&quot;create&quot; mode only), specifies whether to generate the archive asynchronously.</summary>
         public bool? Async { get => _explicitNullValueAsync; set { _explicitNullValueAsync = value; AdditionalData?.Remove("async"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("async"); else _explicitNullProperties?.Remove("async"); } }
         private bool? _explicitNullValueAsync = default!;
+        /// <summary>The identifier that correlates related notifications so they can be retrieved together from a `poll://*` notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the `batch_id` that an asynchronous response returns, or, for a synchronous request, by the `X-Request-Id` response header.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? BatchId { get => _explicitNullValueBatchId; set { _explicitNullValueBatchId = value; AdditionalData?.Remove("batch_id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("batch_id"); else _explicitNullProperties?.Remove("batch_id"); } }
+        private string? _explicitNullValueBatchId = default!;
+#nullable restore
+#else
+        public string BatchId { get => _explicitNullValueBatchId; set { _explicitNullValueBatchId = value; AdditionalData?.Remove("batch_id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("batch_id"); else _explicitNullProperties?.Remove("batch_id"); } }
+        private string _explicitNullValueBatchId = default!;
+#endif
         /// <summary>(&quot;download&quot; mode only) Unix timestamp indicating when the generated archive URL should expire.</summary>
         public long? ExpiresAt { get => _explicitNullValueExpiresAt; set { _explicitNullValueExpiresAt = value; AdditionalData?.Remove("expires_at"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expires_at"); else _explicitNullProperties?.Remove("expires_at"); } }
         private long? _explicitNullValueExpiresAt = default!;
@@ -125,7 +137,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The method for generating and delivering the archive. Options:download - Generates and delivers the archive file without storing itcreate - Creates and stores the archive as a raw asset, returning URLs in the responsecreate_and_download - Creates, stores, and delivers the archive file</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestMode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; AdditionalData?.Remove("mode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
         private global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestMode? _explicitNullValueMode = default!;
-        /// <summary>(&quot;create&quot; mode only), specifies the URL to notify when the archive generation is complete.</summary>
+        /// <summary>(&quot;create&quot; mode only), specifies the URL to notify when the archive generation is complete. Use a webhook URL, or a `poll://&lt;channel&gt;` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id` (see the `batch_id` parameter).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NotificationUrl { get => _explicitNullValueNotificationUrl; set { _explicitNullValueNotificationUrl = value; AdditionalData?.Remove("notification_url"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notification_url"); else _explicitNullProperties?.Remove("notification_url"); } }
@@ -280,12 +292,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(26)
+            return new Dictionary<string, Action<IParseNode>>(27)
             {
                 { "allow_missing", n => { AllowMissing = n.GetBoolValue(); } },
                 { "api_key", n => { ApiKey = n.GetStringValue(); } },
                 { "asset_folders", n => { AssetFolders = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestAllOf2AssetFolders>(global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestAllOf2AssetFolders.CreateFromDiscriminatorValue); } },
                 { "async", n => { Async = n.GetBoolValue(); } },
+                { "batch_id", n => { BatchId = n.GetStringValue(); } },
                 { "expires_at", n => { ExpiresAt = n.GetLongValue(); } },
                 { "flatten_folders", n => { FlattenFolders = n.GetBoolValue(); } },
                 { "flatten_transformations", n => { FlattenTransformations = n.GetBoolValue(); } },
@@ -321,6 +334,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteStringValue("api_key", ApiKey);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.GenerateArchiveRequestAllOf2AssetFolders>("asset_folders", AssetFolders);
             writer.WriteBoolValue("async", Async);
+            writer.WriteStringValue("batch_id", BatchId);
             writer.WriteLongValue("expires_at", ExpiresAt);
             writer.WriteBoolValue("flatten_folders", FlattenFolders);
             writer.WriteBoolValue("flatten_transformations", FlattenTransformations);

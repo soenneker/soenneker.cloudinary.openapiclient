@@ -41,6 +41,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             else if (parseNode.GetChildNode("coordinates") is { } nullNodeCoordinates && nullNodeCoordinates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Coordinates = null;
             if (parseNode.GetChildNode("created_at") is null) { _explicitNullValueCreatedAt = default!; _explicitNullProperties?.Remove("created_at"); }
             else if (parseNode.GetChildNode("created_at") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
+            if (parseNode.GetChildNode("created_by") is null) { _explicitNullValueCreatedBy = default!; _explicitNullProperties?.Remove("created_by"); }
+            else if (parseNode.GetChildNode("created_by") is { } nullNodeCreatedBy && nullNodeCreatedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedBy = null;
             if (parseNode.GetChildNode("derivatives") is null) { _explicitNullValueDerivatives = default!; _explicitNullProperties?.Remove("derivatives"); }
             else if (parseNode.GetChildNode("derivatives") is { } nullNodeDerivatives && nullNodeDerivatives.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Derivatives = null;
             if (parseNode.GetChildNode("derived") is null) { _explicitNullValueDerived = default!; _explicitNullProperties?.Remove("derived"); }
@@ -105,6 +107,8 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
             if (parseNode.GetChildNode("uploaded_at") is null) { _explicitNullValueUploadedAt = default!; _explicitNullProperties?.Remove("uploaded_at"); }
             else if (parseNode.GetChildNode("uploaded_at") is { } nullNodeUploadedAt && nullNodeUploadedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UploadedAt = null;
+            if (parseNode.GetChildNode("uploaded_by") is null) { _explicitNullValueUploadedBy = default!; _explicitNullProperties?.Remove("uploaded_by"); }
+            else if (parseNode.GetChildNode("uploaded_by") is { } nullNodeUploadedBy && nullNodeUploadedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UploadedBy = null;
             if (parseNode.GetChildNode("url") is null) { _explicitNullValueUrl = default!; _explicitNullProperties?.Remove("url"); }
             else if (parseNode.GetChildNode("url") is { } nullNodeUrl && nullNodeUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Url = null;
             if (parseNode.GetChildNode("version") is null) { _explicitNullValueVersion = default!; _explicitNullProperties?.Remove("version"); }
@@ -195,6 +199,16 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The created_at property</summary>
         public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; AdditionalData?.Remove("created_at"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created_at"); else _explicitNullProperties?.Remove("created_at"); } }
         private DateTimeOffset? _explicitNullValueCreatedAt = default!;
+        /// <summary>Who created the asset: the console user when known, otherwise the API key that signed the upload. Omitted when no contributor was recorded; never null.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCreatedBy? CreatedBy { get => _explicitNullValueCreatedBy; set { _explicitNullValueCreatedBy = value; AdditionalData?.Remove("created_by"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created_by"); else _explicitNullProperties?.Remove("created_by"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCreatedBy? _explicitNullValueCreatedBy = default!;
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCreatedBy CreatedBy { get => _explicitNullValueCreatedBy; set { _explicitNullValueCreatedBy = value; AdditionalData?.Remove("created_by"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created_by"); else _explicitNullProperties?.Remove("created_by"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCreatedBy _explicitNullValueCreatedBy = default!;
+#endif
         /// <summary>Included if &apos;derived=true&apos; parameter is used. Null when no derivatives exist.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -459,6 +473,16 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>The uploaded_at property</summary>
         public DateTimeOffset? UploadedAt { get => _explicitNullValueUploadedAt; set { _explicitNullValueUploadedAt = value; AdditionalData?.Remove("uploaded_at"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uploaded_at"); else _explicitNullProperties?.Remove("uploaded_at"); } }
         private DateTimeOffset? _explicitNullValueUploadedAt = default!;
+        /// <summary>Who performed the most recent upload of the asset: the console user when known, otherwise the API key that signed the upload. Equal to created_by unless the asset was overwritten. Omitted when no contributor was recorded; never null.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.InfoUploadedBy? UploadedBy { get => _explicitNullValueUploadedBy; set { _explicitNullValueUploadedBy = value; AdditionalData?.Remove("uploaded_by"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uploaded_by"); else _explicitNullProperties?.Remove("uploaded_by"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.InfoUploadedBy? _explicitNullValueUploadedBy = default!;
+#nullable restore
+#else
+        public global::Soenneker.Cloudinary.OpenApiClient.Models.InfoUploadedBy UploadedBy { get => _explicitNullValueUploadedBy; set { _explicitNullValueUploadedBy = value; AdditionalData?.Remove("uploaded_by"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uploaded_by"); else _explicitNullProperties?.Remove("uploaded_by"); } }
+        private global::Soenneker.Cloudinary.OpenApiClient.Models.InfoUploadedBy _explicitNullValueUploadedBy = default!;
+#endif
         /// <summary>The url property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -508,7 +532,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(48)
+            return new Dictionary<string, Action<IParseNode>>(50)
             {
                 { "access_control", n => { AccessControl = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.AccessControlItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "animated", n => { Animated = n.GetBoolValue(); } },
@@ -522,6 +546,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "context", n => { Context = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContext>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContext.CreateFromDiscriminatorValue); } },
                 { "coordinates", n => { Coordinates = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCoordinates>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCoordinates.CreateFromDiscriminatorValue); } },
                 { "created_at", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
+                { "created_by", n => { CreatedBy = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCreatedBy>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCreatedBy.CreateFromDiscriminatorValue); } },
                 { "derivatives", n => { Derivatives = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivativesItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivativesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "derived", n => { Derived = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivedItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivedItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "display_name", n => { DisplayName = n.GetStringValue(); } },
@@ -554,6 +579,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
                 { "uploaded_at", n => { UploadedAt = n.GetDateTimeOffsetValue(); } },
+                { "uploaded_by", n => { UploadedBy = n.GetObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoUploadedBy>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoUploadedBy.CreateFromDiscriminatorValue); } },
                 { "url", n => { Url = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
                 { "versions", n => { Versions = n.GetCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoVersionsItem>(global::Soenneker.Cloudinary.OpenApiClient.Models.InfoVersionsItem.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -579,6 +605,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoContext>("context", Context);
             writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCoordinates>("coordinates", Coordinates);
             writer.WriteDateTimeOffsetValue("created_at", CreatedAt);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoCreatedBy>("created_by", CreatedBy);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivativesItem>("derivatives", Derivatives);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoDerivedItem>("derived", Derived);
             writer.WriteStringValue("display_name", DisplayName);
@@ -611,6 +638,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
             writer.WriteEnumValue<global::Soenneker.Cloudinary.OpenApiClient.Models.DeliveryTypeAll>("type", Type);
             writer.WriteDateTimeOffsetValue("uploaded_at", UploadedAt);
+            writer.WriteObjectValue<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoUploadedBy>("uploaded_by", UploadedBy);
             writer.WriteStringValue("url", Url);
             writer.WriteIntValue("version", Version);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Cloudinary.OpenApiClient.Models.InfoVersionsItem>("versions", Versions);

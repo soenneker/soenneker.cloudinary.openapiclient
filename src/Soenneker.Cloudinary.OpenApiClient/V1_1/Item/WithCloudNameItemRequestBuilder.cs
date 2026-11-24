@@ -9,6 +9,7 @@ using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Eval;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folder_operations;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Item;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Media_sources;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_rules;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Operations;
@@ -64,6 +65,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.FoldersRequestBuilder Folders
         {
             get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Folders.FoldersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The media_sources property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Media_sources.Media_sourcesRequestBuilder Media_sources
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Media_sources.Media_sourcesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The metadata_fields property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.Metadata_fields.Metadata_fieldsRequestBuilder Metadata_fields

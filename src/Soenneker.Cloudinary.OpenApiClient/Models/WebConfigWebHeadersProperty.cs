@@ -8,10 +8,10 @@ using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
     /// <summary>
-    /// Results of image analysis.
+    /// HTTP headers to send with each request, by name. Values can include `{{fwd_key}}`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class SearchResponseResourcesItemImageAnalysisProperty : IAdditionalDataHolder, IParsable
+    public partial class WebConfigWebHeadersProperty : IAdditionalDataHolder, IParsable
     , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
         // Track explicitly assigned nulls separately from absent properties.
         private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
@@ -23,23 +23,21 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.WebConfigWebHeadersProperty"/> and sets the default values.
         /// </summary>
-        public SearchResponseResourcesItemImageAnalysisProperty()
+        public WebConfigWebHeadersProperty()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.WebConfigWebHeadersProperty"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Cloudinary.OpenApiClient.Models.WebConfigWebHeadersProperty CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            // Preserve a nullable root response.
-            if (parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) return null!;
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.SearchResponseResourcesItemImageAnalysisProperty(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Cloudinary.OpenApiClient.Models.WebConfigWebHeadersProperty(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model

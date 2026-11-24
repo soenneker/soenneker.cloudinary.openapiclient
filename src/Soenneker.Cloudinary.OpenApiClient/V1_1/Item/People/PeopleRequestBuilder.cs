@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Cloudinary.OpenApiClient.Models;
+using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.By_asset;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Inspect;
 using Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Item;
 using System.Collections.Generic;
@@ -19,6 +20,11 @@ namespace Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PeopleRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The by_asset property</summary>
+        public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.By_asset.By_assetRequestBuilder By_asset
+        {
+            get => new global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.By_asset.By_assetRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The inspect property</summary>
         public global::Soenneker.Cloudinary.OpenApiClient.V1_1.Item.People.Inspect.InspectRequestBuilder Inspect
         {

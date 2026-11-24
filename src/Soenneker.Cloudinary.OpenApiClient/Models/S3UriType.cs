@@ -3,18 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Cloudinary.OpenApiClient.Models
 {
+    /// <summary>The type of the media source.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum UriType
-    #pragma warning restore CS1591
+    public enum S3UriType
     {
-        [EnumMember(Value = "webhook")]
+        [EnumMember(Value = "s3")]
         #pragma warning disable CS1591
-        Webhook,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "flow")]
-        #pragma warning disable CS1591
-        Flow,
+        S3,
         #pragma warning restore CS1591
     }
 }

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Cloudinary API v1.1
-  version: 0.7.10 # x-release-please-version
+  version: 0.7.11 # x-release-please-version
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -44,6 +44,8 @@ tags:
     description: Enables you to set up dependencies and relationships between structured metadata fields and options.
   - name: upload_mappings
     description: Enables you to manage upload mappings
+  - name: media_sources
+    description: Enables you to manage media sources that upload mappings can read from.
   - name: assets
     description: Enables you to manage all the resources (assets) stored in your product environment.
   - name: asset_relations
@@ -2800,6 +2802,164 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/replace_upload_mappings_request'
+  /v1_1/{cloud_name}/media_sources:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+    get:
+      x-speakeasy-mcp:
+        disabled: true
+        name: list-media-sources
+        scopes:
+          - builder
+        title: List Media Sources
+        readOnlyHint: true
+        idempotentHint: true
+      operationId: listMediaSources
+      summary: Get media sources
+      description: |
+        Returns the media sources defined for your product environment.
+      tags:
+        - media_sources
+      responses:
+        '200':
+          description: Media sources retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/media_source_list'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+    post:
+      x-speakeasy-mcp:
+        disabled: true
+        name: create-media-source
+        scopes:
+          - builder
+        title: Create Media Source
+      operationId: createMediaSource
+      summary: Create a media source
+      description: |
+        Creates a media source that an upload mapping can reference, with a template of `{"media_source":"<id>"}`.
+      tags:
+        - media_sources
+      requestBody:
+        description: The media source to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/media_source_create_input'
+      responses:
+        '200':
+          description: Media source created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/media_source'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+  /v1_1/{cloud_name}/media_sources/{id}:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+      - $ref: '#/components/parameters/media_source_id'
+    get:
+      x-speakeasy-mcp:
+        disabled: true
+        name: get-media-source
+        scopes:
+          - builder
+        title: Get Media Source
+        readOnlyHint: true
+        idempotentHint: true
+      operationId: getMediaSource
+      summary: Get a media source
+      description: Returns the details of a single media source.
+      tags:
+        - media_sources
+      responses:
+        '200':
+          description: Media source retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/media_source'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+    put:
+      x-speakeasy-mcp:
+        disabled: true
+        name: update-media-source
+        scopes:
+          - builder
+        title: Update Media Source
+        idempotentHint: true
+      operationId: updateMediaSource
+      summary: Update a media source
+      description: |
+        Updates a media source. Omitting `config` keeps it. A `config` you send replaces the stored one, so send every
+        option, and send `encrypted` as a key, secret or service account key to keep the stored one. To change
+        `uri_type`, send a `config` of the new type.
+      tags:
+        - media_sources
+      requestBody:
+        description: The media source fields to update.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/media_source_update_input'
+      responses:
+        '200':
+          description: Media source updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/media_source'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+    delete:
+      x-speakeasy-mcp:
+        disabled: true
+        name: delete-media-source
+        scopes:
+          - builder
+        title: Delete Media Source
+        destructiveHint: true
+        idempotentHint: true
+      operationId: deleteMediaSource
+      summary: Delete a media source
+      description: Deletes a media source. A media source that a delivery profile uses can't be deleted.
+      tags:
+        - media_sources
+      responses:
+        '200':
+          description: Media source deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/media_source_delete_response'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
   /v1_1/{cloud_name}/triggers:
     parameters:
       - $ref: '#/components/parameters/cloud_name'
@@ -3479,7 +3639,8 @@ paths:
         - name: external_ids
           in: query
           required: true
-          explode: false
+          style: form
+          explode: true
           schema:
             type: array
             items:
@@ -3817,7 +3978,8 @@ paths:
     delete:
       summary: Delete backed up versions
       description: |
-        Deletes specific backed up versions of an asset identified by asset ID.
+        Deletes specific backed up versions of an asset identified by asset ID (`version_ids` in the body), or every backed up version of the asset (`all=true`).
+        With `all=true` one call removes up to 100 versions; an asset with more versions is rejected with a 400 asking for `async=true`, which removes them in the background.
         This operation is irreversible and deleted versions cannot be recovered.
       tags:
         - assets
@@ -3826,28 +3988,45 @@ paths:
       parameters:
         - $ref: '#/components/parameters/cloud_name'
         - $ref: '#/components/parameters/asset_id'
+        - name: all
+          in: query
+          required: false
+          description: Set to `true` to delete every backed up version of the asset. Cannot be combined with `version_ids`.
+          schema:
+            type: boolean
+            default: false
+        - name: async
+          in: query
+          required: false
+          description: With `all=true`, set to `true` to delete the versions in the background; the response is `{"status":"pending"}` and completion is confirmed by listing the asset's versions later. Only valid together with `all=true`.
+          schema:
+            type: boolean
+            default: false
       requestBody:
-        description: The asset IDs and version IDs to delete.
-        required: true
+        description: The version IDs to delete. Required unless `all=true` is passed.
+        required: false
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/delete_backup_versions_request'
       responses:
         '200':
-          description: Backup versions successfully deleted
+          description: Backup versions successfully deleted, or, with `async=true`, the deletion was accepted and runs in the background.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/delete_backup_versions_response'
+                oneOf:
+                  - $ref: '#/components/schemas/delete_backup_versions_response'
+                  - $ref: '#/components/schemas/delete_backup_versions_pending_response'
         '207':
-          description: Multi-status - some versions deleted successfully, others failed
+          description: Multi-status - some versions deleted successfully, others failed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/delete_backup_versions_partial_response'
         '400':
-          description: Bad request - Invalid parameters or values
+          description: |
+            Bad request - Invalid parameters or values. Also returned when `all=true` is combined with `version_ids`, when `async=true` is passed without `all=true`, when `all=true` is requested for an asset that has no backed up versions, and when the asset has more versions than one synchronous call removes (`Asset has more than 100 backup versions; repeat the call with async=true to delete them in the background`).
           content:
             application/json:
               schema:
@@ -5284,7 +5463,7 @@ paths:
       description: |
         Returns a list of resources matching the specified search criteria.
 
-        Uses a Lucene-like query language to filter assets by descriptive attributes (`public_id`, `asset_id`, `filename`, `display_name`, `folder` / `asset_folder`, `tags`, `context.<key>`), file details (`resource_type`, `type`, `format`, `bytes`, `width`, `height`, `duration`, `pages`, `aspect_ratio`, `transparent`, `grayscale`), lifecycle dates (`uploaded_at`, `created_at`, `taken_at`, `updated_at`, `last_updated.<kind>`), moderation and lifecycle state (`status`, `moderation_status`, `moderation_kind`), embedded data (`image_metadata.*`), structured metadata (`metadata.<external_id>`), and analysis fields (`face_count`, `colors`, `quality_score`, `illustration_score`, `accessibility_analysis.*`). Supports sorting, aggregate counts, and complex boolean expressions.
+        Uses a Lucene-like query language to filter assets by descriptive attributes (`public_id`, `asset_id`, `filename`, `display_name`, `folder` / `asset_folder`, `tags`, `context.<key>`), file details (`resource_type`, `type`, `format`, `bytes`, `width`, `height`, `duration`, `pages`, `aspect_ratio`, `transparent`, `grayscale`), provenance flags (`has_c2pa` and `hdr`, matched as `true` or `false`, and `ai_generated`, which additionally has an undeclared state that matches neither value), lifecycle dates (`uploaded_at`, `created_at`, `taken_at`, `updated_at`, `last_updated.<kind>`), moderation and lifecycle state (`status`, `moderation_status`, `moderation_kind`), embedded data (`image_metadata.*`), structured metadata (`metadata.<external_id>`), and analysis fields (`face_count`, `colors`, `quality_score`, `illustration_score`, `accessibility_analysis.*`). Supports sorting, aggregate counts, and complex boolean expressions.
 
         Examples: `tags:shirt AND uploaded_at>1d`, `resource_type:image AND bytes>1000000`, `folder:products OR context.category:electronics`. See the [search expressions guide](https://cloudinary.com/documentation/search_expressions.md) for the full syntax and field reference.
       tags:
@@ -5630,6 +5809,70 @@ paths:
               example:
                 error:
                   message: People Search is not enabled for this customer
+  /v1_1/{cloud_name}/people/by_asset/{asset_id}:
+    parameters:
+      - $ref: '#/components/parameters/cloud_name'
+      - name: asset_id
+        in: path
+        required: true
+        description: The external ID of the asset.
+        schema:
+          type: string
+        example: 2262b0b5eb88f1fd7724e29b0e57d730
+    get:
+      x-speakeasy-mcp:
+        disabled: true
+        name: list-people-by-asset
+        scopes:
+          - admin
+        title: List People by Asset
+        readOnlyHint: true
+        idempotentHint: true
+      operationId: listPeopleByAsset
+      summary: List the people recognized in an asset
+      description: |
+        Returns the recognized people found in an image, one entry per person, each with the face crop
+        in that image. A person is listed once, using their most confident face in the image, then the largest one.
+        The list is empty if the asset is not an image, is not active, or has not been analyzed yet.
+        People you are not permitted to read are left out, and a thumbnail is returned only if you can read
+        the asset it comes from.
+        People Search must be enabled for this product environment.
+      tags:
+        - people
+      responses:
+        '200':
+          description: People retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/people_by_asset_response'
+        '401':
+          description: Authentication error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Invalid credentials
+        '403':
+          description: Feature not enabled, or no permission to read the asset
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: People Search is not enabled for this customer
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api_error'
+              example:
+                error:
+                  message: Can't find asset with id 2262b0b5eb88f1fd7724e29b0e57d730
   /v1_1/{cloud_name}/people/{person_id}:
     parameters:
       - $ref: '#/components/parameters/cloud_name'
@@ -7238,6 +7481,14 @@ components:
       schema:
         $ref: '#/components/schemas/direction_enum'
       description: The sort direction for the results. Default is "desc".
+    media_source_id:
+      name: id
+      in: path
+      required: true
+      description: The ID of the media source.
+      schema:
+        type: string
+      example: 4a4b9a5c1e0c2b8e7f6d5c4b3a2f1e0d
     delivery_type_all_query:
       name: type
       in: query
@@ -7256,7 +7507,8 @@ components:
       name: public_ids
       in: query
       required: false
-      explode: false
+      style: form
+      explode: true
       schema:
         type: array
         items:
@@ -7330,7 +7582,8 @@ components:
       name: asset_ids
       in: query
       required: true
-      explode: false
+      style: form
+      explode: true
       schema:
         type: array
         items:
@@ -7753,6 +8006,12 @@ components:
         accessibility_analysis:
           type: boolean
           description: Whether to return accessibility analysis values for the image.
+        ai_generated:
+          type: boolean
+          description: |
+            Whether to declare that the asset was generated by AI. Omit the parameter to leave the declaration unknown.
+            Note that a declaration of true is permanent: once an asset is declared AI-generated it cannot be changed back
+            to false, including by uploading over the same public ID.
         asset_folder:
           type: string
           description: The asset folder to assign to the asset.
@@ -7870,7 +8129,7 @@ components:
         eager_notification_url:
           type: string
           format: uri
-          description: A URL to notify when eager transformations are completed.
+          description: A URL to notify when eager transformations are completed. Use a webhook URL, or a `poll://<channel>` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id`.
         eval:
           type: string
           description: Allows you to modify upload parameters by specifying custom logic with JavaScript. This can be useful for conditionally adding tags, contextual metadata, structured metadata or eager transformations depending on specific criteria of the uploaded file.
@@ -7932,7 +8191,7 @@ components:
         notification_url:
           type: string
           format: uri
-          description: A URL to notify when the asset is ready.
+          description: A URL to notify when the asset is ready. Use a webhook URL, or a `poll://<channel>` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id`.
         ocr:
           type: string
           description: |
@@ -8112,6 +8371,7 @@ components:
         - $ref: '#/components/schemas/signature_parameters'
         - $ref: '#/components/schemas/upload_parameters'
         - $ref: '#/components/schemas/upload_request_parameters'
+        - $ref: '#/components/schemas/notification_batch_parameter'
         - type: object
           properties:
             file:
@@ -8127,6 +8387,7 @@ components:
         - $ref: '#/components/schemas/signature_parameters'
         - $ref: '#/components/schemas/upload_parameters'
         - $ref: '#/components/schemas/upload_request_parameters'
+        - $ref: '#/components/schemas/notification_batch_parameter'
         - type: object
           properties:
             file:
@@ -8140,6 +8401,16 @@ components:
                 - Local file path starting with file://.
       required:
         - file
+    batch_id_param:
+      type: string
+      pattern: '^[A-Za-z0-9_\-./:]{1,128}$'
+      description: The identifier that correlates related notifications so they can be retrieved together from a `poll://*` notification destination. Send your own value to be sure that you can retrieve the notifications. When omitted, retrieve them by the `batch_id` that an asynchronous response returns, or, for a synchronous request, by the `X-Request-Id` response header.
+      example: orders/2026-07/import-42
+    notification_batch_parameter:
+      type: object
+      properties:
+        batch_id:
+          $ref: '#/components/schemas/batch_id_param'
     version_id:
       type: string
       pattern: ^([0-9a-f]{32})+$
@@ -8480,7 +8751,9 @@ components:
             notification_url:
               type: string
               format: uri
-              description: URL to notify when the operation is complete.
+              description: URL to notify when the operation is complete. Use a webhook URL, or a `poll://<channel>` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id` (see the `batch_id` parameter).
+            batch_id:
+              $ref: '#/components/schemas/batch_id_param'
           required:
             - from_public_id
             - to_public_id
@@ -8544,7 +8817,9 @@ components:
             notification_url:
               type: string
               format: uri
-              description: URL to receive a notification when the operation is complete.
+              description: URL to receive a notification when the operation is complete. Use a webhook URL, or a `poll://<channel>` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id` (see the `batch_id` parameter).
+            batch_id:
+              $ref: '#/components/schemas/batch_id_param'
     destroy_response:
       type: object
       properties:
@@ -8571,7 +8846,9 @@ components:
             notification_url:
               type: string
               format: uri
-              description: The webhook URL to notify when the operation is complete.
+              description: The URL to notify when the operation is complete. Use a webhook URL, or a `poll://<channel>` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id` (see the `batch_id` parameter).
+            batch_id:
+              $ref: '#/components/schemas/batch_id_param'
             type:
               $ref: '#/components/schemas/managed_delivery_type'
               description: 'The delivery type of the asset. Default: upload'
@@ -8600,6 +8877,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/signature_parameters'
         - $ref: '#/components/schemas/upload_common_parameters'
+        - $ref: '#/components/schemas/notification_batch_parameter'
         - type: object
           properties:
             public_id:
@@ -8820,7 +9098,9 @@ components:
             notification_url:
               type: string
               format: uri
-              description: ("create" mode only), specifies the URL to notify when the archive generation is complete.
+              description: ("create" mode only), specifies the URL to notify when the archive generation is complete. Use a webhook URL, or a `poll://<channel>` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id` (see the `batch_id` parameter).
+            batch_id:
+              $ref: '#/components/schemas/batch_id_param'
             target_tags:
               type: array
               items:
@@ -8945,7 +9225,9 @@ components:
             notification_url:
               type: string
               format: uri
-              description: URL to receive completion notification.
+              description: URL to receive completion notification. Use a webhook URL, or a `poll://<channel>` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id` (see the `batch_id` parameter).
+            batch_id:
+              $ref: '#/components/schemas/batch_id_param'
             callback:
               type: string
               format: uri
@@ -9102,6 +9384,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/signature_parameters'
         - $ref: '#/components/schemas/upload_common_parameters'
+        - $ref: '#/components/schemas/notification_batch_parameter'
         - type: object
           required:
             - urls
@@ -9969,6 +10252,441 @@ components:
             $ref: '#/components/schemas/upload_mapping_input'
       required:
         - mappings
+    media_source:
+      type: object
+      description: A media source.
+      properties:
+        id:
+          type: string
+          description: The ID of the media source.
+        display_name:
+          type: string
+          description: The name of the media source.
+        uri_type:
+          type: string
+          description: The type of the media source.
+        config:
+          type: object
+          description: The options of the media source, for its `uri_type`. Keys, secrets and service account keys are returned as `encrypted`.
+          additionalProperties: true
+    media_source_list:
+      type: array
+      items:
+        $ref: '#/components/schemas/media_source'
+    media_source_display_name:
+      type: string
+      description: A unique name for the media source in your product environment.
+      example: my-media-source
+    s3_config:
+      type: object
+      description: |
+        The S3 bucket to read from. Without an access key, Cloudinary must already be allowed to access the bucket for
+        your product environment.
+      properties:
+        s3_bucket_name:
+          type: string
+          description: The name of the S3 bucket.
+          example: my-bucket
+        s3_bucket_folder:
+          type: string
+          description: A folder in the bucket to read objects from.
+          example: images
+        s3_uri_template:
+          type: string
+          description: A template for the object path in the bucket, where `{{fwd_key}}` is the requested path.
+          example: '{{fwd_key}}'
+        s3_access_key:
+          type: string
+          writeOnly: true
+          description: |
+            The access key ID of an AWS user that can read the bucket. Required with `s3_secret_key`. Stored encrypted
+            and returned as `encrypted`.
+          example: AKIAIOSFODNN7EXAMPLE
+        s3_secret_key:
+          type: string
+          writeOnly: true
+          description: |
+            The secret access key of the AWS user. Required with `s3_access_key`. Stored encrypted and returned as
+            `encrypted`.
+        s3_bucket_region:
+          type: string
+          description: The region of the bucket. Detected from the bucket when omitted.
+          example: us-east-1
+        s3_endpoint:
+          type: string
+          description: The hostname of an S3-compatible storage service to read from instead of Amazon S3.
+          example: us-east-1.linodeobjects.com
+      required:
+        - s3_bucket_name
+        - s3_uri_template
+      additionalProperties: false
+    s3_media_source_create_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          type: string
+          enum:
+            - s3
+          description: The type of the media source.
+          example: s3
+        config:
+          $ref: '#/components/schemas/s3_config'
+      required:
+        - display_name
+        - uri_type
+        - config
+    gs_config:
+      type: object
+      description: |
+        The Google Cloud Storage bucket to read from. Without a service account key, Cloudinary must already be allowed
+        to access the bucket for your product environment.
+      properties:
+        gs_bucket_name:
+          type: string
+          description: The name of the Google Cloud Storage bucket.
+          example: my-bucket
+        gs_bucket_folder:
+          type: string
+          description: A folder in the bucket to read objects from.
+          example: images
+        gs_uri_template:
+          type: string
+          description: A template for the object path in the bucket, where `{{fwd_key}}` is the requested path.
+          example: '{{fwd_key}}'
+        gs_service_account_key:
+          type: string
+          writeOnly: true
+          description: |
+            The JSON key file of a service account that can read the bucket, as a string. Stored encrypted and returned
+            as `encrypted`.
+      required:
+        - gs_bucket_name
+        - gs_uri_template
+      additionalProperties: false
+    gs_media_source_create_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          type: string
+          enum:
+            - gs
+          description: The type of the media source.
+          example: gs
+        config:
+          $ref: '#/components/schemas/gs_config'
+      required:
+        - display_name
+        - uri_type
+        - config
+    azure_config:
+      type: object
+      description: The Azure Blob Storage container to read from.
+      properties:
+        azure_account_name:
+          type: string
+          description: The name of the storage account, as in `https://<account>.blob.core.windows.net`.
+          example: mystorageaccount
+        azure_container_name:
+          type: string
+          description: The name of the container.
+          example: media
+        azure_key:
+          type: string
+          writeOnly: true
+          description: |
+            An access key of the storage account, base64-encoded as Azure shows it. Stored encrypted and returned as
+            `encrypted`.
+          example: c2VjcmV0LWtleS1iYXNlNjQtZW5jb2RlZA==
+        azure_folder:
+          type: string
+          description: A folder in the container to read blobs from.
+          example: images
+        azure_uri_template:
+          type: string
+          description: 'A template for the blob path in the container, where `{{fwd_key}}` is the requested path. Default: {{fwd_key}}.'
+          example: '{{fwd_key}}'
+      required:
+        - azure_account_name
+        - azure_container_name
+        - azure_key
+      additionalProperties: false
+    azure_media_source_create_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          type: string
+          enum:
+            - azure
+          description: The type of the media source.
+          example: azure
+        config:
+          $ref: '#/components/schemas/azure_config'
+      required:
+        - display_name
+        - uri_type
+        - config
+    web_config:
+      type: object
+      description: The web server to read from. Files are read from the base URL, a `/` and the rendered template.
+      properties:
+        web_uri_base:
+          type: string
+          description: The base URL of the web server, starting with `http://` or `https://`.
+          example: https://example.com/images
+        web_uri_template:
+          type: string
+          description: A template for the file path under the base URL, where `{{fwd_key}}` is the requested path.
+          example: '{{fwd_key}}'
+        web_headers:
+          type: object
+          description: HTTP headers to send with each request, by name. Values can include `{{fwd_key}}`.
+          additionalProperties:
+            type: string
+          example:
+            Authorization: Bearer my-token
+      required:
+        - web_uri_base
+        - web_uri_template
+      additionalProperties: false
+    web_media_source_create_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          type: string
+          enum:
+            - web
+          description: The type of the media source.
+          example: web
+        config:
+          $ref: '#/components/schemas/web_config'
+      required:
+        - display_name
+        - uri_type
+        - config
+    http_config:
+      type: object
+      description: The `http` type takes no options. The requested path is the full URL of the file to read.
+      additionalProperties: false
+    http_media_source_create_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          type: string
+          enum:
+            - http
+          description: The type of the media source.
+          example: http
+        config:
+          $ref: '#/components/schemas/http_config'
+      required:
+        - display_name
+        - uri_type
+    cloudinary_config:
+      type: object
+      description: |
+        The product environment to read from. The requested path is the public ID of an uploaded asset there.
+      properties:
+        cld_cloud_name:
+          type: string
+          description: |
+            The cloud name of an active product environment in your account, in the same region, that stores assets.
+          example: my-other-cloud
+      required:
+        - cld_cloud_name
+      additionalProperties: false
+    cloudinary_media_source_create_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          type: string
+          enum:
+            - cloudinary
+          description: The type of the media source.
+          example: cloudinary
+        config:
+          $ref: '#/components/schemas/cloudinary_config'
+      required:
+        - display_name
+        - uri_type
+        - config
+    bynder_config:
+      type: object
+      description: The Bynder portal to read from. The requested path is the ID of a Bynder asset.
+      properties:
+        bynder_domain:
+          type: string
+          description: The domain of the Bynder portal.
+          example: mycompany.bynder.com
+        bynder_client_id:
+          type: string
+          writeOnly: true
+          description: |
+            The client ID of a Bynder OAuth app with the client credentials grant and the `asset:read` scope. Stored
+            encrypted and returned as `encrypted`.
+          example: 46aa1ed5-8627-4d3d-a2f6-355abc173a5c
+        bynder_client_secret:
+          type: string
+          writeOnly: true
+          description: The client secret of the Bynder OAuth app. Stored encrypted and returned as `encrypted`.
+          example: 59753407-40f3-472c-b043-a27f27f0970c
+      required:
+        - bynder_domain
+        - bynder_client_id
+        - bynder_client_secret
+      additionalProperties: false
+    bynder_media_source_create_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          type: string
+          enum:
+            - bynder
+          description: The type of the media source.
+          example: bynder
+        config:
+          $ref: '#/components/schemas/bynder_config'
+      required:
+        - display_name
+        - uri_type
+        - config
+    supabase_config:
+      type: object
+      description: |
+        The Supabase Storage bucket to read from. Without an access key, the bucket must be public and objects are read
+        from its public URL. With an access key, secret key and region, objects are read through the project's
+        S3-compatible endpoint, so the bucket can be private.
+      properties:
+        supabase_project_ref:
+          type: string
+          pattern: ^[a-z0-9]+$
+          description: The reference ID of the Supabase project, as in `https://<ref>.supabase.co`.
+          example: abcdefghijklmnopqrst
+        supabase_bucket_name:
+          type: string
+          pattern: ^[A-Za-z0-9][A-Za-z0-9._-]*$
+          description: The name of the Supabase Storage bucket.
+          example: media
+        supabase_folder:
+          type: string
+          description: A folder in the bucket to read objects from.
+          example: images
+        supabase_uri_template:
+          type: string
+          description: 'A template for the object path in the bucket, where `{{fwd_key}}` is the requested path. Default: {{fwd_key}}.'
+          example: '{{fwd_key}}'
+        supabase_access_key:
+          type: string
+          writeOnly: true
+          description: |
+            The S3 access key ID of the Supabase project. Required with `supabase_secret_key` and `supabase_region`
+            for a private bucket. Stored encrypted and returned as `encrypted`.
+          example: 7c5cf426a9a7f431bf37bfdb61c52b2c
+        supabase_secret_key:
+          type: string
+          writeOnly: true
+          description: |
+            The S3 secret access key of the Supabase project. Required with `supabase_access_key` and `supabase_region`
+            for a private bucket. Stored encrypted and returned as `encrypted`.
+        supabase_region:
+          type: string
+          pattern: ^[a-z0-9-]+$
+          description: The region of the Supabase project. Required with `supabase_access_key` and `supabase_secret_key`.
+          example: us-west-2
+      required:
+        - supabase_project_ref
+        - supabase_bucket_name
+      additionalProperties: false
+    supabase_media_source_create_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          type: string
+          enum:
+            - supabase
+          description: The type of the media source.
+          example: supabase
+        config:
+          $ref: '#/components/schemas/supabase_config'
+      required:
+        - display_name
+        - uri_type
+        - config
+    media_source_create_input:
+      description: The media source to create. `uri_type` selects the options `config` takes.
+      oneOf:
+        - $ref: '#/components/schemas/s3_media_source_create_input'
+        - $ref: '#/components/schemas/gs_media_source_create_input'
+        - $ref: '#/components/schemas/azure_media_source_create_input'
+        - $ref: '#/components/schemas/web_media_source_create_input'
+        - $ref: '#/components/schemas/http_media_source_create_input'
+        - $ref: '#/components/schemas/cloudinary_media_source_create_input'
+        - $ref: '#/components/schemas/bynder_media_source_create_input'
+        - $ref: '#/components/schemas/supabase_media_source_create_input'
+    media_source_uri_type:
+      type: string
+      description: The type of the media source.
+      enum:
+        - s3
+        - gs
+        - azure
+        - web
+        - http
+        - cloudinary
+        - bynder
+        - supabase
+      x-enum-descriptions:
+        - Reads objects from an Amazon S3 bucket, or a bucket of an S3-compatible service.
+        - Reads objects from a Google Cloud Storage bucket.
+        - Reads blobs from an Azure Blob Storage container.
+        - Reads files from a web server, under a base URL.
+        - Reads files from the full URL given as the requested path.
+        - Reads original assets from another product environment in your account.
+        - Reads assets from a Bynder portal.
+        - Reads objects from a Supabase Storage bucket.
+      example: s3
+    media_source_config:
+      description: The options of the media source, for its `uri_type`.
+      oneOf:
+        - $ref: '#/components/schemas/s3_config'
+        - $ref: '#/components/schemas/gs_config'
+        - $ref: '#/components/schemas/azure_config'
+        - $ref: '#/components/schemas/web_config'
+        - $ref: '#/components/schemas/http_config'
+        - $ref: '#/components/schemas/cloudinary_config'
+        - $ref: '#/components/schemas/bynder_config'
+        - $ref: '#/components/schemas/supabase_config'
+    media_source_update_input:
+      type: object
+      properties:
+        display_name:
+          $ref: '#/components/schemas/media_source_display_name'
+        uri_type:
+          $ref: '#/components/schemas/media_source_uri_type'
+        config:
+          $ref: '#/components/schemas/media_source_config'
+    media_source_delete_response:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The result of the operation.
+          example: ok
     event_type:
       type: string
       description: The type of notification event.
@@ -10003,9 +10721,15 @@ components:
         - upload
     uri_type:
       type: string
+      description: The delivery transport for the notification trigger.
       enum:
         - webhook
         - flow
+        - poll
+      x-enum-descriptions:
+        - Delivers the notification as an HTTP POST to the destination URL.
+        - Dispatches the notification to a Cloudinary flow.
+        - Buffers the notification for retrieval via long-poll or WebSocket instead of an outbound HTTP request. The uri takes the form 'poll://<channel>' for a named channel or 'poll://*' for an anonymous destination correlated by batch_id.
     trigger_info:
       type: object
       properties:
@@ -10016,7 +10740,8 @@ components:
           type: string
           example: 7fabb2ff3d687d05b63134cf8fa006ba16
         uri_type:
-          $ref: '#/components/schemas/uri_type'
+          allOf:
+            - $ref: '#/components/schemas/uri_type'
           example: webhook
         uri:
           type: string
@@ -10057,9 +10782,13 @@ components:
       properties:
         uri:
           type: string
-          description: The URL that will receive the notification response.
-          format: uri
+          description: The destination that will receive the notification response. An 'https://' URL for a webhook trigger, or a 'poll://<channel>' / 'poll://*' address for a poll trigger.
           example: https://trigger.site/124
+        uri_type:
+          allOf:
+            - $ref: '#/components/schemas/uri_type'
+          description: The delivery transport for the notification trigger. Defaults to 'webhook'.
+          example: webhook
         event_type:
           $ref: '#/components/schemas/event_type'
           description: The type of event that will trigger the notification response.
@@ -10157,6 +10886,27 @@ components:
         - regions
         - is_audio
       description: Valid field names for selective resource responses.
+    contributor:
+      type: object
+      description: |
+        The identity behind the upload. Either the console user who performed it (custom_id and external_id)
+        or, when no console user was involved, the API key that signed the upload (access_key). The
+        get-resource and Search responses return one or the other, never both. When no contributor was
+        recorded (for example assets created before creator tracking) the Search API returns the field as
+        null and the get-resource response omits it.
+      properties:
+        access_key:
+          type: string
+          description: The API key used for the upload. Returned only when no console user was recorded.
+          example: '149945967172831'
+        custom_id:
+          type: string
+          description: The email address of the console user who performed the upload, as it was at upload time. The stored value never changes, even if the user later changes their email, so it may not match the user's current address.
+          example: matthew@example.com
+        external_id:
+          type: string
+          description: The identifier of the console user who performed the upload. It identifies the actual user behind the operation and stays the same even if their email changes; use it to look the user up.
+          example: 0b8cd452de3ce172a6aec7af0a90db
     info:
       type: object
       properties:
@@ -10305,6 +11055,14 @@ components:
             updated_at:
               type: string
               format: date-time
+        created_by:
+          allOf:
+            - $ref: '#/components/schemas/contributor'
+          description: 'Who created the asset: the console user when known, otherwise the API key that signed the upload. Omitted when no contributor was recorded; never null.'
+        uploaded_by:
+          allOf:
+            - $ref: '#/components/schemas/contributor'
+          description: 'Who performed the most recent upload of the asset: the console user when known, otherwise the API key that signed the upload. Equal to created_by unless the asset was overwritten. Omitted when no contributor was recorded; never null.'
         next_cursor:
           type: string
           description: Cursor for paginating derived assets.
@@ -10437,8 +11195,10 @@ components:
         notification_url:
           type: string
           format: uri
-          description: The URL that will receive notification when restore is complete.
+          description: The URL that will receive notification when restore is complete. Use a webhook URL, or a `poll://<channel>` or `poll://*` address to hold the notification for retrieval with the Notifications API. Retrieve a `poll://*` notification by `batch_id` (see the `batch_id` parameter).
           example: https://example.com/webhook
+        batch_id:
+          $ref: '#/components/schemas/batch_id_param'
     restore_response:
       type: object
       additionalProperties:
@@ -10598,12 +11358,10 @@ components:
           type: array
           items:
             type: string
-          description: The list of version IDs to delete from backup.
+          description: The list of version IDs to delete from backup. Omit it and pass the `all=true` query parameter to delete every backed up version of the asset.
           example:
             - 5552aa57e67445552a3cdc1110a0115
             - 383e22a57167445552a3cdc16f0a0c85
-      required:
-        - version_ids
     delete_backup_versions_response:
       type: object
       properties:
@@ -10617,6 +11375,19 @@ components:
       required:
         - asset_id
         - deleted_version_ids
+    delete_backup_versions_pending_response:
+      type: object
+      description: Returned for `all=true&async=true`; the versions are deleted in the background.
+      properties:
+        status:
+          type: string
+          enum:
+            - pending
+        asset_id:
+          $ref: '#/components/schemas/asset_id'
+      required:
+        - status
+        - asset_id
     backup_version_failure:
       type: object
       properties:
@@ -11877,14 +12648,16 @@ components:
               - metadata
               - quality_analysis
               - accessibility_analysis
+              - provenance
             x-enum-descriptions:
               - Includes the `context` key-value pairs attached to each asset.
               - Includes the list of `tags` attached to each asset.
               - Includes embedded metadata extracted from the asset file (EXIF, IPTC, XMP under `image_metadata`). Tier 2 feature.
-              - Includes analysis results such as `colors`, `face_count`, `illustration_score`, and `grayscale` under `image_analysis`. Tier 2 feature.
+              - Includes analysis results such as `colors`, `face_count`, `illustration_score`, `grayscale`, and `hdr` under `image_analysis`. Tier 2 feature.
               - Includes values of structured metadata fields under `metadata`. Tier 2 feature.
               - Includes `quality_analysis.*` scores for assets analyzed at upload time.
               - Includes `accessibility_analysis.*` scores for assets analyzed at upload time.
+              - Includes the provenance indications `has_c2pa` and `ai_generated` under `provenance`.
           description: |
             The additional asset attributes to include in each search result. The `fields` parameter takes precedence over this parameter. `image_metadata`, `image_analysis`, and `metadata` require a Tier 2 search plan.
           example:
@@ -11898,6 +12671,20 @@ components:
             - This parameter takes precedence over the with_field parameter, so if you want any additional asset attributes returned, make sure to also include them in this list (e.g., tags or context).
             - The following fields are always included in the response: public_id, asset_id, asset_folder, created_at, status, type, and resource_type.
           example: tags,context,metadata
+    provenance_response:
+      type:
+        - object
+        - 'null'
+      description: Provenance indications derived from the asset at upload. Returned in searches including a with_field parameter specifying provenance. A key is present only when there is an answer for it.
+      properties:
+        has_c2pa:
+          type: boolean
+          description: Whether the asset carries a C2PA content credentials manifest. False when no manifest was found.
+          example: false
+        ai_generated:
+          type: boolean
+          description: Whether the asset is AI-generated, either declared on upload or read from its C2PA manifest. Omitted when unknown, which is not the same as false.
+          example: true
     search_response:
       type: object
       description: The response object returned by search operations.
@@ -12040,25 +12827,19 @@ components:
                 description: The ETag of the asset.
                 example: 7242da7b353e7da2c3eb8c006165b385
               created_by:
-                type:
-                  - object
-                  - 'null'
-                description: Information about who created the asset.
-                properties:
-                  access_key:
-                    type: string
-                    description: The access key of the user who created the asset.
-                    example: '614335564976464'
+                anyOf:
+                  - $ref: '#/components/schemas/contributor'
+                  - type: 'null'
+                description: Who created the asset, as one identity (see contributor). Null when no contributor was recorded.
               uploaded_by:
-                type:
-                  - object
-                  - 'null'
-                description: Information about who uploaded the asset.
-                properties:
-                  access_key:
-                    type: string
-                    description: The access key of the user who uploaded the asset.
-                    example: '614335564976464'
+                anyOf:
+                  - $ref: '#/components/schemas/contributor'
+                  - type: 'null'
+                description: Who uploaded the asset, as one identity (see contributor). Null when no contributor was recorded.
+              provenance:
+                allOf:
+                  - $ref: '#/components/schemas/provenance_response'
+                description: 'Provenance indications for the asset. Note: the provenance object is returned in searches including a with_field parameter specifying provenance.'
               context:
                 allOf:
                   - $ref: '#/components/schemas/context_response'
@@ -12077,6 +12858,11 @@ components:
                   - object
                   - 'null'
                 description: Results of image analysis.
+                properties:
+                  hdr:
+                    type: boolean
+                    description: Whether the stored asset is in high dynamic range. False when no HDR was detected.
+                    example: false
               metadata:
                 type:
                   - object
@@ -12281,11 +13067,11 @@ components:
         - hidden
     thumbnail:
       type: object
-      description: The thumbnail image for a person.
+      description: An image of a person's face, taken from an asset.
       properties:
         asset_id:
           type: string
-          description: The external ID of the asset used for the thumbnail.
+          description: The external ID of the asset the image is taken from.
           example: 2262b0b5eb88f1fd7724e29b0e57d730
         bounding_box:
           type: array
@@ -12302,7 +13088,7 @@ components:
         url:
           type: string
           format: uri
-          description: The secure URL of the thumbnail asset.
+          description: The secure URL of the asset the image is taken from.
           example: https://res.cloudinary.com/demo/image/upload/v1234567890/sample.jpg
         resource_type:
           type: string
@@ -12358,6 +13144,29 @@ components:
         next_cursor:
           type: string
           description: The cursor to use for the next page of results.
+    person_on_asset:
+      description: A recognized person, with their face in the requested asset.
+      allOf:
+        - $ref: '#/components/schemas/person_details'
+        - type: object
+          properties:
+            face:
+              description: The person's face in the requested asset, or null if no face image is available.
+              oneOf:
+                - $ref: '#/components/schemas/thumbnail'
+                - type: 'null'
+    people_by_asset_response:
+      type: object
+      properties:
+        asset_id:
+          type: string
+          description: The external ID of the asset.
+          example: 2262b0b5eb88f1fd7724e29b0e57d730
+        people:
+          type: array
+          description: The recognized people found in the asset.
+          items:
+            $ref: '#/components/schemas/person_on_asset'
     person_response:
       type: object
       properties:
@@ -14492,6 +15301,241 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/upload_request'
+  responses:
+    unauthorized:
+      description: Authentication error - invalid API key or secret.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/api_error'
+    bad_request:
+      description: The request is invalid, for example a required config option is missing or has an invalid value.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/api_error'
+    forbidden:
+      description: |
+        The API key or user isn't permitted to perform this action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/api_error'
+    not_found:
+      description: The media source doesn't exist in your product environment.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/api_error'
+    GenerationAcceptedResponse:
+      description: Generation accepted.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/TaskResponse"
+          examples:
+            Accepted:
+              summary: Background generation accepted
+              description: The generation runs in the background; check the task for its result.
+              value:
+                data:
+                  task_id: 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
+                  status: pending
+                request_id: 17c3b70c5096df0e77e838323abb7029
+    BadRequestResponse:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            MissingParameters:
+              summary: Missing required parameters
+              description: A required parameter is missing from the request.
+              value:
+                error:
+                  category: user_error
+                  code: MG_00001
+                  message: missing parameters
+                  details:
+                    parameters:
+                      - prompt
+                request_id: 17c3b70c5096df0e77e838323abb7029
+    UnauthorizedResponse:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFoundResponse:
+      description: Not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            ReferenceNotFound:
+              summary: Reference asset not found
+              description: A reference image's asset_id was not found in the product environment.
+              value:
+                error:
+                  category: user_error
+                  code: MG_00704
+                  message: reference asset '0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a' not found
+                request_id: 17c3b70c5096df0e77e838323abb7029
+            TaskNotFound:
+              summary: Task not found
+              description: No task with this ID exists in the product environment.
+              value:
+                error:
+                  category: user_error
+                  code: MG_00015
+                  message: task not found
+                request_id: 17c3b70c5096df0e77e838323abb7029
+    RateLimitedResponse:
+      description: Rate limited.
+      content:
+        application/json:
+          schema:
+            type: object
+            title: RateLimitedResponse
+            description: Error returned when the account is out of Image Generation credits, with the current quota.
+            required:
+              - error
+              - request_id
+            properties:
+              error:
+                $ref: "#/components/schemas/Error"
+              limits:
+                $ref: "#/components/schemas/Limits"
+              notices:
+                $ref: "#/components/schemas/Notices"
+              request_id:
+                type: string
+                description: Unique identifier for this request, for correlation and support.
+                examples:
+                  - 17c3b70c5096df0e77e838323abb7029
+          examples:
+            RateLimited:
+              $ref: "#/components/examples/RateLimitedExample"
+    InternalServerErrorResponse:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            InternalError:
+              summary: Internal error
+              description: An unexpected server-side error; retrying may succeed.
+              value:
+                error:
+                  category: server_error
+                  code: MG_00500
+                  message: internal error
+                request_id: 17c3b70c5096df0e77e838323abb7029
+    ModelUnavailableResponse:
+      description: Model unavailable.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    ForbiddenResponse:
+      description: Forbidden.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            NotSubscribed:
+              summary: Not subscribed to Image Generation
+              description: The account is not subscribed to the Image Generation add-on.
+              value:
+                error:
+                  category: auth_error
+                  code: MG_00601
+                  message: Account does not have an active subscription for image generation. Subscribe at https://console.cloudinary.com/app/marketplace/details/image_generation
+                request_id: 17c3b70c5096df0e77e838323abb7029
+    UnprocessableEntityResponse:
+      description: |
+        The model rejected the input. A content check flagged the prompt or a
+        reference image, a reference URL could not be downloaded, or the model
+        could not produce an image for this prompt. Rephrase the prompt or pass
+        the reference image another way, then retry.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          examples:
+            ContentPolicy:
+              summary: Prompt rejected by the content policy
+              description: The model provider's content check rejected the prompt.
+              value:
+                error:
+                  category: user_error
+                  code: MG_00700
+                  message: The prompt was rejected by the content policy and could not be processed.
+                request_id: 17c3b70c5096df0e77e838323abb7029
+    CollectionsBadRequestResponse:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable description of the error.
+                examples:
+                  - Bad Request. Please check your request for errors.
+    CollectionsUnauthorizedResponse:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable description of the error.
+                examples:
+                  - Invalid credentials
+    CollectionsForbiddenResponse:
+      description: Forbidden.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable description of the error.
+                examples:
+                  - Forbidden.
+    CollectionsNotFoundResponse:
+      description: Not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable description of the error.
+                examples:
+                  - Not found.
+    CollectionsInternalServerErrorResponse:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable description of the error.
+                examples:
+                  - Internal server error. Please try again later.
   examples:
     RestoreResourcesFullRestoreExample:
       summary: Successful restore of multiple assets
@@ -14623,6 +15667,12 @@ components:
           public_id_updated_at: '2022-12-11T05:41:21Z'
           tags_updated_at: '2022-12-14T06:09:21Z'
           updated_at: '2022-12-14T06:09:21Z'
+        created_by:
+          custom_id: matthew@example.com
+          external_id: 0b8cd452de3ce172a6aec7af0a90db
+        uploaded_by:
+          custom_id: matthew@example.com
+          external_id: 0b8cd452de3ce172a6aec7af0a90db
         next_cursor: 041a39fc10971b9eabd4993470f6bfaf
         derived:
           - transformation: c_fill,w_100,h_100
@@ -15015,215 +16065,5 @@ components:
           - severity: blocking
             text: "Your Image Generation credits are used up (50 of 50). This request did not generate an image. This is not a rate limit: retrying now returns this same response, and it changes only once credits are added, or the quota renews on plans that renew. Stop and tell the user their credits are finished, show them this link to add credits or review the plan: https://console.cloudinary.com/app/image/generation/plans, and once the balance changes re-run this same request unchanged."
         request_id: 17c3b70c5096df0e77e838323abb7029
-  responses:
-    GenerationAcceptedResponse:
-      description: Generation accepted.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/TaskResponse"
-          examples:
-            Accepted:
-              summary: Background generation accepted
-              description: The generation runs in the background; check the task for its result.
-              value:
-                data:
-                  task_id: 053f4bde4b933c8ecef23724ecde63b667c1ea21816d56c161c7ec1df6297da4b43109625650e9edf0f42152cc4cc32c8ad57824ac75ba8e05020f827c415559ac1248076a2d72c0a73af0479cca77eb
-                  status: pending
-                request_id: 17c3b70c5096df0e77e838323abb7029
-    BadRequestResponse:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-          examples:
-            MissingParameters:
-              summary: Missing required parameters
-              description: A required parameter is missing from the request.
-              value:
-                error:
-                  category: user_error
-                  code: MG_00001
-                  message: missing parameters
-                  details:
-                    parameters:
-                      - prompt
-                request_id: 17c3b70c5096df0e77e838323abb7029
-    UnauthorizedResponse:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-    NotFoundResponse:
-      description: Not found.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-          examples:
-            ReferenceNotFound:
-              summary: Reference asset not found
-              description: A reference image's asset_id was not found in the product environment.
-              value:
-                error:
-                  category: user_error
-                  code: MG_00704
-                  message: reference asset '0d6f8e1c2b3a4d5e6f7a8b9c0d1e2f3a' not found
-                request_id: 17c3b70c5096df0e77e838323abb7029
-            TaskNotFound:
-              summary: Task not found
-              description: No task with this ID exists in the product environment.
-              value:
-                error:
-                  category: user_error
-                  code: MG_00015
-                  message: task not found
-                request_id: 17c3b70c5096df0e77e838323abb7029
-    RateLimitedResponse:
-      description: Rate limited.
-      content:
-        application/json:
-          schema:
-            type: object
-            title: RateLimitedResponse
-            description: Error returned when the account is out of Image Generation credits, with the current quota.
-            required:
-              - error
-              - request_id
-            properties:
-              error:
-                $ref: "#/components/schemas/Error"
-              limits:
-                $ref: "#/components/schemas/Limits"
-              notices:
-                $ref: "#/components/schemas/Notices"
-              request_id:
-                type: string
-                description: Unique identifier for this request, for correlation and support.
-                examples:
-                  - 17c3b70c5096df0e77e838323abb7029
-          examples:
-            RateLimited:
-              $ref: "#/components/examples/RateLimitedExample"
-    InternalServerErrorResponse:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-          examples:
-            InternalError:
-              summary: Internal error
-              description: An unexpected server-side error; retrying may succeed.
-              value:
-                error:
-                  category: server_error
-                  code: MG_00500
-                  message: internal error
-                request_id: 17c3b70c5096df0e77e838323abb7029
-    ModelUnavailableResponse:
-      description: Model unavailable.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-    ForbiddenResponse:
-      description: Forbidden.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-          examples:
-            NotSubscribed:
-              summary: Not subscribed to Image Generation
-              description: The account is not subscribed to the Image Generation add-on.
-              value:
-                error:
-                  category: auth_error
-                  code: MG_00601
-                  message: Account does not have an active subscription for image generation. Subscribe at https://console.cloudinary.com/app/marketplace/details/image_generation
-                request_id: 17c3b70c5096df0e77e838323abb7029
-    UnprocessableEntityResponse:
-      description: |
-        The model rejected the input. A content check flagged the prompt or a
-        reference image, a reference URL could not be downloaded, or the model
-        could not produce an image for this prompt. Rephrase the prompt or pass
-        the reference image another way, then retry.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-          examples:
-            ContentPolicy:
-              summary: Prompt rejected by the content policy
-              description: The model provider's content check rejected the prompt.
-              value:
-                error:
-                  category: user_error
-                  code: MG_00700
-                  message: The prompt was rejected by the content policy and could not be processed.
-                request_id: 17c3b70c5096df0e77e838323abb7029
-    CollectionsBadRequestResponse:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Human-readable description of the error.
-                examples:
-                  - Bad Request. Please check your request for errors.
-    CollectionsUnauthorizedResponse:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Human-readable description of the error.
-                examples:
-                  - Invalid credentials
-    CollectionsForbiddenResponse:
-      description: Forbidden.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Human-readable description of the error.
-                examples:
-                  - Forbidden.
-    CollectionsNotFoundResponse:
-      description: Not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Human-readable description of the error.
-                examples:
-                  - Not found.
-    CollectionsInternalServerErrorResponse:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Human-readable description of the error.
-                examples:
-                  - Internal server error. Please try again later.
 x-speakeasy-globals:
   parameters: []

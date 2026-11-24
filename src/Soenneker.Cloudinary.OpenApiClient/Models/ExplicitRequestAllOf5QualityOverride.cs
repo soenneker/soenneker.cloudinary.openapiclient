@@ -11,7 +11,7 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
     /// Composed type wrapper for classes <see cref="int"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class ExplicitRequestAllOf4QualityOverride : IComposedTypeWrapper, IParsable
+    public partial class ExplicitRequestAllOf5QualityOverride : IComposedTypeWrapper, IParsable
     , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
         // Preserve ambiguous union payloads without inventing a discriminator.
         /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
@@ -31,13 +31,13 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf4QualityOverride"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf5QualityOverride"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf4QualityOverride CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf5QualityOverride CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
-            var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf4QualityOverride();
+            var result = new global::Soenneker.Cloudinary.OpenApiClient.Models.ExplicitRequestAllOf5QualityOverride();
             if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedInteger && parseNode.GetIntValue() is int integerValue)
             {
                 result.Integer = integerValue;

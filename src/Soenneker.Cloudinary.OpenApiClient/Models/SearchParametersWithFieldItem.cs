@@ -36,5 +36,9 @@ namespace Soenneker.Cloudinary.OpenApiClient.Models
         #pragma warning disable CS1591
         AccessibilityAnalysis,
         #pragma warning restore CS1591
+        [EnumMember(Value = "provenance")]
+        #pragma warning disable CS1591
+        Provenance,
+        #pragma warning restore CS1591
     }
 }
